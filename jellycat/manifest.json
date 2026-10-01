@@ -1,0 +1,11 @@
+{
+  "name": "Jellycat Stock",
+  "short_name": "Jellycat",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6efe6",
+  "theme_color": "#f6efe6",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
