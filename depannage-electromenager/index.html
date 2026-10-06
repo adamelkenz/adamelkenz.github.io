@@ -243,10 +243,40 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   display: grid; place-items: center; font-size: 1.1rem;
 }
 
-.brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
-.brands span {
-  padding: 8px 18px; border: 1px solid var(--mist); border-radius: 999px;
-  background: var(--surface); color: var(--muted); font-weight: 600; font-size: .9rem;
+/* Bandeau de marques défilant */
+#pourquoi { padding-bottom: 0; }
+.brand-band {
+  margin-top: 56px; padding: 22px 0 26px;
+  background: linear-gradient(90deg, var(--navy), var(--teal));
+  color: #fff; overflow: hidden;
+}
+.brand-band-title {
+  margin: 0 0 14px; text-align: center; font-size: .8rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--mist);
+}
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.brands { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.brands li {
+  display: flex; align-items: center; white-space: nowrap;
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: #fff;
+}
+.brands li::after { content: "•"; margin: 0 32px; color: var(--teal-mid); font-size: 1.1rem; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (max-width: 720px) {
+  .brands li { font-size: 1.2rem; }
+  .brands li::after { margin: 0 22px; }
+  .marquee-track { animation-duration: 22s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; width: auto; justify-content: center; }
+  .marquee-track .brands[aria-hidden] { display: none; }
+  .brands { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
 }
 
 /* ---------- Avis (carte de note animée) ---------- */
@@ -517,9 +547,16 @@ footer a { color: var(--mist); }
           <p>Des appareils d'entrée de gamme jusqu'aux grandes marques.</p>
         </div>
       </div>
-      <div class="brands" aria-label="Marques réparées">
-        <span>Bosch</span><span>Siemens</span><span>Whirlpool</span><span>Samsung</span><span>LG</span>
-        <span>Electrolux</span><span>Beko</span><span>Candy</span><span>Indesit</span><span>Miele</span><span>Brandt</span>
+    </div>
+
+    <!-- Bandeau de marques qui défile (la liste est doublée pour une boucle sans à-coup) -->
+    <div class="brand-band">
+      <p class="brand-band-title">Nous réparons toutes les marques</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <ul class="brands" aria-label="Marques réparées"><li>Bosch</li><li>Siemens</li><li>Whirlpool</li><li>Samsung</li><li>LG</li><li>Electrolux</li><li>Beko</li><li>Candy</li><li>Indesit</li><li>Miele</li><li>Brandt</li></ul>
+          <ul class="brands" aria-hidden="true"><li>Bosch</li><li>Siemens</li><li>Whirlpool</li><li>Samsung</li><li>LG</li><li>Electrolux</li><li>Beko</li><li>Candy</li><li>Indesit</li><li>Miele</li><li>Brandt</li></ul>
+        </div>
       </div>
     </div>
   </section>
