@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Directions artistiques</title>
+<meta name="description" content="Propositions de directions artistiques et de palettes froides pour le site de STE Dépannage Électroménager, avec une animation 3D.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Manrope:wght@400;600;800&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&family=Nunito:wght@400;700;900&family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Valeurs remplacées par la direction choisie (voir DIRECTIONS dans le script) */
+  --bg: #B8CBD0; --surface: #B8CBD0; --border: #709CA7; --text: #344D59; --accent: #137C8B;
+  --btn-bg: #344D59; --btn-text: #B8CBD0; --hero-bg: #344D59; --hero-text: #B8CBD0; --hero-accent: #709CA7;
+  --radius: 14px; --font-head: "Inter", sans-serif; --font-body: "Inter", sans-serif;
+  --glow: none;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font-body); line-height: 1.55;
+  transition: background .5s, color .5s;
+}
+h1, h2, h3 { font-family: var(--font-head); letter-spacing: -.02em; margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* En-tête */
+.top { padding-top: 40px; padding-bottom: 20px; }
+.top .kicker { font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; color: var(--accent); }
+.top h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 6px 0 8px; }
+.top p { margin: 0; max-width: 720px; }
+
+/* Sélecteur de direction */
+.picker { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 8px 14px 8px 8px; border-radius: 999px; font: 600 .92rem var(--font-body);
+  background: var(--surface); color: var(--text); border: 2px solid var(--border);
+  transition: border-color .2s, transform .2s;
+}
+.chip:hover { transform: translateY(-1px); }
+.chip[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+.chip .dots { display: flex; }
+.chip .dots i { width: 16px; height: 16px; border-radius: 50%; margin-left: -5px; border: 2px solid var(--surface); }
+.chip .dots i:first-child { margin-left: 0; }
+
+/* Scène + fiche */
+.stage { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px; align-items: start; }
+.scene {
+  position: sticky; top: 16px; height: min(78vh, 620px); min-height: 420px; border-radius: var(--radius); overflow: hidden;
+  background: linear-gradient(160deg, var(--s1, #344D59), var(--s2, #137C8B));
+  box-shadow: var(--glow); transition: background .6s;
+  cursor: grab; touch-action: pan-y;
+}
+.scene:active { cursor: grabbing; }
+.scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.scene-ui { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 10px; pointer-events: none; }
+.pill {
+  pointer-events: auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px; font: 700 .9rem var(--font-body);
+  background: var(--hero-bg); color: var(--hero-text); border: 2px solid var(--hero-accent);
+}
+.pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--hero-accent); }
+.pill.status[data-phase="broken"] .dot { animation: blink 1s steps(2, jump-none) infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+button.pill { cursor: pointer; }
+.hint { position: absolute; top: 14px; left: 16px; font: 600 .8rem var(--font-body); color: var(--hero-text); opacity: .8; pointer-events: none; }
+.nogl { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 20px; color: var(--hero-text); }
+
+.sheet {
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius);
+  padding: 24px; display: flex; flex-direction: column; gap: 16px;
+}
+.sheet h2 { font-size: 1.7rem; }
+.sheet .tagline { margin: 2px 0 0; font-weight: 600; color: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: .8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1.5px solid var(--border); }
+.sheet p { margin: 0; }
+.label { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 8px; }
+
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+.sw {
+  border: 0; padding: 0; cursor: pointer; text-align: left; background: none; color: var(--text);
+  font: 600 .75rem var(--font-body);
+}
+.sw b { display: block; height: 54px; border-radius: calc(var(--radius) * .6); border: 1.5px solid var(--border); margin-bottom: 4px; transition: transform .15s; }
+.sw:hover b { transform: translateY(-2px); }
+.sw small { display: block; font-weight: 500; opacity: .8; }
+.sw code { font: 600 .75rem ui-monospace, Menlo, monospace; }
+.copied { font-size: .8rem; font-weight: 700; color: var(--accent); min-height: 1.2em; }
+
+.fonts { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+.fonts .aa { font: 800 2.4rem/1 var(--font-head); }
+.fonts small { display: block; }
+
+/* Aperçu du site dans la direction */
+.mock { border-radius: var(--radius); overflow: hidden; border: 2px solid var(--border); }
+.mock-hero { background: var(--hero-bg); color: var(--hero-text); padding: 20px; position: relative; }
+.mock-hero .eb { font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--hero-accent); }
+.mock-hero h3 { font-size: 1.25rem; line-height: 1.2; margin: 6px 0 14px; }
+.mock-hero h3 em { font-style: normal; color: var(--hero-accent); }
+.mbtns { display: flex; gap: 8px; flex-wrap: wrap; }
+.mbtn { font: 700 .8rem var(--font-body); padding: 8px 14px; border-radius: 999px; }
+.mbtn.primary { background: var(--btn-bg); color: var(--btn-text); border: 2px solid var(--hero-accent); }
+.mbtn.ghost { border: 2px solid var(--hero-accent); color: var(--hero-text); }
+.mock-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 12px; background: var(--bg); }
+.mcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: calc(var(--radius) * .7); padding: 10px; font: 700 .8rem var(--font-head); color: var(--text); }
+.mcard i { display: block; width: 22px; height: 22px; border-radius: 6px; background: var(--accent); margin-bottom: 6px; }
+
+/* Comparatif */
+.compare { padding: 56px 0 72px; }
+.compare h2 { font-size: 1.6rem; margin-bottom: 6px; }
+.compare > .wrap > p { margin: 0 0 22px; }
+.cgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ccard {
+  border-radius: 16px; overflow: hidden; cursor: pointer; text-align: left; padding: 0;
+  border: 2px solid var(--c-border); background: var(--c-bg); color: var(--c-text);
+  font-family: var(--c-font); transition: transform .2s, box-shadow .2s;
+}
+.ccard:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+.ccard[aria-pressed="true"] { outline: 3px solid var(--accent); outline-offset: 3px; }
+.cstrip { display: flex; height: 64px; }
+.cstrip i { flex: 1; }
+.cbody { padding: 14px 16px 16px; }
+.cbody h3 { font-family: var(--c-font); font-size: 1.15rem; }
+.cbody p { margin: 4px 0 10px; font-size: .88rem; }
+.cbody .cbtn { display: inline-block; font-weight: 700; font-size: .8rem; padding: 6px 12px; border-radius: 999px; background: var(--c-btn-bg); color: var(--c-btn-text); }
+
+footer { padding-top: 24px; padding-bottom: 40px; font-size: .85rem; }
+
+@media (max-width: 960px) {
+  .stage { grid-template-columns: 1fr; }
+  .scene { position: relative; top: 0; height: 440px; }
+  .cgrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .cgrid { grid-template-columns: 1fr; }
+  .scene { height: 380px; min-height: 0; }
+  .mock-cards { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <div class="kicker">STE Dépannage Électroménager · Propositions</div>
+  <h1>Directions artistiques en tons froids</h1>
+  <p>Choisissez une direction : la scène 3D, l'aperçu du site et toute cette page se recolorent en direct. Faites glisser la machine pour la faire tourner. Cliquez sur une couleur pour copier son code.</p>
+  <div class="picker" role="group" aria-label="Directions artistiques"></div>
+</header>
+
+<main class="wrap">
+  <section class="stage">
+    <div class="scene" id="scene">
+      <span class="hint">Glissez pour faire tourner ↔</span>
+      <div class="scene-ui">
+        <span class="pill status" data-phase="broken" aria-live="polite"><span class="dot"></span><span class="status-text">En panne · E21</span></span>
+        <button type="button" class="pill" id="replay">↻ Rejouer</button>
+      </div>
+    </div>
+
+    <aside class="sheet" aria-live="polite">
+      <div>
+        <h2 id="d-name"></h2>
+        <p class="tagline" id="d-tagline"></p>
+      </div>
+      <div class="tags" id="d-tags"></div>
+      <p id="d-desc"></p>
+      <div>
+        <div class="label">Palette</div>
+        <div class="swatches" id="d-swatches"></div>
+        <div class="copied" id="copied"></div>
+      </div>
+      <div>
+        <div class="label">Typographie</div>
+        <div class="fonts"><span class="aa">Aa</span><div><strong id="d-font"></strong><small id="d-font-note"></small></div></div>
+      </div>
+      <div>
+        <div class="label">Aperçu du site</div>
+        <div class="mock">
+          <div class="mock-hero">
+            <span class="eb">Réparateur toutes marques</span>
+            <h3>Votre électroménager en panne ?<br><em>On le répare chez vous.</em></h3>
+            <div class="mbtns"><span class="mbtn primary">Appeler maintenant</span><span class="mbtn ghost">Devis gratuit</span></div>
+          </div>
+          <div class="mock-cards">
+            <div class="mcard"><i></i>Lave-linge</div>
+            <div class="mcard"><i></i>Réfrigérateur</div>
+            <div class="mcard"><i></i>Four</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<section class="compare">
+  <div class="wrap">
+    <h2>Comparer les directions</h2>
+    <p>Les 6 propositions côte à côte. Cliquez sur une carte pour l'essayer en haut.</p>
+    <div class="cgrid" id="cgrid"></div>
+  </div>
+</section>
+
+<footer class="wrap">Page de travail · animation 3D réalisée avec three.js</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ======================================================================
+   Directions artistiques (palettes froides)
+   ui    : couleurs de l'interface        scene : couleurs de la scène 3D
+   ====================================================================== */
+const DIRECTIONS = [
+  {
+    id: 'actuel', name: 'Ardoise & Lagon', tagline: 'La palette actuelle du site',
+    tags: ['Sobre', 'Professionnel', 'Rassurant'],
+    desc: "Votre palette de départ : ardoise profonde et teal lagon. Sérieuse et calme, elle inspire confiance sans en faire trop. Gardée ici comme point de comparaison.",
+    font: ['Inter', 'Inter'], fontNote: 'Neutre et très lisible',
+    palette: [['#344D59', 'Ardoise'], ['#137C8B', 'Lagon'], ['#709CA7', 'Brume bleue'], ['#7A90A4', 'Acier doux'], ['#B8CBD0', 'Givre gris']],
+    ui: { bg: '#B8CBD0', surface: '#B8CBD0', border: '#709CA7', text: '#344D59', accent: '#137C8B', btnBg: '#344D59', btnText: '#B8CBD0', heroBg: '#344D59', heroText: '#B8CBD0', heroAccent: '#709CA7', radius: '14px' },
+    scene: { s1: '#344D59', s2: '#137C8B', body: '#B8CBD0', panel: '#709CA7', ring: '#7A90A4', dark: '#344D59', glass: '#709CA7', water: '#137C8B', accent: '#137C8B', metal: '#7A90A4', glow: 0 },
+  },
+  {
+    id: 'glacier', name: 'Glacier', tagline: 'Minimal nordique, net et premium',
+    tags: ['Épuré', 'Haut de gamme', 'Lumineux'],
+    desc: "Des bleus d'encre et de glace sur un fond givré. Beaucoup d'espace, des angles nets et une typographie élégante : l'image d'un réparateur précis et soigné.",
+    font: ['Manrope', 'Manrope'], fontNote: 'Géométrique, moderne, élégante',
+    palette: [['#0B2545', 'Encre polaire'], ['#13315C', 'Bleu nuit'], ['#3E7CB1', 'Bleu glacier'], ['#8DA9C4', 'Brume'], ['#E3ECF5', 'Givre']],
+    ui: { bg: '#E3ECF5', surface: '#E3ECF5', border: '#8DA9C4', text: '#0B2545', accent: '#3E7CB1', btnBg: '#13315C', btnText: '#E3ECF5', heroBg: '#0B2545', heroText: '#E3ECF5', heroAccent: '#8DA9C4', radius: '6px' },
+    scene: { s1: '#0B2545', s2: '#3E7CB1', body: '#E3ECF5', panel: '#8DA9C4', ring: '#13315C', dark: '#0B2545', glass: '#8DA9C4', water: '#3E7CB1', accent: '#3E7CB1', metal: '#8DA9C4', glow: 0 },
+  },
+  {
+    id: 'nuit', name: 'Nuit polaire', tagline: 'Tech sombre avec reflets néon',
+    tags: ['Moderne', 'Tech', 'Spectaculaire'],
+    desc: "Un fond nuit profond, des lueurs cyan et lavande comme une aurore boréale. Effets lumineux et contrastes forts : un site qui marque et paraît très actuel.",
+    font: ['Space Grotesk', 'Space Grotesk'], fontNote: 'Technique, avec du caractère',
+    palette: [['#070B18', 'Nuit'], ['#121A33', 'Abysse'], ['#2B3A67', 'Indigo'], ['#00D1FF', 'Cyan néon'], ['#8F7BFF', 'Aurore'], ['#D6F4FF', 'Halo']],
+    ui: { bg: '#070B18', surface: '#121A33', border: '#2B3A67', text: '#D6F4FF', accent: '#00D1FF', btnBg: '#00D1FF', btnText: '#070B18', heroBg: '#121A33', heroText: '#D6F4FF', heroAccent: '#8F7BFF', radius: '16px', glow: '0 0 0 1px #2B3A67, 0 20px 60px rgba(0,209,255,.18)' },
+    scene: { s1: '#070B18', s2: '#2B3A67', body: '#121A33', panel: '#2B3A67', ring: '#2B3A67', dark: '#070B18', glass: '#00D1FF', water: '#00D1FF', accent: '#8F7BFF', metal: '#2B3A67', glow: 1 },
+  },
+  {
+    id: 'atelier', name: 'Atelier acier', tagline: "Industriel, façon plan d'atelier",
+    tags: ['Technique', 'Expert', 'Solide'],
+    desc: "Bleu blueprint, acier et aluminium, avec un cyan de repère comme sur un plan technique. Typographie mono pour les détails : on sent le savoir-faire et la précision.",
+    font: ['IBM Plex Sans', 'IBM Plex Sans'], fontNote: 'Avec IBM Plex Mono pour les détails',
+    palette: [['#14213D', 'Blueprint'], ['#1F3A5F', 'Bleu atelier'], ['#4A6FA5', 'Acier'], ['#9DB4C0', 'Aluminium'], ['#5CE1E6', 'Cyan repère'], ['#E0E6ED', 'Calque']],
+    ui: { bg: '#E0E6ED', surface: '#E0E6ED', border: '#9DB4C0', text: '#14213D', accent: '#4A6FA5', btnBg: '#14213D', btnText: '#5CE1E6', heroBg: '#14213D', heroText: '#E0E6ED', heroAccent: '#5CE1E6', radius: '3px' },
+    scene: { s1: '#14213D', s2: '#1F3A5F', body: '#9DB4C0', panel: '#4A6FA5', ring: '#1F3A5F', dark: '#14213D', glass: '#4A6FA5', water: '#5CE1E6', accent: '#5CE1E6', metal: '#E0E6ED', glow: 0 },
+  },
+  {
+    id: 'menthe', name: 'Menthe givrée', tagline: 'Doux, frais et familial',
+    tags: ['Accueillant', 'Frais', 'Proche'],
+    desc: "Sapin profond, pétrole et menthe glacée. Des formes très arrondies et une typographie ronde : un dépanneur proche de ses clients, chaleureux malgré les tons froids.",
+    font: ['Nunito', 'Nunito'], fontNote: 'Ronde et amicale',
+    palette: [['#0F3D3E', 'Sapin'], ['#1B6B6A', 'Pétrole'], ['#4FB3A9', 'Menthe'], ['#A8DADC', 'Écume'], ['#E6F4F1', 'Brume menthe']],
+    ui: { bg: '#E6F4F1', surface: '#E6F4F1', border: '#A8DADC', text: '#0F3D3E', accent: '#1B6B6A', btnBg: '#1B6B6A', btnText: '#E6F4F1', heroBg: '#0F3D3E', heroText: '#E6F4F1', heroAccent: '#4FB3A9', radius: '24px' },
+    scene: { s1: '#0F3D3E', s2: '#4FB3A9', body: '#E6F4F1', panel: '#A8DADC', ring: '#1B6B6A', dark: '#0F3D3E', glass: '#A8DADC', water: '#4FB3A9', accent: '#4FB3A9', metal: '#1B6B6A', glow: 0 },
+  },
+  {
+    id: 'lavande', name: 'Lavande arctique', tagline: 'Bleu-violet doux et tendance',
+    tags: ['Tendance', 'Doux', 'Original'],
+    desc: "Des bleus violacés lumineux, entre crépuscule polaire et lavande. Une direction originale, qui se démarque des sites de dépannage classiques tout en restant calme.",
+    font: ['Sora', 'Sora'], fontNote: 'Contemporaine et ronde',
+    palette: [['#1E1B3A', 'Crépuscule'], ['#3B3A7A', 'Indigo doux'], ['#6C6FD1', 'Pervenche'], ['#A9B4F5', 'Lavande'], ['#E8ECFF', 'Neige lavande']],
+    ui: { bg: '#E8ECFF', surface: '#E8ECFF', border: '#A9B4F5', text: '#1E1B3A', accent: '#6C6FD1', btnBg: '#3B3A7A', btnText: '#E8ECFF', heroBg: '#1E1B3A', heroText: '#E8ECFF', heroAccent: '#A9B4F5', radius: '20px' },
+    scene: { s1: '#1E1B3A', s2: '#6C6FD1', body: '#E8ECFF', panel: '#A9B4F5', ring: '#3B3A7A', dark: '#1E1B3A', glass: '#A9B4F5', water: '#6C6FD1', accent: '#6C6FD1', metal: '#3B3A7A', glow: 0 },
+  },
+];
+
+/* ======================================================================
+   Interface : sélecteur, fiche, comparatif
+   ====================================================================== */
+const $ = (s) => document.querySelector(s);
+const picker = $('.picker'), cgrid = $('#cgrid');
+let current = null;
+
+DIRECTIONS.forEach((d) => {
+  const chip = document.createElement('button');
+  chip.type = 'button'; chip.className = 'chip'; chip.dataset.id = d.id;
+  chip.innerHTML = `<span class="dots">${d.palette.slice(0, 5).map(([c]) => `<i style="background:${c}"></i>`).join('')}</span>${d.name}`;
+  chip.addEventListener('click', () => select(d.id));
+  picker.appendChild(chip);
+
+  const card = document.createElement('button');
+  card.type = 'button'; card.className = 'ccard'; card.dataset.id = d.id;
+  const u = d.ui;
+  card.style.cssText = `--c-bg:${u.bg};--c-text:${u.text};--c-border:${u.border};--c-btn-bg:${u.btnBg};--c-btn-text:${u.btnText};--c-font:"${d.font[0]}",sans-serif`;
+  card.innerHTML = `<div class="cstrip">${d.palette.map(([c]) => `<i style="background:${c}"></i>`).join('')}</div>
+    <div class="cbody"><h3>${d.name}</h3><p>${d.tagline}</p><span class="cbtn">Essayer</span></div>`;
+  card.addEventListener('click', () => { select(d.id); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  cgrid.appendChild(card);
+});
+
+function select(id) {
+  const d = DIRECTIONS.find((x) => x.id === id) || DIRECTIONS[0];
+  current = d;
+  const r = document.documentElement.style, u = d.ui;
+  r.setProperty('--bg', u.bg); r.setProperty('--surface', u.surface); r.setProperty('--border', u.border);
+  r.setProperty('--text', u.text); r.setProperty('--accent', u.accent);
+  r.setProperty('--btn-bg', u.btnBg); r.setProperty('--btn-text', u.btnText);
+  r.setProperty('--hero-bg', u.heroBg); r.setProperty('--hero-text', u.heroText); r.setProperty('--hero-accent', u.heroAccent);
+  r.setProperty('--radius', u.radius); r.setProperty('--glow', u.glow || 'none');
+  r.setProperty('--font-head', `"${d.font[0]}", sans-serif`); r.setProperty('--font-body', `"${d.font[1]}", sans-serif`);
+  r.setProperty('--s1', d.scene.s1); r.setProperty('--s2', d.scene.s2);
+
+  $('#d-name').textContent = d.name;
+  $('#d-tagline').textContent = d.tagline;
+  $('#d-tags').innerHTML = d.tags.map((t) => `<span>${t}</span>`).join('');
+  $('#d-desc').textContent = d.desc;
+  $('#d-font').textContent = d.font[0];
+  $('#d-font-note').textContent = d.fontNote;
+  $('#d-swatches').innerHTML = d.palette.map(([c, n]) =>
+    `<button type="button" class="sw" data-hex="${c}"><b style="background:${c}"></b>${n}<small><code>${c}</code></small></button>`).join('');
+  $('#copied').textContent = '';
+
+  document.querySelectorAll('.chip, .ccard').forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.id === d.id)));
+  try { history.replaceState(null, '', '#' + d.id); } catch (e) {}
+  if (window.scene3d) window.scene3d.applyColors(d.scene);
+}
+
+$('#d-swatches').addEventListener('click', async (e) => {
+  const b = e.target.closest('.sw'); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.hex); $('#copied').textContent = `${b.dataset.hex} copié`; }
+  catch (err) { $('#copied').textContent = b.dataset.hex; }
+});
+
+/* ======================================================================
+   Scène 3D : machine à laver réparée par une clé (three.js)
+   Cycle de 12 s : en panne → la clé serre le boulon → la machine tourne
+   ====================================================================== */
+(function () {
+  const host = $('#scene');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) {
+    host.insertAdjacentHTML('beforeend', '<div class="nogl">La 3D n\'est pas disponible sur cet appareil.</div>');
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  host.prepend(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 1.3, 11);
+  camera.lookAt(0, -0.1, 0);
+
+  // Lumières
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x223344, 0.65);
+  scene.add(hemi);
+  const key = new THREE.DirectionalLight(0xffffff, 0.9);
+  key.position.set(4, 7, 7); key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  Object.assign(key.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5 });
+  scene.add(key);
+  const rim = new THREE.PointLight(0xffffff, 0.9, 30);
+  rim.position.set(-5, 3, -4);
+  scene.add(rim);
+
+  // Matériaux par rôle (recolorés selon la direction)
+  const M = {
+    body: new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.1 }),
+    panel: new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.15 }),
+    ring: new THREE.MeshStandardMaterial({ roughness: 0.25, metalness: 0.55 }),
+    dark: new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.1 }),
+    water: new THREE.MeshStandardMaterial({ roughness: 0.1, metalness: 0, transparent: true, opacity: 0.8 }),
+    accent: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.5 }),
+    metal: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.7 }),
+    glass: new THREE.MeshPhysicalMaterial({ roughness: 0.05, metalness: 0, transparent: true, opacity: 0.28, clearcoat: 1 }),
+    led: new THREE.MeshStandardMaterial({ roughness: 0.3 }),
+    bubble: new THREE.MeshStandardMaterial({ roughness: 0.1, transparent: true, opacity: 0.85 }),
+  };
+
+  const world = new THREE.Group();
+  scene.add(world);
+  const machine = new THREE.Group();
+  world.add(machine);
+
+  // Corps : boîte arrondie percée pour le hublot
+  const W = 2.4, H = 3, R = 0.28, DOOR_Y = -0.2, FRONT = 1.08;
+  const shape = new THREE.Shape();
+  shape.moveTo(-W / 2 + R, -H / 2);
+  shape.lineTo(W / 2 - R, -H / 2); shape.quadraticCurveTo(W / 2, -H / 2, W / 2, -H / 2 + R);
+  shape.lineTo(W / 2, H / 2 - R); shape.quadraticCurveTo(W / 2, H / 2, W / 2 - R, H / 2);
+  shape.lineTo(-W / 2 + R, H / 2); shape.quadraticCurveTo(-W / 2, H / 2, -W / 2, H / 2 - R);
+  shape.lineTo(-W / 2, -H / 2 + R); shape.quadraticCurveTo(-W / 2, -H / 2, -W / 2 + R, -H / 2);
+  const hole = new THREE.Path(); hole.absarc(0, DOOR_Y, 0.74, 0, Math.PI * 2, true);
+  shape.holes.push(hole);
+  const bodyGeo = new THREE.ExtrudeGeometry(shape, { depth: 2, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.08, bevelSegments: 5, curveSegments: 32 });
+  bodyGeo.translate(0, 0, -1);
+  const body = new THREE.Mesh(bodyGeo, M.body);
+  body.castShadow = true; body.receiveShadow = true;
+  machine.add(body);
+
+  const add = (geo, mat, x, y, z, parent = machine) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; parent.add(m); return m; };
+
+  // Bandeau de commandes
+  add(new THREE.BoxGeometry(2.3, 0.04, 0.02), M.panel, 0, 0.92, FRONT + 0.01);
+  const knob = add(new THREE.CylinderGeometry(0.2, 0.22, 0.14, 32), M.ring, -0.78, 1.2, FRONT + 0.07);
+  knob.rotation.x = Math.PI / 2;
+  add(new THREE.BoxGeometry(0.05, 0.16, 0.03), M.dark, 0, 0.08, 0.08, knob).rotation.x = -Math.PI / 2;
+  const led = add(new THREE.SphereGeometry(0.07, 16, 16), M.led, 0.95, 1.2, FRONT + 0.04);
+
+  // Écran (texture dessinée sur un canvas)
+  const dcan = document.createElement('canvas'); dcan.width = 256; dcan.height = 96;
+  const dctx = dcan.getContext('2d');
+  const dtex = new THREE.CanvasTexture(dcan); dtex.encoding = THREE.sRGBEncoding;
+  const display = add(new THREE.PlaneGeometry(0.95, 0.36), new THREE.MeshBasicMaterial({ map: dtex, toneMapped: false }), 0.15, 1.2, FRONT + 0.012);
+  let displayText = '', displayOn = true, colors = null;
+  function drawDisplay(text, on) {
+    if (text === displayText && on === displayOn) return;
+    displayText = text; displayOn = on;
+    dctx.fillStyle = colors ? colors.dark : '#000'; dctx.fillRect(0, 0, 256, 96);
+    if (on) {
+      dctx.fillStyle = colors ? colors.water : '#fff';
+      dctx.font = 'bold 60px ui-monospace, Menlo, monospace'; dctx.textAlign = 'center'; dctx.textBaseline = 'middle';
+      dctx.fillText(text, 128, 52);
+    }
+    dtex.needsUpdate = true;
+  }
+
+  // Hublot
+  add(new THREE.RingGeometry(0.74, 0.98, 64), M.dark, 0, DOOR_Y, FRONT + 0.005);
+  const ring = add(new THREE.TorusGeometry(0.84, 0.12, 24, 72), M.ring, 0, DOOR_Y, FRONT + 0.1);
+  add(new THREE.BoxGeometry(0.1, 0.42, 0.12), M.dark, 0.98, DOOR_Y, FRONT + 0.14);
+  // Intérieur : fond du tambour, linge, eau, bulles, vitre
+  add(new THREE.CircleGeometry(0.76, 48), M.dark, 0, DOOR_Y, 0.2);
+  const drum = new THREE.Group(); drum.position.set(0, DOOR_Y, 0.55); machine.add(drum);
+  [[0.38, 0, 'accent', new THREE.SphereGeometry(0.17, 20, 16)],
+   [-0.36, 0.1, 'panel', new THREE.BoxGeometry(0.34, 0.2, 0.14)],
+   [0.05, -0.4, 'body', new THREE.TorusGeometry(0.13, 0.06, 12, 24)],
+   [-0.05, 0.4, 'ring', new THREE.BoxGeometry(0.22, 0.22, 0.14)]].forEach(([x, y, role, geo]) => {
+    const m = add(geo, M[role], x, y, 0, drum); m.rotation.z = x * 3;
+  });
+  for (let i = 0; i < 10; i++) {
+    const a = (i / 10) * Math.PI * 2;
+    add(new THREE.SphereGeometry(0.035, 8, 8), M.panel, Math.cos(a) * 0.66, Math.sin(a) * 0.66, -0.05, drum);
+  }
+  const water = add(new THREE.ShapeGeometry(new THREE.Shape()), M.water, 0, DOOR_Y, 0.85);
+  let waterLevel = -1;
+  function setWater(level) {
+    level = Math.max(-0.7, Math.min(0.6, level));
+    if (Math.abs(level - waterLevel) < 0.004) return;
+    waterLevel = level;
+    const r = 0.74, t0 = Math.asin(level / r), s = new THREE.Shape();
+    s.moveTo(Math.cos(Math.PI - t0) * r, level);
+    s.absarc(0, 0, r, Math.PI - t0, Math.PI * 2 + t0, false);
+    s.lineTo(Math.cos(Math.PI - t0) * r, level);
+    water.geometry.dispose(); water.geometry = new THREE.ShapeGeometry(s, 48);
+  }
+  const bubbles = [];
+  for (let i = 0; i < 9; i++) {
+    const b = add(new THREE.SphereGeometry(0.03 + Math.random() * 0.04, 10, 10), M.bubble, (Math.random() - 0.5) * 1, DOOR_Y - 0.6, 0.95);
+    b.userData = { speed: 0.4 + Math.random() * 0.5, offset: Math.random() * 3 };
+    bubbles.push(b);
+  }
+  add(new THREE.CircleGeometry(0.74, 64), M.glass, 0, DOOR_Y, FRONT + 0.12);
+
+  // Trappe de service + boulons
+  add(new THREE.BoxGeometry(1.9, 0.34, 0.03), M.panel, 0, -1.22, FRONT + 0.012);
+  const boltGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.09, 6);
+  add(boltGeo, M.metal, -0.78, -1.22, FRONT + 0.06).rotation.x = Math.PI / 2;
+  const bolt = add(boltGeo, M.metal, 0.78, -1.22, FRONT + 0.06); bolt.rotation.x = Math.PI / 2;
+  const BOLT = new THREE.Vector3(0.78, -1.22, FRONT + 0.2);
+
+  // Pieds
+  [[-0.9, 0.7], [0.9, 0.7], [-0.9, -0.7], [0.9, -0.7]].forEach(([x, z]) => add(new THREE.CylinderGeometry(0.12, 0.14, 0.16, 16), M.dark, x, -1.66, z));
+
+  // Sol qui reçoit l'ombre
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: 0.28 }));
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -1.74; ground.receiveShadow = true;
+  world.add(ground);
+
+  // Clé plate : mâchoire ouverte (tore partiel) + manche + anneau
+  const wrench = new THREE.Group();
+  const jaw = add(new THREE.TorusGeometry(0.2, 0.075, 14, 32, Math.PI * 1.5), M.accent, 0, 0, 0, wrench);
+  jaw.rotation.z = Math.PI / 4;
+  add(new THREE.BoxGeometry(1.25, 0.17, 0.09), M.accent, -0.86, 0, 0, wrench);
+  add(new THREE.TorusGeometry(0.14, 0.065, 12, 28), M.accent, -1.58, 0, 0, wrench);
+  world.add(wrench);
+  const WR_HOME = new THREE.Vector3(2.35, 0.7, 1.2);
+
+  // Outils qui flottent autour : engrenages, tournevis, écrous
+  function gear(r, mat) {
+    const g = new THREE.Group();
+    add(new THREE.CylinderGeometry(r, r, 0.12, 28), mat, 0, 0, 0, g);
+    for (let i = 0; i < 9; i++) {
+      const a = (i / 9) * Math.PI * 2;
+      const t = add(new THREE.BoxGeometry(r * 0.36, 0.12, r * 0.32), mat, Math.cos(a) * r, 0, Math.sin(a) * r, g);
+      t.rotation.y = -a;
+    }
+    add(new THREE.CylinderGeometry(r * 0.35, r * 0.35, 0.14, 20), M.dark, 0, 0, 0, g);
+    g.rotation.x = Math.PI / 2;
+    const holder = new THREE.Group(); holder.add(g); return holder;
+  }
+  function screwdriver() {
+    const g = new THREE.Group();
+    add(new THREE.CylinderGeometry(0.11, 0.12, 0.55, 20), M.accent, 0, 0.3, 0, g);
+    add(new THREE.CylinderGeometry(0.03, 0.03, 0.6, 12), M.metal, 0, -0.27, 0, g);
+    add(new THREE.ConeGeometry(0.04, 0.1, 12), M.metal, 0, -0.62, 0, g).rotation.x = Math.PI;
+    return g;
+  }
+  function nut(mat) { const g = new THREE.Group(); add(new THREE.CylinderGeometry(0.14, 0.14, 0.1, 6), mat, 0, 0, 0, g).rotation.x = Math.PI / 2; return g; }
+  const floaters = [
+    { o: gear(0.32, M.ring), r: 2.7, y: 1.5, a: 0.2, s: 0.25, spin: 0.9 },
+    { o: gear(0.22, M.accent), r: 3.0, y: -0.7, a: Math.PI + 0.3, s: 0.2, spin: -1.3 },
+    { o: screwdriver(), r: 2.9, y: 0.5, a: Math.PI - 0.2, s: 0.18, spin: 0.6 },
+    { o: nut(M.metal), r: 2.5, y: -1.2, a: -0.3, s: 0.3, spin: 1.5 },
+    { o: gear(0.18, M.panel), r: 3.2, y: 2.0, a: Math.PI + 0.1, s: 0.22, spin: 1.1 },
+    { o: nut(M.accent), r: 3.3, y: -0.2, a: 0.5, s: 0.26, spin: -1.2 },
+  ];
+  floaters.forEach((f) => { f.o.traverse((m) => { if (m.isMesh) m.castShadow = true; }); world.add(f.o); });
+
+  // Étincelles pendant le serrage
+  const sparks = [];
+  for (let i = 0; i < 6; i++) {
+    const s = add(new THREE.SphereGeometry(0.035, 8, 8), M.led, BOLT.x, BOLT.y, BOLT.z, world);
+    s.visible = false; sparks.push(s);
+  }
+
+  // Couleurs
+  function applyColors(c) {
+    colors = c;
+    M.body.color.set(c.body); M.panel.color.set(c.panel); M.ring.color.set(c.ring); M.dark.color.set(c.dark);
+    M.water.color.set(c.water); M.accent.color.set(c.accent); M.metal.color.set(c.metal);
+    M.glass.color.set(c.glass); M.led.color.set(c.water); M.bubble.color.set(c.body);
+    const glow = c.glow ? 0.55 : 0;
+    M.water.emissive.set(c.water); M.water.emissiveIntensity = glow * 0.8;
+    M.accent.emissive.set(c.accent); M.accent.emissiveIntensity = glow * 0.5;
+    M.led.emissive.set(c.water); M.led.emissiveIntensity = 0.6 + glow;
+    rim.color.set(c.s2); hemi.color.set(c.body); hemi.groundColor.set(c.dark);
+    displayText = null; drawDisplay(currentDisplay, true);
+  }
+  let currentDisplay = 'E21';
+
+  // Rotation à la souris / au doigt
+  let yaw = -0.35, pitch = 0.06, tYaw = -0.35, tPitch = 0.06, dragging = false, lastX = 0, lastY = 0, idleAt = 0;
+  host.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; dragging = true; lastX = e.clientX; lastY = e.clientY; host.setPointerCapture(e.pointerId); });
+  host.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    tYaw += (e.clientX - lastX) * 0.01; tPitch = Math.max(-0.3, Math.min(0.5, tPitch + (e.clientY - lastY) * 0.005));
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  const endDrag = () => { dragging = false; idleAt = performance.now(); };
+  host.addEventListener('pointerup', endDrag); host.addEventListener('pointercancel', endDrag);
+
+  // Taille
+  function resize() {
+    const w = host.clientWidth, h = host.clientHeight;
+    renderer.setSize(w, h, false); camera.aspect = w / h;
+    camera.position.z = w / h < 0.9 ? 14 : 11;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(host); resize();
+
+  // Chronologie
+  const CYCLE = 12;
+  let t0 = performance.now();
+  $('#replay').addEventListener('click', () => { t0 = performance.now(); });
+  const statusEl = $('.status'), statusText = $('.status-text');
+  let lastPhase = '';
+  function setPhase(p, text) {
+    if (p === lastPhase) return; lastPhase = p;
+    statusEl.dataset.phase = p; statusText.textContent = text;
+  }
+  const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+  const lerp = (a, b, k) => a + (b - a) * k;
+
+  let visible = true;
+  new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(host);
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!visible || document.hidden) return;
+    const time = now / 1000;
+    const tc = reduced ? 9 : ((now - t0) / 1000) % CYCLE;
+
+    // Phases
+    const broken = tc < 3, repairing = tc >= 3 && tc < 7, running = tc >= 7;
+    if (broken) setPhase('broken', 'En panne · E21');
+    else if (repairing) setPhase('repairing', 'Réparation en cours…');
+    else setPhase('fixed', 'Réparée ✓ · 1200 tr/min');
+
+    // Machine : tremble en panne, vibre en marche
+    const shake = broken ? Math.max(0, Math.sin(time * 2.4)) : 0;
+    machine.rotation.z = shake * 0.03 * Math.sin(time * 38);
+    machine.position.x = shake * 0.03 * Math.sin(time * 31);
+    machine.position.y = running ? Math.sin(time * 45) * 0.008 : 0;
+    knob.rotation.y = lerp(knob.rotation.y, running ? 2.2 : 0, 0.05);
+
+    // Tambour, eau, bulles
+    const spin = running ? 7 : repairing ? 0.4 : 0;
+    drum.rotation.z -= spin * (1 / 60);
+    setWater(running ? lerp(-0.7, 0.05, ease((tc - 7) / 1.5)) : -0.62);
+    water.rotation.z = running ? Math.sin(time * 4) * 0.12 : 0;
+    bubbles.forEach((b) => {
+      b.visible = running && !reduced;
+      if (b.visible) { const k = ((time * b.userData.speed + b.userData.offset) % 1.3); b.position.y = DOOR_Y - 0.6 + k; b.scale.setScalar(1 - k * 0.5); }
+    });
+
+    // Écran et voyant
+    const blink = Math.floor(time * 2) % 2 === 0;
+    currentDisplay = broken ? 'E21' : repairing ? '- - -' : 'OK' + (tc > 8 ? '' : '');
+    if (running && tc > 8) currentDisplay = '1200';
+    drawDisplay(currentDisplay, running || blink);
+    led.visible = running || blink;
+
+    // Clé : flotte → va au boulon → serre → repart
+    const fly = ease((tc - 3) / 0.9), back = ease((tc - 6.2) / 0.9);
+    const k = repairing ? (tc < 6.2 ? fly : 1 - back) : 0;
+    const tightening = tc > 3.9 && tc < 6.2;
+    wrench.position.lerpVectors(WR_HOME, BOLT, k);
+    wrench.position.y += (1 - k) * Math.sin(time * 1.6) * 0.12;
+    const baseAngle = Math.PI * 0.72;
+    wrench.rotation.z = baseAngle + (tightening ? Math.sin((tc - 3.9) * 9) * 0.35 : (1 - k) * Math.sin(time * 1.2) * 0.25);
+    wrench.rotation.y = (1 - k) * Math.sin(time * 0.8) * 0.6;
+    wrench.rotation.x = (1 - k) * 0.3;
+    if (tightening) bolt.rotation.y += 0.08;
+    sparks.forEach((s, i) => {
+      s.visible = tightening && Math.random() < 0.5;
+      if (s.visible) { const a = i * 1.05 + time * 6; const d = 0.2 + Math.random() * 0.25; s.position.set(BOLT.x + Math.cos(a) * d, BOLT.y + Math.sin(a) * d, BOLT.z + 0.05); }
+    });
+
+    // Outils en orbite
+    floaters.forEach((f) => {
+      // Va-et-vient en arc sur le côté (±0,55 rad autour de son angle de base)
+      const a = f.a + (reduced ? 0 : Math.sin(time * f.s + f.y) * 0.55);
+      f.o.position.set(Math.cos(a) * f.r, f.y + Math.sin(time * 0.9 + f.a) * 0.18, Math.sin(a) * f.r * 0.7);
+      f.o.rotation.z = time * f.spin; f.o.rotation.y = time * 0.5;
+    });
+
+    // Caméra : rotation à la souris + léger balancement automatique
+    const idle = !dragging && now - idleAt > 2500 && !reduced;
+    const sway = idle ? Math.sin(time * 0.35) * 0.35 : 0;
+    yaw = lerp(yaw, tYaw + sway, 0.08); pitch = lerp(pitch, tPitch, 0.08);
+    world.rotation.y = yaw; world.rotation.x = pitch;
+
+    renderer.render(scene, camera);
+  }
+
+  window.scene3d = { applyColors };
+  if (current) applyColors(current.scene);
+  requestAnimationFrame(frame);
+})();
+
+// Direction de départ (lien partageable avec #glacier, #nuit, …)
+select((location.hash || '').slice(1) || 'glacier');
+</script>
+</body>
+</html>
