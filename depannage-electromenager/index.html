@@ -151,7 +151,7 @@ nav.main a:hover { color: var(--teal); }
 .hours li span:last-child { font-weight: 600; }
 
 /* ---------- Sections ---------- */
-section { padding: 80px 0; }
+section { padding: 80px 0; scroll-margin-top: 68px; }
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
 .section-head .eyebrow { color: var(--teal); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
 .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--navy); letter-spacing: -.01em; }
@@ -197,6 +197,51 @@ section { padding: 80px 0; }
   background: var(--surface); color: var(--muted); font-weight: 600; font-size: .9rem;
 }
 
+/* ---------- Avis (carte de note animée) ---------- */
+.reviews-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.reviews-wrap .section-head { text-align: left; margin: 0; }
+.reviews-wrap .section-head p { margin-bottom: 24px; }
+.rating-card {
+  --star: #F2B01E;
+  background: linear-gradient(160deg, var(--surface) 0%, var(--tint) 100%);
+  border: 1px solid var(--border); border-radius: 20px; padding: 32px;
+  box-shadow: var(--shadow); max-width: 440px; width: 100%; justify-self: center; text-align: center;
+}
+.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.rating-label .g {
+  width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 1px solid var(--border);
+  display: grid; place-items: center; font-weight: 800; font-size: .8rem; color: #4285F4;
+}
+.rating-score { margin: 10px 0 6px; color: var(--navy); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.rating-score .score { font-size: 4.2rem; letter-spacing: -.03em; }
+.rating-score .out { font-size: 1.4rem; color: var(--slate); margin-left: 4px; }
+.stars { display: flex; justify-content: center; gap: 6px; margin: 8px 0 16px; }
+.star { position: relative; width: 34px; height: 34px; }
+.star svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.star .base { color: var(--mist); }
+.star .fill { position: absolute; inset: 0; overflow: hidden; width: var(--fill, 100%); }
+.star .fill svg { width: 34px; height: 34px; color: var(--star); }
+.rating-count { margin: 0 0 20px; color: var(--muted); }
+.rating-count strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+.rating-card .btn { justify-content: center; }
+
+/* Animation : les étoiles apparaissent l'une après l'autre */
+.rating-card.js-anim .star { opacity: 0; transform: scale(.3) rotate(-30deg); }
+.rating-card.js-anim .star .fill { width: 0; }
+.rating-card.is-visible .star {
+  opacity: 1; transform: none;
+  transition: opacity .4s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+  transition-delay: calc(var(--i) * 120ms);
+}
+.rating-card.is-visible .star .fill {
+  width: var(--fill, 100%);
+  transition: width .45s ease-out;
+  transition-delay: calc(var(--i) * 120ms + 250ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rating-card.is-visible .star, .rating-card.is-visible .star .fill { transition: none; }
+}
+
 /* ---------- Contact ---------- */
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
 .contact-info .row { display: flex; gap: 14px; margin-bottom: 20px; }
@@ -231,7 +276,8 @@ footer a { color: var(--mist); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 960px) {
-  .hero .container, .contact-wrap { grid-template-columns: 1fr; }
+  .hero .container, .contact-wrap, .reviews-wrap { grid-template-columns: 1fr; }
+  .reviews-wrap .section-head { text-align: center; }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .steps { row-gap: 44px; }
@@ -261,6 +307,7 @@ footer a { color: var(--mist); }
   <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18 9h.01M18 12h.01M18 15h.01"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
 </svg>
 
@@ -272,6 +319,7 @@ footer a { color: var(--mist); }
     </a>
     <nav class="main" aria-label="Navigation principale">
       <a href="#services">Services</a>
+      <a href="#avis">Avis</a>
       <a href="#pourquoi">Pourquoi nous</a>
       <a href="#fonctionnement">Comment ça marche</a>
       <a href="#contact">Contact</a>
@@ -313,6 +361,35 @@ footer a { color: var(--mist); }
           <li><span>Dimanche</span><span>Fermé</span></li>
         </ul>
       </aside>
+    </div>
+  </section>
+
+  <!-- ========== AVIS ========== -->
+  <section id="avis" class="alt">
+    <div class="container reviews-wrap">
+      <div class="section-head">
+        <span class="eyebrow">Avis clients</span>
+        <h2>Nos clients nous recommandent</h2>
+        <p>Chaque intervention compte. Découvrez ce que nos clients de Montpellier et des environs pensent de notre travail.</p>
+        <a class="btn btn-accent" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/place/STE+D%C3%A9pannage+%C3%89lectrom%C3%A9nager/@43.598168,3.8629253,17z/data=!4m6!3m5!1s0x12b6ae4c58697b55:0xfa8ae26932803dad!8m2!3d43.5981688!4d3.862926!16s%2Fg%2F11b6dcv7rg">
+          Voir les avis sur Google
+        </a>
+      </div>
+
+      <!-- TODO : mettre la vraie note et le vrai nombre d'avis Google (data-rating / data-reviews + textes ci-dessous) -->
+      <div class="rating-card" data-rating="4.8" data-reviews="50">
+        <span class="rating-label"><span class="g">G</span>Note moyenne Google</span>
+        <div class="rating-score"><span class="score">4,8</span><span class="out">/5</span></div>
+        <div class="stars" aria-hidden="true">
+          <span class="star" style="--i:0"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:1"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:2"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:3"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:4"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+        </div>
+        <p class="rating-count">Basé sur <strong class="count">50</strong> avis</p>
+      </div>
     </div>
   </section>
 
@@ -520,6 +597,49 @@ footer a { color: var(--mist); }
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Carte de note : compteur animé + étoiles en cascade quand la carte devient visible.
+  (() => {
+    const card = document.querySelector('.rating-card');
+    const rating = parseFloat(card.dataset.rating);
+    const reviews = parseInt(card.dataset.reviews, 10);
+    const scoreEl = card.querySelector('.score');
+    const countEl = card.querySelector('.count');
+    const fmtScore = (v) => v.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const fmtCount = (v) => Math.round(v).toLocaleString('fr-FR');
+
+    // Remplissage de chaque étoile (gère les notes non entières, ex. 4,8).
+    card.querySelectorAll('.star').forEach((star, i) => {
+      const fill = Math.max(0, Math.min(1, rating - i)) * 100;
+      star.style.setProperty('--fill', fill + '%');
+    });
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) return; // valeurs finales déjà dans le HTML
+
+    card.classList.add('js-anim');
+    scoreEl.textContent = fmtScore(0);
+    countEl.textContent = fmtCount(0);
+
+    const run = () => {
+      card.classList.add('is-visible');
+      const duration = 1600;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const e = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        scoreEl.textContent = fmtScore(rating * e);
+        countEl.textContent = fmtCount(reviews * e);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) { io.disconnect(); run(); }
+    }, { threshold: 0.4 });
+    io.observe(card);
+  })();
 
   // Formulaire sans serveur : ouvre un e-mail pré-rempli.
   // TODO : remplacer l'adresse e-mail (ou brancher Formspree / Netlify Forms).
