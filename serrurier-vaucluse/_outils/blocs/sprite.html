@@ -17,4 +17,17 @@
   <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="7"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.8 6.5 3.5 9.2 10 10-6.5.8-9.2 3.5-10 10-.8-6.5-3.5-9.2-10-10 6.5-.8 9.2-3.5 10-10z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <linearGradient id="g-logo" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="110" y2="110"><stop offset="0" stop-color="#00D1FF"/><stop offset="1" stop-color="#8F7BFF"/></linearGradient>
+  <filter id="f-logo" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <!-- Logo « Clé Ventoux » : le panneton de la clé dessine le Mont Ventoux et son observatoire -->
+  <symbol id="logo-ventoux" viewBox="0 0 120 120">
+    <rect x="4" y="4" width="112" height="112" rx="28" fill="#121A33" stroke="url(#g-logo)" stroke-width="4"/>
+    <g filter="url(#f-logo)">
+      <circle cx="34" cy="70" r="15" fill="none" stroke="url(#g-logo)" stroke-width="7"/>
+      <circle cx="34" cy="70" r="4" fill="#D6F4FF"/>
+      <path d="M49 70 H98" stroke="url(#g-logo)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M60 67 L71 50 L76 54 L84 38 L88 38 L96 52 L98 67 Z" fill="url(#g-logo)"/>
+      <rect x="84" y="31" width="4" height="8" rx="1" fill="#D6F4FF"/>
+    </g>
+  </symbol>
 </svg>

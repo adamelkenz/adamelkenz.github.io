@@ -349,6 +349,7 @@ def entreprise_ld(zone):
         '@type': 'Locksmith', '@id': SITE + '#entreprise', 'name': NOM, 'url': SITE,
         'telephone': TEL_INTL, 'email': EMAIL,
         'image': SITE + 'img/realisations/' + REALISATIONS[0]['photo'] + '.jpg',
+        'logo': SITE + 'img/logo-cle-ventoux.svg',
         'priceRange': '90 € - 290 €',
         'openingHoursSpecification': [{
             '@type': 'OpeningHoursSpecification',
@@ -490,7 +491,8 @@ def tete(titre, desc, url, root, ld, image):
 <meta property="og:image" content="{image}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="geo.region" content="FR-84">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23121A33'/><g fill='none' stroke='%2300D1FF' stroke-width='2' stroke-linecap='round' transform='translate(2.4 2.4) scale(.8)'><circle cx='7.5' cy='15.5' r='5.5'/><path d='m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3'/></g></svg>">
+<link rel="icon" type="image/svg+xml" href="{root}img/logo-cle-ventoux.svg">
+<link rel="apple-touch-icon" href="{root}img/logo-cle-ventoux.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">

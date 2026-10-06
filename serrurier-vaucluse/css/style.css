@@ -772,3 +772,14 @@ footer a:hover { color: var(--cyan); }
 .facts li:last-child { border-bottom: 0; }
 .facts b { text-align: right; }
 @media (max-width: 960px) { .local { grid-template-columns: 1fr; } }
+
+/* ---------- Logo « Clé Ventoux » ---------- */
+.logo-icon { flex: none; width: 46px; height: 46px; }
+.logo-word { line-height: 1; }
+.logo-word small { display: block; font-size: .8rem; font-weight: 500; letter-spacing: .02em; color: var(--halo); }
+.logo-word strong {
+  display: block; margin-top: 2px; font-size: 1.32rem; font-weight: 700; letter-spacing: .14em;
+  background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+footer .logo-icon { width: 54px; height: 54px; }
+footer .logo-word strong { font-size: 1.5rem; }
