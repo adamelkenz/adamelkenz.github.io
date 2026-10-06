@@ -174,18 +174,46 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--navy); }
 .card p { margin: 0; color: var(--muted); font-size: .95rem; }
 
-/* ---------- Animations « Nos services » ---------- */
-#services .card { position: relative; overflow: hidden; }
+/* ---------- Couleurs + animations « Nos services » ---------- */
+/* Fond de section avec halos colorés */
+#services {
+  background:
+    radial-gradient(600px 400px at 0% 10%, rgba(19,124,139,.12), transparent 70%),
+    radial-gradient(500px 380px at 100% 40%, rgba(224,122,95,.12), transparent 70%),
+    radial-gradient(520px 380px at 30% 100%, rgba(242,176,30,.12), transparent 70%),
+    var(--bg);
+}
+/* Une couleur par appareil : --c (couleur) / --c2 (plus foncée) */
+#services .card:nth-child(1) { --c: #137C8B; --c2: #0D5C68; } /* Lave-linge : teal */
+#services .card:nth-child(2) { --c: #3A86C8; --c2: #2A65A0; } /* Lave-vaisselle : bleu */
+#services .card:nth-child(3) { --c: #2BA3B8; --c2: #1D7F91; } /* Réfrigérateur : turquoise froid */
+#services .card:nth-child(4) { --c: #E07A5F; --c2: #C25A3F; } /* Four : orange chaud */
+#services .card:nth-child(5) { --c: #E3A21A; --c2: #B97F0A; } /* Sèche-linge : doré */
+#services .card:nth-child(6) { --c: #7A6FBE; --c2: #5A4F9E; } /* Micro-ondes : violet */
+
+#services .card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 15%, #fff) 0%, #fff 60%);
+  border-color: color-mix(in srgb, var(--c) 22%, #fff);
+}
 #services .card::before {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
-  background: linear-gradient(90deg, var(--teal), var(--teal-mid));
-  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+  background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 45%, #fff));
+  transform: scaleX(.25); transform-origin: left; transition: transform .4s ease;
 }
 #services .card:hover::before { transform: scaleX(1); }
-#services .card .icon { transition: background .3s, color .3s, transform .45s cubic-bezier(.34,1.56,.64,1); }
-#services .card:hover .icon { background: var(--teal); color: #fff; transform: rotate(-10deg) scale(1.1); }
+#services .card:hover {
+  border-color: var(--c);
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--c) 28%, transparent);
+}
+#services .card .icon {
+  background: linear-gradient(135deg, var(--c), var(--c2)); color: #fff;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 35%, transparent);
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); box-shadow: 0 10px 22px color-mix(in srgb, var(--c) 45%, transparent); }
 #services .card h3 { transition: color .25s; }
-#services .card:hover h3 { color: var(--teal); }
+#services .card:hover h3 { color: var(--c2); }
 
 /* Apparition au défilement (activée par JS uniquement) */
 .reveal-on .reveal:not(.in) { opacity: 0; }
