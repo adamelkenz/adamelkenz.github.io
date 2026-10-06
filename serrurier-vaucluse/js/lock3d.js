@@ -42,8 +42,9 @@
     env.add(m);
   }
   panel(0xffffff, 4, 8, 2.5, [0, 8, 4]);
-  panel(0x00d1ff, 4, 3, 8, [-8, 1, 2]);
-  panel(0x8f7bff, 3, 3, 8, [8, 0, 3]);
+  panel(0xffd76a, 3.5, 3, 8, [-8, 1, 2]);
+  panel(0xfff6cc, 2.5, 3, 8, [8, 0, 3]);
+  panel(0xfff1c4, 3, 6, 2.5, [3, 3, 7]); // reflet chaud pour le laiton
   panel(0xffffff, 1.5, 6, 1.5, [0, -6, 6]);
   scene.environment = pmrem.fromScene(env, 0.04).texture;
 
@@ -90,7 +91,8 @@
   scene.add(shadow);
 
   // --- Matériaux ---
-  const brass = new THREE.MeshPhysicalMaterial({ color: 0x4a5fa8, metalness: 0.85, roughness: 0.3, clearcoat: 0.6, clearcoatRoughness: 0.25 });
+  // Corps en laiton jaune métallique
+  const brass = new THREE.MeshPhysicalMaterial({ color: 0xf2c230, metalness: 1, roughness: 0.26, clearcoat: 0.7, clearcoatRoughness: 0.2 });
   const plateMat = new THREE.MeshStandardMaterial({ color: 0x121a33, metalness: 0.6, roughness: 0.45 });
   const chrome = new THREE.MeshStandardMaterial({ color: 0xd6f4ff, metalness: 1, roughness: 0.1 });
   const keyMat = new THREE.MeshStandardMaterial({ color: 0x8f7bff, metalness: 0.8, roughness: 0.2, emissive: 0x8f7bff, emissiveIntensity: 0.25 });
