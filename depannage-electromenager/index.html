@@ -230,8 +230,69 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 /* Pourquoi nous */
 .why { text-align: center; padding: 10px; }
 .why .num {
+  position: relative;
   width: 64px; height: 64px; margin: 0 auto 10px; border-radius: 50%;
   display: grid; place-items: center; background: var(--navy); color: var(--mist); border: 3px solid var(--teal);
+  transition: background .3s, transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.why:hover .num { background: var(--teal); transform: scale(1.12); }
+
+/* Anneau qui pulse autour de chaque icône */
+.why .num::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid var(--teal); opacity: 0;
+  animation: why-ring 3s ease-out infinite; animation-delay: var(--wd, 0s);
+}
+@keyframes why-ring {
+  0%   { transform: scale(1);   opacity: .7; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Une animation propre à chaque symbole (en boucle, décalées) */
+.why:nth-child(1) { --wd: 0s; }
+.why:nth-child(2) { --wd: .75s; }
+.why:nth-child(3) { --wd: 1.5s; }
+.why:nth-child(4) { --wd: 2.25s; }
+.why .num svg { animation-duration: 3s; animation-iteration-count: infinite; animation-delay: var(--wd, 0s); }
+.why:nth-child(1) .num svg { animation-name: why-hop; transform-origin: 50% 100%; }   /* maison : petit saut */
+.why:nth-child(2) .num svg { animation-name: why-flash; }                             /* éclair : clignote */
+.why:nth-child(3) .num svg { animation-name: why-flip; }                              /* euro : pièce qui tourne */
+.why:nth-child(4) .num svg { animation-name: why-turn; }                              /* clé : serre / desserre */
+.why:hover .num svg { animation-duration: 1.2s; }
+
+@keyframes why-hop {
+  0%, 40%, 100% { transform: translateY(0) scale(1, 1); }
+  8%  { transform: translateY(0) scale(1.15, .85); }
+  18% { transform: translateY(-9px) scale(.92, 1.08); }
+  28% { transform: translateY(0) scale(1.08, .92); }
+  34% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes why-flash {
+  0%, 40%, 100% { opacity: 1; transform: scale(1); }
+  6%  { opacity: .2; transform: scale(.9); }
+  12% { opacity: 1;  transform: scale(1.2); }
+  18% { opacity: .3; transform: scale(.95); }
+  24% { opacity: 1;  transform: scale(1.1); }
+  32% { transform: scale(1); }
+}
+@keyframes why-flip {
+  0%, 45%, 100% { transform: perspective(200px) rotateY(0); }
+  30% { transform: perspective(200px) rotateY(360deg); }
+}
+@keyframes why-turn {
+  0%, 45%, 100% { transform: rotate(0); }
+  10% { transform: rotate(-35deg); }
+  20% { transform: rotate(15deg); }
+  30% { transform: rotate(-25deg); }
+  38% { transform: rotate(0); }
+}
+
+/* Apparition des ronds au défilement */
+.reveal.in .num { animation: icon-pop .6s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--d, 0ms) + 150ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .why .num::after, .why .num svg, .reveal.in .num { animation: none; }
 }
 .why .num svg { width: 28px; height: 28px; }
 .why h3 { margin: 4px 0 6px; color: var(--navy); font-size: 1.05rem; }
@@ -700,10 +761,10 @@ footer a { color: var(--mist); }
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Section « Nos services » : titre puis cartes qui apparaissent en cascade au défilement.
+  // « Nos services » et « Pourquoi nous » : éléments qui apparaissent en cascade au défilement.
   (() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-    const items = document.querySelectorAll('#services .section-head, #services .card');
+    const items = document.querySelectorAll('#services .section-head, #services .card, #pourquoi .why');
     items.forEach((el) => el.classList.add('reveal'));
     document.documentElement.classList.add('reveal-on');
     const io = new IntersectionObserver((entries) => {
