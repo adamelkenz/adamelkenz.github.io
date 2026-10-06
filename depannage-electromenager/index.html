@@ -140,19 +140,130 @@ nav.main a:hover { border-bottom-color: var(--teal); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; }
 .hero-checks li::before { content: "✓"; color: var(--teal-mid); font-weight: 800; margin-right: 8px; }
-.hero-card {
-  background: var(--mist); color: var(--navy); border-radius: var(--radius);
-  padding: 28px; border-top: 6px solid var(--teal);
+/* ---------- Machine à laver interactive (en-tête) ---------- */
+.wm { width: 100%; max-width: 340px; justify-self: center; text-align: center; }
+.wm-svg { width: 100%; height: auto; overflow: visible; cursor: pointer; }
+.wm-status { margin: 6px 0 12px; font-weight: 700; color: var(--mist); min-height: 1.6em; }
+.wm-btn { justify-content: center; }
+.wm-btn[disabled] { opacity: .6; cursor: progress; transform: none; }
+.wm-display { font: 800 17px/1 ui-monospace, "SFMono-Regular", Menlo, monospace; fill: var(--mist); letter-spacing: .08em; }
+.wm-alert-mark { font: 900 24px/1 "Inter", sans-serif; fill: var(--mist); }
+.wm-led { fill: var(--navy); stroke: var(--teal-mid); stroke-width: 2; transition: fill .3s; }
+
+.wm-body, .wm-puddle { transform-box: fill-box; }
+.wm-body { transform-origin: 50% 100%; }
+.wm-puddle { transform-origin: 50% 50%; transition: transform .8s ease, opacity .8s; }
+.wm-knob, .wm-drum, .wm-bolt, .wm-alert, .wm-check, .wm-sparks, .wm-wrench-turn { transform-origin: 0 0; }
+.wm-knob { transition: transform .6s cubic-bezier(.34,1.56,.64,1); }
+.wm-water-level { transition: transform 1.4s ease; transform: translateY(34px); }
+.wm-wave { animation: wm-wave 4s linear infinite; }
+.wm-drum { transform: rotate(-14deg); }
+.wm-bubble, .wm-drip, .wm-sparks { opacity: 0; }
+.wm-alert, .wm-check { transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+.wm-check { transform: scale(0); }
+.wm-wrench-move { transition: transform .7s cubic-bezier(.5,0,.3,1); }
+
+/* En panne : la machine tremble, l'écran clignote, ça fuit, la clé attend */
+.wm[data-state="broken"] .wm-body { animation: wm-rumble 2.6s ease-in-out infinite; }
+.wm[data-state="broken"] .wm-display,
+.wm[data-state="broken"] .wm-led { animation: wm-blink 1s steps(2, jump-none) infinite; }
+.wm[data-state="broken"] .wm-drip { animation: wm-drip 1.6s ease-in infinite; }
+.wm[data-state="broken"] .wm-alert { animation: wm-bob 1.4s ease-in-out infinite; }
+.wm[data-state="broken"] .wm-wrench-turn { animation: wm-wrench-idle 3s ease-in-out infinite; }
+
+/* Réparation : la clé va sur le boulon et serre */
+.wm[data-state="repairing"] .wm-wrench-move { transform: translate(-70px, 26px); }
+.wm[data-state="repairing"] .wm-wrench-turn { animation: wm-tighten .6s ease-in-out .7s infinite; }
+.wm[data-state="repairing"] .wm-bolt { animation: wm-bolt .6s ease-in-out .7s infinite; }
+.wm[data-state="repairing"] .wm-sparks { animation: wm-spark .3s steps(2, jump-none) .8s infinite; }
+.wm[data-state="repairing"] .wm-alert { transform: scale(0); }
+.wm[data-state="repairing"] .wm-puddle { transform: scale(.5); opacity: .6; }
+.wm[data-state="repairing"] .wm-display { animation: wm-blink .5s steps(2, jump-none) infinite; }
+
+/* Réparée : l'eau monte, le tambour tourne, bulles, coche */
+.wm[data-state="fixed"] .wm-body { animation: wm-vibe .16s linear infinite; }
+.wm[data-state="fixed"] .wm-water-level { transform: translateY(0); }
+.wm[data-state="fixed"] .wm-wave { animation-duration: 1.2s; }
+.wm[data-state="fixed"] .wm-drum { animation: wm-spin .9s linear infinite; }
+.wm[data-state="fixed"] .wm-bubble { animation: wm-bubble 1.8s ease-in infinite; animation-delay: var(--bd, 0s); }
+.wm[data-state="fixed"] .wm-knob { transform: rotate(130deg); }
+.wm[data-state="fixed"] .wm-led { fill: var(--teal); }
+.wm[data-state="fixed"] .wm-alert { transform: scale(0); }
+.wm[data-state="fixed"] .wm-check { transform: scale(1); }
+.wm[data-state="fixed"] .wm-puddle { transform: scale(0); opacity: 0; }
+
+@keyframes wm-rumble {
+  0%, 58%, 100% { transform: none; }
+  62% { transform: translateX(-3px) rotate(-1.5deg); }
+  66% { transform: translateX(3px) rotate(1.5deg); }
+  70% { transform: translateX(-2px) rotate(-1deg); }
+  74% { transform: translateX(2px) rotate(1deg); }
+  78% { transform: none; }
 }
-.hero-card h2 { margin: 0 0 6px; font-size: 1.25rem; color: var(--navy); }
-.hero-card p { margin: 0 0 18px; font-size: .95rem; }
-.hero-card .phone-big {
-  display: block; font-size: 1.7rem; font-weight: 800; color: var(--navy);
-  text-decoration: none; margin-bottom: 14px;
+@keyframes wm-vibe { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(.7px, -.4px); } 75% { transform: translate(-.7px, .4px); } }
+@keyframes wm-blink { 50% { opacity: .15; } }
+@keyframes wm-drip { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { transform: translateY(16px); opacity: 1; } 100% { transform: translateY(18px); opacity: 0; } }
+@keyframes wm-bob { 50% { transform: translateY(-5px) rotate(8deg); } }
+@keyframes wm-wrench-idle { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-18deg); } 86% { transform: rotate(12deg); } 93% { transform: rotate(-6deg); } }
+@keyframes wm-tighten { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-55deg); } }
+@keyframes wm-bolt { from { transform: rotate(0); } to { transform: rotate(-60deg); } }
+@keyframes wm-spark { 50% { opacity: 1; transform: scale(1.15); } }
+@keyframes wm-wave { to { transform: translateX(-60px); } }
+@keyframes wm-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+@keyframes wm-bubble { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .9; } 100% { transform: translateY(-90px); opacity: 0; } }
+
+/* ---------- Petites animations de section (réparation) ---------- */
+.mini { width: 88px; height: 88px; margin: 0 auto 4px; }
+.mini svg { width: 100%; height: 100%; overflow: visible; }
+.mini-wide { width: 132px; }
+.reviews-wrap .section-head .mini { margin-left: 0; }
+.mini * { transform-box: fill-box; }
+
+/* Micro-ondes (avis) : le bol tourne, la lumière pulse, « ding » étoile */
+.mw-bowl { animation: mw-turn 2s ease-in-out infinite alternate; }
+.mw-light { animation: mw-light 2s ease-in-out infinite alternate; }
+.mw-digit { animation: wm-blink 1s steps(2, jump-none) infinite; }
+.mw-ding { transform-origin: 50% 50%; animation: mw-ding 4s ease-out infinite; }
+@keyframes mw-turn { from { transform: translateX(-8px); } to { transform: translateX(8px); } }
+@keyframes mw-light { from { opacity: 0; } to { opacity: .45; } }
+@keyframes mw-ding { 0%, 82% { transform: scale(0) rotate(0); } 90% { transform: scale(1.2) rotate(40deg); } 100% { transform: scale(0) rotate(90deg); } }
+
+/* Tournevis (services) : visse la vis dans la plaque */
+.sd-move { animation: sd-down 2.4s ease-in-out infinite; }
+.sd-grip { animation: sd-grip .5s linear infinite; }
+@keyframes sd-down { 0% { transform: translateY(-6px); } 80% { transform: translateY(6px); } 100% { transform: translateY(-6px); } }
+@keyframes sd-grip { to { transform: translateX(-8px); } }
+
+/* Engrenages (pourquoi nous) */
+.gear-a, .gear-b { transform-origin: 50% 50%; }
+.gear-a { animation: wm-spin 6s linear infinite; }
+.gear-b { animation: wm-spin 4s linear infinite reverse; }
+
+/* Camionnette d'intervention (comment ça marche) */
+.van-body { animation: van-bounce .5s ease-in-out infinite alternate; }
+.van-wheel { transform-origin: 50% 50%; animation: wm-spin .7s linear infinite; }
+.van-road { animation: van-road .5s linear infinite; }
+.van-speed { animation: van-speed 1s ease-in infinite; }
+.van-speed:nth-of-type(2) { animation-delay: .33s; }
+.van-speed:nth-of-type(3) { animation-delay: .66s; }
+@keyframes van-bounce { to { transform: translateY(-1.5px); } }
+@keyframes van-road { to { stroke-dashoffset: -20; } }
+@keyframes van-speed { 0% { transform: translateX(10px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateX(-14px); opacity: 0; } }
+
+/* Téléphone qui sonne (contact) */
+.ph-shake { transform-origin: 50% 50%; animation: ph-ring 2.2s ease-in-out infinite; }
+.ph-wave { animation: ph-wave 2.2s ease-out infinite; opacity: 0; }
+.ph-wave.w2 { animation-delay: .2s; }
+@keyframes ph-ring {
+  0%, 45%, 100% { transform: rotate(0); }
+  5% { transform: rotate(-14deg); } 10% { transform: rotate(14deg); } 15% { transform: rotate(-14deg); }
+  20% { transform: rotate(14deg); } 25% { transform: rotate(-8deg); } 30% { transform: rotate(0); }
 }
-.hours { margin: 0; padding: 0; list-style: none; font-size: .92rem; border-top: 1px solid var(--teal-mid); }
-.hours li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--teal-mid); }
-.hours li span:last-child { font-weight: 700; }
+@keyframes ph-wave { 0% { opacity: 0; } 8% { opacity: 1; } 35%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wm *, .mini * { animation: none !important; transition: none !important; }
+}
 
 /* ---------- Sections ---------- */
 section { padding: 80px 0; scroll-margin-top: 68px; }
@@ -503,6 +614,7 @@ footer a { color: var(--mist); }
 @media (max-width: 720px) {
   nav.main, .header-call { display: none; }
   .hero { padding: 56px 0 64px; }
+  .wm { max-width: 290px; }
   section { padding: 60px 0; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   form .two { grid-template-columns: 1fr; }
@@ -576,18 +688,67 @@ footer a { color: var(--mist); }
         </ul>
       </div>
 
-      <aside class="hero-card">
-        <h2>Besoin d'un dépannage ?</h2>
-        <p>Appelez-nous, on vous propose un rendez-vous rapidement.</p>
-        <!-- TODO : remplacer le numéro de téléphone -->
-        <a href="tel:+33400000000" class="phone-big">04 00 00 00 00</a>
-        <!-- TODO : vérifier les horaires réels -->
-        <ul class="hours">
-          <li><span>Lundi – Vendredi</span><span>8h30 – 19h00</span></li>
-          <li><span>Samedi</span><span>9h00 – 13h00</span></li>
-          <li><span>Dimanche</span><span>Fermé</span></li>
-        </ul>
-      </aside>
+      <!-- Machine à laver interactive : en panne → la clé la répare → elle tourne -->
+      <div class="wm" data-state="broken">
+        <svg class="wm-svg" viewBox="0 0 320 340" role="img" aria-label="Animation : une clé répare une machine à laver en panne">
+          <defs><clipPath id="wm-glass"><circle cx="160" cy="190" r="54"/></clipPath></defs>
+          <ellipse cx="160" cy="318" rx="118" ry="8" fill="rgba(19,124,139,.35)"/>
+          <ellipse class="wm-puddle" cx="146" cy="320" rx="44" ry="6" fill="#137C8B" stroke="#709CA7" stroke-width="2"/>
+          <g class="wm-body">
+            <rect x="78" y="296" width="24" height="14" rx="3" fill="#344D59"/>
+            <rect x="218" y="296" width="24" height="14" rx="3" fill="#344D59"/>
+            <rect x="60" y="30" width="200" height="270" rx="18" fill="#B8CBD0" stroke="#709CA7" stroke-width="4"/>
+            <line x1="62" y1="88" x2="258" y2="88" stroke="#709CA7" stroke-width="3"/>
+            <g transform="translate(95 59)"><g class="wm-knob">
+              <circle r="15" fill="#7A90A4" stroke="#344D59" stroke-width="3"/>
+              <line x1="0" y1="0" x2="0" y2="-11" stroke="#B8CBD0" stroke-width="4" stroke-linecap="round"/>
+            </g></g>
+            <rect x="136" y="45" width="88" height="28" rx="6" fill="#344D59"/>
+            <text class="wm-display" x="180" y="66" text-anchor="middle">E21</text>
+            <circle class="wm-led" cx="244" cy="59" r="6"/>
+            <circle cx="160" cy="190" r="74" fill="#7A90A4" stroke="#344D59" stroke-width="5"/>
+            <circle cx="160" cy="190" r="56" fill="#709CA7"/>
+            <g clip-path="url(#wm-glass)">
+              <g transform="translate(0 205)"><g class="wm-water-level"><g class="wm-wave">
+                <path d="M40 0q15-8 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V90H40Z" fill="#137C8B" opacity=".75"/>
+              </g></g></g>
+              <g transform="translate(160 190)"><g class="wm-drum">
+                <circle r="50" fill="none" stroke="#344D59" stroke-width="2" stroke-dasharray="3 9" opacity=".6"/>
+                <rect x="-32" y="-6" width="28" height="16" rx="7" fill="#344D59"/>
+                <circle cx="18" cy="16" r="11" fill="#B8CBD0" stroke="#344D59" stroke-width="2"/>
+                <rect x="-4" y="-36" width="20" height="15" rx="5" fill="#137C8B" stroke="#344D59" stroke-width="2"/>
+              </g></g>
+              <circle class="wm-bubble" cx="132" cy="236" r="4" fill="#B8CBD0" style="--bd:0s"/>
+              <circle class="wm-bubble" cx="160" cy="240" r="3" fill="#B8CBD0" style="--bd:.6s"/>
+              <circle class="wm-bubble" cx="186" cy="238" r="5" fill="#B8CBD0" style="--bd:1.1s"/>
+              <path d="M124 160a42 42 0 0 1 30-22" fill="none" stroke="#B8CBD0" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+            </g>
+            <circle cx="160" cy="190" r="56" fill="none" stroke="#344D59" stroke-width="3"/>
+            <rect x="228" y="174" width="9" height="32" rx="4" fill="#344D59"/>
+            <rect x="82" y="270" width="156" height="20" rx="5" fill="none" stroke="#709CA7" stroke-width="2"/>
+            <g transform="translate(96 280)"><polygon points="6,0 3,5.2 -3,5.2 -6,0 -3,-5.2 3,-5.2" fill="#7A90A4" stroke="#344D59" stroke-width="2"/></g>
+            <g transform="translate(224 280)"><g class="wm-bolt"><polygon points="7,0 3.5,6.1 -3.5,6.1 -7,0 -3.5,-6.1 3.5,-6.1" fill="#7A90A4" stroke="#344D59" stroke-width="2"/></g></g>
+          </g>
+          <circle class="wm-drip" cx="146" cy="300" r="4" fill="#137C8B"/>
+          <g transform="translate(224 280)"><g class="wm-sparks" stroke="#137C8B" stroke-width="3" stroke-linecap="round">
+            <line x1="12" y1="-12" x2="20" y2="-20"/><line x1="-12" y1="-12" x2="-20" y2="-20"/>
+            <line x1="16" y1="2" x2="26" y2="2"/><line x1="0" y1="-16" x2="0" y2="-26"/>
+          </g></g>
+          <g transform="translate(266 30)"><g class="wm-alert">
+            <circle r="18" fill="#344D59" stroke="#137C8B" stroke-width="3"/>
+            <text class="wm-alert-mark" y="8" text-anchor="middle">!</text>
+          </g></g>
+          <g transform="translate(266 30)"><g class="wm-check">
+            <circle r="18" fill="#137C8B" stroke="#B8CBD0" stroke-width="3"/>
+            <path d="M-8 0l5 6 11-12" fill="none" stroke="#B8CBD0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g></g>
+          <g transform="translate(294 254)"><g class="wm-wrench-move"><g class="wm-wrench-turn">
+            <path transform="translate(-46.5 -25.5) scale(3)" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z" fill="#137C8B" stroke="#B8CBD0" stroke-width=".8" stroke-linejoin="round"/>
+          </g></g></g>
+        </svg>
+        <p class="wm-status" aria-live="polite">En panne : code erreur E21</p>
+        <button type="button" class="btn btn-light wm-btn"><svg><use href="#i-wrench"/></svg><span>Réparer la machine</span></button>
+      </div>
     </div>
   </section>
 
@@ -596,6 +757,18 @@ footer a { color: var(--mist); }
     <div class="sky" aria-hidden="true"></div>
     <div class="container reviews-wrap">
       <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g transform="translate(76 4)"><g class="mw-ding"><path d="M10 0c.7 5.4 2.9 7.6 8.3 8.3-5.4.7-7.6 2.9-8.3 8.3-.7-5.4-2.9-7.6-8.3-8.3C7.1 7.6 9.3 5.4 10 0z" fill="#137C8B"/></g></g>
+          <rect x="20" y="80" width="10" height="6" rx="2" fill="#344D59"/><rect x="70" y="80" width="10" height="6" rx="2" fill="#344D59"/>
+          <rect x="8" y="26" width="84" height="56" rx="8" fill="#B8CBD0" stroke="#344D59" stroke-width="4"/>
+          <rect x="16" y="34" width="50" height="40" rx="4" fill="#709CA7" stroke="#344D59" stroke-width="3"/>
+          <rect class="mw-light" x="18" y="36" width="46" height="36" rx="3" fill="#B8CBD0"/>
+          <line x1="20" y1="68" x2="62" y2="68" stroke="#344D59" stroke-width="2"/>
+          <g class="mw-bowl"><path d="M30 60h22a11 7 0 0 1-22 0z" fill="#137C8B"/></g>
+          <rect x="71" y="35" width="15" height="10" rx="2" fill="#344D59"/>
+          <rect class="mw-digit" x="74" y="38" width="9" height="4" rx="1" fill="#137C8B"/>
+          <circle cx="78.5" cy="56" r="4" fill="#7A90A4"/><circle cx="78.5" cy="67" r="4" fill="#7A90A4"/>
+        </svg></div>
         <span class="eyebrow">Avis clients</span>
         <h2>Nos clients nous recommandent</h2>
         <p>Chaque intervention compte. Découvrez ce que nos clients de Montpellier et des environs pensent de notre travail.</p>
@@ -626,6 +799,21 @@ footer a { color: var(--mist); }
     <div class="sky" aria-hidden="true"></div>
     <div class="container">
       <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <defs><clipPath id="sd-clip"><rect x="40" y="8" width="20" height="32" rx="6"/></clipPath></defs>
+          <g class="sd-move">
+            <rect x="47" y="56" width="6" height="22" fill="#7A90A4" stroke="#344D59" stroke-width="2"/>
+            <rect x="41" y="52" width="18" height="6" rx="2" fill="#7A90A4" stroke="#344D59" stroke-width="2"/>
+            <rect x="48" y="36" width="4" height="17" fill="#344D59"/>
+            <rect x="40" y="8" width="20" height="32" rx="6" fill="#137C8B"/>
+            <g clip-path="url(#sd-clip)"><g class="sd-grip" stroke="#344D59" stroke-width="2.5" opacity=".6">
+              <line x1="42" y1="12" x2="42" y2="36"/><line x1="50" y1="12" x2="50" y2="36"/><line x1="58" y1="12" x2="58" y2="36"/><line x1="66" y1="12" x2="66" y2="36"/>
+            </g></g>
+            <rect x="40" y="8" width="20" height="32" rx="6" fill="none" stroke="#344D59" stroke-width="3"/>
+          </g>
+          <rect x="12" y="72" width="76" height="16" rx="3" fill="#709CA7" stroke="#344D59" stroke-width="3"/>
+          <circle cx="22" cy="80" r="2.5" fill="#344D59"/><circle cx="78" cy="80" r="2.5" fill="#344D59"/>
+        </svg></div>
         <span class="eyebrow">Nos services</span>
         <h2>Réparation de tout votre électroménager</h2>
         <p>Diagnostic précis, réparation durable : on remet en marche vos appareils au lieu de les remplacer.</p>
@@ -669,6 +857,10 @@ footer a { color: var(--mist); }
   <section id="pourquoi" class="alt">
     <div class="container">
       <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g class="gear-a" style="color:#137C8B"><use href="#i-gear" x="10" y="30" width="56" height="56"/></g>
+          <g class="gear-b" style="color:#344D59"><use href="#i-gear" x="56" y="10" width="36" height="36"/></g>
+        </svg></div>
         <span class="eyebrow">Pourquoi nous choisir</span>
         <h2>Un dépanneur local, sérieux et réactif</h2>
       </div>
@@ -712,6 +904,19 @@ footer a { color: var(--mist); }
   <section id="fonctionnement">
     <div class="container">
       <div class="section-head">
+        <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
+          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#7A90A4" stroke-width="3" stroke-dasharray="10 10"/>
+          <g class="van-body">
+            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#B8CBD0" stroke="#137C8B" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M86 33l13 12H86z" fill="#709CA7"/>
+            <g style="color:#137C8B"><use href="#i-wrench" x="42" y="36" width="20" height="20"/></g>
+          </g>
+          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#344D59" stroke="#B8CBD0" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#B8CBD0" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#B8CBD0" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#344D59" stroke="#B8CBD0" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#B8CBD0" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#B8CBD0" stroke-width="2"/></g>
+        </svg></div>
         <span class="eyebrow">Comment ça marche</span>
         <h2>Une réparation en 3 étapes</h2>
       </div>
@@ -736,6 +941,11 @@ footer a { color: var(--mist); }
   <section id="contact" class="alt">
     <div class="container">
       <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g class="ph-shake" style="color:#344D59"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#137C8B" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#137C8B" stroke-width="5" stroke-linecap="round"/>
+        </svg></div>
         <span class="eyebrow">Contact</span>
         <h2>Demandez votre dépannage</h2>
         <p>Appelez-nous directement ou envoyez votre demande : on vous rappelle rapidement.</p>
@@ -849,6 +1059,36 @@ footer a { color: var(--mist); }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     items.forEach((el) => io.observe(el));
+  })();
+
+  // Machine à laver de l'en-tête : en panne → réparation à la clé → elle tourne.
+  (() => {
+    const wm = document.querySelector('.wm');
+    if (!wm) return;
+    const display = wm.querySelector('.wm-display');
+    const status = wm.querySelector('.wm-status');
+    const btn = wm.querySelector('.wm-btn');
+    const label = btn.querySelector('span');
+    let touched = false, timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const set = (state, disp, msg, btnText, disabled) => {
+      wm.dataset.state = state; display.textContent = disp; status.textContent = msg;
+      label.textContent = btnText; btn.disabled = disabled;
+    };
+    const repair = () => {
+      if (wm.dataset.state !== 'broken') return;
+      set('repairing', '---', 'Réparation en cours…', 'Réparation…', true);
+      later(() => set('fixed', 'OK', 'Réparée ! La machine tourne à nouveau.', 'Recommencer', false), 2800);
+      later(() => { if (wm.dataset.state === 'fixed') display.textContent = '1200'; }, 3800);
+    };
+    const reset = () => {
+      timers.forEach(clearTimeout); timers = [];
+      set('broken', 'E21', 'En panne : code erreur E21', 'Réparer la machine', false);
+    };
+    btn.addEventListener('click', () => { touched = true; wm.dataset.state === 'broken' ? repair() : reset(); });
+    wm.querySelector('.wm-svg').addEventListener('click', () => { touched = true; repair(); });
+    // Démo automatique une fois, si le visiteur n'a pas encore cliqué.
+    setTimeout(() => { if (!touched) repair(); }, 3000);
   })();
 
   // Fonds animés : petits symboles placés sur une grille avec un décalage aléatoire,
