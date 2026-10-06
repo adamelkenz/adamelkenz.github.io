@@ -1,0 +1,32 @@
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div>
+{{FIL}}        <span class="badge"><span class="dot"></span>{{HERO_BADGE}}</span>
+        <h1>{{HERO_H1}}</h1>
+        <p class="lead">{{HERO_LEAD}}</p>
+        <div class="hero-actions">
+          <a href="{{TEL_HREF}}" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
+          <a href="#tarifs" class="btn btn-ghost">Voir nos tarifs</a>
+        </div>
+        <ul class="hero-checks">
+          <li>Prix annoncés à l'avance</li>
+          <li>Devis gratuit</li>
+          <li>7j/7, jours fériés inclus</li>
+        </ul>
+      </div>
+
+      <!-- Cadenas en 3D : la clé entre, tourne, l'anse s'ouvre (js/lock3d.js) -->
+      <div class="hero-3d" id="lock3d">
+        <div class="price-badge">
+          <small>Ouverture de porte dès</small>
+          <strong>90 €<em>TTC</em></strong>
+          <a href="#tarifs">Voir les tarifs →</a>
+        </div>
+        <div class="hero-3d-ui">
+          <span class="pill status" data-phase="broken" aria-live="polite"><span class="dot"></span><span class="status-text">Porte verrouillée</span></span>
+          <button type="button" class="pill" id="replay3d">↻ Rejouer</button>
+        </div>
+      </div>
+    </div>
+  </section>

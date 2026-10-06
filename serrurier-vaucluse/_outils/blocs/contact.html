@@ -1,0 +1,95 @@
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+        </svg></div>
+        <span class="eyebrow">Contact</span>
+        <h2>{{CONTACT_H2}}</h2>
+        <p>Pour une urgence, appelez-nous directement. Pour un devis, remplissez le formulaire.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="card contact-info">
+          <h3>Serrurier Vaucluse</h3>
+          <p>Disponible 24h/24 et 7j/7 pour tous vos dépannages.</p>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-phone"/></svg></div>
+            <div><strong>Téléphone</strong><a href="{{TEL_HREF}}">{{TEL}}</a></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-mail"/></svg></div>
+            <div><strong>E-mail</strong><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-pin"/></svg></div>
+            <div><strong>Zone</strong><span>{{CONTACT_ZONE}}</span></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-clock"/></svg></div>
+            <div><strong>Horaires</strong><span>24h/24 – 7j/7</span></div>
+          </div>
+          <a href="{{TEL_HREF}}" class="btn btn-light contact-call"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
+        </div>
+
+        <!-- data-endpoint : URL de l'application web Google Apps Script qui gère l'agenda (voir js/booking.js) -->
+        <form class="card" id="contactForm" data-endpoint="" data-phone="{{TEL}}" novalidate>
+          <div class="two">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" type="text" name="nom" autocomplete="name" maxlength="80" required>
+            </div>
+            <div class="field">
+              <label for="tel">Téléphone</label>
+              <input id="tel" type="tel" name="tel" autocomplete="tel" maxlength="20" required>
+            </div>
+          </div>
+          <div class="two">
+            <div class="field">
+              <label for="email">E-mail <span class="opt">(facultatif)</span></label>
+              <input id="email" type="email" name="email" autocomplete="email" maxlength="120" placeholder="Pour recevoir la confirmation">
+            </div>
+            <div class="field">
+              <label for="ville">Ville</label>
+              <input id="ville" type="text" name="ville" placeholder="ex. {{VILLE_EX}}" maxlength="60" autocomplete="address-level2">
+            </div>
+          </div>
+          <label class="urgent-toggle"><input type="checkbox" name="urgent"> <span><strong>C'est une urgence</strong> : je veux une intervention dès que possible</span></label>
+          <div class="two" id="slotFields">
+            <div class="field">
+              <label for="date">Date souhaitée</label>
+              <input id="date" type="date" name="date" required>
+            </div>
+            <div class="field">
+              <label for="creneau">Créneau</label>
+              <select id="creneau" name="creneau" required>
+                <option value="">Choisissez une date</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="prestation">Prestation</label>
+            <select id="prestation" name="prestation">
+              <option>Ouverture de porte</option>
+              <option>Changement de serrure</option>
+              <option>Remplacement de cylindre</option>
+              <option>Blindage de porte</option>
+              <option>Réparation après effraction</option>
+              <option>Volet roulant</option>
+              <option>Boîte aux lettres</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" maxlength="1000" placeholder="Décrivez votre besoin…"></textarea>
+          </div>
+          <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn-accent">Envoyer ma demande</button>
+          <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
