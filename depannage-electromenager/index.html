@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STE Dépannage Électroménager – Réparation à domicile à Montpellier</title>
 <meta name="description" content="STE Dépannage Électroménager : réparation de lave-linge, lave-vaisselle, réfrigérateur, four et sèche-linge à domicile à Montpellier et ses environs. Toutes marques, devis gratuit.">
-<meta name="theme-color" content="#344D59">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23344D59'/><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z' fill='none' stroke='%23B8CBD0' stroke-width='2' transform='translate(2.4 2.4) scale(.8)'/></svg>">
+<meta name="theme-color" content="#070B18">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23121A33'/><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z' fill='none' stroke='%2300D1FF' stroke-width='2' transform='translate(2.4 2.4) scale(.8)'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!--
   ===================== À COMPLÉTER =====================
@@ -39,29 +39,31 @@
 
 <style>
 /*
-  Palette (uniquement ces 5 couleurs) :
-  #137C8B  teal      → accents : icônes, barres, bordures, étoiles
-  #709CA7  bleu-gris → bordures, séparateurs
-  #B8CBD0  clair     → fonds clairs, texte sur fond foncé
-  #7A90A4  ardoise   → accents secondaires
-  #344D59  foncé     → texte, fonds foncés, boutons
+  Direction « Nuit polaire » :
+  #070B18  Nuit      → fond de page
+  #121A33  Abysse    → surfaces, cartes
+  #2B3A67  Indigo    → bordures, séparateurs
+  #00D1FF  Cyan néon → accent principal, lueurs
+  #8F7BFF  Aurore    → accent secondaire
+  #D6F4FF  Halo      → texte
 */
 :root {
-  --teal: #137C8B;
-  --teal-mid: #709CA7;
-  --mist: #B8CBD0;
-  --slate: #7A90A4;
-  --navy: #344D59;
-  --radius: 14px;
-  --shadow: 0 8px 24px rgba(52, 77, 89, .18);
+  --bg: #070B18;
+  --surface: #121A33;
+  --line: #2B3A67;
+  --cyan: #00D1FF;
+  --violet: #8F7BFF;
+  --halo: #D6F4FF;
+  --radius: 16px;
+  --shadow: 0 8px 28px rgba(0, 0, 0, .35);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color: var(--navy);
-  background: var(--mist);
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--halo);
+  background: var(--bg);
   line-height: 1.6;
 }
 img, svg { display: block; }
@@ -76,31 +78,31 @@ a { color: inherit; }
   font-size: 1rem; transition: transform .15s, background .15s, border-color .15s, color .15s;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-accent { background: var(--navy); color: var(--mist); border-color: var(--teal); }
-.btn-accent:hover { background: var(--teal); border-color: var(--navy); }
-.btn-light { background: var(--mist); color: var(--navy); border-color: var(--teal); }
-.btn-light:hover { border-color: var(--mist); background: var(--teal-mid); }
-.btn-ghost { background: transparent; color: var(--mist); border-color: var(--teal-mid); }
-.btn-ghost:hover { background: var(--mist); color: var(--navy); }
+.btn-accent { background: var(--bg); color: var(--halo); border-color: var(--cyan); }
+.btn-accent:hover { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.45); }
+.btn-light { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.35); }
+.btn-light:hover { background: var(--halo); border-color: var(--halo); box-shadow: 0 0 32px rgba(0,209,255,.55); }
+.btn-ghost { background: transparent; color: var(--halo); border-color: var(--violet); }
+.btn-ghost:hover { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,209,255,.3); }
 .btn svg { width: 20px; height: 20px; }
 
 /* ---------- En-tête ---------- */
 header.site {
   position: sticky; top: 0; z-index: 50;
-  background: var(--mist);
-  border-bottom: 2px solid var(--teal-mid);
+  background: rgba(7,11,24,.82); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
 }
 header.site .container { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--navy); line-height: 1.15; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--halo); line-height: 1.15; }
 .logo-mark {
-  width: 40px; height: 40px; border-radius: 10px; background: var(--navy);
-  display: grid; place-items: center; color: var(--mist); flex: none; border: 2px solid var(--teal);
+  width: 40px; height: 40px; border-radius: 10px; background: var(--bg);
+  display: grid; place-items: center; color: var(--halo); flex: none; border: 2px solid var(--cyan);
 }
 .logo-mark svg { width: 20px; height: 20px; }
-.logo small { display: block; font-weight: 500; color: var(--navy); font-size: .75rem; }
+.logo small { display: block; font-weight: 500; color: var(--halo); font-size: .75rem; }
 nav.main { display: flex; gap: 26px; }
-nav.main a { text-decoration: none; color: var(--navy); font-weight: 600; font-size: .95rem; border-bottom: 2px solid transparent; padding: 4px 0; }
-nav.main a:hover { border-bottom-color: var(--teal); }
+nav.main a { text-decoration: none; color: var(--halo); font-weight: 600; font-size: .95rem; border-bottom: 2px solid transparent; padding: 4px 0; }
+nav.main a:hover { border-bottom-color: var(--cyan); }
 .header-call { padding: 9px 18px; font-size: .95rem; }
 
 /* ---------- Hero ---------- */
@@ -109,10 +111,11 @@ nav.main a:hover { border-bottom-color: var(--teal); }
   position: relative; overflow: hidden;
   min-height: calc(100vh - 68px); display: flex; align-items: center;
   background:
-    radial-gradient(70% 60% at 95% 100%, rgba(19,124,139,.85), transparent 70%),
-    radial-gradient(50% 50% at 100% 0%, rgba(122,144,164,.45), transparent 70%),
-    var(--navy);
-  color: var(--mist); padding: 80px 0 90px;
+    radial-gradient(55% 55% at 80% 85%, rgba(0,209,255,.22), transparent 70%),
+    radial-gradient(45% 50% at 100% 0%, rgba(143,123,255,.32), transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, rgba(143,123,255,.16), transparent 70%),
+    var(--bg);
+  color: var(--halo); padding: 80px 0 90px;
 }
 .hero::before,
 .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
@@ -123,94 +126,41 @@ nav.main a:hover { border-bottom-color: var(--teal); }
 }
 .hero::after {
   background-image:
-    linear-gradient(rgba(184,203,208,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(184,203,208,.04) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(184,203,208,.02) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(184,203,208,.02) 1px, transparent 1px);
+    linear-gradient(rgba(214,244,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,244,255,.04) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(214,244,255,.02) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(214,244,255,.02) 1px, transparent 1px);
   background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px;
 }
 .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
 .badge {
   display: inline-block; padding: 6px 14px; border-radius: 999px;
-  border: 1px solid var(--teal-mid); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
+  border: 1px solid var(--line); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
 }
-.hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; color: var(--mist); }
-.hero h1 span { color: var(--teal-mid); }
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; color: var(--halo); }
+.hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero p.lead { font-size: 1.15rem; margin: 0 0 30px; max-width: 560px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; }
-.hero-checks li::before { content: "✓"; color: var(--teal-mid); font-weight: 800; margin-right: 8px; }
-/* ---------- Machine à laver interactive (en-tête) ---------- */
-.wm { width: 100%; max-width: 340px; justify-self: center; text-align: center; }
-.wm-svg { width: 100%; height: auto; overflow: visible; cursor: pointer; }
-.wm-status { margin: 6px 0 12px; font-weight: 700; color: var(--mist); min-height: 1.6em; }
-.wm-btn { justify-content: center; }
-.wm-btn[disabled] { opacity: .6; cursor: progress; transform: none; }
-.wm-display { font: 800 17px/1 ui-monospace, "SFMono-Regular", Menlo, monospace; fill: var(--mist); letter-spacing: .08em; }
-.wm-alert-mark { font: 900 24px/1 "Inter", sans-serif; fill: var(--mist); }
-.wm-led { fill: var(--navy); stroke: var(--teal-mid); stroke-width: 2; transition: fill .3s; }
-
-.wm-body, .wm-puddle { transform-box: fill-box; }
-.wm-body { transform-origin: 50% 100%; }
-.wm-puddle { transform-origin: 50% 50%; transition: transform .8s ease, opacity .8s; }
-.wm-knob, .wm-drum, .wm-bolt, .wm-alert, .wm-check, .wm-sparks, .wm-wrench-turn { transform-origin: 0 0; }
-.wm-knob { transition: transform .6s cubic-bezier(.34,1.56,.64,1); }
-.wm-water-level { transition: transform 1.4s ease; transform: translateY(34px); }
-.wm-wave { animation: wm-wave 4s linear infinite; }
-.wm-drum { transform: rotate(-14deg); }
-.wm-bubble, .wm-drip, .wm-sparks { opacity: 0; }
-.wm-alert, .wm-check { transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
-.wm-check { transform: scale(0); }
-.wm-wrench-move { transition: transform .7s cubic-bezier(.5,0,.3,1); }
-
-/* En panne : la machine tremble, l'écran clignote, ça fuit, la clé attend */
-.wm[data-state="broken"] .wm-body { animation: wm-rumble 2.6s ease-in-out infinite; }
-.wm[data-state="broken"] .wm-display,
-.wm[data-state="broken"] .wm-led { animation: wm-blink 1s steps(2, jump-none) infinite; }
-.wm[data-state="broken"] .wm-drip { animation: wm-drip 1.6s ease-in infinite; }
-.wm[data-state="broken"] .wm-alert { animation: wm-bob 1.4s ease-in-out infinite; }
-.wm[data-state="broken"] .wm-wrench-turn { animation: wm-wrench-idle 3s ease-in-out infinite; }
-
-/* Réparation : la clé va sur le boulon et serre */
-.wm[data-state="repairing"] .wm-wrench-move { transform: translate(-70px, 26px); }
-.wm[data-state="repairing"] .wm-wrench-turn { animation: wm-tighten .6s ease-in-out .7s infinite; }
-.wm[data-state="repairing"] .wm-bolt { animation: wm-bolt .6s ease-in-out .7s infinite; }
-.wm[data-state="repairing"] .wm-sparks { animation: wm-spark .3s steps(2, jump-none) .8s infinite; }
-.wm[data-state="repairing"] .wm-alert { transform: scale(0); }
-.wm[data-state="repairing"] .wm-puddle { transform: scale(.5); opacity: .6; }
-.wm[data-state="repairing"] .wm-display { animation: wm-blink .5s steps(2, jump-none) infinite; }
-
-/* Réparée : l'eau monte, le tambour tourne, bulles, coche */
-.wm[data-state="fixed"] .wm-body { animation: wm-vibe .16s linear infinite; }
-.wm[data-state="fixed"] .wm-water-level { transform: translateY(0); }
-.wm[data-state="fixed"] .wm-wave { animation-duration: 1.2s; }
-.wm[data-state="fixed"] .wm-drum { animation: wm-spin .9s linear infinite; }
-.wm[data-state="fixed"] .wm-bubble { animation: wm-bubble 1.8s ease-in infinite; animation-delay: var(--bd, 0s); }
-.wm[data-state="fixed"] .wm-knob { transform: rotate(130deg); }
-.wm[data-state="fixed"] .wm-led { fill: var(--teal); }
-.wm[data-state="fixed"] .wm-alert { transform: scale(0); }
-.wm[data-state="fixed"] .wm-check { transform: scale(1); }
-.wm[data-state="fixed"] .wm-puddle { transform: scale(0); opacity: 0; }
-
-@keyframes wm-rumble {
-  0%, 58%, 100% { transform: none; }
-  62% { transform: translateX(-3px) rotate(-1.5deg); }
-  66% { transform: translateX(3px) rotate(1.5deg); }
-  70% { transform: translateX(-2px) rotate(-1deg); }
-  74% { transform: translateX(2px) rotate(1deg); }
-  78% { transform: none; }
+.hero-checks li::before { content: "✓"; color: var(--violet); font-weight: 800; margin-right: 8px; }
+/* ---------- Machine 3D (en-tête) ---------- */
+.hero-3d { position: relative; width: 100%; height: 480px; cursor: grab; touch-action: pan-y; }
+.hero-3d:active { cursor: grabbing; }
+@media (min-width: 961px) { .hero-3d { width: calc(100% + 100px); margin-right: -100px; } }
+.hero-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-3d-ui { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; pointer-events: none; }
+.pill {
+  pointer-events: auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px; font: 700 .9rem/1.2 inherit;
+  background: rgba(18,26,51,.85); color: var(--halo); border: 1.5px solid var(--line);
+  backdrop-filter: blur(6px);
 }
-@keyframes wm-vibe { 0%, 100% { transform: translate(0, 0); } 25% { transform: translate(.7px, -.4px); } 75% { transform: translate(-.7px, .4px); } }
-@keyframes wm-blink { 50% { opacity: .15; } }
-@keyframes wm-drip { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { transform: translateY(16px); opacity: 1; } 100% { transform: translateY(18px); opacity: 0; } }
-@keyframes wm-bob { 50% { transform: translateY(-5px) rotate(8deg); } }
-@keyframes wm-wrench-idle { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-18deg); } 86% { transform: rotate(12deg); } 93% { transform: rotate(-6deg); } }
-@keyframes wm-tighten { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-55deg); } }
-@keyframes wm-bolt { from { transform: rotate(0); } to { transform: rotate(-60deg); } }
-@keyframes wm-spark { 50% { opacity: 1; transform: scale(1.15); } }
-@keyframes wm-wave { to { transform: translateX(-60px); } }
-@keyframes wm-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-@keyframes wm-bubble { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .9; } 100% { transform: translateY(-90px); opacity: 0; } }
+button.pill { cursor: pointer; font-family: inherit; }
+button.pill:hover { border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,209,255,.35); }
+.pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.pill.status[data-phase="broken"] .dot { background: var(--violet); box-shadow: 0 0 10px var(--violet); animation: pill-blink 1s steps(2, jump-none) infinite; }
+@keyframes pill-blink { 50% { opacity: .2; } }
+.nogl { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--halo); }
 
 /* ---------- Petites animations de section (réparation) ---------- */
 .mini { width: 88px; height: 88px; margin: 0 auto 4px; }
@@ -262,7 +212,7 @@ nav.main a:hover { border-bottom-color: var(--teal); }
 @keyframes ph-wave { 0% { opacity: 0; } 8% { opacity: 1; } 35%, 100% { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .wm *, .mini * { animation: none !important; transition: none !important; }
+  .mini * { animation: none !important; transition: none !important; }
 }
 
 /* ---------- Sections ---------- */
@@ -270,10 +220,10 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
 .section-head .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
-  color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em;
+  color: var(--cyan); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .12em;
 }
-.section-head .eyebrow::before { content: ""; width: 24px; height: 3px; border-radius: 2px; background: var(--teal); }
-.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--navy); letter-spacing: -.01em; }
+.section-head .eyebrow::before { content: ""; width: 24px; height: 3px; border-radius: 2px; background: var(--cyan); }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--halo); letter-spacing: -.01em; }
 .section-head p { margin: 0; }
 
 .grid { display: grid; gap: 22px; }
@@ -281,34 +231,34 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
 .card {
-  background: var(--mist); border: 2px solid var(--teal-mid); border-radius: var(--radius);
+  background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius);
   padding: 28px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s;
 }
-.card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 14px 32px rgba(52,77,89,.28); }
+.card:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 0 0 1px var(--cyan), 0 14px 40px rgba(0,209,255,.18); }
 .card .icon {
-  width: 52px; height: 52px; border-radius: 12px; background: var(--navy); color: var(--mist);
+  width: 52px; height: 52px; border-radius: 12px; background: var(--bg); color: var(--cyan); border: 1.5px solid var(--line);
   display: grid; place-items: center; margin-bottom: 18px;
 }
 .card .icon svg { width: 28px; height: 28px; }
-.card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--navy); }
+.card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--halo); }
 .card p { margin: 0; font-size: .95rem; }
 
 /* ---------- Couleurs + animations « Nos services » ---------- */
 #services {
   background:
-    radial-gradient(600px 400px at 0% 10%, rgba(19,124,139,.22), transparent 70%),
-    radial-gradient(500px 380px at 100% 45%, rgba(122,144,164,.35), transparent 70%),
-    radial-gradient(520px 380px at 30% 100%, rgba(112,156,167,.35), transparent 70%),
-    var(--mist);
+    radial-gradient(600px 400px at 0% 10%, rgba(0,209,255,.12), transparent 70%),
+    radial-gradient(500px 380px at 100% 45%, rgba(143,123,255,.16), transparent 70%),
+    radial-gradient(520px 380px at 30% 100%, rgba(0,209,255,.08), transparent 70%),
+    var(--bg);
 }
 /* Chaque carte alterne les couleurs de la palette */
-#services .card:nth-child(3n+1) { --c: var(--teal); }
-#services .card:nth-child(3n+2) { --c: var(--navy); }
-#services .card:nth-child(3n)   { --c: var(--slate); }
+#services .card:nth-child(3n+1) { --c: var(--cyan); }
+#services .card:nth-child(3n+2) { --c: var(--violet); }
+#services .card:nth-child(3n)   { --c: var(--halo); }
 
 #services .card {
   position: relative; overflow: hidden;
-  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 22%, var(--mist)) 0%, var(--mist) 65%);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 12%, var(--surface)) 0%, var(--surface) 65%);
   border-color: var(--c);
 }
 #services .card::before {
@@ -319,11 +269,11 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 #services .card:hover::before { transform: scaleX(1); }
 #services .card:hover { box-shadow: 0 14px 36px color-mix(in srgb, var(--c) 40%, transparent); }
 #services .card .icon {
-  background: var(--navy); color: var(--mist); border: 3px solid var(--c);
+  background: var(--bg); color: var(--halo); border: 3px solid var(--c);
   transition: transform .45s cubic-bezier(.34,1.56,.64,1), background .3s;
 }
-#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); background: var(--c); }
-#services .card:nth-child(3n) .icon { color: var(--mist); }
+#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); background: var(--c); color: var(--bg); box-shadow: 0 0 20px var(--c); }
+#services .card:nth-child(3n) .icon { color: var(--halo); }
 
 /* Apparition au défilement (activée par JS uniquement) */
 .reveal-on .reveal:not(.in) { opacity: 0; }
@@ -336,22 +286,22 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   #services .card .icon, #services .card::before { transition: none; }
 }
 
-.alt { background: var(--mist); border-top: 2px solid var(--teal-mid); border-bottom: 2px solid var(--teal-mid); }
+.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
 /* Pourquoi nous */
 .why { text-align: center; padding: 10px; }
 .why .num {
   position: relative;
   width: 64px; height: 64px; margin: 0 auto 10px; border-radius: 50%;
-  display: grid; place-items: center; background: var(--navy); color: var(--mist); border: 3px solid var(--teal);
+  display: grid; place-items: center; background: var(--bg); color: var(--halo); border: 3px solid var(--cyan);
   transition: background .3s, transform .35s cubic-bezier(.34,1.56,.64,1);
 }
-.why:hover .num { background: var(--teal); transform: scale(1.12); }
+.why:hover .num { background: var(--cyan); color: var(--bg); transform: scale(1.12); box-shadow: 0 0 24px rgba(0,209,255,.5); }
 
 /* Anneau qui pulse autour de chaque icône */
 .why .num::after {
   content: ""; position: absolute; inset: -3px; border-radius: 50%;
-  border: 2px solid var(--teal); opacity: 0;
+  border: 2px solid var(--cyan); opacity: 0;
   animation: why-ring 3s ease-out infinite; animation-delay: var(--wd, 0s);
 }
 @keyframes why-ring {
@@ -406,20 +356,21 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   .why .num::after, .why .num svg, .reveal.in .num { animation: none; }
 }
 .why .num svg { width: 28px; height: 28px; }
-.why h3 { margin: 4px 0 6px; color: var(--navy); font-size: 1.05rem; }
+.why h3 { margin: 4px 0 6px; color: var(--halo); font-size: 1.05rem; }
 .why p { margin: 0; font-size: .93rem; }
 
 /* Comment ça marche : section foncée */
-#fonctionnement { background: var(--navy); }
+#fonctionnement { background: var(--surface); }
+#fonctionnement .card { background: var(--bg); }
 #fonctionnement .section-head h2,
-#fonctionnement .section-head .eyebrow { color: var(--mist); }
+#fonctionnement .section-head .eyebrow { color: var(--halo); }
 .steps { counter-reset: step; }
 .step { position: relative; padding-top: 36px; }
 .step::before {
   counter-increment: step; content: counter(step);
   position: absolute; top: -22px; left: 28px;
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--navy); color: var(--mist); border: 3px solid var(--teal); font-weight: 800;
+  background: var(--bg); color: var(--halo); border: 3px solid var(--cyan); font-weight: 800;
   display: grid; place-items: center; font-size: 1.1rem;
 }
 
@@ -427,13 +378,13 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 #pourquoi { padding-bottom: 0; }
 .brand-band {
   margin-top: 56px; padding: 22px 0 26px;
-  background: linear-gradient(90deg, var(--navy), color-mix(in srgb, var(--teal) 55%, var(--navy)));
-  border-top: 3px solid var(--teal);
-  color: var(--mist); overflow: hidden;
+  background: linear-gradient(90deg, var(--surface), color-mix(in srgb, var(--violet) 28%, var(--surface)));
+  border-top: 3px solid var(--cyan);
+  color: var(--halo); overflow: hidden;
 }
 .brand-band-title {
   margin: 0 0 14px; text-align: center; font-size: .8rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--mist);
+  letter-spacing: .12em; text-transform: uppercase; color: var(--halo);
 }
 .marquee {
   overflow: hidden;
@@ -445,9 +396,9 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .brands { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
 .brands li {
   display: flex; align-items: center; white-space: nowrap;
-  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--mist);
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--halo);
 }
-.brands li::after { content: "•"; margin: 0 32px; color: var(--teal-mid); font-size: 1.1rem; }
+.brands li::after { content: "•"; margin: 0 32px; color: var(--violet); font-size: 1.1rem; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (max-width: 720px) {
   .brands li { font-size: 1.2rem; }
@@ -464,11 +415,11 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 #avis {
   position: relative; overflow: hidden;
   background: linear-gradient(120deg,
-    var(--mist) 0%,
-    color-mix(in srgb, var(--teal-mid) 40%, var(--mist)) 30%,
-    var(--mist) 55%,
-    color-mix(in srgb, var(--slate) 35%, var(--mist)) 80%,
-    var(--mist) 100%);
+    var(--bg) 0%,
+    color-mix(in srgb, var(--cyan) 10%, var(--bg)) 30%,
+    var(--bg) 55%,
+    color-mix(in srgb, var(--violet) 16%, var(--bg)) 80%,
+    var(--bg) 100%);
   background-size: 300% 300%;
   animation: avis-bg 18s ease-in-out infinite alternate;
 }
@@ -478,7 +429,7 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 #avis::before {
   content: ""; position: absolute; width: 520px; height: 520px; right: 8%; top: 50%;
   transform: translateY(-50%); border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgba(19,124,139,.28), transparent 65%);
+  background: radial-gradient(circle, rgba(0,209,255,.28), transparent 65%);
   animation: avis-glow 6s ease-in-out infinite alternate;
 }
 @keyframes avis-glow { from { transform: translateY(-50%) scale(.9); opacity: .7; } to { transform: translateY(-50%) scale(1.1); opacity: 1; } }
@@ -486,7 +437,7 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .sky { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .sky-star { position: absolute; animation: sky-float var(--fd, 10s) ease-in-out infinite alternate; animation-delay: var(--fdl, 0s); }
 .sky-star svg {
-  width: var(--sz, 14px); height: var(--sz, 14px); color: var(--c, var(--teal));
+  width: var(--sz, 14px); height: var(--sz, 14px); color: var(--c, var(--cyan));
   animation: sky-twinkle var(--td, 3s) ease-in-out infinite; animation-delay: var(--tdl, 0s);
 }
 @keyframes sky-float {
@@ -507,12 +458,12 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 
 .shoot {
   position: absolute; width: 140px; height: 2px; border-radius: 2px; opacity: 0;
-  background: linear-gradient(90deg, transparent, var(--teal));
+  background: linear-gradient(90deg, transparent, var(--cyan));
   animation: shoot var(--sd, 9s) linear infinite; animation-delay: var(--sdl, 0s);
 }
 .shoot::after {
   content: ""; position: absolute; right: -2px; top: -2px; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--teal); box-shadow: 0 0 8px 2px rgba(19,124,139,.6);
+  background: var(--cyan); box-shadow: 0 0 8px 2px rgba(0,209,255,.6);
 }
 @keyframes shoot {
   0%   { transform: translate(0, 0) rotate(18deg); opacity: 0; }
@@ -530,27 +481,28 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .reviews-wrap .section-head { text-align: left; margin: 0; }
 .reviews-wrap .section-head p { margin-bottom: 24px; }
 .rating-card {
-  --star: var(--teal);
-  background: linear-gradient(160deg, var(--mist) 0%, color-mix(in srgb, var(--teal-mid) 35%, var(--mist)) 100%);
-  border: 2px solid var(--teal); border-radius: 20px; padding: 32px;
+  --star: var(--cyan);
+  background: linear-gradient(160deg, var(--surface) 0%, color-mix(in srgb, var(--violet) 18%, var(--surface)) 100%);
+  box-shadow: 0 0 40px rgba(0,209,255,.15);
+  border: 2px solid var(--cyan); border-radius: 20px; padding: 32px;
   box-shadow: var(--shadow); max-width: 440px; width: 100%; justify-self: center; text-align: center;
 }
-.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--navy); }
+.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--halo); }
 .rating-label .g {
-  width: 22px; height: 22px; border-radius: 50%; background: var(--navy);
-  display: grid; place-items: center; font-weight: 800; font-size: .8rem; color: var(--mist);
+  width: 22px; height: 22px; border-radius: 50%; background: var(--bg);
+  display: grid; place-items: center; font-weight: 800; font-size: .8rem; color: var(--halo);
 }
-.rating-score { margin: 10px 0 6px; color: var(--navy); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.rating-score { margin: 10px 0 6px; color: var(--halo); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
 .rating-score .score { font-size: 4.2rem; letter-spacing: -.03em; }
-.rating-score .out { font-size: 1.4rem; color: var(--teal); margin-left: 4px; }
+.rating-score .out { font-size: 1.4rem; color: var(--cyan); margin-left: 4px; }
 .stars { display: flex; justify-content: center; gap: 6px; margin: 8px 0 16px; }
 .star { position: relative; width: 34px; height: 34px; }
 .star svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.star .base { color: var(--teal-mid); }
+.star .base { color: var(--line); }
 .star .fill { position: absolute; inset: 0; overflow: hidden; width: var(--fill, 100%); }
 .star .fill svg { width: 34px; height: 34px; color: var(--star); }
 .rating-count { margin: 0 0 20px; }
-.rating-count strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+.rating-count strong { color: var(--halo); font-variant-numeric: tabular-nums; }
 .rating-card .btn { justify-content: center; }
 
 /* Animation : les étoiles apparaissent l'une après l'autre */
@@ -573,34 +525,35 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 /* ---------- Contact ---------- */
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
 .contact-info .row { display: flex; gap: 14px; margin-bottom: 20px; }
-.contact-info .row .icon { margin: 0; flex: none; border: 2px solid var(--teal); }
-.contact-info .row strong { display: block; color: var(--navy); }
-.contact-info .row a, .contact-info .row span { color: var(--navy); text-decoration: none; }
-.map { border-radius: var(--radius); overflow: hidden; border: 2px solid var(--teal-mid); min-height: 220px; margin-top: 8px; }
+.contact-info .row .icon { margin: 0; flex: none; border: 2px solid var(--cyan); }
+.contact-info .row strong { display: block; color: var(--halo); }
+.contact-info .row a, .contact-info .row span { color: var(--halo); text-decoration: none; }
+.map iframe { filter: invert(.92) hue-rotate(180deg) saturate(.7) brightness(.9); }
+.map { border-radius: var(--radius); overflow: hidden; border: 2px solid var(--line); min-height: 220px; margin-top: 8px; }
 .map iframe { width: 100%; height: 260px; border: 0; display: block; }
 
 form .field { margin-bottom: 14px; }
-form label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; color: var(--navy); }
+form label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; color: var(--halo); }
 form input, form select, form textarea {
-  width: 100%; padding: 12px 14px; border: 2px solid var(--teal-mid); border-radius: 10px;
-  font: inherit; background: var(--mist); color: var(--navy);
+  width: 100%; padding: 12px 14px; border: 2px solid var(--line); border-radius: 10px;
+  font: inherit; background: var(--bg); color: var(--halo);
 }
-form ::placeholder { color: var(--navy); opacity: .6; }
-form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(19,124,139,.3); }
+form ::placeholder { color: var(--halo); opacity: .45; }
+form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,209,255,.3); }
 form textarea { min-height: 110px; resize: vertical; }
 form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 form .note { font-size: .8rem; margin-top: 10px; }
 
 /* ---------- Pied de page ---------- */
-footer { background: var(--navy); color: var(--mist); padding: 40px 0 30px; font-size: .9rem; border-top: 3px solid var(--teal); }
+footer { background: var(--bg); color: var(--halo); padding: 40px 0 30px; font-size: .9rem; border-top: 3px solid var(--cyan); }
 footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
-footer strong { color: var(--mist); }
-footer a { color: var(--mist); }
+footer strong { color: var(--halo); }
+footer a { color: var(--halo); }
 
 /* Bouton d'appel flottant (mobile) */
 .float-call {
   display: none; position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60;
-  justify-content: center; box-shadow: 0 10px 30px rgba(52,77,89,.45);
+  justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.45);
 }
 
 /* ---------- Responsive ---------- */
@@ -614,7 +567,7 @@ footer a { color: var(--mist); }
 @media (max-width: 720px) {
   nav.main, .header-call { display: none; }
   .hero { padding: 56px 0 64px; }
-  .wm { max-width: 290px; }
+  .hero-3d { height: 360px; }
   section { padding: 60px 0; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   form .two { grid-template-columns: 1fr; }
@@ -688,66 +641,12 @@ footer a { color: var(--mist); }
         </ul>
       </div>
 
-      <!-- Machine à laver interactive : en panne → la clé la répare → elle tourne -->
-      <div class="wm" data-state="broken">
-        <svg class="wm-svg" viewBox="0 0 320 340" role="img" aria-label="Animation : une clé répare une machine à laver en panne">
-          <defs><clipPath id="wm-glass"><circle cx="160" cy="190" r="54"/></clipPath></defs>
-          <ellipse cx="160" cy="318" rx="118" ry="8" fill="rgba(19,124,139,.35)"/>
-          <ellipse class="wm-puddle" cx="146" cy="320" rx="44" ry="6" fill="#137C8B" stroke="#709CA7" stroke-width="2"/>
-          <g class="wm-body">
-            <rect x="78" y="296" width="24" height="14" rx="3" fill="#344D59"/>
-            <rect x="218" y="296" width="24" height="14" rx="3" fill="#344D59"/>
-            <rect x="60" y="30" width="200" height="270" rx="18" fill="#B8CBD0" stroke="#709CA7" stroke-width="4"/>
-            <line x1="62" y1="88" x2="258" y2="88" stroke="#709CA7" stroke-width="3"/>
-            <g transform="translate(95 59)"><g class="wm-knob">
-              <circle r="15" fill="#7A90A4" stroke="#344D59" stroke-width="3"/>
-              <line x1="0" y1="0" x2="0" y2="-11" stroke="#B8CBD0" stroke-width="4" stroke-linecap="round"/>
-            </g></g>
-            <rect x="136" y="45" width="88" height="28" rx="6" fill="#344D59"/>
-            <text class="wm-display" x="180" y="66" text-anchor="middle">E21</text>
-            <circle class="wm-led" cx="244" cy="59" r="6"/>
-            <circle cx="160" cy="190" r="74" fill="#7A90A4" stroke="#344D59" stroke-width="5"/>
-            <circle cx="160" cy="190" r="56" fill="#709CA7"/>
-            <g clip-path="url(#wm-glass)">
-              <g transform="translate(0 205)"><g class="wm-water-level"><g class="wm-wave">
-                <path d="M40 0q15-8 30 0t30 0t30 0t30 0t30 0t30 0t30 0t30 0V90H40Z" fill="#137C8B" opacity=".75"/>
-              </g></g></g>
-              <g transform="translate(160 190)"><g class="wm-drum">
-                <circle r="50" fill="none" stroke="#344D59" stroke-width="2" stroke-dasharray="3 9" opacity=".6"/>
-                <rect x="-32" y="-6" width="28" height="16" rx="7" fill="#344D59"/>
-                <circle cx="18" cy="16" r="11" fill="#B8CBD0" stroke="#344D59" stroke-width="2"/>
-                <rect x="-4" y="-36" width="20" height="15" rx="5" fill="#137C8B" stroke="#344D59" stroke-width="2"/>
-              </g></g>
-              <circle class="wm-bubble" cx="132" cy="236" r="4" fill="#B8CBD0" style="--bd:0s"/>
-              <circle class="wm-bubble" cx="160" cy="240" r="3" fill="#B8CBD0" style="--bd:.6s"/>
-              <circle class="wm-bubble" cx="186" cy="238" r="5" fill="#B8CBD0" style="--bd:1.1s"/>
-              <path d="M124 160a42 42 0 0 1 30-22" fill="none" stroke="#B8CBD0" stroke-width="5" stroke-linecap="round" opacity=".55"/>
-            </g>
-            <circle cx="160" cy="190" r="56" fill="none" stroke="#344D59" stroke-width="3"/>
-            <rect x="228" y="174" width="9" height="32" rx="4" fill="#344D59"/>
-            <rect x="82" y="270" width="156" height="20" rx="5" fill="none" stroke="#709CA7" stroke-width="2"/>
-            <g transform="translate(96 280)"><polygon points="6,0 3,5.2 -3,5.2 -6,0 -3,-5.2 3,-5.2" fill="#7A90A4" stroke="#344D59" stroke-width="2"/></g>
-            <g transform="translate(224 280)"><g class="wm-bolt"><polygon points="7,0 3.5,6.1 -3.5,6.1 -7,0 -3.5,-6.1 3.5,-6.1" fill="#7A90A4" stroke="#344D59" stroke-width="2"/></g></g>
-          </g>
-          <circle class="wm-drip" cx="146" cy="300" r="4" fill="#137C8B"/>
-          <g transform="translate(224 280)"><g class="wm-sparks" stroke="#137C8B" stroke-width="3" stroke-linecap="round">
-            <line x1="12" y1="-12" x2="20" y2="-20"/><line x1="-12" y1="-12" x2="-20" y2="-20"/>
-            <line x1="16" y1="2" x2="26" y2="2"/><line x1="0" y1="-16" x2="0" y2="-26"/>
-          </g></g>
-          <g transform="translate(266 30)"><g class="wm-alert">
-            <circle r="18" fill="#344D59" stroke="#137C8B" stroke-width="3"/>
-            <text class="wm-alert-mark" y="8" text-anchor="middle">!</text>
-          </g></g>
-          <g transform="translate(266 30)"><g class="wm-check">
-            <circle r="18" fill="#137C8B" stroke="#B8CBD0" stroke-width="3"/>
-            <path d="M-8 0l5 6 11-12" fill="none" stroke="#B8CBD0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          </g></g>
-          <g transform="translate(294 254)"><g class="wm-wrench-move"><g class="wm-wrench-turn">
-            <path transform="translate(-46.5 -25.5) scale(3)" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z" fill="#137C8B" stroke="#B8CBD0" stroke-width=".8" stroke-linejoin="round"/>
-          </g></g></g>
-        </svg>
-        <p class="wm-status" aria-live="polite">En panne : code erreur E21</p>
-        <button type="button" class="btn btn-light wm-btn"><svg><use href="#i-wrench"/></svg><span>Réparer la machine</span></button>
+      <!-- Machine à laver en 3D : en panne → une clé serre le boulon → elle tourne -->
+      <div class="hero-3d" id="hero3d">
+        <div class="hero-3d-ui">
+          <span class="pill status" data-phase="broken" aria-live="polite"><span class="dot"></span><span class="status-text">En panne · E21</span></span>
+          <button type="button" class="pill" id="replay3d">↻ Rejouer</button>
+        </div>
       </div>
     </div>
   </section>
@@ -758,16 +657,16 @@ footer a { color: var(--mist); }
     <div class="container reviews-wrap">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g transform="translate(76 4)"><g class="mw-ding"><path d="M10 0c.7 5.4 2.9 7.6 8.3 8.3-5.4.7-7.6 2.9-8.3 8.3-.7-5.4-2.9-7.6-8.3-8.3C7.1 7.6 9.3 5.4 10 0z" fill="#137C8B"/></g></g>
-          <rect x="20" y="80" width="10" height="6" rx="2" fill="#344D59"/><rect x="70" y="80" width="10" height="6" rx="2" fill="#344D59"/>
-          <rect x="8" y="26" width="84" height="56" rx="8" fill="#B8CBD0" stroke="#344D59" stroke-width="4"/>
-          <rect x="16" y="34" width="50" height="40" rx="4" fill="#709CA7" stroke="#344D59" stroke-width="3"/>
-          <rect class="mw-light" x="18" y="36" width="46" height="36" rx="3" fill="#B8CBD0"/>
-          <line x1="20" y1="68" x2="62" y2="68" stroke="#344D59" stroke-width="2"/>
-          <g class="mw-bowl"><path d="M30 60h22a11 7 0 0 1-22 0z" fill="#137C8B"/></g>
-          <rect x="71" y="35" width="15" height="10" rx="2" fill="#344D59"/>
-          <rect class="mw-digit" x="74" y="38" width="9" height="4" rx="1" fill="#137C8B"/>
-          <circle cx="78.5" cy="56" r="4" fill="#7A90A4"/><circle cx="78.5" cy="67" r="4" fill="#7A90A4"/>
+          <g transform="translate(76 4)"><g class="mw-ding"><path d="M10 0c.7 5.4 2.9 7.6 8.3 8.3-5.4.7-7.6 2.9-8.3 8.3-.7-5.4-2.9-7.6-8.3-8.3C7.1 7.6 9.3 5.4 10 0z" fill="#8F7BFF"/></g></g>
+          <rect x="20" y="80" width="10" height="6" rx="2" fill="#2B3A67"/><rect x="70" y="80" width="10" height="6" rx="2" fill="#2B3A67"/>
+          <rect x="8" y="26" width="84" height="56" rx="8" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
+          <rect x="16" y="34" width="50" height="40" rx="4" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
+          <rect class="mw-light" x="18" y="36" width="46" height="36" rx="3" fill="#00D1FF"/>
+          <line x1="20" y1="68" x2="62" y2="68" stroke="#00D1FF" stroke-width="2"/>
+          <g class="mw-bowl"><path d="M30 60h22a11 7 0 0 1-22 0z" fill="#8F7BFF"/></g>
+          <rect x="71" y="35" width="15" height="10" rx="2" fill="#2B3A67"/>
+          <rect class="mw-digit" x="74" y="38" width="9" height="4" rx="1" fill="#8F7BFF"/>
+          <circle cx="78.5" cy="56" r="4" fill="#2B3A67"/><circle cx="78.5" cy="67" r="4" fill="#2B3A67"/>
         </svg></div>
         <span class="eyebrow">Avis clients</span>
         <h2>Nos clients nous recommandent</h2>
@@ -802,17 +701,17 @@ footer a { color: var(--mist); }
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <defs><clipPath id="sd-clip"><rect x="40" y="8" width="20" height="32" rx="6"/></clipPath></defs>
           <g class="sd-move">
-            <rect x="47" y="56" width="6" height="22" fill="#7A90A4" stroke="#344D59" stroke-width="2"/>
-            <rect x="41" y="52" width="18" height="6" rx="2" fill="#7A90A4" stroke="#344D59" stroke-width="2"/>
-            <rect x="48" y="36" width="4" height="17" fill="#344D59"/>
-            <rect x="40" y="8" width="20" height="32" rx="6" fill="#137C8B"/>
-            <g clip-path="url(#sd-clip)"><g class="sd-grip" stroke="#344D59" stroke-width="2.5" opacity=".6">
+            <rect x="47" y="56" width="6" height="22" fill="#2B3A67" stroke="#00D1FF" stroke-width="2"/>
+            <rect x="41" y="52" width="18" height="6" rx="2" fill="#2B3A67" stroke="#00D1FF" stroke-width="2"/>
+            <rect x="48" y="36" width="4" height="17" fill="#2B3A67"/>
+            <rect x="40" y="8" width="20" height="32" rx="6" fill="#8F7BFF"/>
+            <g clip-path="url(#sd-clip)"><g class="sd-grip" stroke="#00D1FF" stroke-width="2.5" opacity=".6">
               <line x1="42" y1="12" x2="42" y2="36"/><line x1="50" y1="12" x2="50" y2="36"/><line x1="58" y1="12" x2="58" y2="36"/><line x1="66" y1="12" x2="66" y2="36"/>
             </g></g>
-            <rect x="40" y="8" width="20" height="32" rx="6" fill="none" stroke="#344D59" stroke-width="3"/>
+            <rect x="40" y="8" width="20" height="32" rx="6" fill="none" stroke="#00D1FF" stroke-width="3"/>
           </g>
-          <rect x="12" y="72" width="76" height="16" rx="3" fill="#709CA7" stroke="#344D59" stroke-width="3"/>
-          <circle cx="22" cy="80" r="2.5" fill="#344D59"/><circle cx="78" cy="80" r="2.5" fill="#344D59"/>
+          <rect x="12" y="72" width="76" height="16" rx="3" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
+          <circle cx="22" cy="80" r="2.5" fill="#2B3A67"/><circle cx="78" cy="80" r="2.5" fill="#2B3A67"/>
         </svg></div>
         <span class="eyebrow">Nos services</span>
         <h2>Réparation de tout votre électroménager</h2>
@@ -858,8 +757,8 @@ footer a { color: var(--mist); }
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="gear-a" style="color:#137C8B"><use href="#i-gear" x="10" y="30" width="56" height="56"/></g>
-          <g class="gear-b" style="color:#344D59"><use href="#i-gear" x="56" y="10" width="36" height="36"/></g>
+          <g class="gear-a" style="color:#00D1FF"><use href="#i-gear" x="10" y="30" width="56" height="56"/></g>
+          <g class="gear-b" style="color:#8F7BFF"><use href="#i-gear" x="56" y="10" width="36" height="36"/></g>
         </svg></div>
         <span class="eyebrow">Pourquoi nous choisir</span>
         <h2>Un dépanneur local, sérieux et réactif</h2>
@@ -905,17 +804,17 @@ footer a { color: var(--mist); }
     <div class="container">
       <div class="section-head">
         <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
-          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#709CA7" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#7A90A4" stroke-width="3" stroke-dasharray="10 10"/>
+          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#8F7BFF" stroke-width="3" stroke-dasharray="10 10"/>
           <g class="van-body">
-            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#B8CBD0" stroke="#137C8B" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M86 33l13 12H86z" fill="#709CA7"/>
-            <g style="color:#137C8B"><use href="#i-wrench" x="42" y="36" width="20" height="20"/></g>
+            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#121A33" stroke="#00D1FF" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M86 33l13 12H86z" fill="#2B3A67"/>
+            <g style="color:#00D1FF"><use href="#i-wrench" x="42" y="36" width="20" height="20"/></g>
           </g>
-          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#344D59" stroke="#B8CBD0" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#B8CBD0" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#B8CBD0" stroke-width="2"/></g>
-          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#344D59" stroke="#B8CBD0" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#B8CBD0" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#B8CBD0" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
         </svg></div>
         <span class="eyebrow">Comment ça marche</span>
         <h2>Une réparation en 3 étapes</h2>
@@ -942,9 +841,9 @@ footer a { color: var(--mist); }
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="ph-shake" style="color:#344D59"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
-          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#137C8B" stroke-width="5" stroke-linecap="round"/>
-          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#137C8B" stroke-width="5" stroke-linecap="round"/>
+          <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
         </svg></div>
         <span class="eyebrow">Contact</span>
         <h2>Demandez votre dépannage</h2>
@@ -1041,6 +940,7 @@ footer a { color: var(--mist); }
 
 <a href="tel:+33400000000" class="btn btn-accent float-call"><svg><use href="#i-phone"/></svg>Appeler un dépanneur</a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1061,34 +961,327 @@ footer a { color: var(--mist); }
     items.forEach((el) => io.observe(el));
   })();
 
-  // Machine à laver de l'en-tête : en panne → réparation à la clé → elle tourne.
-  (() => {
-    const wm = document.querySelector('.wm');
-    if (!wm) return;
-    const display = wm.querySelector('.wm-display');
-    const status = wm.querySelector('.wm-status');
-    const btn = wm.querySelector('.wm-btn');
-    const label = btn.querySelector('span');
-    let touched = false, timers = [];
-    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
-    const set = (state, disp, msg, btnText, disabled) => {
-      wm.dataset.state = state; display.textContent = disp; status.textContent = msg;
-      label.textContent = btnText; btn.disabled = disabled;
+  // Machine à laver en 3D (three.js) : cycle de 12 s en panne → réparation → marche.
+  const NUIT = { s1: '#070B18', s2: '#2B3A67', body: '#2B3A67', panel: '#121A33', ring: '#2B3A67', dark: '#070B18', glass: '#00D1FF', water: '#00D1FF', accent: '#8F7BFF', metal: '#2B3A67', glow: 1 };
+  (function () {
+    const host = document.getElementById('hero3d');
+    if (!host || !window.THREE) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+      host.insertAdjacentHTML('beforeend', '<div class="nogl">La 3D n\'est pas disponible sur cet appareil.</div>');
+      return;
+    }
+    renderer.domElement.setAttribute('aria-label', 'Animation 3D : une clé répare une machine à laver');
+    renderer.domElement.setAttribute('role', 'img');
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    host.prepend(renderer.domElement);
+  
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+    camera.position.set(0, 1.3, 11);
+    camera.lookAt(0, -0.1, 0);
+  
+    // Lumières
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x223344, 0.65);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 0.9);
+    key.position.set(4, 7, 7); key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    Object.assign(key.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5 });
+    scene.add(key);
+    const rim = new THREE.PointLight(0xffffff, 0.9, 30);
+    rim.position.set(-5, 3, -4);
+    scene.add(rim);
+  
+    // Matériaux par rôle (recolorés selon la direction)
+    const M = {
+      body: new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.1 }),
+      panel: new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.15 }),
+      ring: new THREE.MeshStandardMaterial({ roughness: 0.25, metalness: 0.55 }),
+      dark: new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.1 }),
+      water: new THREE.MeshStandardMaterial({ roughness: 0.1, metalness: 0, transparent: true, opacity: 0.8 }),
+      accent: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.5 }),
+      metal: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.7 }),
+      glass: new THREE.MeshPhysicalMaterial({ roughness: 0.05, metalness: 0, transparent: true, opacity: 0.28, clearcoat: 1 }),
+      led: new THREE.MeshStandardMaterial({ roughness: 0.3 }),
+      bubble: new THREE.MeshStandardMaterial({ roughness: 0.1, transparent: true, opacity: 0.85 }),
     };
-    const repair = () => {
-      if (wm.dataset.state !== 'broken') return;
-      set('repairing', '---', 'Réparation en cours…', 'Réparation…', true);
-      later(() => set('fixed', 'OK', 'Réparée ! La machine tourne à nouveau.', 'Recommencer', false), 2800);
-      later(() => { if (wm.dataset.state === 'fixed') display.textContent = '1200'; }, 3800);
-    };
-    const reset = () => {
-      timers.forEach(clearTimeout); timers = [];
-      set('broken', 'E21', 'En panne : code erreur E21', 'Réparer la machine', false);
-    };
-    btn.addEventListener('click', () => { touched = true; wm.dataset.state === 'broken' ? repair() : reset(); });
-    wm.querySelector('.wm-svg').addEventListener('click', () => { touched = true; repair(); });
-    // Démo automatique une fois, si le visiteur n'a pas encore cliqué.
-    setTimeout(() => { if (!touched) repair(); }, 3000);
+  
+    const world = new THREE.Group();
+    scene.add(world);
+    const machine = new THREE.Group();
+    world.add(machine);
+  
+    // Corps : boîte arrondie percée pour le hublot
+    const W = 2.4, H = 3, R = 0.28, DOOR_Y = -0.2, FRONT = 1.08;
+    const shape = new THREE.Shape();
+    shape.moveTo(-W / 2 + R, -H / 2);
+    shape.lineTo(W / 2 - R, -H / 2); shape.quadraticCurveTo(W / 2, -H / 2, W / 2, -H / 2 + R);
+    shape.lineTo(W / 2, H / 2 - R); shape.quadraticCurveTo(W / 2, H / 2, W / 2 - R, H / 2);
+    shape.lineTo(-W / 2 + R, H / 2); shape.quadraticCurveTo(-W / 2, H / 2, -W / 2, H / 2 - R);
+    shape.lineTo(-W / 2, -H / 2 + R); shape.quadraticCurveTo(-W / 2, -H / 2, -W / 2 + R, -H / 2);
+    const hole = new THREE.Path(); hole.absarc(0, DOOR_Y, 0.74, 0, Math.PI * 2, true);
+    shape.holes.push(hole);
+    const bodyGeo = new THREE.ExtrudeGeometry(shape, { depth: 2, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.08, bevelSegments: 5, curveSegments: 32 });
+    bodyGeo.translate(0, 0, -1);
+    const body = new THREE.Mesh(bodyGeo, M.body);
+    body.castShadow = true; body.receiveShadow = true;
+    machine.add(body);
+  
+    const add = (geo, mat, x, y, z, parent = machine) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; parent.add(m); return m; };
+  
+    // Bandeau de commandes
+    add(new THREE.BoxGeometry(2.3, 0.04, 0.02), M.panel, 0, 0.92, FRONT + 0.01);
+    const knob = add(new THREE.CylinderGeometry(0.2, 0.22, 0.14, 32), M.ring, -0.78, 1.2, FRONT + 0.07);
+    knob.rotation.x = Math.PI / 2;
+    add(new THREE.BoxGeometry(0.05, 0.16, 0.03), M.dark, 0, 0.08, 0.08, knob).rotation.x = -Math.PI / 2;
+    const led = add(new THREE.SphereGeometry(0.07, 16, 16), M.led, 0.95, 1.2, FRONT + 0.04);
+  
+    // Écran (texture dessinée sur un canvas)
+    const dcan = document.createElement('canvas'); dcan.width = 256; dcan.height = 96;
+    const dctx = dcan.getContext('2d');
+    const dtex = new THREE.CanvasTexture(dcan); dtex.encoding = THREE.sRGBEncoding;
+    const display = add(new THREE.PlaneGeometry(0.95, 0.36), new THREE.MeshBasicMaterial({ map: dtex, toneMapped: false }), 0.15, 1.2, FRONT + 0.012);
+    let displayText = '', displayOn = true, colors = null;
+    function drawDisplay(text, on) {
+      if (text === displayText && on === displayOn) return;
+      displayText = text; displayOn = on;
+      dctx.fillStyle = colors ? colors.dark : '#000'; dctx.fillRect(0, 0, 256, 96);
+      if (on) {
+        dctx.fillStyle = colors ? colors.water : '#fff';
+        dctx.font = 'bold 60px ui-monospace, Menlo, monospace'; dctx.textAlign = 'center'; dctx.textBaseline = 'middle';
+        dctx.fillText(text, 128, 52);
+      }
+      dtex.needsUpdate = true;
+    }
+  
+    // Hublot
+    add(new THREE.RingGeometry(0.74, 0.98, 64), M.dark, 0, DOOR_Y, FRONT + 0.005);
+    const ring = add(new THREE.TorusGeometry(0.84, 0.12, 24, 72), M.ring, 0, DOOR_Y, FRONT + 0.1);
+    add(new THREE.BoxGeometry(0.1, 0.42, 0.12), M.dark, 0.98, DOOR_Y, FRONT + 0.14);
+    // Intérieur : fond du tambour, linge, eau, bulles, vitre
+    add(new THREE.CircleGeometry(0.76, 48), M.dark, 0, DOOR_Y, 0.2);
+    const drum = new THREE.Group(); drum.position.set(0, DOOR_Y, 0.55); machine.add(drum);
+    [[0.38, 0, 'accent', new THREE.SphereGeometry(0.17, 20, 16)],
+     [-0.36, 0.1, 'panel', new THREE.BoxGeometry(0.34, 0.2, 0.14)],
+     [0.05, -0.4, 'body', new THREE.TorusGeometry(0.13, 0.06, 12, 24)],
+     [-0.05, 0.4, 'ring', new THREE.BoxGeometry(0.22, 0.22, 0.14)]].forEach(([x, y, role, geo]) => {
+      const m = add(geo, M[role], x, y, 0, drum); m.rotation.z = x * 3;
+    });
+    for (let i = 0; i < 10; i++) {
+      const a = (i / 10) * Math.PI * 2;
+      add(new THREE.SphereGeometry(0.035, 8, 8), M.panel, Math.cos(a) * 0.66, Math.sin(a) * 0.66, -0.05, drum);
+    }
+    const water = add(new THREE.ShapeGeometry(new THREE.Shape()), M.water, 0, DOOR_Y, 0.85);
+    let waterLevel = -1;
+    function setWater(level) {
+      level = Math.max(-0.7, Math.min(0.6, level));
+      if (Math.abs(level - waterLevel) < 0.004) return;
+      waterLevel = level;
+      const r = 0.74, t0 = Math.asin(level / r), s = new THREE.Shape();
+      s.moveTo(Math.cos(Math.PI - t0) * r, level);
+      s.absarc(0, 0, r, Math.PI - t0, Math.PI * 2 + t0, false);
+      s.lineTo(Math.cos(Math.PI - t0) * r, level);
+      water.geometry.dispose(); water.geometry = new THREE.ShapeGeometry(s, 48);
+    }
+    const bubbles = [];
+    for (let i = 0; i < 9; i++) {
+      const b = add(new THREE.SphereGeometry(0.03 + Math.random() * 0.04, 10, 10), M.bubble, (Math.random() - 0.5) * 1, DOOR_Y - 0.6, 0.95);
+      b.userData = { speed: 0.4 + Math.random() * 0.5, offset: Math.random() * 3 };
+      bubbles.push(b);
+    }
+    add(new THREE.CircleGeometry(0.74, 64), M.glass, 0, DOOR_Y, FRONT + 0.12);
+  
+    // Trappe de service + boulons
+    add(new THREE.BoxGeometry(1.9, 0.34, 0.03), M.panel, 0, -1.22, FRONT + 0.012);
+    const boltGeo = new THREE.CylinderGeometry(0.1, 0.1, 0.09, 6);
+    add(boltGeo, M.metal, -0.78, -1.22, FRONT + 0.06).rotation.x = Math.PI / 2;
+    const bolt = add(boltGeo, M.metal, 0.78, -1.22, FRONT + 0.06); bolt.rotation.x = Math.PI / 2;
+    const BOLT = new THREE.Vector3(0.78, -1.22, FRONT + 0.2);
+  
+    // Pieds
+    [[-0.9, 0.7], [0.9, 0.7], [-0.9, -0.7], [0.9, -0.7]].forEach(([x, z]) => add(new THREE.CylinderGeometry(0.12, 0.14, 0.16, 16), M.dark, x, -1.66, z));
+  
+    // Sol qui reçoit l'ombre
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: 0.28 }));
+    ground.rotation.x = -Math.PI / 2; ground.position.y = -1.74; ground.receiveShadow = true;
+    world.add(ground);
+  
+    // Clé plate : mâchoire ouverte (tore partiel) + manche + anneau
+    const wrench = new THREE.Group();
+    const jaw = add(new THREE.TorusGeometry(0.2, 0.075, 14, 32, Math.PI * 1.5), M.accent, 0, 0, 0, wrench);
+    jaw.rotation.z = Math.PI / 4;
+    add(new THREE.BoxGeometry(1.25, 0.17, 0.09), M.accent, -0.86, 0, 0, wrench);
+    add(new THREE.TorusGeometry(0.14, 0.065, 12, 28), M.accent, -1.58, 0, 0, wrench);
+    world.add(wrench);
+    const WR_HOME = new THREE.Vector3(2.35, 0.7, 1.2);
+  
+    // Outils qui flottent autour : engrenages, tournevis, écrous
+    function gear(r, mat) {
+      const g = new THREE.Group();
+      add(new THREE.CylinderGeometry(r, r, 0.12, 28), mat, 0, 0, 0, g);
+      for (let i = 0; i < 9; i++) {
+        const a = (i / 9) * Math.PI * 2;
+        const t = add(new THREE.BoxGeometry(r * 0.36, 0.12, r * 0.32), mat, Math.cos(a) * r, 0, Math.sin(a) * r, g);
+        t.rotation.y = -a;
+      }
+      add(new THREE.CylinderGeometry(r * 0.35, r * 0.35, 0.14, 20), M.dark, 0, 0, 0, g);
+      g.rotation.x = Math.PI / 2;
+      const holder = new THREE.Group(); holder.add(g); return holder;
+    }
+    function screwdriver() {
+      const g = new THREE.Group();
+      add(new THREE.CylinderGeometry(0.11, 0.12, 0.55, 20), M.accent, 0, 0.3, 0, g);
+      add(new THREE.CylinderGeometry(0.03, 0.03, 0.6, 12), M.metal, 0, -0.27, 0, g);
+      add(new THREE.ConeGeometry(0.04, 0.1, 12), M.metal, 0, -0.62, 0, g).rotation.x = Math.PI;
+      return g;
+    }
+    function nut(mat) { const g = new THREE.Group(); add(new THREE.CylinderGeometry(0.14, 0.14, 0.1, 6), mat, 0, 0, 0, g).rotation.x = Math.PI / 2; return g; }
+    const floaters = [
+      { o: gear(0.32, M.ring), r: 2.7, y: 1.5, a: 0.2, s: 0.25, spin: 0.9 },
+      { o: gear(0.22, M.accent), r: 3.0, y: -0.7, a: Math.PI + 0.3, s: 0.2, spin: -1.3 },
+      { o: screwdriver(), r: 2.9, y: 0.5, a: Math.PI - 0.2, s: 0.18, spin: 0.6 },
+      { o: nut(M.metal), r: 2.5, y: -1.2, a: -0.3, s: 0.3, spin: 1.5 },
+      { o: gear(0.18, M.panel), r: 3.2, y: 2.0, a: Math.PI + 0.1, s: 0.22, spin: 1.1 },
+      { o: nut(M.accent), r: 3.3, y: -0.2, a: 0.5, s: 0.26, spin: -1.2 },
+    ];
+    floaters.forEach((f) => { f.o.traverse((m) => { if (m.isMesh) m.castShadow = true; }); world.add(f.o); });
+  
+    // Étincelles pendant le serrage
+    const sparks = [];
+    for (let i = 0; i < 6; i++) {
+      const s = add(new THREE.SphereGeometry(0.035, 8, 8), M.led, BOLT.x, BOLT.y, BOLT.z, world);
+      s.visible = false; sparks.push(s);
+    }
+  
+    // Couleurs
+    function applyColors(c) {
+      colors = c;
+      M.body.color.set(c.body); M.panel.color.set(c.panel); M.ring.color.set(c.ring); M.dark.color.set(c.dark);
+      M.water.color.set(c.water); M.accent.color.set(c.accent); M.metal.color.set(c.metal);
+      M.glass.color.set(c.glass); M.led.color.set(c.water); M.bubble.color.set(c.body);
+      const glow = c.glow ? 0.55 : 0;
+      M.water.emissive.set(c.water); M.water.emissiveIntensity = glow * 0.8;
+      M.accent.emissive.set(c.accent); M.accent.emissiveIntensity = glow * 0.5;
+      M.led.emissive.set(c.water); M.led.emissiveIntensity = 0.6 + glow;
+      rim.color.set(c.s2); hemi.color.set(c.body); hemi.groundColor.set(c.dark);
+      displayText = null; drawDisplay(currentDisplay, true);
+    }
+    let currentDisplay = 'E21';
+  
+    // Rotation à la souris / au doigt
+    let yaw = -0.35, pitch = 0.06, tYaw = -0.35, tPitch = 0.06, dragging = false, lastX = 0, lastY = 0, idleAt = 0;
+    host.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; dragging = true; lastX = e.clientX; lastY = e.clientY; host.setPointerCapture(e.pointerId); });
+    host.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      tYaw += (e.clientX - lastX) * 0.01; tPitch = Math.max(-0.3, Math.min(0.5, tPitch + (e.clientY - lastY) * 0.005));
+      lastX = e.clientX; lastY = e.clientY;
+    });
+    const endDrag = () => { dragging = false; idleAt = performance.now(); };
+    host.addEventListener('pointerup', endDrag); host.addEventListener('pointercancel', endDrag);
+  
+    // Taille
+    function resize() {
+      const w = host.clientWidth, h = host.clientHeight;
+      renderer.setSize(w, h, false); camera.aspect = w / h;
+      camera.position.z = w / h < 0.7 ? 14 : 12;
+      camera.updateProjectionMatrix();
+    }
+    new ResizeObserver(resize).observe(host); resize();
+  
+    // Chronologie
+    const CYCLE = 12;
+    let t0 = performance.now();
+    host.querySelector('#replay3d').addEventListener('click', () => { t0 = performance.now(); });
+    const statusEl = host.querySelector('.status'), statusText = host.querySelector('.status-text');
+    let lastPhase = '';
+    function setPhase(p, text) {
+      if (p === lastPhase) return; lastPhase = p;
+      statusEl.dataset.phase = p; statusText.textContent = text;
+    }
+    const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+    const lerp = (a, b, k) => a + (b - a) * k;
+  
+    let visible = true;
+    new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(host);
+  
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (!visible || document.hidden) return;
+      const time = now / 1000;
+      const tc = reduced ? 9 : ((now - t0) / 1000) % CYCLE;
+  
+      // Phases
+      const broken = tc < 3, repairing = tc >= 3 && tc < 7, running = tc >= 7;
+      if (broken) setPhase('broken', 'En panne · E21');
+      else if (repairing) setPhase('repairing', 'Réparation en cours…');
+      else setPhase('fixed', 'Réparée ✓ · 1200 tr/min');
+  
+      // Machine : tremble en panne, vibre en marche
+      const shake = broken ? Math.max(0, Math.sin(time * 2.4)) : 0;
+      machine.rotation.z = shake * 0.03 * Math.sin(time * 38);
+      machine.position.x = shake * 0.03 * Math.sin(time * 31);
+      machine.position.y = running ? Math.sin(time * 45) * 0.008 : 0;
+      knob.rotation.y = lerp(knob.rotation.y, running ? 2.2 : 0, 0.05);
+  
+      // Tambour, eau, bulles
+      const spin = running ? 7 : repairing ? 0.4 : 0;
+      drum.rotation.z -= spin * (1 / 60);
+      setWater(running ? lerp(-0.7, 0.05, ease((tc - 7) / 1.5)) : -0.62);
+      water.rotation.z = running ? Math.sin(time * 4) * 0.12 : 0;
+      bubbles.forEach((b) => {
+        b.visible = running && !reduced;
+        if (b.visible) { const k = ((time * b.userData.speed + b.userData.offset) % 1.3); b.position.y = DOOR_Y - 0.6 + k; b.scale.setScalar(1 - k * 0.5); }
+      });
+  
+      // Écran et voyant
+      const blink = Math.floor(time * 2) % 2 === 0;
+      currentDisplay = broken ? 'E21' : repairing ? '- - -' : 'OK' + (tc > 8 ? '' : '');
+      if (running && tc > 8) currentDisplay = '1200';
+      drawDisplay(currentDisplay, running || blink);
+      led.visible = running || blink;
+  
+      // Clé : flotte → va au boulon → serre → repart
+      const fly = ease((tc - 3) / 0.9), back = ease((tc - 6.2) / 0.9);
+      const k = repairing ? (tc < 6.2 ? fly : 1 - back) : 0;
+      const tightening = tc > 3.9 && tc < 6.2;
+      wrench.position.lerpVectors(WR_HOME, BOLT, k);
+      wrench.position.y += (1 - k) * Math.sin(time * 1.6) * 0.12;
+      const baseAngle = Math.PI * 0.72;
+      wrench.rotation.z = baseAngle + (tightening ? Math.sin((tc - 3.9) * 9) * 0.35 : (1 - k) * Math.sin(time * 1.2) * 0.25);
+      wrench.rotation.y = (1 - k) * Math.sin(time * 0.8) * 0.6;
+      wrench.rotation.x = (1 - k) * 0.3;
+      if (tightening) bolt.rotation.y += 0.08;
+      sparks.forEach((s, i) => {
+        s.visible = tightening && Math.random() < 0.5;
+        if (s.visible) { const a = i * 1.05 + time * 6; const d = 0.2 + Math.random() * 0.25; s.position.set(BOLT.x + Math.cos(a) * d, BOLT.y + Math.sin(a) * d, BOLT.z + 0.05); }
+      });
+  
+      // Outils en orbite
+      floaters.forEach((f) => {
+        // Va-et-vient en arc sur le côté (±0,55 rad autour de son angle de base)
+        const a = f.a + (reduced ? 0 : Math.sin(time * f.s + f.y) * 0.55);
+        f.o.position.set(Math.cos(a) * f.r, f.y + Math.sin(time * 0.9 + f.a) * 0.18, Math.sin(a) * f.r * 0.7);
+        f.o.rotation.z = time * f.spin; f.o.rotation.y = time * 0.5;
+      });
+  
+      // Caméra : rotation à la souris + léger balancement automatique
+      const idle = !dragging && now - idleAt > 2500 && !reduced;
+      const sway = idle ? Math.sin(time * 0.35) * 0.35 : 0;
+      yaw = lerp(yaw, tYaw + sway, 0.08); pitch = lerp(pitch, tPitch, 0.08);
+      world.rotation.y = yaw; world.rotation.x = pitch;
+  
+      renderer.render(scene, camera);
+    }
+  
+    applyColors(NUIT);
+    requestAnimationFrame(frame);
   })();
 
   // Fonds animés : petits symboles placés sur une grille avec un décalage aléatoire,
@@ -1096,7 +1289,7 @@ footer a { color: var(--mist); }
   const fillSky = (sky, { shapes, cols, rows, size, opacity, spin = [] }) => {
     if (!sky) return '';
     const rnd = (a, b) => a + Math.random() * (b - a);
-    const colors = ['var(--teal)', 'var(--teal-mid)', 'var(--slate)', 'var(--navy)'];
+    const colors = ['var(--cyan)', 'var(--violet)', 'var(--line)', 'var(--halo)'];
     let html = '', i = 0;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++, i++) {
