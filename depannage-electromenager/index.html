@@ -386,6 +386,14 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   0%, 100% { opacity: var(--o1, .25); transform: scale(.8); }
   50%      { opacity: var(--o2, .8);  transform: scale(1.15); }
 }
+/* Engrenages : rotation continue au lieu du scintillement */
+.sky-star.spin svg { opacity: var(--o2, .5); animation: sky-spin var(--td, 8s) linear infinite; }
+@keyframes sky-spin { to { transform: rotate(360deg); } }
+
+/* Services : les symboles passent derrière le contenu */
+#services { position: relative; overflow: hidden; }
+#services > .container { position: relative; z-index: 1; }
+
 .shoot {
   position: absolute; width: 140px; height: 2px; border-radius: 2px; opacity: 0;
   background: linear-gradient(90deg, transparent, var(--teal));
@@ -402,7 +410,7 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   100% { transform: translate(720px, 234px) rotate(18deg); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #avis, #avis::before, .sky-star, .sky-star svg { animation: none; }
+  #avis, #avis::before, .sky-star, .sky-star svg, .sky-star.spin svg { animation: none; }
   .shoot { display: none; }
 }
 
@@ -521,6 +529,11 @@ footer a { color: var(--mist); }
   <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
   <symbol id="i-euro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6.5A7 7 0 1 0 18 17.5"/><path d="M4 10h10M4 14h10"/></symbol>
   <symbol id="i-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.8 6.5 3.5 9.2 10 10-6.5.8-9.2 3.5-10 10-.8-6.5-3.5-9.2-10-10 6.5-.8 9.2-3.5 10-10z"/></symbol>
+  <symbol id="i-screwdriver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 10 4.5 19.5a1.5 1.5 0 0 1-2-2L12 8"/><path d="m12 8 3-3 4 4-3 3z"/><path d="m18 6 3-3"/></symbol>
+  <symbol id="i-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-8.4 8.4a2 2 0 0 1-2.8-2.8L12.2 9"/><path d="M17.6 15 22 10.6"/><path d="m20.9 11.7-1.3-1.3a2 2 0 0 1-.6-1.4V7.9a1 1 0 0 0-.3-.7L16 4.6A5.6 5.6 0 0 0 12 3h-1l1 .9A6 6 0 0 1 14 8.4v1.3l2 2h1.2a2 2 0 0 1 1.4.6l1.3 1.3"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+  <symbol id="i-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></symbol>
+  <symbol id="i-toolbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/><path d="M10 12v2M14 12v2"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
 </svg>
@@ -610,6 +623,7 @@ footer a { color: var(--mist); }
 
   <!-- ========== SERVICES ========== -->
   <section id="services">
+    <div class="sky" aria-hidden="true"></div>
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Nos services</span>
@@ -837,30 +851,55 @@ footer a { color: var(--mist); }
     items.forEach((el) => io.observe(el));
   })();
 
-  // Fond animé de la section avis : étoiles et étincelles placées au hasard, plus des étoiles filantes.
+  // Fonds animés : petits symboles placés sur une grille avec un décalage aléatoire,
+  // qui flottent et scintillent (ou tournent pour les engrenages).
+  const fillSky = (sky, { shapes, cols, rows, size, opacity, spin = [] }) => {
+    if (!sky) return '';
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const colors = ['var(--teal)', 'var(--teal-mid)', 'var(--slate)', 'var(--navy)'];
+    let html = '', i = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++, i++) {
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const vars = [
+          `left:${((c + rnd(.1, .9)) / cols * 100).toFixed(1)}%`, `top:${((r + rnd(.1, .9)) / rows * 100).toFixed(1)}%`,
+          `--sz:${rnd(size[0], size[1]).toFixed(0)}px`, `--c:${colors[i % colors.length]}`,
+          `--fd:${rnd(7, 15).toFixed(1)}s`, `--fdl:${(-rnd(0, 15)).toFixed(1)}s`,
+          `--dx:${rnd(-25, 25).toFixed(0)}px`, `--dy:${rnd(-45, -10).toFixed(0)}px`, `--rot:${rnd(-60, 60).toFixed(0)}deg`,
+          `--td:${rnd(spin.includes(shape) ? 6 : 2, spin.includes(shape) ? 12 : 5).toFixed(1)}s`, `--tdl:${(-rnd(0, 5)).toFixed(1)}s`,
+          `--o1:${rnd(opacity[0], opacity[1]).toFixed(2)}`, `--o2:${rnd(opacity[2], opacity[3]).toFixed(2)}`,
+        ].join(';');
+        html += `<span class="sky-star${spin.includes(shape) ? ' spin' : ''}" style="${vars}"><svg><use href="#${shape}"/></svg></span>`;
+      }
+    }
+    return html;
+  };
+  const small = window.innerWidth < 720;
+
+  // Section avis : étoiles + étincelles + étoiles filantes.
   (() => {
     const sky = document.querySelector('#avis .sky');
     if (!sky) return;
-    const rnd = (a, b) => a + Math.random() * (b - a);
-    const colors = ['var(--teal)', 'var(--teal-mid)', 'var(--slate)', 'var(--navy)'];
-    const count = window.innerWidth < 720 ? 18 : 34;
-    let html = '';
-    for (let i = 0; i < count; i++) {
-      const shape = Math.random() < 0.6 ? 'i-star' : 'i-sparkle';
-      const vars = [
-        `left:${rnd(0, 97).toFixed(1)}%`, `top:${rnd(2, 92).toFixed(1)}%`,
-        `--sz:${rnd(8, 26).toFixed(0)}px`, `--c:${colors[i % colors.length]}`,
-        `--fd:${rnd(7, 15).toFixed(1)}s`, `--fdl:${(-rnd(0, 15)).toFixed(1)}s`,
-        `--dx:${rnd(-25, 25).toFixed(0)}px`, `--dy:${rnd(-45, -10).toFixed(0)}px`, `--rot:${rnd(-60, 60).toFixed(0)}deg`,
-        `--td:${rnd(2, 5).toFixed(1)}s`, `--tdl:${(-rnd(0, 5)).toFixed(1)}s`,
-        `--o1:${rnd(.1, .3).toFixed(2)}`, `--o2:${rnd(.45, .9).toFixed(2)}`,
-      ].join(';');
-      html += `<span class="sky-star" style="${vars}"><svg><use href="#${shape}"/></svg></span>`;
-    }
+    let html = fillSky(sky, {
+      shapes: ['i-star', 'i-star', 'i-star', 'i-sparkle', 'i-sparkle'],
+      cols: small ? 3 : 7, rows: small ? 6 : 5, size: [8, 26], opacity: [.1, .3, .45, .9],
+    });
     [[-10, 8, 9, 0], [5, 40, 11, -4], [-15, 65, 13, -8]].forEach(([l, t, d, dl]) => {
       html += `<span class="shoot" style="left:${l}%;top:${t}%;--sd:${d}s;--sdl:${dl}s"></span>`;
     });
     sky.innerHTML = html;
+  })();
+
+  // Section services : appareils électroménagers et outils de réparation.
+  (() => {
+    const sky = document.querySelector('#services .sky');
+    if (!sky) return;
+    sky.innerHTML = fillSky(sky, {
+      shapes: ['i-washer', 'i-dish', 'i-fridge', 'i-oven', 'i-dryer', 'i-micro',
+               'i-wrench', 'i-screwdriver', 'i-hammer', 'i-gear', 'i-gear', 'i-plug', 'i-toolbox'],
+      spin: ['i-gear'],
+      cols: small ? 3 : 8, rows: small ? 9 : 6, size: [18, 34], opacity: [.15, .3, .4, .7],
+    });
   })();
 
   // Carte de note : compteur animé + étoiles en cascade quand la carte devient visible.
