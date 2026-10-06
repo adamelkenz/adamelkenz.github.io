@@ -1,0 +1,1811 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELDAN Sanitaire – Plombier à Strasbourg 24h/24</title>
+<meta name="description" content="ELDAN Sanitaire : plombier à Strasbourg et dans l'Eurométropole. Recherche de fuite, débouchage, chauffe-eau, salle de bain, sanitaires et plomberie gaz. Intervention 24h/24 et 7j/7, devis gratuit.">
+<meta name="theme-color" content="#070B18">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23121A33'/><path d='M12 2.7s-6.5 7.3-6.5 11.8a6.5 6.5 0 0 0 13 0C18.5 10 12 2.7 12 2.7z' fill='none' stroke='%2300D1FF' stroke-width='2' transform='translate(2.4 2.4) scale(.8)'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  ===================== À VÉRIFIER =====================
+  Téléphones, adresse, horaires, SIRET, note et marques
+  repris de la fiche PagesJaunes d'ELDAN Sanitaire.
+  L'e-mail n'a pas été trouvé : rechercher « TODO ».
+  ======================================================
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "ELDAN Sanitaire",
+  "description": "Plombier à Strasbourg : recherche de fuite, débouchage, chauffe-eau, salle de bain, sanitaires et plomberie gaz.",
+  "telephone": "+33618345444",
+  "areaServed": "Strasbourg et Eurométropole",
+  "openingHours": "Mo-Su 00:00-23:59",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "48 allée de la Robertsau",
+    "postalCode": "67000",
+    "addressLocality": "Strasbourg",
+    "addressRegion": "Grand Est",
+    "addressCountry": "FR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 48.589492, "longitude": 7.767242 }
+}
+</script>
+
+<style>
+/*
+  Direction « Nuit polaire » :
+  #070B18  Nuit      → fond de page
+  #121A33  Abysse    → surfaces, cartes
+  #2B3A67  Indigo    → bordures, séparateurs
+  #00D1FF  Cyan néon → accent principal, lueurs
+  #8F7BFF  Aurore    → accent secondaire
+  #D6F4FF  Halo      → texte
+*/
+:root {
+  --bg: #070B18;
+  --surface: #121A33;
+  --line: #2B3A67;
+  --cyan: #00D1FF;
+  --violet: #8F7BFF;
+  --halo: #D6F4FF;
+  --radius: 16px;
+  --shadow: 0 8px 28px rgba(0, 0, 0, .35);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--halo);
+  background: var(--bg);
+  line-height: 1.6;
+}
+img, svg { display: block; }
+a { color: inherit; }
+.container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- Boutons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 24px; border-radius: 999px;
+  font-weight: 700; text-decoration: none; border: 2px solid transparent; cursor: pointer;
+  font-size: 1rem; transition: transform .15s, background .15s, border-color .15s, color .15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-accent { background: var(--bg); color: var(--halo); border-color: var(--cyan); }
+.btn-accent:hover { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.45); }
+.btn-light { background: var(--cyan); color: var(--bg); border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.35); }
+.btn-light:hover { background: var(--halo); border-color: var(--halo); box-shadow: 0 0 32px rgba(0,209,255,.55); }
+.btn-ghost { background: transparent; color: var(--halo); border-color: var(--violet); }
+.btn-ghost:hover { border-color: var(--cyan); box-shadow: 0 0 20px rgba(0,209,255,.3); }
+.btn svg { width: 20px; height: 20px; }
+
+/* ---------- En-tête ---------- */
+header.site {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(7,11,24,.82); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+header.site .container { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--halo); line-height: 1.15; }
+.logo-mark {
+  width: 40px; height: 40px; border-radius: 10px; background: var(--bg);
+  display: grid; place-items: center; color: var(--halo); flex: none; border: 2px solid var(--cyan);
+}
+.logo-mark svg { width: 20px; height: 20px; }
+.logo small { display: block; font-weight: 500; color: var(--halo); font-size: .75rem; }
+nav.main { display: flex; gap: 26px; }
+nav.main a { text-decoration: none; color: var(--halo); font-weight: 600; font-size: .95rem; border-bottom: 2px solid transparent; padding: 4px 0; }
+nav.main a:hover { border-bottom-color: var(--cyan); }
+.header-call { padding: 9px 18px; font-size: .95rem; }
+
+/* ---------- Hero ---------- */
+/* Fond « dark gradient » : dégradé + grain + grille + diagonales */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: calc(100vh - 68px); display: flex; align-items: center;
+  background:
+    radial-gradient(55% 55% at 80% 85%, rgba(0,209,255,.22), transparent 70%),
+    radial-gradient(45% 50% at 100% 0%, rgba(143,123,255,.32), transparent 70%),
+    radial-gradient(40% 45% at 0% 100%, rgba(143,123,255,.16), transparent 70%),
+    var(--bg);
+  color: var(--halo); padding: 80px 0 90px;
+}
+.hero::before,
+.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.hero::before {
+  background: url("assets/noise.png") repeat;
+  background-size: 149.76px;
+  opacity: .05;
+}
+.hero::after {
+  background-image:
+    linear-gradient(rgba(214,244,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,244,255,.04) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(214,244,255,.02) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(214,244,255,.02) 1px, transparent 1px);
+  background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px;
+}
+.hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 32px; align-items: center; }
+.badge {
+  display: inline-block; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--line); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
+}
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; color: var(--halo); }
+.hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p.lead { font-size: 1.15rem; margin: 0 0 30px; max-width: 560px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; }
+.hero-checks li::before { content: "✓"; color: var(--violet); font-weight: 800; margin-right: 8px; }
+/* ---------- Chauffe-eau 3D (en-tête) ---------- */
+.hero-3d { position: relative; width: 100%; height: clamp(380px, 62vh, 560px); cursor: grab; touch-action: pan-y; }
+.hero-3d:active { cursor: grabbing; }
+@media (min-width: 961px) { .hero-3d { width: calc(100% + 40px); margin-right: -40px; } }
+.hero-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-3d-ui { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; pointer-events: none; }
+.pill {
+  pointer-events: auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px; font: 700 .9rem/1.2 inherit;
+  background: rgba(18,26,51,.85); color: var(--halo); border: 1.5px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+button.pill { cursor: pointer; font-family: inherit; }
+button.pill:hover { border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,209,255,.35); }
+.pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.pill.status[data-phase="broken"] .dot { background: var(--violet); box-shadow: 0 0 10px var(--violet); animation: pill-blink 1s steps(2, jump-none) infinite; }
+@keyframes pill-blink { 50% { opacity: .2; } }
+.nogl { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--halo); }
+
+/* ---------- Petites animations de section (réparation) ---------- */
+.mini { width: 88px; height: 88px; margin: 0 auto 4px; }
+.mini svg { width: 100%; height: 100%; overflow: visible; }
+.mini-wide { width: 132px; }
+.reviews-wrap .section-head .mini { margin-left: 0; }
+.mini * { transform-box: fill-box; }
+
+/* Robinet (avis) : une goutte tombe, des ronds dans l'eau, « ding » étoile */
+.tap-drop { transform-origin: 50% 0; animation: tap-drop 1.8s ease-in infinite; }
+.tap-ripple { transform-origin: 50% 50%; animation: tap-ripple 1.8s ease-out infinite; opacity: 0; }
+.tap-ripple.r2 { animation-delay: .25s; }
+.tap-ding { transform-origin: 50% 50%; animation: tap-ding 3.6s ease-out infinite; }
+@keyframes tap-drop {
+  0% { transform: translateY(0) scale(0); opacity: 1; }
+  30% { transform: translateY(0) scale(1); }
+  62% { transform: translateY(18px) scale(.9, 1.2); opacity: 1; }
+  64%, 100% { transform: translateY(18px) scale(1); opacity: 0; }
+}
+@keyframes tap-ripple { 0%, 60% { transform: scale(.2); opacity: 0; } 64% { opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+@keyframes tap-ding { 0%, 82% { transform: scale(0) rotate(0); } 90% { transform: scale(1.2) rotate(40deg); } 100% { transform: scale(0) rotate(90deg); } }
+
+/* Ventouse (services) : elle pompe la bonde, des bulles remontent */
+.pl-move { animation: pl-press 1.4s ease-in-out infinite; }
+.pl-cup { transform-origin: 50% 100%; animation: pl-squash 1.4s ease-in-out infinite; }
+.pl-bub { animation: pl-bub 1.4s ease-out infinite; opacity: 0; }
+.pl-bub.b2 { animation-delay: .15s; }
+@keyframes pl-press { 0%, 100% { transform: translateY(-12px); } 45%, 55% { transform: translateY(0); } }
+@keyframes pl-squash { 0%, 35%, 65%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.18, .72); } }
+@keyframes pl-bub { 0%, 55% { transform: translateY(0) scale(.4); opacity: 0; } 65% { opacity: 1; } 100% { transform: translateY(-22px) scale(1); opacity: 0; } }
+
+/* Volants de vanne (pourquoi nous) */
+.gear-a, .gear-b { transform-origin: 50% 50%; }
+.gear-a { animation: wm-spin 6s linear infinite; }
+.gear-b { animation: wm-spin 4s linear infinite reverse; }
+@keyframes wm-spin { to { transform: rotate(360deg); } }
+
+/* Camionnette d'intervention (comment ça marche) */
+.van-body { animation: van-bounce .5s ease-in-out infinite alternate; }
+.van-wheel { transform-origin: 50% 50%; animation: wm-spin .7s linear infinite; }
+.van-road { animation: van-road .5s linear infinite; }
+.van-speed { animation: van-speed 1s ease-in infinite; }
+.van-speed:nth-of-type(2) { animation-delay: .33s; }
+.van-speed:nth-of-type(3) { animation-delay: .66s; }
+@keyframes van-bounce { to { transform: translateY(-1.5px); } }
+@keyframes van-road { to { stroke-dashoffset: -20; } }
+@keyframes van-speed { 0% { transform: translateX(10px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateX(-14px); opacity: 0; } }
+
+/* Téléphone qui sonne (contact) */
+.ph-shake { transform-origin: 50% 50%; animation: ph-ring 2.2s ease-in-out infinite; }
+.ph-wave { animation: ph-wave 2.2s ease-out infinite; opacity: 0; }
+.ph-wave.w2 { animation-delay: .2s; }
+@keyframes ph-ring {
+  0%, 45%, 100% { transform: rotate(0); }
+  5% { transform: rotate(-14deg); } 10% { transform: rotate(14deg); } 15% { transform: rotate(-14deg); }
+  20% { transform: rotate(14deg); } 25% { transform: rotate(-8deg); } 30% { transform: rotate(0); }
+}
+@keyframes ph-wave { 0% { opacity: 0; } 8% { opacity: 1; } 35%, 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mini * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Sections ---------- */
+section { padding: 80px 0; scroll-margin-top: 68px; }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.section-head .eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--cyan); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .12em;
+}
+.section-head .eyebrow::before { content: ""; width: 24px; height: 3px; border-radius: 2px; background: var(--cyan); }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--halo); letter-spacing: -.01em; }
+.section-head p { margin: 0; }
+
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.card:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 0 0 1px var(--cyan), 0 14px 40px rgba(0,209,255,.18); }
+.card .icon {
+  width: 52px; height: 52px; border-radius: 12px; background: var(--bg); color: var(--cyan); border: 1.5px solid var(--line);
+  display: grid; place-items: center; margin-bottom: 18px;
+}
+.card .icon svg { width: 28px; height: 28px; }
+.card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--halo); }
+.card p { margin: 0; font-size: .95rem; }
+
+/* ---------- Couleurs + animations « Nos services » ---------- */
+#services {
+  background:
+    radial-gradient(600px 400px at 0% 10%, rgba(0,209,255,.12), transparent 70%),
+    radial-gradient(500px 380px at 100% 45%, rgba(143,123,255,.16), transparent 70%),
+    radial-gradient(520px 380px at 30% 100%, rgba(0,209,255,.08), transparent 70%),
+    var(--bg);
+}
+/* Chaque carte alterne les couleurs de la palette */
+#services .card:nth-child(3n+1) { --c: var(--cyan); }
+#services .card:nth-child(3n+2) { --c: var(--violet); }
+#services .card:nth-child(3n)   { --c: var(--halo); }
+
+#services .card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 12%, var(--surface)) 0%, var(--surface) 65%);
+  border-color: var(--c);
+}
+#services .card::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+  background: var(--c);
+  transform: scaleX(.3); transform-origin: left; transition: transform .4s ease;
+}
+#services .card:hover::before { transform: scaleX(1); }
+#services .card:hover { box-shadow: 0 14px 36px color-mix(in srgb, var(--c) 40%, transparent); }
+#services .card .icon {
+  background: var(--bg); color: var(--halo); border: 3px solid var(--c);
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1), background .3s;
+}
+#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); background: var(--c); color: var(--bg); box-shadow: 0 0 20px var(--c); }
+#services .card:nth-child(3n) .icon { color: var(--halo); }
+
+/* Apparition au défilement (activée par JS uniquement) */
+.reveal-on .reveal:not(.in) { opacity: 0; }
+.reveal.in { animation: fade-up .7s cubic-bezier(.2,.7,.2,1) backwards; animation-delay: var(--d, 0ms); }
+.reveal.in .icon { animation: icon-pop .6s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--d, 0ms) + 250ms); }
+@keyframes fade-up { from { opacity: 0; transform: translateY(32px); } }
+@keyframes icon-pop { from { opacity: 0; transform: scale(.4) rotate(-25deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal.in, .reveal.in .icon { animation: none; }
+  #services .card .icon, #services .card::before { transition: none; }
+}
+
+.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+/* Pourquoi nous */
+.why { text-align: center; padding: 10px; }
+.why .num {
+  position: relative;
+  width: 64px; height: 64px; margin: 0 auto 10px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--bg); color: var(--halo); border: 3px solid var(--cyan);
+  transition: background .3s, transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.why:hover .num { background: var(--cyan); color: var(--bg); transform: scale(1.12); box-shadow: 0 0 24px rgba(0,209,255,.5); }
+
+/* Anneau qui pulse autour de chaque icône */
+.why .num::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid var(--cyan); opacity: 0;
+  animation: why-ring 3s ease-out infinite; animation-delay: var(--wd, 0s);
+}
+@keyframes why-ring {
+  0%   { transform: scale(1);   opacity: .7; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Une animation propre à chaque symbole (en boucle, décalées) */
+.why:nth-child(1) { --wd: 0s; }
+.why:nth-child(2) { --wd: .75s; }
+.why:nth-child(3) { --wd: 1.5s; }
+.why:nth-child(4) { --wd: 2.25s; }
+.why .num svg { animation-duration: 3s; animation-iteration-count: infinite; animation-delay: var(--wd, 0s); }
+.why:nth-child(1) .num svg { animation-name: why-hop; transform-origin: 50% 100%; }   /* maison : petit saut */
+.why:nth-child(2) .num svg { animation-name: why-flash; }                             /* éclair : clignote */
+.why:nth-child(3) .num svg { animation-name: why-flip; }                              /* euro : pièce qui tourne */
+.why:nth-child(4) .num svg { animation-name: why-turn; }                              /* clé : serre / desserre */
+.why:hover .num svg { animation-duration: 1.2s; }
+
+@keyframes why-hop {
+  0%, 40%, 100% { transform: translateY(0) scale(1, 1); }
+  8%  { transform: translateY(0) scale(1.15, .85); }
+  18% { transform: translateY(-9px) scale(.92, 1.08); }
+  28% { transform: translateY(0) scale(1.08, .92); }
+  34% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes why-flash {
+  0%, 40%, 100% { opacity: 1; transform: scale(1); }
+  6%  { opacity: .2; transform: scale(.9); }
+  12% { opacity: 1;  transform: scale(1.2); }
+  18% { opacity: .3; transform: scale(.95); }
+  24% { opacity: 1;  transform: scale(1.1); }
+  32% { transform: scale(1); }
+}
+@keyframes why-flip {
+  0%, 45%, 100% { transform: perspective(200px) rotateY(0); }
+  30% { transform: perspective(200px) rotateY(360deg); }
+}
+@keyframes why-turn {
+  0%, 45%, 100% { transform: rotate(0); }
+  10% { transform: rotate(-35deg); }
+  20% { transform: rotate(15deg); }
+  30% { transform: rotate(-25deg); }
+  38% { transform: rotate(0); }
+}
+
+/* Apparition des ronds au défilement */
+.reveal.in .num { animation: icon-pop .6s cubic-bezier(.34,1.56,.64,1) backwards; animation-delay: calc(var(--d, 0ms) + 150ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .why .num::after, .why .num svg, .reveal.in .num { animation: none; }
+}
+.why .num svg { width: 28px; height: 28px; }
+.why h3 { margin: 4px 0 6px; color: var(--halo); font-size: 1.05rem; }
+.why p { margin: 0; font-size: .93rem; }
+
+/* Comment ça marche : section foncée */
+#fonctionnement { background: var(--surface); }
+#fonctionnement .card { background: var(--bg); }
+#fonctionnement .section-head h2,
+#fonctionnement .section-head .eyebrow { color: var(--halo); }
+.steps { counter-reset: step; }
+.step { position: relative; padding-top: 36px; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; top: -22px; left: 28px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--bg); color: var(--halo); border: 3px solid var(--cyan); font-weight: 800;
+  display: grid; place-items: center; font-size: 1.1rem;
+}
+
+/* Bandeau de marques défilant */
+#pourquoi { padding-bottom: 0; }
+.brand-band {
+  margin-top: 56px; padding: 22px 0 26px;
+  background: linear-gradient(90deg, var(--surface), color-mix(in srgb, var(--violet) 28%, var(--surface)));
+  border-top: 3px solid var(--cyan);
+  color: var(--halo); overflow: hidden;
+}
+.brand-band-title {
+  margin: 0 0 14px; text-align: center; font-size: .8rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--halo);
+}
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.brands { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+.brands li {
+  display: flex; align-items: center; white-space: nowrap;
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--halo);
+}
+.brands li::after { content: "•"; margin: 0 32px; color: var(--violet); font-size: 1.1rem; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (max-width: 720px) {
+  .brands li { font-size: 1.2rem; }
+  .brands li::after { margin: 0 22px; }
+  .marquee-track { animation-duration: 22s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; width: auto; justify-content: center; }
+  .marquee-track .brands[aria-hidden] { display: none; }
+  .brands { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+}
+
+/* ---------- Avis : fond animé (dégradé mouvant + étoiles + étoiles filantes) ---------- */
+#avis {
+  position: relative; overflow: hidden;
+  background: linear-gradient(120deg,
+    var(--bg) 0%,
+    color-mix(in srgb, var(--cyan) 10%, var(--bg)) 30%,
+    var(--bg) 55%,
+    color-mix(in srgb, var(--violet) 16%, var(--bg)) 80%,
+    var(--bg) 100%);
+  background-size: 300% 300%;
+  animation: avis-bg 18s ease-in-out infinite alternate;
+}
+@keyframes avis-bg { from { background-position: 0% 30%; } to { background-position: 100% 70%; } }
+#avis .reviews-wrap { position: relative; z-index: 1; }
+/* Halo cyan derrière la carte de note */
+#avis::before {
+  content: ""; position: absolute; width: 520px; height: 520px; right: 8%; top: 50%;
+  transform: translateY(-50%); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(0,209,255,.28), transparent 65%);
+  animation: avis-glow 6s ease-in-out infinite alternate;
+}
+@keyframes avis-glow { from { transform: translateY(-50%) scale(.9); opacity: .7; } to { transform: translateY(-50%) scale(1.1); opacity: 1; } }
+
+.sky { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.sky-star { position: absolute; animation: sky-float var(--fd, 10s) ease-in-out infinite alternate; animation-delay: var(--fdl, 0s); }
+.sky-star svg {
+  width: var(--sz, 14px); height: var(--sz, 14px); color: var(--c, var(--cyan));
+  animation: sky-twinkle var(--td, 3s) ease-in-out infinite; animation-delay: var(--tdl, 0s);
+}
+@keyframes sky-float {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(var(--dx, 10px), var(--dy, -30px)) rotate(var(--rot, 40deg)); }
+}
+@keyframes sky-twinkle {
+  0%, 100% { opacity: var(--o1, .25); transform: scale(.8); }
+  50%      { opacity: var(--o2, .8);  transform: scale(1.15); }
+}
+/* Volants de vanne : rotation continue au lieu du scintillement */
+.sky-star.spin svg { opacity: var(--o2, .5); animation: sky-spin var(--td, 8s) linear infinite; }
+@keyframes sky-spin { to { transform: rotate(360deg); } }
+
+/* Services : les symboles passent derrière le contenu */
+#services { position: relative; overflow: hidden; }
+#services > .container { position: relative; z-index: 1; }
+
+.shoot {
+  position: absolute; width: 140px; height: 2px; border-radius: 2px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--cyan));
+  animation: shoot var(--sd, 9s) linear infinite; animation-delay: var(--sdl, 0s);
+}
+.shoot::after {
+  content: ""; position: absolute; right: -2px; top: -2px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan); box-shadow: 0 0 8px 2px rgba(0,209,255,.6);
+}
+@keyframes shoot {
+  0%   { transform: translate(0, 0) rotate(18deg); opacity: 0; }
+  2%   { opacity: 1; }
+  14%  { transform: translate(720px, 234px) rotate(18deg); opacity: 0; }
+  100% { transform: translate(720px, 234px) rotate(18deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #avis, #avis::before, .sky-star, .sky-star svg, .sky-star.spin svg { animation: none; }
+  .shoot { display: none; }
+}
+
+/* ---------- Avis (carte de note animée) ---------- */
+.reviews-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.reviews-wrap .section-head { text-align: left; margin: 0; }
+.reviews-wrap .section-head p { margin-bottom: 24px; }
+.rating-card {
+  --star: var(--cyan);
+  background: linear-gradient(160deg, var(--surface) 0%, color-mix(in srgb, var(--violet) 18%, var(--surface)) 100%);
+  box-shadow: 0 0 40px rgba(0,209,255,.15);
+  border: 2px solid var(--cyan); border-radius: 20px; padding: 32px;
+  box-shadow: var(--shadow); max-width: 440px; width: 100%; justify-self: center; text-align: center;
+}
+.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--halo); }
+.rating-label .g {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--bg);
+  display: grid; place-items: center; font-weight: 800; font-size: .58rem; color: var(--halo); border: 1px solid var(--cyan);
+}
+.rating-score { margin: 10px 0 6px; color: var(--halo); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.rating-score .score { font-size: 4.2rem; letter-spacing: -.03em; }
+.rating-score .out { font-size: 1.4rem; color: var(--cyan); margin-left: 4px; }
+.stars { display: flex; justify-content: center; gap: 6px; margin: 8px 0 16px; }
+.star { position: relative; width: 34px; height: 34px; }
+.star svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.star .base { color: var(--line); }
+.star .fill { position: absolute; inset: 0; overflow: hidden; width: var(--fill, 100%); }
+.star .fill svg { width: 34px; height: 34px; color: var(--star); }
+.rating-count { margin: 0 0 20px; }
+.rating-count strong { color: var(--halo); font-variant-numeric: tabular-nums; }
+.rating-card .btn { justify-content: center; }
+
+/* Animation : les étoiles apparaissent l'une après l'autre */
+.rating-card.js-anim .star { opacity: 0; transform: scale(.3) rotate(-30deg); }
+.rating-card.js-anim .star .fill { width: 0; }
+.rating-card.is-visible .star {
+  opacity: 1; transform: none;
+  transition: opacity .4s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+  transition-delay: calc(var(--i) * 120ms);
+}
+.rating-card.is-visible .star .fill {
+  width: var(--fill, 100%);
+  transition: width .45s ease-out;
+  transition-delay: calc(var(--i) * 120ms + 250ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rating-card.is-visible .star, .rating-card.is-visible .star .fill { transition: none; }
+}
+
+/* ---------- Zone d'intervention : carte interactive ---------- */
+#zone { background:
+  radial-gradient(50% 60% at 100% 0%, rgba(143,123,255,.12), transparent 70%),
+  radial-gradient(45% 55% at 0% 100%, rgba(0,209,255,.10), transparent 70%), var(--bg); }
+.zone-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: stretch; }
+.zone-wrap > * { min-width: 0; }
+.zone-list {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; display: flex; flex-direction: column; max-height: 540px; min-height: 0;
+}
+.zone-list-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.zone-list ul { list-style: none; margin: 12px 0; padding: 0 4px 0 0; overflow-y: auto; flex: 1; min-height: 0; }
+.zone-list li button {
+  width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; margin-bottom: 2px;
+  border-radius: 10px; background: transparent; border: 1px solid transparent; color: var(--halo);
+  font: inherit; text-align: left; cursor: pointer; transition: background .2s, border-color .2s;
+}
+.zone-list li button:hover, .zone-list li button.active { background: rgba(0,209,255,.08); border-color: var(--line); }
+.zl-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+.zl-dot.near { background: var(--violet); box-shadow: 0 0 8px var(--violet); }
+.zl-name { flex: 1; font-weight: 600; font-size: .95rem; }
+.zl-km { font-size: .8rem; opacity: .7; font-variant-numeric: tabular-nums; }
+.zone-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; opacity: .85; border-top: 1px solid var(--line); padding-top: 10px; }
+.zone-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.zone-legend i { width: 10px; height: 10px; border-radius: 50%; }
+.lg-base { background: var(--halo); box-shadow: 0 0 0 2px var(--cyan); }
+.lg-city { background: var(--cyan); }
+.lg-near { background: var(--violet); }
+
+.zone-map-wrap { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: 0 0 40px rgba(0,209,255,.12); }
+.zone-map { height: 540px; background: var(--bg); }
+.zone-hint {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 500; pointer-events: none;
+  padding: 6px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis;
+  background: rgba(7,11,24,.8); color: var(--halo); border: 1px solid var(--line); transition: opacity .3s;
+}
+.zone-hint.off { opacity: 0; }
+
+/* Fond de carte sombre teinté bleu nuit */
+.zone-map.leaflet-container { background: var(--bg); font-family: inherit; }
+.zone-map .leaflet-tile-pane { filter: brightness(.8) sepia(.5) hue-rotate(190deg) saturate(2.2) contrast(1.1); }
+.zone-map .leaflet-labels-pane { filter: brightness(1.15) sepia(.4) hue-rotate(160deg) saturate(1.6); opacity: .8; }
+.zone-map .leaflet-bar { border: 1px solid var(--line); box-shadow: none; }
+.zone-map .leaflet-bar a { background: var(--surface); color: var(--halo); border-bottom-color: var(--line); }
+.zone-map .leaflet-bar a:hover { background: var(--line); color: var(--cyan); }
+.zone-map .leaflet-control-attribution { background: rgba(7,11,24,.75); color: rgba(214,244,255,.6); }
+.zone-map .leaflet-control-attribution a { color: var(--cyan); }
+.zone-map .leaflet-popup-content-wrapper, .zone-map .leaflet-popup-tip {
+  background: var(--surface); color: var(--halo); border: 1px solid var(--line); box-shadow: 0 0 24px rgba(0,209,255,.25);
+}
+.zone-map .leaflet-popup-content { margin: 14px 16px; font-size: .9rem; line-height: 1.45; }
+.zone-map .leaflet-container a.leaflet-popup-close-button, .zone-map a.leaflet-popup-close-button { color: var(--halo); }
+.pp-type { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: .7rem; font-weight: 700; border: 1px solid var(--cyan); color: var(--cyan); }
+.pp-type.near { border-color: var(--violet); color: var(--violet); }
+.zone-map .leaflet-popup-content p { margin: 6px 0; }
+.pp-km { opacity: .75; font-size: .8rem; }
+.zone-map a.pp-link { display: inline-block; margin-top: 8px; color: var(--cyan); font-weight: 700; text-decoration: none; }
+.zone-map .leaflet-tooltip.zone-tip {
+  background: var(--surface); color: var(--halo); border: 1px solid var(--cyan); border-radius: 8px;
+  font: 700 .82rem/1.2 inherit; box-shadow: 0 0 16px rgba(0,209,255,.35);
+}
+.zone-map .leaflet-tooltip-top.zone-tip::before { border-top-color: var(--cyan); }
+
+/* Marqueurs lumineux */
+.zm-icon { background: none; border: 0; }
+.zm { position: relative; display: block; width: 100%; height: 100%; transform: scale(0); transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+.zm.show { transform: scale(1); }
+.zm i { position: absolute; inset: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan), 0 0 0 3px rgba(7,11,24,.9); }
+.zm.near i { background: var(--violet); box-shadow: 0 0 12px var(--violet), 0 0 0 3px rgba(7,11,24,.9); }
+.zm::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--cyan); opacity: 0; animation: zm-ping 2.4s ease-out infinite; animation-delay: var(--d, 0s); }
+.zm.near::before { border-color: var(--violet); }
+.zm.hl i { transform: scale(1.35); }
+.zm.base { display: grid; place-items: center; border-radius: 50%; background: var(--surface); border: 2px solid var(--cyan); color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.6); }
+.zm.base svg { width: 18px; height: 18px; }
+.zm.base::before { inset: -6px; }
+@keyframes zm-ping { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.4); opacity: 0; } }
+
+/* Trajets (arcs) */
+.zroute { transition: opacity .3s, stroke-width .3s; }
+.zroute.flow { stroke-dasharray: 6 10; animation: zflow 1.2s linear infinite; }
+.zglow { filter: blur(3px); }
+.zone-map.dim .zroute:not(.hl), .zone-map.dim .zglow:not(.hl) { opacity: .15; }
+.zroute.hl { stroke-width: 4; }
+.znet { stroke-dasharray: 2 6; }
+@keyframes zflow { to { stroke-dashoffset: -16; } }
+
+/* Petite animation de section : épingle qui rebondit */
+.pin-drop { animation: pin-bounce 2s ease-in-out infinite; }
+.pin-ring { transform-origin: 50% 50%; animation: pin-ring 2s ease-out infinite; opacity: 0; }
+.pin-ring.r2 { animation-delay: 1s; }
+@keyframes pin-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pin-ring { 0% { transform: scale(.3); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+@media (max-width: 960px) {
+  .zone-wrap { grid-template-columns: 1fr; }
+  .zone-map-wrap { order: -1; }
+  .zone-map { height: 440px; }
+  .zone-list { max-height: none; }
+  .zone-list ul { display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; }
+  .zone-list li { flex: none; }
+  .zone-list li button { border-color: var(--line); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zroute.flow, .zm::before { animation: none; }
+}
+
+/* ---------- Contact ---------- */
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+.contact-info .row { display: flex; gap: 14px; margin-bottom: 20px; }
+.contact-info .row .icon { margin: 0; flex: none; border: 2px solid var(--cyan); }
+.contact-info .row strong { display: block; color: var(--halo); }
+.contact-info .row a, .contact-info .row span { color: var(--halo); text-decoration: none; }
+.map iframe { filter: invert(.92) hue-rotate(180deg) saturate(.7) brightness(.9); }
+.map { border-radius: var(--radius); overflow: hidden; border: 2px solid var(--line); min-height: 220px; margin-top: 8px; }
+.map iframe { width: 100%; height: 260px; border: 0; display: block; }
+
+form .field { margin-bottom: 14px; }
+form label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; color: var(--halo); }
+form input, form select, form textarea {
+  width: 100%; padding: 12px 14px; border: 2px solid var(--line); border-radius: 10px;
+  font: inherit; background: var(--bg); color: var(--halo);
+}
+form ::placeholder { color: var(--halo); opacity: .45; }
+form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,209,255,.3); }
+form textarea { min-height: 110px; resize: vertical; }
+form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+form .note { font-size: .8rem; margin-top: 10px; }
+
+/* ---------- Pied de page ---------- */
+footer { background: var(--bg); color: var(--halo); padding: 40px 0 30px; font-size: .9rem; border-top: 3px solid var(--cyan); }
+footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
+footer strong { color: var(--halo); }
+footer a { color: var(--halo); }
+
+/* Bouton d'appel flottant (mobile) */
+.float-call {
+  display: none; position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60;
+  justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .hero .container, .contact-wrap, .reviews-wrap { grid-template-columns: 1fr; }
+  .reviews-wrap .section-head { text-align: center; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .steps { row-gap: 44px; }
+}
+@media (max-width: 720px) {
+  nav.main, .header-call { display: none; }
+  .hero { padding: 56px 0 64px; }
+  .hero-3d { height: 380px; }
+  section { padding: 60px 0; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  form .two { grid-template-columns: 1fr; }
+  .float-call { display: inline-flex; }
+  footer { padding-bottom: 96px; }
+}
+</style>
+</head>
+<body>
+<!-- Icônes réutilisables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s-6.5 7.3-6.5 11.8a6.5 6.5 0 0 0 13 0C18.5 10 12 2.7 12 2.7z"/></symbol>
+  <symbol id="i-leak" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h7M15 6h7"/><path d="M9 3.5v5M15 3.5v5"/><path d="M12 11s-3 3.4-3 5.5a3 3 0 0 0 6 0c0-2.1-3-5.5-3-5.5z"/><path d="M5 21h.01M19 21h.01"/></symbol>
+  <symbol id="i-tap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8M12 3v4"/><path d="M3 7h9a6 6 0 0 1 6 6v1h-4v-1a2 2 0 0 0-2-2H3z"/><path d="M16 18v.01M16 21v.01"/></symbol>
+  <symbol id="i-shower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V7a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3"/><path d="M10 11a4 4 0 0 1 8 0z"/><path d="M11 14.5v.01M14 14.5v.01M17 14.5v.01M12 18v.01M16 18v.01M14 21v.01"/></symbol>
+  <symbol id="i-heater" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="16" rx="4"/><path d="M9 18v4M15 18v4"/><circle cx="12" cy="11" r="2.5"/><path d="M10 6h4"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4 0 7-2.7 7-7 0-4-3-6.5-4-10-2 1.5-3 3.5-3 5.5-1-1-1.5-2-1.5-3.5C7.5 9 5 11.5 5 15c0 4.3 3 7 7 7z"/></symbol>
+  <symbol id="i-plunger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"/><path d="M6 18a6 6 0 0 1 12 0z"/><path d="M4 21h16"/></symbol>
+  <symbol id="i-pipe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h8a9 9 0 0 1 9 9v8"/><path d="M2 11h8a3 3 0 0 1 3 3v8"/><path d="M2 3v10M11 22h10"/></symbol>
+  <symbol id="i-valve" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 3v7M12 14v7M3 12h7M14 12h7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-euro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6.5A7 7 0 1 0 18 17.5"/><path d="M4 10h10M4 14h10"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.8 6.5 3.5 9.2 10 10-6.5.8-9.2 3.5-10 10-.8-6.5-3.5-9.2-10-10 6.5-.8 9.2-3.5 10-10z"/></symbol>
+  <symbol id="i-toolbox" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M2 13h20"/><path d="M10 12v2M14 12v2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+</svg>
+
+<header class="site">
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-mark"><svg><use href="#i-drop"/></svg></span>
+      <span>ELDAN Sanitaire<small>Plomberie · Strasbourg</small></span>
+    </a>
+    <nav class="main" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#avis">Avis</a>
+      <a href="#pourquoi">Pourquoi nous</a>
+      <a href="#fonctionnement">Comment ça marche</a>
+      <a href="#zone">Zone</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:+33618345444" class="btn btn-accent header-call"><svg><use href="#i-phone"/></svg>Appeler</a>
+  </div>
+</header>
+
+<main>
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="badge">Plombier à Strasbourg · 24h/24 – 7j/7</span>
+        <h1>Une fuite, un WC bouché ?<br><span>On intervient vite.</span></h1>
+        <p class="lead">Fuite d'eau, canalisation bouchée, chauffe-eau en panne, salle de bain à rénover… ELDAN Sanitaire intervient rapidement à votre domicile à Strasbourg et dans toute l'Eurométropole, de jour comme de nuit.</p>
+        <div class="hero-actions">
+          <a href="tel:+33618345444" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
+          <a href="#contact" class="btn btn-ghost">Demander un devis gratuit</a>
+        </div>
+        <ul class="hero-checks">
+          <li>Urgences 24h/24</li>
+          <li>Recherche de fuite</li>
+          <li>Devis gratuit</li>
+          <li>Plombiers qualifiés</li>
+        </ul>
+      </div>
+
+      <!-- Chauffe-eau en 3D : fuite au raccord → une clé serre l'écrou → l'eau chauffe -->
+      <div class="hero-3d" id="hero3d">
+        <div class="hero-3d-ui">
+          <span class="pill status" data-phase="broken" aria-live="polite"><span class="dot"></span><span class="status-text">Fuite détectée · 0,4 bar</span></span>
+          <button type="button" class="pill" id="replay3d">↻ Rejouer</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AVIS ========== -->
+  <section id="avis" class="alt">
+    <div class="sky" aria-hidden="true"></div>
+    <div class="container reviews-wrap">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g transform="translate(78 2)"><g class="tap-ding"><path d="M10 0c.7 5.4 2.9 7.6 8.3 8.3-5.4.7-7.6 2.9-8.3 8.3-.7-5.4-2.9-7.6-8.3-8.3C7.1 7.6 9.3 5.4 10 0z" fill="#8F7BFF"/></g></g>
+          <ellipse class="tap-ripple" cx="67" cy="90" rx="13" ry="3.5" fill="none" stroke="#00D1FF" stroke-width="2.5"/>
+          <ellipse class="tap-ripple r2" cx="67" cy="90" rx="13" ry="3.5" fill="none" stroke="#8F7BFF" stroke-width="2"/>
+          <line x1="44" y1="90" x2="90" y2="90" stroke="#2B3A67" stroke-width="3" stroke-linecap="round"/>
+          <path class="tap-drop" d="M67 58c-3 4-5 6.5-5 9a5 5 0 0 0 10 0c0-2.5-2-5-5-9z" fill="#00D1FF"/>
+          <rect x="34" y="12" width="26" height="8" rx="4" fill="#8F7BFF"/>
+          <rect x="43" y="18" width="8" height="12" fill="#2B3A67"/>
+          <rect x="6" y="26" width="10" height="24" rx="2" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
+          <path d="M16 30h38a20 20 0 0 1 20 20v6H60v-6a6 6 0 0 0-6-6H16z" fill="#121A33" stroke="#00D1FF" stroke-width="4" stroke-linejoin="round"/>
+        </svg></div>
+        <span class="eyebrow">Avis clients</span>
+        <h2>Nos clients nous recommandent</h2>
+        <p>Chaque intervention compte. Découvrez ce que nos clients de Strasbourg et des environs pensent de notre travail.</p>
+        <a class="btn btn-accent" target="_blank" rel="noopener" href="https://www.pagesjaunes.fr/pros/52268946">
+          Voir les avis sur PagesJaunes
+        </a>
+      </div>
+
+      <!-- Note PagesJaunes : mettre à jour data-rating / data-reviews et les textes ci-dessous -->
+      <div class="rating-card" data-rating="5" data-reviews="3">
+        <span class="rating-label"><span class="g">PJ</span>Note moyenne PagesJaunes</span>
+        <div class="rating-score"><span class="score">5,0</span><span class="out">/5</span></div>
+        <div class="stars" aria-hidden="true">
+          <span class="star" style="--i:0"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:1"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:2"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:3"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+          <span class="star" style="--i:4"><svg class="base"><use href="#i-star"/></svg><span class="fill"><svg><use href="#i-star"/></svg></span></span>
+        </div>
+        <p class="rating-count">Basé sur <strong class="count">3</strong> avis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="services">
+    <div class="sky" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <rect x="12" y="78" width="76" height="10" rx="3" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
+          <circle class="pl-bub" cx="24" cy="72" r="3.5" fill="#00D1FF"/>
+          <circle class="pl-bub b2" cx="76" cy="70" r="2.5" fill="#8F7BFF"/>
+          <g class="pl-move">
+            <rect x="46" y="10" width="8" height="54" rx="3" fill="#8F7BFF"/>
+            <rect x="39" y="6" width="22" height="9" rx="4.5" fill="#8F7BFF" stroke="#00D1FF" stroke-width="2"/>
+            <path class="pl-cup" d="M30 78c0-12 8-18 20-18s20 6 20 18z" fill="#121A33" stroke="#00D1FF" stroke-width="4" stroke-linejoin="round"/>
+          </g>
+        </svg></div>
+        <span class="eyebrow">Nos services</span>
+        <h2>Toute la plomberie de votre logement</h2>
+        <p>Dépannage en urgence, réparation durable ou rénovation complète : on s'occupe de l'eau, du chauffe-eau et du gaz.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="icon"><svg><use href="#i-leak"/></svg></div>
+          <h3>Recherche de fuite</h3>
+          <p>Fuite d'eau visible ou cachée, compteur qui tourne, tache au plafond : détection, inspection vidéo des canalisations et réparation.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-plunger"/></svg></div>
+          <h3>Débouchage</h3>
+          <p>WC, évier, lavabo, douche ou canalisation bouchés : débouchage rapide et remise en état des évacuations.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-heater"/></svg></div>
+          <h3>Chauffe-eau & ballon</h3>
+          <p>Plus d'eau chaude, fuite, ballon entartré : réparation, remplacement, chauffe-eau thermodynamique.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-shower"/></svg></div>
+          <h3>Salle de bain</h3>
+          <p>Rénovation complète, douche à l'italienne, remplacement de baignoire : de la plomberie aux finitions.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-tap"/></svg></div>
+          <h3>Sanitaires & robinetterie</h3>
+          <p>Installation et réparation de WC, lavabo, évier, mitigeur, chasse d'eau, réparation d'émail sanitaire.</p>
+        </article>
+        <article class="card">
+          <div class="icon"><svg><use href="#i-flame"/></svg></div>
+          <h3>Gaz & climatisation</h3>
+          <p>Plomberie gaz, détection de fuite de gaz, raccordements, et installation de climatisation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POURQUOI NOUS ========== -->
+  <section id="pourquoi" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g class="gear-a" style="color:#00D1FF"><use href="#i-valve" x="10" y="30" width="56" height="56"/></g>
+          <g class="gear-b" style="color:#8F7BFF"><use href="#i-valve" x="56" y="10" width="36" height="36"/></g>
+        </svg></div>
+        <span class="eyebrow">Pourquoi nous choisir</span>
+        <h2>Un plombier local, sérieux et réactif</h2>
+      </div>
+      <div class="grid grid-4">
+        <div class="why">
+          <div class="num"><svg><use href="#i-home"/></svg></div>
+          <h3>À domicile</h3>
+          <p>On se déplace chez vous à Strasbourg et dans l'Eurométropole.</p>
+        </div>
+        <div class="why">
+          <div class="num"><svg><use href="#i-bolt"/></svg></div>
+          <h3>Urgences 24h/24</h3>
+          <p>Disponibles 7 jours sur 7, de jour comme de nuit, pour stopper la fuite.</p>
+        </div>
+        <div class="why">
+          <div class="num"><svg><use href="#i-euro"/></svg></div>
+          <h3>Prix transparents</h3>
+          <p>Devis clair avant toute intervention. Pas de mauvaise surprise.</p>
+        </div>
+        <div class="why">
+          <div class="num"><svg><use href="#i-wrench"/></svg></div>
+          <h3>Plombiers qualifiés</h3>
+          <p>Une équipe expérimentée et du matériel de grandes marques.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bandeau de marques qui défile (la liste est doublée pour une boucle sans à-coup) -->
+    <div class="brand-band">
+      <p class="brand-band-title">Des marques de qualité</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <ul class="brands" aria-label="Marques installées"><li>De Dietrich</li><li>Grohe</li><li>Hansgrohe</li><li>Saunier Duval</li><li>Vaillant</li><li>Elm Leblanc</li><li>De Dietrich</li><li>Grohe</li><li>Hansgrohe</li><li>Saunier Duval</li><li>Vaillant</li><li>Elm Leblanc</li></ul>
+          <ul class="brands" aria-hidden="true"><li>De Dietrich</li><li>Grohe</li><li>Hansgrohe</li><li>Saunier Duval</li><li>Vaillant</li><li>Elm Leblanc</li><li>De Dietrich</li><li>Grohe</li><li>Hansgrohe</li><li>Saunier Duval</li><li>Vaillant</li><li>Elm Leblanc</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FONCTIONNEMENT ========== -->
+  <section id="fonctionnement">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
+          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#8F7BFF" stroke-width="3" stroke-dasharray="10 10"/>
+          <g class="van-body">
+            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#121A33" stroke="#00D1FF" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M86 33l13 12H86z" fill="#2B3A67"/>
+            <g style="color:#00D1FF"><use href="#i-drop" x="42" y="35" width="22" height="22"/></g>
+          </g>
+          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
+        </svg></div>
+        <span class="eyebrow">Comment ça marche</span>
+        <h2>Une intervention en 3 étapes</h2>
+      </div>
+      <div class="grid grid-3 steps">
+        <div class="card step">
+          <h3>Vous nous appelez</h3>
+          <p>Par téléphone, à toute heure, ou via le formulaire. Décrivez le problème : fuite, bouchon, eau chaude…</p>
+        </div>
+        <div class="card step">
+          <h3>Diagnostic sur place</h3>
+          <p>Le plombier coupe l'eau si besoin, localise la panne ou la fuite et vous remet un devis avant d'intervenir.</p>
+        </div>
+        <div class="card step">
+          <h3>Réparation</h3>
+          <p>Remplacement du raccord ou de l'équipement, test d'étanchéité, remise en eau : tout refonctionne.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ZONE D'INTERVENTION (carte interactive) ========== -->
+  <section id="zone">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><path d="M50 22c-4 5-7.5 8.5-7.5 12a7.5 7.5 0 0 0 15 0c0-3.5-3.5-7-7.5-12z" fill="#8F7BFF"/></g>
+        </svg></div>
+        <span class="eyebrow">Zone d'intervention</span>
+        <h2>Partout à Strasbourg et dans l'Eurométropole</h2>
+        <p>Depuis nos locaux du quartier des XV, on rayonne dans toute la ville et les communes voisines. Survolez ou touchez un point pour le découvrir.</p>
+      </div>
+      <div class="zone-wrap">
+        <aside class="zone-list" aria-label="Points d'intervention">
+          <div class="zone-list-head"><strong>Points d'intervention</strong><button type="button" class="pill" id="zone-replay">↻ Rejouer</button></div>
+          <ul id="zone-items"></ul>
+          <div class="zone-legend"><span><i class="lg-base"></i>Nos locaux</span><span><i class="lg-city"></i>Quartiers</span><span><i class="lg-near"></i>Eurométropole</span></div>
+        </aside>
+        <div class="zone-map-wrap">
+          <div id="zone-map" class="zone-map" role="region" aria-label="Carte de Strasbourg : zone d'intervention"></div>
+          <div class="zone-hint" id="zone-hint">Cliquez sur la carte pour zoomer à la molette</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+        </svg></div>
+        <span class="eyebrow">Contact</span>
+        <h2>Demandez votre intervention</h2>
+        <p>Appelez-nous directement, 24h/24, ou envoyez votre demande : on vous rappelle rapidement.</p>
+      </div>
+      <div class="contact-wrap">
+        <div class="card contact-info">
+          <div class="row">
+            <div class="icon"><svg><use href="#i-phone"/></svg></div>
+            <div><strong>Téléphone</strong><a href="tel:+33618345444">06 18 34 54 44</a> · <a href="tel:+33953206105">09 53 20 61 05</a></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-mail"/></svg></div>
+            <!-- TODO : remplacer l'adresse e-mail -->
+            <div><strong>E-mail</strong><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-pin"/></svg></div>
+            <div><strong>Adresse</strong><span>48 allée de la Robertsau, 67000 Strasbourg</span></div>
+          </div>
+          <div class="row">
+            <div class="icon"><svg><use href="#i-clock"/></svg></div>
+            <div><strong>Horaires</strong><span>Ouvert 24h/24 · 7j/7, urgences comprises</span></div>
+          </div>
+          <div class="map">
+            <iframe
+              title="Localisation d'ELDAN Sanitaire"
+              src="https://maps.google.com/maps?q=48.589492,7.767242&z=15&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+
+        <form class="card" id="devis-form">
+          <div class="two">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="tel">Téléphone</label>
+              <input id="tel" name="tel" type="tel" required autocomplete="tel">
+            </div>
+          </div>
+          <div class="two">
+            <div class="field">
+              <label for="intervention">Intervention</label>
+              <select id="intervention" name="intervention">
+                <option>Fuite d'eau</option>
+                <option>Débouchage</option>
+                <option>Chauffe-eau / ballon</option>
+                <option>Salle de bain</option>
+                <option>Sanitaires / robinetterie</option>
+                <option>Gaz / climatisation</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="urgence">Urgence</label>
+              <select id="urgence" name="urgence">
+                <option>Dès que possible</option>
+                <option>Urgent (aujourd'hui)</option>
+                <option>Sur rendez-vous</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ville">Ville</label>
+            <input id="ville" name="ville" placeholder="ex. Strasbourg" autocomplete="address-level2">
+          </div>
+          <div class="field">
+            <label for="probleme">Description du problème</label>
+            <textarea id="probleme" name="probleme" placeholder="ex. Fuite sous l'évier de la cuisine, l'eau coule au niveau du raccord"></textarea>
+          </div>
+          <button type="submit" class="btn btn-accent">Envoyer ma demande</button>
+          <p class="note">Votre demande s'ouvre dans votre messagerie e-mail, prête à être envoyée.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div>
+      <strong>ELDAN Sanitaire</strong><br>
+      Plomberie, sanitaire et chauffe-eau · Strasbourg<br>
+      SIRET : 515 258 390 00027
+    </div>
+    <div>
+      © <span id="year">2026</span> ELDAN Sanitaire<br>
+      <a href="#">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+<a href="tel:+33618345444" class="btn btn-accent float-call"><svg><use href="#i-phone"/></svg>Appeler un plombier</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // « Nos services » et « Pourquoi nous » : éléments qui apparaissent en cascade au défilement.
+  (() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const items = document.querySelectorAll('#services .section-head, #services .card, #pourquoi .why');
+    items.forEach((el) => el.classList.add('reveal'));
+    document.documentElement.classList.add('reveal-on');
+    const io = new IntersectionObserver((entries) => {
+      // Décalage relatif aux éléments qui entrent ensemble (une rangée sur ordi, une carte sur mobile).
+      entries.filter((en) => en.isIntersecting).forEach((en, j) => {
+        en.target.style.setProperty('--d', j * 120 + 'ms');
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach((el) => io.observe(el));
+  })();
+
+  // Chauffe-eau en 3D (three.js) : cycle de 12 s fuite → réparation → eau chaude.
+  const NUIT = { s1: '#070B18', s2: '#2B3A67', body: '#2B3A67', panel: '#121A33', ring: '#2B3A67', dark: '#070B18', glass: '#00D1FF', water: '#00D1FF', accent: '#8F7BFF', metal: '#2B3A67', halo: '#D6F4FF', glow: 1 };
+  (function () {
+    const host = document.getElementById('hero3d');
+    if (!host || !window.THREE) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch (e) {
+      host.insertAdjacentHTML('beforeend', '<div class="nogl">La 3D n\'est pas disponible sur cet appareil.</div>');
+      return;
+    }
+    renderer.domElement.setAttribute('aria-label', 'Animation 3D : une clé répare la fuite d\'un chauffe-eau');
+    renderer.domElement.setAttribute('role', 'img');
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    host.prepend(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+    camera.position.set(0, 1.3, 11);
+    camera.lookAt(0, -0.1, 0);
+
+    // Lumières
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x223344, 0.65);
+    scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xffffff, 0.9);
+    key.position.set(4, 7, 7); key.castShadow = true;
+    key.shadow.mapSize.set(1024, 1024);
+    Object.assign(key.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5 });
+    scene.add(key);
+    const rim = new THREE.PointLight(0xffffff, 0.9, 30);
+    rim.position.set(-5, 3, -4);
+    scene.add(rim);
+
+    // Matériaux par rôle (recolorés selon la direction)
+    const M = {
+      body: new THREE.MeshStandardMaterial({ roughness: 0.35, metalness: 0.1 }),
+      panel: new THREE.MeshStandardMaterial({ roughness: 0.4, metalness: 0.15 }),
+      ring: new THREE.MeshStandardMaterial({ roughness: 0.25, metalness: 0.55 }),
+      dark: new THREE.MeshStandardMaterial({ roughness: 0.6, metalness: 0.1 }),
+      water: new THREE.MeshStandardMaterial({ roughness: 0.1, metalness: 0, transparent: true, opacity: 0.8 }),
+      accent: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.5 }),
+      metal: new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.7 }),
+      glass: new THREE.MeshPhysicalMaterial({ roughness: 0.05, metalness: 0, transparent: true, opacity: 0.28, clearcoat: 1 }),
+      led: new THREE.MeshStandardMaterial({ roughness: 0.3 }),
+      steam: new THREE.MeshStandardMaterial({ roughness: 1, transparent: true, opacity: 0.5, depthWrite: false }),
+    };
+
+    const world = new THREE.Group();
+    scene.add(world);
+    const heater = new THREE.Group();
+    world.add(heater);
+
+    const add = (geo, mat, x, y, z, parent = heater) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; parent.add(m); return m; };
+
+    // Ballon : cylindre + deux dômes aplatis + cerclages
+    const TR = 1, TOP = 1.65, BOT = -0.55;
+    const tank = add(new THREE.CylinderGeometry(TR, TR, TOP - BOT, 64, 1, true), M.body, 0, (TOP + BOT) / 2, 0);
+    tank.receiveShadow = true;
+    add(new THREE.SphereGeometry(TR, 64, 24, 0, Math.PI * 2, 0, Math.PI / 2), M.body, 0, TOP, 0).scale.y = 0.35;
+    add(new THREE.SphereGeometry(TR, 64, 24, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), M.body, 0, BOT, 0).scale.y = 0.35;
+    [TOP - 0.05, BOT + 0.05].forEach((y) => { add(new THREE.TorusGeometry(TR + 0.01, 0.045, 12, 72), M.ring, 0, y, 0).rotation.x = Math.PI / 2; });
+
+    // Boîtier de commande : écran, thermostat, voyant
+    add(new THREE.BoxGeometry(1.0, 0.72, 0.2), M.panel, 0, 1.05, 0.95);
+    const knob = add(new THREE.CylinderGeometry(0.12, 0.13, 0.1, 32), M.ring, -0.3, 0.83, 1.1);
+    knob.rotation.x = Math.PI / 2;
+    add(new THREE.BoxGeometry(0.03, 0.1, 0.03), M.dark, 0, 0.06, 0.05, knob).rotation.x = -Math.PI / 2;
+    const led = add(new THREE.SphereGeometry(0.055, 16, 16), M.led, 0.32, 0.83, 1.06);
+
+    // Écran (texture dessinée sur un canvas)
+    const dcan = document.createElement('canvas'); dcan.width = 256; dcan.height = 96;
+    const dctx = dcan.getContext('2d');
+    const dtex = new THREE.CanvasTexture(dcan); dtex.encoding = THREE.sRGBEncoding;
+    add(new THREE.PlaneGeometry(0.72, 0.27), new THREE.MeshBasicMaterial({ map: dtex, toneMapped: false }), 0, 1.15, 1.052);
+    let displayText = '', displayOn = true, colors = null;
+    function drawDisplay(text, on) {
+      if (text === displayText && on === displayOn) return;
+      displayText = text; displayOn = on;
+      dctx.fillStyle = colors ? colors.dark : '#000'; dctx.fillRect(0, 0, 256, 96);
+      if (on) {
+        dctx.fillStyle = colors ? colors.water : '#fff';
+        dctx.font = 'bold 58px ui-monospace, Menlo, monospace'; dctx.textAlign = 'center'; dctx.textBaseline = 'middle';
+        dctx.fillText(text, 128, 52);
+      }
+      dtex.needsUpdate = true;
+    }
+
+    // Manomètre : cadran dessiné + aiguille
+    const GAUGE_Y = 0.12;
+    add(new THREE.CylinderGeometry(0.3, 0.3, 0.12, 48), M.ring, 0, GAUGE_Y, 1.0).rotation.x = Math.PI / 2;
+    const gcan = document.createElement('canvas'); gcan.width = 128; gcan.height = 128;
+    const gctx = gcan.getContext('2d');
+    const gtex = new THREE.CanvasTexture(gcan); gtex.encoding = THREE.sRGBEncoding;
+    add(new THREE.CircleGeometry(0.25, 48), new THREE.MeshBasicMaterial({ map: gtex, toneMapped: false }), 0, GAUGE_Y, 1.062);
+    function drawGauge() {
+      const c = colors, rad = Math.PI / 180;
+      gctx.fillStyle = c.panel; gctx.fillRect(0, 0, 128, 128);
+      gctx.lineWidth = 8; gctx.lineCap = 'butt';
+      gctx.strokeStyle = c.water; gctx.beginPath(); gctx.arc(64, 64, 48, -210 * rad, -18 * rad); gctx.stroke();
+      gctx.strokeStyle = c.accent; gctx.beginPath(); gctx.arc(64, 64, 48, -18 * rad, 30 * rad); gctx.stroke();
+      gctx.strokeStyle = c.halo; gctx.lineWidth = 3;
+      for (let i = 0; i <= 10; i++) {
+        const a = (-210 + i * 24) * rad, r1 = i % 5 ? 36 : 30;
+        gctx.beginPath(); gctx.moveTo(64 + Math.cos(a) * r1, 64 + Math.sin(a) * r1); gctx.lineTo(64 + Math.cos(a) * 42, 64 + Math.sin(a) * 42); gctx.stroke();
+      }
+      gctx.fillStyle = c.halo; gctx.font = 'bold 16px ui-monospace, Menlo, monospace'; gctx.textAlign = 'center';
+      gctx.fillText('bar', 64, 104);
+      gtex.needsUpdate = true;
+    }
+    const needle = new THREE.Group(); needle.position.set(0, GAUGE_Y, 1.075); heater.add(needle);
+    add(new THREE.BoxGeometry(0.03, 0.19, 0.012), M.accent, 0, 0.075, 0, needle);
+    add(new THREE.SphereGeometry(0.03, 12, 12), M.ring, 0, 0, 0.005, needle);
+    add(new THREE.CircleGeometry(0.25, 48), M.glass, 0, GAUGE_Y, 1.09);
+    const GAUGE_LOW = 2.0, GAUGE_OK = -0.35; // angle de l'aiguille : vers la gauche = basse pression
+
+    // Tuyaux : sortie sous le ballon → coude vers l'avant → descente dans le sol
+    function pipe(x) {
+      const v = (y, z) => new THREE.Vector3(x, y, z);
+      const path = new THREE.CurvePath();
+      path.add(new THREE.LineCurve3(v(-0.7, 0), v(-1.0, 0)));
+      path.add(new THREE.QuadraticBezierCurve3(v(-1.0, 0), v(-1.2, 0), v(-1.2, 0.2)));
+      path.add(new THREE.LineCurve3(v(-1.2, 0.2), v(-1.2, 0.95)));
+      path.add(new THREE.QuadraticBezierCurve3(v(-1.2, 0.95), v(-1.2, 1.15), v(-1.4, 1.15)));
+      path.add(new THREE.LineCurve3(v(-1.4, 1.15), v(-1.74, 1.15)));
+      const g = new THREE.Group(); heater.add(g);
+      add(new THREE.TubeGeometry(path, 96, 0.075, 16, false), M.metal, 0, 0, 0, g);
+      add(new THREE.CylinderGeometry(0.15, 0.15, 0.04, 24), M.ring, x, -1.72, 1.15, g);
+      return g;
+    }
+    // Eau froide à gauche (bague cyan + vanne), eau chaude à droite (bague violette + raccord qui fuit)
+    pipe(-0.45);
+    add(new THREE.TorusGeometry(0.085, 0.028, 10, 28), M.led, -0.45, -0.92, 0).rotation.x = Math.PI / 2;
+    add(new THREE.SphereGeometry(0.12, 20, 16), M.ring, -0.45, -1.2, 0.6);
+    add(new THREE.CylinderGeometry(0.03, 0.03, 0.14, 12), M.ring, -0.45, -1.06, 0.6);
+    add(new THREE.BoxGeometry(0.06, 0.05, 0.34), M.water, -0.45, -0.99, 0.72);
+    const hotPipe = pipe(0.45);
+    add(new THREE.TorusGeometry(0.085, 0.028, 10, 28), M.accent, 0.45, -0.92, 0, hotPipe).rotation.x = Math.PI / 2;
+    const NUT = new THREE.Vector3(0.45, -1.2, 0.6);
+    const nutGeo = new THREE.CylinderGeometry(0.13, 0.13, 0.16, 6);
+    const bolt = add(nutGeo, M.metal, NUT.x, NUT.y, NUT.z, hotPipe); bolt.rotation.x = Math.PI / 2;
+
+    // Sol qui reçoit l'ombre + flaque sous la fuite
+    const GROUND = -1.74;
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), new THREE.ShadowMaterial({ opacity: 0.28 }));
+    ground.rotation.x = -Math.PI / 2; ground.position.y = GROUND; ground.receiveShadow = true;
+    world.add(ground);
+    const puddle = new THREE.Mesh(new THREE.CircleGeometry(0.55, 40), M.water);
+    puddle.rotation.x = -Math.PI / 2; puddle.position.set(NUT.x + 0.1, GROUND + 0.01, NUT.z + 0.05);
+    world.add(puddle);
+
+    // Gouttes qui tombent du raccord + jet qui fuse sur le côté
+    const drops = [];
+    for (let i = 0; i < 9; i++) {
+      const d = add(new THREE.SphereGeometry(0.035 + (i % 3) * 0.008, 10, 10), M.water, NUT.x, NUT.y, NUT.z, world);
+      d.userData = { jet: i >= 6, off: i / 6 + Math.random() * 0.1, side: (Math.random() - 0.5) * 0.12 };
+      drops.push(d);
+    }
+
+    // Vapeur au-dessus du ballon une fois l'eau chaude
+    const steam = [];
+    for (let i = 0; i < 7; i++) {
+      const s = add(new THREE.SphereGeometry(0.1 + Math.random() * 0.06, 12, 12), M.steam, 0, 0, 0, world);
+      s.castShadow = false;
+      s.userData = { x: (Math.random() - 0.5) * 0.9, z: (Math.random() - 0.5) * 0.6, speed: 0.25 + Math.random() * 0.2, offset: Math.random() };
+      steam.push(s);
+    }
+
+    // Clé plate : mâchoire ouverte (tore partiel) + manche + anneau
+    const wrench = new THREE.Group();
+    const jaw = add(new THREE.TorusGeometry(0.2, 0.075, 14, 32, Math.PI * 1.5), M.accent, 0, 0, 0, wrench);
+    jaw.rotation.z = Math.PI / 4;
+    add(new THREE.BoxGeometry(1.25, 0.17, 0.09), M.accent, -0.86, 0, 0, wrench);
+    add(new THREE.TorusGeometry(0.14, 0.065, 12, 28), M.accent, -1.58, 0, 0, wrench);
+    world.add(wrench);
+    const WR_HOME = new THREE.Vector3(2.35, 0.7, 1.2);
+    const WR_HOME_BASE = WR_HOME.clone();
+
+    // Cadrage : la caméra recule juste assez pour que ballon + clé + outils tiennent
+    // dans la zone, centrés, avec une marge en bas pour l'indicateur et « Rejouer ».
+    // Sur un écran étroit, les outils se rapprochent pour garder le ballon grand.
+    let spread = 1;
+    function frameScene(w, h) {
+      const aspect = w / h;
+      spread = Math.max(0.62, Math.min(1, aspect / 1.15));
+      WR_HOME.set(WR_HOME_BASE.x * Math.max(spread, 0.8), WR_HOME_BASE.y, WR_HOME_BASE.z);
+      const halfW = 1.4 + 1.6 * spread;          // ballon (±1) + outils sur les côtés
+      const top = 2.5, bottom = -1.95;            // haut des outils / vapeur → sol / flaque
+      const halfH = (top - bottom) / 2, midY = (top + bottom) / 2;
+      const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+      const dist = Math.max(halfH / t, halfW / (t * aspect)) * 1.04 + 0.9;
+      camera.position.set(0, midY + 1.1, dist);
+      camera.lookAt(0, midY, 0);
+      // Décale l'image vers le haut pour libérer la place des boutons du bas.
+      camera.setViewOffset(w, h, 0, Math.min(46, h * 0.09), w, h);
+      camera.updateProjectionMatrix();
+    }
+
+    // Outils qui flottent autour : volant de vanne, gouttes, ventouse, écrou, coude
+    function holder(g) { const h = new THREE.Group(); h.add(g); return h; }
+    function valveWheel(mat) {
+      const g = new THREE.Group();
+      add(new THREE.TorusGeometry(0.26, 0.05, 12, 40), mat, 0, 0, 0, g);
+      add(new THREE.BoxGeometry(0.52, 0.05, 0.05), mat, 0, 0, 0, g);
+      add(new THREE.BoxGeometry(0.05, 0.52, 0.05), mat, 0, 0, 0, g);
+      add(new THREE.CylinderGeometry(0.07, 0.07, 0.1, 20), M.dark, 0, 0, 0, g).rotation.x = Math.PI / 2;
+      return holder(g);
+    }
+    function drop(r) {
+      const g = new THREE.Group();
+      add(new THREE.SphereGeometry(r, 24, 16), M.water, 0, 0, 0, g);
+      add(new THREE.ConeGeometry(r * 0.87, r * 1.4, 24), M.water, 0, r * 1.2, 0, g);
+      return holder(g);
+    }
+    function plunger() {
+      const g = new THREE.Group();
+      add(new THREE.SphereGeometry(0.22, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), M.accent, 0, -0.3, 0, g).scale.y = 0.8;
+      add(new THREE.TorusGeometry(0.22, 0.03, 8, 32), M.accent, 0, -0.3, 0, g).rotation.x = Math.PI / 2;
+      add(new THREE.CylinderGeometry(0.035, 0.035, 0.75, 12), M.ring, 0, 0.1, 0, g);
+      add(new THREE.SphereGeometry(0.06, 12, 12), M.ring, 0, 0.48, 0, g);
+      return holder(g);
+    }
+    function nut(mat) { const g = new THREE.Group(); add(new THREE.CylinderGeometry(0.14, 0.14, 0.1, 6), mat, 0, 0, 0, g).rotation.x = Math.PI / 2; return g; }
+    function elbow(mat) {
+      const g = new THREE.Group();
+      add(new THREE.TorusGeometry(0.2, 0.07, 14, 24, Math.PI / 2), mat, -0.1, -0.1, 0, g);
+      add(new THREE.CylinderGeometry(0.09, 0.09, 0.1, 16), M.ring, 0.1, -0.1, 0, g);
+      add(new THREE.CylinderGeometry(0.09, 0.09, 0.1, 16), M.ring, -0.1, 0.1, 0, g).rotation.z = Math.PI / 2;
+      return holder(g);
+    }
+    const floaters = [
+      { o: valveWheel(M.ring), r: 2.7, y: 1.5, a: 0.2, s: 0.25, spin: 0.9 },
+      { o: drop(0.16), r: 3.0, y: -0.7, a: Math.PI + 0.3, s: 0.2, spin: -0.8 },
+      { o: plunger(), r: 2.9, y: 0.5, a: Math.PI - 0.2, s: 0.18, spin: 0.6 },
+      { o: nut(M.metal), r: 2.5, y: -1.2, a: -0.3, s: 0.3, spin: 1.5 },
+      { o: elbow(M.accent), r: 3.2, y: 2.0, a: Math.PI + 0.1, s: 0.22, spin: 1.1 },
+      { o: drop(0.11), r: 3.3, y: -0.2, a: 0.5, s: 0.26, spin: -1.2 },
+    ];
+    floaters.forEach((f) => { f.o.traverse((m) => { if (m.isMesh) m.castShadow = true; }); world.add(f.o); });
+
+    // Éclaboussures pendant le serrage
+    const sparks = [];
+    for (let i = 0; i < 6; i++) {
+      const s = add(new THREE.SphereGeometry(0.035, 8, 8), M.led, NUT.x, NUT.y, NUT.z, world);
+      s.visible = false; sparks.push(s);
+    }
+
+    // Couleurs
+    function applyColors(c) {
+      colors = c;
+      M.body.color.set(c.body); M.panel.color.set(c.panel); M.ring.color.set(c.ring); M.dark.color.set(c.dark);
+      M.water.color.set(c.water); M.accent.color.set(c.accent); M.metal.color.set(c.metal);
+      M.glass.color.set(c.glass); M.led.color.set(c.water);
+      M.steam.color.set(c.halo); M.steam.emissive.set(c.halo); M.steam.emissiveIntensity = 1;
+      const glow = c.glow ? 0.55 : 0;
+      M.water.emissive.set(c.water); M.water.emissiveIntensity = glow * 0.8;
+      M.accent.emissive.set(c.accent); M.accent.emissiveIntensity = glow * 0.5;
+      M.led.emissive.set(c.water); M.led.emissiveIntensity = 0.6 + glow;
+      rim.color.set(c.s2); hemi.color.set(c.body); hemi.groundColor.set(c.dark);
+      displayText = null; drawDisplay(currentDisplay, true); drawGauge();
+    }
+    let currentDisplay = 'FUITE';
+
+    // Rotation à la souris / au doigt
+    let yaw = -0.35, pitch = 0.06, tYaw = -0.35, tPitch = 0.06, dragging = false, lastX = 0, lastY = 0, idleAt = 0;
+    host.addEventListener('pointerdown', (e) => { if (e.target.closest('button')) return; dragging = true; lastX = e.clientX; lastY = e.clientY; host.setPointerCapture(e.pointerId); });
+    host.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      tYaw += (e.clientX - lastX) * 0.01; tPitch = Math.max(-0.3, Math.min(0.5, tPitch + (e.clientY - lastY) * 0.005));
+      lastX = e.clientX; lastY = e.clientY;
+    });
+    const endDrag = () => { dragging = false; idleAt = performance.now(); };
+    host.addEventListener('pointerup', endDrag); host.addEventListener('pointercancel', endDrag);
+
+    // Taille
+    function resize() {
+      const w = host.clientWidth, h = host.clientHeight;
+      renderer.setSize(w, h, false); camera.aspect = w / h;
+      frameScene(w, h);
+    }
+    new ResizeObserver(resize).observe(host); resize();
+
+    // Chronologie
+    const CYCLE = 12;
+    let t0 = performance.now();
+    host.querySelector('#replay3d').addEventListener('click', () => { t0 = performance.now(); });
+    const statusEl = host.querySelector('.status'), statusText = host.querySelector('.status-text');
+    let lastPhase = '';
+    function setPhase(p, text) {
+      if (p === lastPhase) return; lastPhase = p;
+      statusEl.dataset.phase = p; statusText.textContent = text;
+    }
+    const ease = (x) => x < 0 ? 0 : x > 1 ? 1 : x * x * (3 - 2 * x);
+    const lerp = (a, b, k) => a + (b - a) * k;
+
+    let visible = true;
+    new IntersectionObserver((en) => { visible = en[0].isIntersecting; }).observe(host);
+
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (!visible || document.hidden) return;
+      const time = now / 1000;
+      const tc = reduced ? 9 : ((now - t0) / 1000) % CYCLE;
+
+      // Phases
+      const broken = tc < 3, repairing = tc >= 3 && tc < 7, running = tc >= 7;
+      if (broken) setPhase('broken', 'Fuite détectée · 0,4 bar');
+      else if (repairing) setPhase('repairing', 'Réparation en cours…');
+      else setPhase('fixed', 'Réparé ✓ · 3 bar · 55 °C');
+
+      // Le tuyau d'eau chaude vibre tant qu'il fuit (coups de bélier)
+      const shake = broken ? Math.max(0, Math.sin(time * 2.4)) : 0;
+      hotPipe.position.x = shake * 0.012 * Math.sin(time * 41);
+      hotPipe.position.z = shake * 0.01 * Math.sin(time * 33);
+      knob.rotation.y = lerp(knob.rotation.y, running ? 2.2 : 0, 0.05);
+
+      // Fuite : gouttes + jet tant que l'écrou n'est pas serré, flaque qui s'étend puis sèche
+      const leaking = tc < 5.4;
+      drops.forEach((d) => {
+        d.visible = leaking && !reduced;
+        if (!d.visible) return;
+        const p = (time * 1.15 + d.userData.off) % 1;
+        if (d.userData.jet) {
+          d.position.set(NUT.x + 0.14 + p * 0.55, NUT.y + 0.04 + p * 0.22 - p * p * 0.75, NUT.z + 0.05);
+          d.scale.setScalar(1 - p * 0.6);
+        } else {
+          d.position.set(NUT.x + d.userData.side * p, NUT.y - 0.14 - p * p * (NUT.y - 0.14 - GROUND), NUT.z + 0.04);
+          d.scale.set(1, 1 + p * 0.6, 1);
+        }
+      });
+      const puddleSize = broken ? 0.35 + 0.65 * ease(tc / 3) : repairing ? 1 : 1 - ease((tc - 7) / 1.6);
+      puddle.visible = puddleSize > 0.01;
+      puddle.scale.set(puddleSize, puddleSize * 0.8, 1);
+
+      // Manomètre : la pression chute pendant la fuite, remonte à 3 bar une fois réparé
+      const target = running ? GAUGE_OK : repairing ? lerp(GAUGE_LOW, 0.8, ease((tc - 5.4) / 1.6)) : GAUGE_LOW;
+      needle.rotation.z = lerp(needle.rotation.z, target + (broken && !reduced ? Math.sin(time * 23) * 0.08 : 0), 0.08);
+
+      // Écran et voyant : alerte qui clignote → attente → la température monte
+      const blink = Math.floor(time * 2) % 2 === 0;
+      currentDisplay = broken ? 'FUITE' : repairing ? '- - -' : Math.round(lerp(20, 55, ease((tc - 7) / 2.5))) + '°C';
+      drawDisplay(currentDisplay, running || blink);
+      led.visible = running || blink;
+
+      // Vapeur qui s'élève au-dessus du ballon
+      steam.forEach((s) => {
+        s.visible = running && tc > 8 && !reduced;
+        if (!s.visible) return;
+        const k = (time * s.userData.speed + s.userData.offset) % 1;
+        s.position.set(s.userData.x + Math.sin(time + s.userData.offset * 6) * 0.08, TOP + 0.3 + k * 0.6, s.userData.z);
+        s.scale.setScalar((0.5 + k) * (1 - k) * 2);
+      });
+
+      // Clé : flotte → va au raccord → serre → repart
+      const fly = ease((tc - 3) / 0.9), back = ease((tc - 6.2) / 0.9);
+      const k = repairing ? (tc < 6.2 ? fly : 1 - back) : 0;
+      const tightening = tc > 3.9 && tc < 6.2;
+      wrench.position.lerpVectors(WR_HOME, NUT, k);
+      wrench.position.y += (1 - k) * Math.sin(time * 1.6) * 0.12;
+      const baseAngle = Math.PI * (0.72 + 0.22 * k); // à l'horizontale vers la droite une fois sur l'écrou
+      wrench.rotation.z = baseAngle + (tightening ? Math.sin((tc - 3.9) * 9) * 0.35 : (1 - k) * Math.sin(time * 1.2) * 0.25);
+      wrench.rotation.y = (1 - k) * Math.sin(time * 0.8) * 0.6;
+      wrench.rotation.x = (1 - k) * 0.3;
+      if (tightening) bolt.rotation.y += 0.08;
+      sparks.forEach((s, i) => {
+        s.visible = tightening && tc < 5.4 && Math.random() < 0.5;
+        if (s.visible) { const a = i * 1.05 + time * 6; const d = 0.2 + Math.random() * 0.25; s.position.set(NUT.x + Math.cos(a) * d, NUT.y + Math.sin(a) * d, NUT.z + 0.1); }
+      });
+
+      // Outils en orbite
+      floaters.forEach((f) => {
+        // Va-et-vient en arc sur le côté (±0,55 rad autour de son angle de base)
+        const a = f.a + (reduced ? 0 : Math.sin(time * f.s + f.y) * 0.55);
+        f.o.position.set(Math.cos(a) * f.r * spread, f.y + Math.sin(time * 0.9 + f.a) * 0.18, Math.sin(a) * f.r * 0.7 * spread);
+        f.o.rotation.z = time * f.spin; f.o.rotation.y = time * 0.5;
+      });
+
+      // Caméra : rotation à la souris + léger balancement automatique
+      const idle = !dragging && now - idleAt > 2500 && !reduced;
+      const sway = idle ? Math.sin(time * 0.35) * 0.35 : 0;
+      yaw = lerp(yaw, tYaw + sway, 0.08); pitch = lerp(pitch, tPitch, 0.08);
+      world.rotation.y = yaw; world.rotation.x = pitch;
+
+      renderer.render(scene, camera);
+    }
+
+    applyColors(NUIT);
+    needle.rotation.z = reduced ? GAUGE_OK : GAUGE_LOW;
+    requestAnimationFrame(frame);
+  })();
+
+  // Fonds animés : petits symboles placés sur une grille avec un décalage aléatoire,
+  // qui flottent et scintillent (ou tournent pour les volants de vanne).
+  const fillSky = (sky, { shapes, cols, rows, size, opacity, spin = [] }) => {
+    if (!sky) return '';
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const colors = ['var(--cyan)', 'var(--violet)', 'var(--line)', 'var(--halo)'];
+    let html = '', i = 0;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++, i++) {
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const vars = [
+          `left:${((c + rnd(.1, .9)) / cols * 100).toFixed(1)}%`, `top:${((r + rnd(.1, .9)) / rows * 100).toFixed(1)}%`,
+          `--sz:${rnd(size[0], size[1]).toFixed(0)}px`, `--c:${colors[i % colors.length]}`,
+          `--fd:${rnd(7, 15).toFixed(1)}s`, `--fdl:${(-rnd(0, 15)).toFixed(1)}s`,
+          `--dx:${rnd(-25, 25).toFixed(0)}px`, `--dy:${rnd(-45, -10).toFixed(0)}px`, `--rot:${rnd(-60, 60).toFixed(0)}deg`,
+          `--td:${rnd(spin.includes(shape) ? 6 : 2, spin.includes(shape) ? 12 : 5).toFixed(1)}s`, `--tdl:${(-rnd(0, 5)).toFixed(1)}s`,
+          `--o1:${rnd(opacity[0], opacity[1]).toFixed(2)}`, `--o2:${rnd(opacity[2], opacity[3]).toFixed(2)}`,
+        ].join(';');
+        html += `<span class="sky-star${spin.includes(shape) ? ' spin' : ''}" style="${vars}"><svg><use href="#${shape}"/></svg></span>`;
+      }
+    }
+    return html;
+  };
+  const small = window.innerWidth < 720;
+
+  // Section avis : étoiles + étincelles + gouttes + étoiles filantes.
+  (() => {
+    const sky = document.querySelector('#avis .sky');
+    if (!sky) return;
+    let html = fillSky(sky, {
+      shapes: ['i-star', 'i-star', 'i-star', 'i-sparkle', 'i-sparkle', 'i-drop'],
+      cols: small ? 3 : 7, rows: small ? 6 : 5, size: [8, 26], opacity: [.1, .3, .45, .9],
+    });
+    [[-10, 8, 9, 0], [5, 40, 11, -4], [-15, 65, 13, -8]].forEach(([l, t, d, dl]) => {
+      html += `<span class="shoot" style="left:${l}%;top:${t}%;--sd:${d}s;--sdl:${dl}s"></span>`;
+    });
+    sky.innerHTML = html;
+  })();
+
+  // Section services : équipements sanitaires et outils du plombier.
+  (() => {
+    const sky = document.querySelector('#services .sky');
+    if (!sky) return;
+    sky.innerHTML = fillSky(sky, {
+      shapes: ['i-drop', 'i-drop', 'i-tap', 'i-shower', 'i-heater', 'i-flame', 'i-pipe',
+               'i-wrench', 'i-plunger', 'i-valve', 'i-valve', 'i-toolbox'],
+      spin: ['i-valve'],
+      cols: small ? 3 : 8, rows: small ? 9 : 6, size: [18, 34], opacity: [.15, .3, .4, .7],
+    });
+  })();
+
+  // Carte de note : compteur animé + étoiles en cascade quand la carte devient visible.
+  (() => {
+    const card = document.querySelector('.rating-card');
+    const rating = parseFloat(card.dataset.rating);
+    const reviews = parseInt(card.dataset.reviews, 10);
+    const scoreEl = card.querySelector('.score');
+    const countEl = card.querySelector('.count');
+    const fmtScore = (v) => v.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const fmtCount = (v) => Math.round(v).toLocaleString('fr-FR');
+
+    // Remplissage de chaque étoile (gère les notes non entières, ex. 4,8).
+    card.querySelectorAll('.star').forEach((star, i) => {
+      const fill = Math.max(0, Math.min(1, rating - i)) * 100;
+      star.style.setProperty('--fill', fill + '%');
+    });
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) return; // valeurs finales déjà dans le HTML
+
+    card.classList.add('js-anim');
+    scoreEl.textContent = fmtScore(0);
+    countEl.textContent = fmtCount(0);
+
+    const run = () => {
+      card.classList.add('is-visible');
+      const duration = 1600;
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        const e = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        scoreEl.textContent = fmtScore(rating * e);
+        countEl.textContent = fmtCount(reviews * e);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((en) => en.isIntersecting)) { io.disconnect(); run(); }
+    }, { threshold: 0.4 });
+    io.observe(card);
+  })();
+
+  // Formulaire sans serveur : ouvre un e-mail pré-rempli.
+  // TODO : remplacer l'adresse e-mail (ou brancher Formspree / Netlify Forms).
+  const CONTACT_EMAIL = 'contact@exemple.fr';
+  document.getElementById('devis-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const subject = `Demande d'intervention – ${f.get('intervention')}`;
+    const body = [
+      `Nom : ${f.get('nom')}`,
+      `Téléphone : ${f.get('tel')}`,
+      `Ville : ${f.get('ville')}`,
+      `Intervention : ${f.get('intervention')}`,
+      `Urgence : ${f.get('urgence')}`,
+      '',
+      'Problème :',
+      f.get('probleme'),
+    ].join('\n');
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
+  // Carte de la zone d'intervention : nos locaux reliés aux quartiers de Strasbourg et à l'Eurométropole.
+  (() => {
+    const el = document.getElementById('zone-map');
+    if (!el || !window.L) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const BASE = { name: 'Nos locaux', lat: 48.589492, lng: 7.767242 };
+    // [nom, lat, lng, type, description] — « near » = communes de l'Eurométropole
+    const POINTS = [
+      ['Grande Île', 48.5818, 7.7509, 'city', 'Le centre historique, autour de la cathédrale.'],
+      ['Petite France', 48.5808, 7.7425, 'city', 'Le quartier des tanneurs et ses maisons à colombages.'],
+      ['Gare', 48.5850, 7.7350, 'city', 'Le quartier de la gare centrale, à l’ouest du centre.'],
+      ['Krutenau', 48.5790, 7.7575, 'city', 'Le quartier vivant entre l’Ill et l’Esplanade.'],
+      ['Esplanade', 48.5805, 7.7680, 'city', 'Le quartier universitaire, à l’est du centre.'],
+      ['Neustadt', 48.5870, 7.7550, 'city', 'Le quartier impérial, autour de la place de la République.'],
+      ['Orangerie', 48.5935, 7.7740, 'city', 'Autour du parc de l’Orangerie, à deux pas de nos locaux.'],
+      ['Wacken', 48.5975, 7.7690, 'city', 'Le quartier européen et ses institutions.'],
+      ['Robertsau', 48.6040, 7.7890, 'city', 'Le grand quartier vert au nord-est.'],
+      ['Neudorf', 48.5680, 7.7560, 'city', 'Le grand quartier résidentiel au sud du centre.'],
+      ['Meinau', 48.5530, 7.7530, 'city', 'Le sud de la ville, au-delà de Neudorf.'],
+      ['Port du Rhin', 48.5740, 7.7960, 'city', 'L’est de la ville, au bord du Rhin.'],
+      ['Koenigshoffen', 48.5800, 7.7160, 'city', 'L’ouest de la ville, le long de la route des Romains.'],
+      ['Cronenbourg', 48.5930, 7.7200, 'city', 'Le nord-ouest de la ville.'],
+      ['Hautepierre', 48.5915, 7.6965, 'city', 'L’ouest, autour de l’hôpital de Hautepierre.'],
+      ['Schiltigheim', 48.6070, 7.7500, 'near', 'Commune voisine au nord.'],
+      ['Bischheim', 48.6160, 7.7530, 'near', 'Commune voisine au nord.'],
+      ['Hoenheim', 48.6250, 7.7570, 'near', 'Commune de l’Eurométropole au nord.'],
+      ['Lingolsheim', 48.5575, 7.6830, 'near', 'Commune voisine au sud-ouest.'],
+      ['Ostwald', 48.5420, 7.7100, 'near', 'Commune voisine au sud-ouest.'],
+      ['Illkirch-Graffenstaden', 48.5290, 7.7150, 'near', 'Commune de l’Eurométropole au sud.'],
+    ].map(([name, lat, lng, type, desc]) => ({ name, lat, lng, type, desc }));
+
+    const km = (a, b) => {
+      const R = 6371, rad = Math.PI / 180;
+      const dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
+      const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(h));
+    };
+    POINTS.forEach((p) => { p.km = km(BASE, p); });
+    POINTS.sort((a, b) => a.km - b.km);
+
+    const map = L.map(el, {
+      zoomControl: true, scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: true,
+      minZoom: 11, maxZoom: 16, attributionControl: true,
+    });
+    // Fond de carte sombre Esri (Dark Gray Canvas) + calque des noms de rues/quartiers
+    const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+    L.tileLayer(ESRI + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16, attribution: 'Fond de carte &copy; Esri, HERE, Garmin, &copy; contributeurs OpenStreetMap',
+    }).addTo(map);
+    map.createPane('labels'); map.getPane('labels').style.zIndex = 450; map.getPane('labels').style.pointerEvents = 'none';
+    L.tileLayer(ESRI + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, pane: 'labels' }).addTo(map);
+    const all = L.latLngBounds([[BASE.lat, BASE.lng], ...POINTS.map((p) => [p.lat, p.lng])]);
+    const fit = (animate) => map.fitBounds(all, { padding: [36, 36], animate });
+    fit(false);
+    map.setMaxBounds(all.pad(1.2));
+
+    // Molette activée seulement après un clic (pour ne pas bloquer le défilement de la page)
+    const hint = document.getElementById('zone-hint');
+    map.on('click', () => { map.scrollWheelZoom.enable(); hint.classList.add('off'); });
+    el.addEventListener('mouseleave', () => { map.scrollWheelZoom.disable(); hint.classList.remove('off'); });
+    if (L.Browser.mobile) hint.textContent = 'Deux doigts pour zoomer sur la carte';
+
+    // Arc courbe entre nos locaux et un point (Bézier quadratique)
+    function arc(a, b, bend = 0.22, n = 48) {
+      const k = Math.cos(a.lat * Math.PI / 180);
+      const ax = a.lng * k, ay = a.lat, bx = b.lng * k, by = b.lat;
+      const mx = (ax + bx) / 2, my = (ay + by) / 2, dx = bx - ax, dy = by - ay;
+      const cx = mx - dy * bend, cy = my + dx * bend;
+      const pts = [];
+      for (let i = 0; i <= n; i++) {
+        const t = i / n, u = 1 - t;
+        const x = u * u * ax + 2 * u * t * cx + t * t * bx, y = u * u * ay + 2 * u * t * cy + t * t * by;
+        pts.push([y, x / k]);
+      }
+      return pts;
+    }
+
+    // Réseau discret entre quartiers voisins (chaque point relié à ses 2 plus proches)
+    const net = [];
+    const seen = new Set();
+    POINTS.forEach((p, i) => {
+      POINTS.map((q, j) => ({ j, d: km(p, q) })).filter((o) => o.j !== i).sort((x, y) => x.d - y.d).slice(0, 2).forEach(({ j }) => {
+        const key = [i, j].sort().join('-');
+        if (seen.has(key)) return; seen.add(key);
+        net.push(L.polyline([[p.lat, p.lng], [POINTS[j].lat, POINTS[j].lng]], { color: '#8F7BFF', weight: 1.2, opacity: 0, className: 'znet', interactive: false }).addTo(map));
+      });
+    });
+
+    // Trajets, marqueurs, points mobiles
+    const items = document.getElementById('zone-items');
+    const routes = POINTS.map((p, i) => {
+      const color = p.type === 'near' ? '#8F7BFF' : '#00D1FF';
+      const pts = arc(BASE, p, i % 2 ? 0.22 : -0.22);
+      const glow = L.polyline(pts, { color, weight: 7, opacity: 0, className: 'zglow', interactive: false }).addTo(map);
+      const line = L.polyline(pts, { color, weight: 2.4, opacity: 0, className: 'zroute', interactive: false }).addTo(map);
+      const icon = L.divIcon({ className: 'zm-icon', iconSize: [22, 22], html: `<span class="zm ${p.type}" style="--d:${(i % 6) * 0.4}s"><i></i></span>` });
+      const marker = L.marker([p.lat, p.lng], { icon, keyboard: true, title: p.name, riseOnHover: true }).addTo(map);
+      marker.bindTooltip(p.name, { direction: 'top', offset: [0, -10], className: 'zone-tip' });
+      marker.bindPopup(
+        `<strong>${p.name}</strong><span class="pp-type ${p.type}">${p.type === 'near' ? 'Eurométropole' : 'Quartier'}</span>` +
+        `<p>${p.desc}</p><span class="pp-km">≈ ${p.km.toFixed(1).replace('.', ',')} km de nos locaux (à vol d'oiseau)</span><br>` +
+        `<a class="pp-link" href="#contact">Demander une intervention →</a>`);
+      const dot = L.circleMarker(pts[0], { radius: 3.5, color, fillColor: '#D6F4FF', weight: 2, opacity: 0, fillOpacity: 0, interactive: false }).addTo(map);
+
+      const li = document.createElement('li');
+      li.innerHTML = `<button type="button"><span class="zl-dot ${p.type}"></span><span class="zl-name">${p.name}</span><span class="zl-km">${p.km.toFixed(1).replace('.', ',')} km</span></button>`;
+      items.appendChild(li);
+      const r = { p, pts, line, glow, marker, dot, btn: li.firstChild, speed: 0.18 + Math.random() * 0.12, offset: Math.random() };
+
+      const on = () => highlight(r), off = () => highlight(null);
+      marker.on('mouseover', on); marker.on('mouseout', off);
+      marker.on('click', () => select(r));
+      li.firstChild.addEventListener('mouseenter', on);
+      li.firstChild.addEventListener('mouseleave', off);
+      li.firstChild.addEventListener('focus', on);
+      li.firstChild.addEventListener('blur', off);
+      li.firstChild.addEventListener('click', () => { select(r); r.marker.openPopup(); });
+      return r;
+    });
+
+    const baseIcon = L.divIcon({ className: 'zm-icon', iconSize: [34, 34], html: '<span class="zm base"><svg><use href="#i-drop"/></svg></span>' });
+    const baseMarker = L.marker([BASE.lat, BASE.lng], { icon: baseIcon, zIndexOffset: 1000, title: BASE.name }).addTo(map);
+    baseMarker.bindTooltip('Nos locaux', { direction: 'top', offset: [0, -16], className: 'zone-tip', permanent: false });
+    baseMarker.bindPopup('<strong>ELDAN Sanitaire</strong><p>48 allée de la Robertsau : le point de départ de toutes nos interventions.</p><a class="pp-link" href="#contact">Nous contacter →</a>');
+
+    let active = null;
+    function highlight(r) {
+      const target = r || active;
+      el.classList.toggle('dim', !!target);
+      routes.forEach((x) => {
+        const hl = x === target;
+        x.line.getElement()?.classList.toggle('hl', hl);
+        x.glow.getElement()?.classList.toggle('hl', hl);
+        x.marker.getElement()?.querySelector('.zm')?.classList.toggle('hl', hl);
+      });
+    }
+    function select(r) {
+      active = r;
+      routes.forEach((x) => x.btn.classList.toggle('active', x === r));
+      highlight(r);
+      map.flyTo([r.p.lat, r.p.lng], Math.max(map.getZoom(), 14), { duration: reduced ? 0 : 0.9 });
+    }
+    map.on('popupclose', () => { active = null; routes.forEach((x) => x.btn.classList.remove('active')); highlight(null); });
+
+    // Animation d'entrée : nos locaux apparaissent, puis les trajets se dessinent un à un
+    let started = false, timers = [];
+    function intro() {
+      timers.forEach(clearTimeout); timers = [];
+      started = true;
+      baseMarker.getElement().querySelector('.zm').classList.add('show');
+      routes.forEach((r) => {
+        r.line.setStyle({ opacity: 0 }); r.glow.setStyle({ opacity: 0 }); r.dot.setStyle({ opacity: 0, fillOpacity: 0 });
+        r.marker.getElement().querySelector('.zm').classList.remove('show');
+        r.line.getElement().classList.remove('flow');
+      });
+      net.forEach((n) => n.setStyle({ opacity: 0 }));
+      routes.forEach((r, i) => {
+        timers.push(setTimeout(() => {
+          const path = r.line.getElement();
+          r.line.setStyle({ opacity: 0.95 }); r.glow.setStyle({ opacity: 0.35 });
+          if (!reduced) {
+            const len = path.getTotalLength();
+            path.style.transition = 'none';
+            path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+            path.getBoundingClientRect();
+            path.style.transition = 'stroke-dashoffset .9s ease-out';
+            path.style.strokeDashoffset = 0;
+          }
+          timers.push(setTimeout(() => {
+            r.marker.getElement().querySelector('.zm').classList.add('show');
+            path.style.transition = ''; path.style.strokeDasharray = ''; path.style.strokeDashoffset = '';
+            if (!reduced) { path.classList.add('flow'); r.dot.setStyle({ opacity: 1, fillOpacity: 1 }); }
+          }, reduced ? 0 : 900));
+        }, reduced ? 0 : 300 + i * 140));
+      });
+      timers.push(setTimeout(() => net.forEach((n) => n.setStyle({ opacity: 0.35 })), reduced ? 0 : 300 + routes.length * 140 + 900));
+    }
+    document.getElementById('zone-replay').addEventListener('click', () => { map.closePopup(); fit(true); intro(); });
+
+    // Points lumineux qui voyagent de nos locaux vers chaque quartier
+    let visible = false;
+    new IntersectionObserver((en) => {
+      visible = en[0].isIntersecting;
+      if (visible && !started) { map.invalidateSize(); intro(); }
+    }, { threshold: 0.35 }).observe(el);
+    function tick(now) {
+      requestAnimationFrame(tick);
+      if (!visible || reduced) return;
+      const t = now / 1000;
+      routes.forEach((r) => {
+        const k = (t * r.speed + r.offset) % 1, f = k * (r.pts.length - 1), i = Math.floor(f), u = f - i;
+        const a = r.pts[i], b = r.pts[Math.min(i + 1, r.pts.length - 1)];
+        r.dot.setLatLng([a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u]);
+      });
+    }
+    requestAnimationFrame(tick);
+  })();
+</script>
+</body>
+</html>
