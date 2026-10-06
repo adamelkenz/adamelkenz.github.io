@@ -132,7 +132,7 @@ nav.main a:hover { border-bottom-color: var(--cyan); }
     linear-gradient(-45deg, rgba(214,244,255,.02) 1px, transparent 1px);
   background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px;
 }
-.hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
+.hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 32px; align-items: center; }
 .badge {
   display: inline-block; padding: 6px 14px; border-radius: 999px;
   border: 1px solid var(--line); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
@@ -144,9 +144,9 @@ nav.main a:hover { border-bottom-color: var(--cyan); }
 .hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; }
 .hero-checks li::before { content: "✓"; color: var(--violet); font-weight: 800; margin-right: 8px; }
 /* ---------- Machine 3D (en-tête) ---------- */
-.hero-3d { position: relative; width: 100%; height: 480px; cursor: grab; touch-action: pan-y; }
+.hero-3d { position: relative; width: 100%; height: clamp(380px, 62vh, 560px); cursor: grab; touch-action: pan-y; }
 .hero-3d:active { cursor: grabbing; }
-@media (min-width: 961px) { .hero-3d { width: calc(100% + 100px); margin-right: -100px; } }
+@media (min-width: 961px) { .hero-3d { width: calc(100% + 40px); margin-right: -40px; } }
 .hero-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero-3d-ui { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; pointer-events: none; }
 .pill {
@@ -567,7 +567,7 @@ footer a { color: var(--halo); }
 @media (max-width: 720px) {
   nav.main, .header-call { display: none; }
   .hero { padding: 56px 0 64px; }
-  .hero-3d { height: 360px; }
+  .hero-3d { height: 380px; }
   section { padding: 60px 0; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   form .two { grid-template-columns: 1fr; }
@@ -1121,6 +1121,27 @@ footer a { color: var(--halo); }
     add(new THREE.TorusGeometry(0.14, 0.065, 12, 28), M.accent, -1.58, 0, 0, wrench);
     world.add(wrench);
     const WR_HOME = new THREE.Vector3(2.35, 0.7, 1.2);
+    const WR_HOME_BASE = WR_HOME.clone();
+
+    // Cadrage : la caméra recule juste assez pour que machine + clé + outils tiennent
+    // dans la zone, centrés, avec une marge en bas pour l'indicateur et « Rejouer ».
+    // Sur un écran étroit, les outils se rapprochent pour garder la machine grande.
+    let spread = 1;
+    function frameScene(w, h) {
+      const aspect = w / h;
+      spread = Math.max(0.62, Math.min(1, aspect / 1.15));
+      WR_HOME.set(WR_HOME_BASE.x * Math.max(spread, 0.8), WR_HOME_BASE.y, WR_HOME_BASE.z);
+      const halfW = 1.4 + 1.6 * spread;          // machine (±1,3) + outils sur les côtés
+      const top = 2.5, bottom = -1.95;            // haut des outils → sol / clé au boulon
+      const halfH = (top - bottom) / 2, midY = (top + bottom) / 2;
+      const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+      const dist = Math.max(halfH / t, halfW / (t * aspect)) * 1.04 + 0.9;
+      camera.position.set(0, midY + 1.1, dist);
+      camera.lookAt(0, midY, 0);
+      // Décale l'image vers le haut pour libérer la place des boutons du bas.
+      camera.setViewOffset(w, h, 0, Math.min(46, h * 0.09), w, h);
+      camera.updateProjectionMatrix();
+    }
   
     // Outils qui flottent autour : engrenages, tournevis, écrous
     function gear(r, mat) {
@@ -1190,8 +1211,7 @@ footer a { color: var(--halo); }
     function resize() {
       const w = host.clientWidth, h = host.clientHeight;
       renderer.setSize(w, h, false); camera.aspect = w / h;
-      camera.position.z = w / h < 0.7 ? 14 : 12;
-      camera.updateProjectionMatrix();
+      frameScene(w, h);
     }
     new ResizeObserver(resize).observe(host); resize();
   
@@ -1253,7 +1273,7 @@ footer a { color: var(--halo); }
       const tightening = tc > 3.9 && tc < 6.2;
       wrench.position.lerpVectors(WR_HOME, BOLT, k);
       wrench.position.y += (1 - k) * Math.sin(time * 1.6) * 0.12;
-      const baseAngle = Math.PI * 0.72;
+      const baseAngle = Math.PI * (0.72 + 0.22 * k); // à l'horizontale vers la droite une fois sur le boulon
       wrench.rotation.z = baseAngle + (tightening ? Math.sin((tc - 3.9) * 9) * 0.35 : (1 - k) * Math.sin(time * 1.2) * 0.25);
       wrench.rotation.y = (1 - k) * Math.sin(time * 0.8) * 0.6;
       wrench.rotation.x = (1 - k) * 0.3;
@@ -1267,7 +1287,7 @@ footer a { color: var(--halo); }
       floaters.forEach((f) => {
         // Va-et-vient en arc sur le côté (±0,55 rad autour de son angle de base)
         const a = f.a + (reduced ? 0 : Math.sin(time * f.s + f.y) * 0.55);
-        f.o.position.set(Math.cos(a) * f.r, f.y + Math.sin(time * 0.9 + f.a) * 0.18, Math.sin(a) * f.r * 0.7);
+        f.o.position.set(Math.cos(a) * f.r * spread, f.y + Math.sin(time * 0.9 + f.a) * 0.18, Math.sin(a) * f.r * 0.7 * spread);
         f.o.rotation.z = time * f.spin; f.o.rotation.y = time * 0.5;
       });
   
