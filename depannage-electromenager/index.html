@@ -349,6 +349,63 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   .brands { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
 }
 
+/* ---------- Avis : fond animé (dégradé mouvant + étoiles + étoiles filantes) ---------- */
+#avis {
+  position: relative; overflow: hidden;
+  background: linear-gradient(120deg,
+    var(--mist) 0%,
+    color-mix(in srgb, var(--teal-mid) 40%, var(--mist)) 30%,
+    var(--mist) 55%,
+    color-mix(in srgb, var(--slate) 35%, var(--mist)) 80%,
+    var(--mist) 100%);
+  background-size: 300% 300%;
+  animation: avis-bg 18s ease-in-out infinite alternate;
+}
+@keyframes avis-bg { from { background-position: 0% 30%; } to { background-position: 100% 70%; } }
+#avis .reviews-wrap { position: relative; z-index: 1; }
+/* Halo teal derrière la carte de note */
+#avis::before {
+  content: ""; position: absolute; width: 520px; height: 520px; right: 8%; top: 50%;
+  transform: translateY(-50%); border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(19,124,139,.28), transparent 65%);
+  animation: avis-glow 6s ease-in-out infinite alternate;
+}
+@keyframes avis-glow { from { transform: translateY(-50%) scale(.9); opacity: .7; } to { transform: translateY(-50%) scale(1.1); opacity: 1; } }
+
+.sky { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.sky-star { position: absolute; animation: sky-float var(--fd, 10s) ease-in-out infinite alternate; animation-delay: var(--fdl, 0s); }
+.sky-star svg {
+  width: var(--sz, 14px); height: var(--sz, 14px); color: var(--c, var(--teal));
+  animation: sky-twinkle var(--td, 3s) ease-in-out infinite; animation-delay: var(--tdl, 0s);
+}
+@keyframes sky-float {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(var(--dx, 10px), var(--dy, -30px)) rotate(var(--rot, 40deg)); }
+}
+@keyframes sky-twinkle {
+  0%, 100% { opacity: var(--o1, .25); transform: scale(.8); }
+  50%      { opacity: var(--o2, .8);  transform: scale(1.15); }
+}
+.shoot {
+  position: absolute; width: 140px; height: 2px; border-radius: 2px; opacity: 0;
+  background: linear-gradient(90deg, transparent, var(--teal));
+  animation: shoot var(--sd, 9s) linear infinite; animation-delay: var(--sdl, 0s);
+}
+.shoot::after {
+  content: ""; position: absolute; right: -2px; top: -2px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal); box-shadow: 0 0 8px 2px rgba(19,124,139,.6);
+}
+@keyframes shoot {
+  0%   { transform: translate(0, 0) rotate(18deg); opacity: 0; }
+  2%   { opacity: 1; }
+  14%  { transform: translate(720px, 234px) rotate(18deg); opacity: 0; }
+  100% { transform: translate(720px, 234px) rotate(18deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #avis, #avis::before, .sky-star, .sky-star svg { animation: none; }
+  .shoot { display: none; }
+}
+
 /* ---------- Avis (carte de note animée) ---------- */
 .reviews-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .reviews-wrap .section-head { text-align: left; margin: 0; }
@@ -463,6 +520,7 @@ footer a { color: var(--mist); }
   <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
   <symbol id="i-euro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6.5A7 7 0 1 0 18 17.5"/><path d="M4 10h10M4 14h10"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.8 6.5 3.5 9.2 10 10-6.5.8-9.2 3.5-10 10-.8-6.5-3.5-9.2-10-10 6.5-.8 9.2-3.5 10-10z"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
 </svg>
@@ -522,6 +580,7 @@ footer a { color: var(--mist); }
 
   <!-- ========== AVIS ========== -->
   <section id="avis" class="alt">
+    <div class="sky" aria-hidden="true"></div>
     <div class="container reviews-wrap">
       <div class="section-head">
         <span class="eyebrow">Avis clients</span>
@@ -776,6 +835,32 @@ footer a { color: var(--mist); }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     items.forEach((el) => io.observe(el));
+  })();
+
+  // Fond animé de la section avis : étoiles et étincelles placées au hasard, plus des étoiles filantes.
+  (() => {
+    const sky = document.querySelector('#avis .sky');
+    if (!sky) return;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const colors = ['var(--teal)', 'var(--teal-mid)', 'var(--slate)', 'var(--navy)'];
+    const count = window.innerWidth < 720 ? 18 : 34;
+    let html = '';
+    for (let i = 0; i < count; i++) {
+      const shape = Math.random() < 0.6 ? 'i-star' : 'i-sparkle';
+      const vars = [
+        `left:${rnd(0, 97).toFixed(1)}%`, `top:${rnd(2, 92).toFixed(1)}%`,
+        `--sz:${rnd(8, 26).toFixed(0)}px`, `--c:${colors[i % colors.length]}`,
+        `--fd:${rnd(7, 15).toFixed(1)}s`, `--fdl:${(-rnd(0, 15)).toFixed(1)}s`,
+        `--dx:${rnd(-25, 25).toFixed(0)}px`, `--dy:${rnd(-45, -10).toFixed(0)}px`, `--rot:${rnd(-60, 60).toFixed(0)}deg`,
+        `--td:${rnd(2, 5).toFixed(1)}s`, `--tdl:${(-rnd(0, 5)).toFixed(1)}s`,
+        `--o1:${rnd(.1, .3).toFixed(2)}`, `--o2:${rnd(.45, .9).toFixed(2)}`,
+      ].join(';');
+      html += `<span class="sky-star" style="${vars}"><svg><use href="#${shape}"/></svg></span>`;
+    }
+    [[-10, 8, 9, 0], [5, 40, 11, -4], [-15, 65, 13, -8]].forEach(([l, t, d, dl]) => {
+      html += `<span class="shoot" style="left:${l}%;top:${t}%;--sd:${d}s;--sdl:${dl}s"></span>`;
+    });
+    sky.innerHTML = html;
   })();
 
   // Carte de note : compteur animé + étoiles en cascade quand la carte devient visible.
