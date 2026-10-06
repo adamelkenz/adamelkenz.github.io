@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /_outils/
+
+Sitemap: https://www.serrurier-vaucluse.fr/sitemap.xml

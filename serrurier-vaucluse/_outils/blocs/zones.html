@@ -1,0 +1,27 @@
+  <!-- ========== ZONES D'INTERVENTION (carte interactive) ========== -->
+  <section id="zones" class="alt">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#8F7BFF"/><path d="M47.5 32h5l1.5 10h-8z" fill="#8F7BFF"/></g>
+        </svg></div>
+        <span class="eyebrow">Zones d'intervention</span>
+        <h2>{{ZONES_H2}}</h2>
+        <p>Avignon et son agglomération, le Comtat Venaissin, le Luberon et le Haut-Vaucluse. Survolez ou touchez une commune pour la situer.</p>
+      </div>
+      <div class="zone-wrap">
+        <aside class="zone-list" aria-label="Communes desservies">
+          <div class="zone-list-head"><strong>Communes desservies</strong><button type="button" class="pill" id="zone-replay">↻ Rejouer</button></div>
+          <ul id="zone-items"></ul>
+          <div class="zone-legend"><span><i class="lg-base"></i>Base à Avignon</span><span><i class="lg-city"></i>Grand Avignon</span><span><i class="lg-near"></i>Reste du Vaucluse</span></div>
+        </aside>
+        <div class="zone-map-wrap">
+          <div id="zone-map" class="zone-map" data-root="{{ROOT}}" data-focus="{{FOCUS}}" role="region" aria-label="Carte du Vaucluse : zones d'intervention"></div>
+          <div class="zone-hint" id="zone-hint">Cliquez sur la carte pour zoomer à la molette</div>
+        </div>
+      </div>
+      <p class="zone-foot">Votre ville n'est pas dans la liste ? Appelez-nous : nous couvrons l'ensemble du département.</p>
+    </div>
+  </section>
