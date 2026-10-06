@@ -9,6 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23121A33'/><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z' fill='none' stroke='%2300D1FF' stroke-width='2' transform='translate(2.4 2.4) scale(.8)'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!--
@@ -522,6 +523,112 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   .rating-card.is-visible .star, .rating-card.is-visible .star .fill { transition: none; }
 }
 
+/* ---------- Zone d'intervention : carte interactive ---------- */
+#zone { background:
+  radial-gradient(50% 60% at 100% 0%, rgba(143,123,255,.12), transparent 70%),
+  radial-gradient(45% 55% at 0% 100%, rgba(0,209,255,.10), transparent 70%), var(--bg); }
+.zone-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 20px; align-items: stretch; }
+.zone-wrap > * { min-width: 0; }
+.zone-list {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; display: flex; flex-direction: column; max-height: 540px; min-height: 0;
+}
+.zone-list-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.zone-list ul { list-style: none; margin: 12px 0; padding: 0 4px 0 0; overflow-y: auto; flex: 1; min-height: 0; }
+.zone-list li button {
+  width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; margin-bottom: 2px;
+  border-radius: 10px; background: transparent; border: 1px solid transparent; color: var(--halo);
+  font: inherit; text-align: left; cursor: pointer; transition: background .2s, border-color .2s;
+}
+.zone-list li button:hover, .zone-list li button.active { background: rgba(0,209,255,.08); border-color: var(--line); }
+.zl-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+.zl-dot.near { background: var(--violet); box-shadow: 0 0 8px var(--violet); }
+.zl-name { flex: 1; font-weight: 600; font-size: .95rem; }
+.zl-km { font-size: .8rem; opacity: .7; font-variant-numeric: tabular-nums; }
+.zone-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .8rem; opacity: .85; border-top: 1px solid var(--line); padding-top: 10px; }
+.zone-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.zone-legend i { width: 10px; height: 10px; border-radius: 50%; }
+.lg-base { background: var(--halo); box-shadow: 0 0 0 2px var(--cyan); }
+.lg-city { background: var(--cyan); }
+.lg-near { background: var(--violet); }
+
+.zone-map-wrap { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: 0 0 40px rgba(0,209,255,.12); }
+.zone-map { height: 540px; background: var(--bg); }
+.zone-hint {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); z-index: 500; pointer-events: none;
+  padding: 6px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; white-space: nowrap; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis;
+  background: rgba(7,11,24,.8); color: var(--halo); border: 1px solid var(--line); transition: opacity .3s;
+}
+.zone-hint.off { opacity: 0; }
+
+/* Fond de carte sombre teinté bleu nuit */
+.zone-map.leaflet-container { background: var(--bg); font-family: inherit; }
+.zone-map .leaflet-tile-pane { filter: brightness(.8) sepia(.5) hue-rotate(190deg) saturate(2.2) contrast(1.1); }
+.zone-map .leaflet-labels-pane { filter: brightness(1.15) sepia(.4) hue-rotate(160deg) saturate(1.6); opacity: .8; }
+.zone-map .leaflet-bar { border: 1px solid var(--line); box-shadow: none; }
+.zone-map .leaflet-bar a { background: var(--surface); color: var(--halo); border-bottom-color: var(--line); }
+.zone-map .leaflet-bar a:hover { background: var(--line); color: var(--cyan); }
+.zone-map .leaflet-control-attribution { background: rgba(7,11,24,.75); color: rgba(214,244,255,.6); }
+.zone-map .leaflet-control-attribution a { color: var(--cyan); }
+.zone-map .leaflet-popup-content-wrapper, .zone-map .leaflet-popup-tip {
+  background: var(--surface); color: var(--halo); border: 1px solid var(--line); box-shadow: 0 0 24px rgba(0,209,255,.25);
+}
+.zone-map .leaflet-popup-content { margin: 14px 16px; font-size: .9rem; line-height: 1.45; }
+.zone-map .leaflet-container a.leaflet-popup-close-button, .zone-map a.leaflet-popup-close-button { color: var(--halo); }
+.pp-type { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; font-size: .7rem; font-weight: 700; border: 1px solid var(--cyan); color: var(--cyan); }
+.pp-type.near { border-color: var(--violet); color: var(--violet); }
+.zone-map .leaflet-popup-content p { margin: 6px 0; }
+.pp-km { opacity: .75; font-size: .8rem; }
+.zone-map a.pp-link { display: inline-block; margin-top: 8px; color: var(--cyan); font-weight: 700; text-decoration: none; }
+.zone-map .leaflet-tooltip.zone-tip {
+  background: var(--surface); color: var(--halo); border: 1px solid var(--cyan); border-radius: 8px;
+  font: 700 .82rem/1.2 inherit; box-shadow: 0 0 16px rgba(0,209,255,.35);
+}
+.zone-map .leaflet-tooltip-top.zone-tip::before { border-top-color: var(--cyan); }
+
+/* Marqueurs lumineux */
+.zm-icon { background: none; border: 0; }
+.zm { position: relative; display: block; width: 100%; height: 100%; transform: scale(0); transition: transform .5s cubic-bezier(.34,1.56,.64,1); }
+.zm.show { transform: scale(1); }
+.zm i { position: absolute; inset: 6px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 12px var(--cyan), 0 0 0 3px rgba(7,11,24,.9); }
+.zm.near i { background: var(--violet); box-shadow: 0 0 12px var(--violet), 0 0 0 3px rgba(7,11,24,.9); }
+.zm::before { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--cyan); opacity: 0; animation: zm-ping 2.4s ease-out infinite; animation-delay: var(--d, 0s); }
+.zm.near::before { border-color: var(--violet); }
+.zm.hl i { transform: scale(1.35); }
+.zm.base { display: grid; place-items: center; border-radius: 50%; background: var(--surface); border: 2px solid var(--cyan); color: var(--cyan); box-shadow: 0 0 24px rgba(0,209,255,.6); }
+.zm.base svg { width: 18px; height: 18px; }
+.zm.base::before { inset: -6px; }
+@keyframes zm-ping { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.4); opacity: 0; } }
+
+/* Trajets (arcs) */
+.zroute { transition: opacity .3s, stroke-width .3s; }
+.zroute.flow { stroke-dasharray: 6 10; animation: zflow 1.2s linear infinite; }
+.zglow { filter: blur(3px); }
+.zone-map.dim .zroute:not(.hl), .zone-map.dim .zglow:not(.hl) { opacity: .15; }
+.zroute.hl { stroke-width: 4; }
+.znet { stroke-dasharray: 2 6; }
+@keyframes zflow { to { stroke-dashoffset: -16; } }
+
+/* Petite animation de section : épingle qui rebondit */
+.pin-drop { animation: pin-bounce 2s ease-in-out infinite; }
+.pin-ring { transform-origin: 50% 50%; animation: pin-ring 2s ease-out infinite; opacity: 0; }
+.pin-ring.r2 { animation-delay: 1s; }
+@keyframes pin-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pin-ring { 0% { transform: scale(.3); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+
+@media (max-width: 960px) {
+  .zone-wrap { grid-template-columns: 1fr; }
+  .zone-map-wrap { order: -1; }
+  .zone-map { height: 440px; }
+  .zone-list { max-height: none; }
+  .zone-list ul { display: flex; gap: 8px; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; }
+  .zone-list li { flex: none; }
+  .zone-list li button { border-color: var(--line); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zroute.flow, .zm::before { animation: none; }
+}
+
 /* ---------- Contact ---------- */
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
 .contact-info .row { display: flex; gap: 14px; margin-bottom: 20px; }
@@ -614,6 +721,7 @@ footer a { color: var(--halo); }
       <a href="#avis">Avis</a>
       <a href="#pourquoi">Pourquoi nous</a>
       <a href="#fonctionnement">Comment ça marche</a>
+      <a href="#zone">Zone</a>
       <a href="#contact">Contact</a>
     </nav>
     <!-- TODO : remplacer le numéro de téléphone (format tel:+33XXXXXXXXX) -->
@@ -836,6 +944,33 @@ footer a { color: var(--halo); }
     </div>
   </section>
 
+  <!-- ========== ZONE D'INTERVENTION (carte interactive) ========== -->
+  <section id="zone">
+    <div class="container">
+      <div class="section-head">
+        <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><circle cx="50" cy="33" r="8" fill="#8F7BFF"/></g>
+        </svg></div>
+        <span class="eyebrow">Zone d'intervention</span>
+        <h2>Partout à Montpellier et alentours</h2>
+        <p>Depuis notre atelier, on rayonne dans tous les quartiers de la ville. Survolez ou touchez un point pour le découvrir.</p>
+      </div>
+      <div class="zone-wrap">
+        <aside class="zone-list" aria-label="Points d'intervention">
+          <div class="zone-list-head"><strong>Points d'intervention</strong><button type="button" class="pill" id="zone-replay">↻ Rejouer</button></div>
+          <ul id="zone-items"></ul>
+          <div class="zone-legend"><span><i class="lg-base"></i>Atelier</span><span><i class="lg-city"></i>Quartiers</span><span><i class="lg-near"></i>Alentours</span></div>
+        </aside>
+        <div class="zone-map-wrap">
+          <div id="zone-map" class="zone-map" role="region" aria-label="Carte de Montpellier : zone d'intervention"></div>
+          <div class="zone-hint" id="zone-hint">Cliquez sur la carte pour zoomer à la molette</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== CONTACT ========== -->
   <section id="contact" class="alt">
     <div class="container">
@@ -941,6 +1076,7 @@ footer a { color: var(--halo); }
 <a href="tel:+33400000000" class="btn btn-accent float-call"><svg><use href="#i-phone"/></svg>Appeler un dépanneur</a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -1416,6 +1552,200 @@ footer a { color: var(--halo); }
     ].join('\n');
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
+
+  // Carte de la zone d'intervention : l'atelier relié aux points clés de Montpellier.
+  (() => {
+    const el = document.getElementById('zone-map');
+    if (!el || !window.L) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const BASE = { name: 'Notre atelier', lat: 43.5981688, lng: 3.862926 };
+    // [nom, lat, lng, type, description] — « near » = communes voisines (TODO : confirmer les communes desservies)
+    const POINTS = [
+      ['Place de la Comédie', 43.6086, 3.8800, 'city', 'Le cœur de la ville, entre Opéra et rues commerçantes.'],
+      ['Écusson', 43.6113, 3.8755, 'city', 'Le centre historique et ses ruelles médiévales.'],
+      ['Gare Saint-Roch', 43.6046, 3.8805, 'city', 'Le quartier de la gare, au sud du centre-ville.'],
+      ['Antigone', 43.6082, 3.8885, 'city', 'Le quartier néo-classique qui file vers le Lez.'],
+      ['Port Marianne', 43.6005, 3.8985, 'city', 'Le quartier moderne au bord du Lez.'],
+      ['Odysseum', 43.6040, 3.9195, 'city', "L'est de la ville, autour du pôle de loisirs."],
+      ['Beaux-Arts', 43.6170, 3.8815, 'city', 'Quartier résidentiel au nord de l’Écusson.'],
+      ['Les Arceaux', 43.6125, 3.8645, 'city', 'Au pied de l’aqueduc Saint-Clément.'],
+      ['Hôpitaux-Facultés', 43.6315, 3.8535, 'city', 'Le nord-ouest, entre universités et CHU.'],
+      ['Celleneuve', 43.6150, 3.8335, 'city', 'L’ancien village devenu quartier de l’ouest.'],
+      ['Mosson', 43.6200, 3.8195, 'city', 'Les grands quartiers de l’ouest montpelliérain.'],
+      ["Croix d'Argent", 43.5905, 3.8585, 'city', 'Le sud-ouest, tout près de notre atelier.'],
+      ["Près d'Arènes", 43.5935, 3.8830, 'city', 'Le sud de la ville, vers l’avenue de la Mer.'],
+      ['Castelnau-le-Lez', 43.6330, 3.9010, 'near', 'Commune voisine au nord-est.'],
+      ['Lattes', 43.5675, 3.9050, 'near', 'Commune voisine au sud, vers la mer.'],
+      ['Saint-Jean-de-Védas', 43.5770, 3.8290, 'near', 'Commune voisine au sud-ouest.'],
+      ['Juvignac', 43.6135, 3.8080, 'near', 'Commune voisine à l’ouest.'],
+    ].map(([name, lat, lng, type, desc]) => ({ name, lat, lng, type, desc }));
+
+    const km = (a, b) => {
+      const R = 6371, rad = Math.PI / 180;
+      const dLat = (b.lat - a.lat) * rad, dLng = (b.lng - a.lng) * rad;
+      const h = Math.sin(dLat / 2) ** 2 + Math.cos(a.lat * rad) * Math.cos(b.lat * rad) * Math.sin(dLng / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(h));
+    };
+    POINTS.forEach((p) => { p.km = km(BASE, p); });
+    POINTS.sort((a, b) => a.km - b.km);
+
+    const map = L.map(el, {
+      zoomControl: true, scrollWheelZoom: false, dragging: !L.Browser.mobile, tap: true,
+      minZoom: 11, maxZoom: 16, attributionControl: true,
+    });
+    // Fond de carte sombre Esri (Dark Gray Canvas) + calque des noms de rues/quartiers
+    const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+    L.tileLayer(ESRI + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 16, attribution: 'Fond de carte &copy; Esri, HERE, Garmin, &copy; contributeurs OpenStreetMap',
+    }).addTo(map);
+    map.createPane('labels'); map.getPane('labels').style.zIndex = 450; map.getPane('labels').style.pointerEvents = 'none';
+    L.tileLayer(ESRI + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, pane: 'labels' }).addTo(map);
+    const all = L.latLngBounds([[BASE.lat, BASE.lng], ...POINTS.map((p) => [p.lat, p.lng])]);
+    const fit = (animate) => map.fitBounds(all, { padding: [36, 36], animate });
+    fit(false);
+    map.setMaxBounds(all.pad(1.2));
+
+    // Molette activée seulement après un clic (pour ne pas bloquer le défilement de la page)
+    const hint = document.getElementById('zone-hint');
+    map.on('click', () => { map.scrollWheelZoom.enable(); hint.classList.add('off'); });
+    el.addEventListener('mouseleave', () => { map.scrollWheelZoom.disable(); hint.classList.remove('off'); });
+    if (L.Browser.mobile) hint.textContent = 'Deux doigts pour zoomer sur la carte';
+
+    // Arc courbe entre l'atelier et un point (Bézier quadratique)
+    function arc(a, b, bend = 0.22, n = 48) {
+      const k = Math.cos(a.lat * Math.PI / 180);
+      const ax = a.lng * k, ay = a.lat, bx = b.lng * k, by = b.lat;
+      const mx = (ax + bx) / 2, my = (ay + by) / 2, dx = bx - ax, dy = by - ay;
+      const cx = mx - dy * bend, cy = my + dx * bend;
+      const pts = [];
+      for (let i = 0; i <= n; i++) {
+        const t = i / n, u = 1 - t;
+        const x = u * u * ax + 2 * u * t * cx + t * t * bx, y = u * u * ay + 2 * u * t * cy + t * t * by;
+        pts.push([y, x / k]);
+      }
+      return pts;
+    }
+
+    // Réseau discret entre quartiers voisins (chaque point relié à ses 2 plus proches)
+    const net = [];
+    const seen = new Set();
+    POINTS.forEach((p, i) => {
+      POINTS.map((q, j) => ({ j, d: km(p, q) })).filter((o) => o.j !== i).sort((x, y) => x.d - y.d).slice(0, 2).forEach(({ j }) => {
+        const key = [i, j].sort().join('-');
+        if (seen.has(key)) return; seen.add(key);
+        net.push(L.polyline([[p.lat, p.lng], [POINTS[j].lat, POINTS[j].lng]], { color: '#8F7BFF', weight: 1.2, opacity: 0, className: 'znet', interactive: false }).addTo(map));
+      });
+    });
+
+    // Trajets, marqueurs, points mobiles
+    const items = document.getElementById('zone-items');
+    const routes = POINTS.map((p, i) => {
+      const color = p.type === 'near' ? '#8F7BFF' : '#00D1FF';
+      const pts = arc(BASE, p, i % 2 ? 0.22 : -0.22);
+      const glow = L.polyline(pts, { color, weight: 7, opacity: 0, className: 'zglow', interactive: false }).addTo(map);
+      const line = L.polyline(pts, { color, weight: 2.4, opacity: 0, className: 'zroute', interactive: false }).addTo(map);
+      const icon = L.divIcon({ className: 'zm-icon', iconSize: [22, 22], html: `<span class="zm ${p.type}" style="--d:${(i % 6) * 0.4}s"><i></i></span>` });
+      const marker = L.marker([p.lat, p.lng], { icon, keyboard: true, title: p.name, riseOnHover: true }).addTo(map);
+      marker.bindTooltip(p.name, { direction: 'top', offset: [0, -10], className: 'zone-tip' });
+      marker.bindPopup(
+        `<strong>${p.name}</strong><span class="pp-type ${p.type}">${p.type === 'near' ? 'Alentours' : 'Quartier'}</span>` +
+        `<p>${p.desc}</p><span class="pp-km">≈ ${p.km.toFixed(1).replace('.', ',')} km de l'atelier (à vol d'oiseau)</span><br>` +
+        `<a class="pp-link" href="#contact">Demander une intervention →</a>`);
+      const dot = L.circleMarker(pts[0], { radius: 3.5, color, fillColor: '#D6F4FF', weight: 2, opacity: 0, fillOpacity: 0, interactive: false }).addTo(map);
+
+      const li = document.createElement('li');
+      li.innerHTML = `<button type="button"><span class="zl-dot ${p.type}"></span><span class="zl-name">${p.name}</span><span class="zl-km">${p.km.toFixed(1).replace('.', ',')} km</span></button>`;
+      items.appendChild(li);
+      const r = { p, pts, line, glow, marker, dot, btn: li.firstChild, speed: 0.18 + Math.random() * 0.12, offset: Math.random() };
+
+      const on = () => highlight(r), off = () => highlight(null);
+      marker.on('mouseover', on); marker.on('mouseout', off);
+      marker.on('click', () => select(r));
+      li.firstChild.addEventListener('mouseenter', on);
+      li.firstChild.addEventListener('mouseleave', off);
+      li.firstChild.addEventListener('focus', on);
+      li.firstChild.addEventListener('blur', off);
+      li.firstChild.addEventListener('click', () => { select(r); r.marker.openPopup(); });
+      return r;
+    });
+
+    const baseIcon = L.divIcon({ className: 'zm-icon', iconSize: [34, 34], html: '<span class="zm base"><svg><use href="#i-wrench"/></svg></span>' });
+    const baseMarker = L.marker([BASE.lat, BASE.lng], { icon: baseIcon, zIndexOffset: 1000, title: BASE.name }).addTo(map);
+    baseMarker.bindTooltip('Notre atelier', { direction: 'top', offset: [0, -16], className: 'zone-tip', permanent: false });
+    baseMarker.bindPopup('<strong>Notre atelier</strong><p>Le point de départ de toutes nos interventions à domicile.</p><a class="pp-link" href="#contact">Nous contacter →</a>');
+
+    let active = null;
+    function highlight(r) {
+      const target = r || active;
+      el.classList.toggle('dim', !!target);
+      routes.forEach((x) => {
+        const hl = x === target;
+        x.line.getElement()?.classList.toggle('hl', hl);
+        x.glow.getElement()?.classList.toggle('hl', hl);
+        x.marker.getElement()?.querySelector('.zm')?.classList.toggle('hl', hl);
+      });
+    }
+    function select(r) {
+      active = r;
+      routes.forEach((x) => x.btn.classList.toggle('active', x === r));
+      highlight(r);
+      map.flyTo([r.p.lat, r.p.lng], Math.max(map.getZoom(), 14), { duration: reduced ? 0 : 0.9 });
+    }
+    map.on('popupclose', () => { active = null; routes.forEach((x) => x.btn.classList.remove('active')); highlight(null); });
+
+    // Animation d'entrée : l'atelier apparaît, puis les trajets se dessinent un à un
+    let started = false, timers = [];
+    function intro() {
+      timers.forEach(clearTimeout); timers = [];
+      started = true;
+      baseMarker.getElement().querySelector('.zm').classList.add('show');
+      routes.forEach((r) => {
+        r.line.setStyle({ opacity: 0 }); r.glow.setStyle({ opacity: 0 }); r.dot.setStyle({ opacity: 0, fillOpacity: 0 });
+        r.marker.getElement().querySelector('.zm').classList.remove('show');
+        r.line.getElement().classList.remove('flow');
+      });
+      net.forEach((n) => n.setStyle({ opacity: 0 }));
+      routes.forEach((r, i) => {
+        timers.push(setTimeout(() => {
+          const path = r.line.getElement();
+          r.line.setStyle({ opacity: 0.95 }); r.glow.setStyle({ opacity: 0.35 });
+          if (!reduced) {
+            const len = path.getTotalLength();
+            path.style.transition = 'none';
+            path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+            path.getBoundingClientRect();
+            path.style.transition = 'stroke-dashoffset .9s ease-out';
+            path.style.strokeDashoffset = 0;
+          }
+          timers.push(setTimeout(() => {
+            r.marker.getElement().querySelector('.zm').classList.add('show');
+            path.style.transition = ''; path.style.strokeDasharray = ''; path.style.strokeDashoffset = '';
+            if (!reduced) { path.classList.add('flow'); r.dot.setStyle({ opacity: 1, fillOpacity: 1 }); }
+          }, reduced ? 0 : 900));
+        }, reduced ? 0 : 300 + i * 160));
+      });
+      timers.push(setTimeout(() => net.forEach((n) => n.setStyle({ opacity: 0.35 })), reduced ? 0 : 300 + routes.length * 160 + 900));
+    }
+    document.getElementById('zone-replay').addEventListener('click', () => { map.closePopup(); fit(true); intro(); });
+
+    // Points lumineux qui voyagent de l'atelier vers chaque quartier
+    let visible = false;
+    new IntersectionObserver((en) => {
+      visible = en[0].isIntersecting;
+      if (visible && !started) { map.invalidateSize(); intro(); }
+    }, { threshold: 0.35 }).observe(el);
+    function tick(now) {
+      requestAnimationFrame(tick);
+      if (!visible || reduced) return;
+      const t = now / 1000;
+      routes.forEach((r) => {
+        const k = (t * r.speed + r.offset) % 1, f = k * (r.pts.length - 1), i = Math.floor(f), u = f - i;
+        const a = r.pts[i], b = r.pts[Math.min(i + 1, r.pts.length - 1)];
+        r.dot.setLatLng([a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u]);
+      });
+    }
+    requestAnimationFrame(tick);
+  })();
 </script>
 </body>
 </html>
