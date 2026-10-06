@@ -6,7 +6,7 @@
 <title>STE Dépannage Électroménager – Réparation à domicile à Montpellier</title>
 <meta name="description" content="STE Dépannage Électroménager : réparation de lave-linge, lave-vaisselle, réfrigérateur, four et sèche-linge à domicile à Montpellier et ses environs. Toutes marques, devis gratuit.">
 <meta name="theme-color" content="#344D59">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%23344D59'/><path d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z' fill='none' stroke='%23B8CBD0' stroke-width='2' transform='translate(2.4 2.4) scale(.8)'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,31 +38,30 @@
 </script>
 
 <style>
+/*
+  Palette (uniquement ces 5 couleurs) :
+  #137C8B  teal      → accents : icônes, barres, bordures, étoiles
+  #709CA7  bleu-gris → bordures, séparateurs
+  #B8CBD0  clair     → fonds clairs, texte sur fond foncé
+  #7A90A4  ardoise   → accents secondaires
+  #344D59  foncé     → texte, fonds foncés, boutons
+*/
 :root {
-  /* Palette : #137C8B #709CA7 #B8CBD0 #7A90A4 #344D59 */
   --teal: #137C8B;
   --teal-mid: #709CA7;
   --mist: #B8CBD0;
   --slate: #7A90A4;
   --navy: #344D59;
-  --accent: var(--teal);
-  --accent-dark: #0F6470;
-  --bg: #F2F6F7;
-  --surface: #ffffff;
-  --text: #1E2E36;
-  --muted: #4F6570;
-  --border: #D6E1E4;
-  --tint: #E4EDEF;
   --radius: 14px;
-  --shadow: 0 6px 24px rgba(52, 77, 89, .08);
+  --shadow: 0 8px 24px rgba(52, 77, 89, .18);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  color: var(--text);
-  background: var(--bg);
+  color: var(--navy);
+  background: var(--mist);
   line-height: 1.6;
 }
 img, svg { display: block; }
@@ -73,42 +72,47 @@ a { color: inherit; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 24px; border-radius: 999px;
-  font-weight: 700; text-decoration: none; border: 0; cursor: pointer;
-  font-size: 1rem; transition: transform .15s, background .15s;
+  font-weight: 700; text-decoration: none; border: 2px solid transparent; cursor: pointer;
+  font-size: 1rem; transition: transform .15s, background .15s, border-color .15s, color .15s;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-accent { background: var(--accent); color: #fff; }
-.btn-accent:hover { background: var(--accent-dark); }
-.btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
-.btn-ghost:hover { background: rgba(255,255,255,.2); }
+.btn-accent { background: var(--navy); color: var(--mist); border-color: var(--teal); }
+.btn-accent:hover { background: var(--teal); border-color: var(--navy); }
+.btn-light { background: var(--mist); color: var(--navy); border-color: var(--teal); }
+.btn-light:hover { border-color: var(--mist); background: var(--teal-mid); }
+.btn-ghost { background: transparent; color: var(--mist); border-color: var(--teal-mid); }
+.btn-ghost:hover { background: var(--mist); color: var(--navy); }
 .btn svg { width: 20px; height: 20px; }
 
 /* ---------- En-tête ---------- */
 header.site {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
+  background: var(--mist);
+  border-bottom: 2px solid var(--teal-mid);
 }
 header.site .container { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--navy); line-height: 1.15; }
 .logo-mark {
   width: 40px; height: 40px; border-radius: 10px; background: var(--navy);
-  display: grid; place-items: center; color: var(--mist); flex: none;
+  display: grid; place-items: center; color: var(--mist); flex: none; border: 2px solid var(--teal);
 }
-.logo-mark svg { width: 22px; height: 22px; }
-.logo small { display: block; font-weight: 500; color: var(--muted); font-size: .75rem; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo small { display: block; font-weight: 500; color: var(--navy); font-size: .75rem; }
 nav.main { display: flex; gap: 26px; }
-nav.main a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; }
-nav.main a:hover { color: var(--teal); }
-.header-call { padding: 10px 18px; font-size: .95rem; }
+nav.main a { text-decoration: none; color: var(--navy); font-weight: 600; font-size: .95rem; border-bottom: 2px solid transparent; padding: 4px 0; }
+nav.main a:hover { border-bottom-color: var(--teal); }
+.header-call { padding: 9px 18px; font-size: .95rem; }
 
 /* ---------- Hero ---------- */
 /* Fond « dark gradient » : dégradé + grain + grille + diagonales */
 .hero {
   position: relative; overflow: hidden;
   min-height: calc(100vh - 68px); display: flex; align-items: center;
-  background: linear-gradient(180deg, #0B1418 0%, #16252C 20%, #344D59 50%, #137C8B 80%, #709CA7 100%);
-  color: #fff; padding: 80px 0 90px;
+  background:
+    radial-gradient(70% 60% at 95% 100%, rgba(19,124,139,.85), transparent 70%),
+    radial-gradient(50% 50% at 100% 0%, rgba(122,144,164,.45), transparent 70%),
+    var(--navy);
+  color: var(--mist); padding: 80px 0 90px;
 }
 .hero::before,
 .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
@@ -119,101 +123,96 @@ nav.main a:hover { color: var(--teal); }
 }
 .hero::after {
   background-image:
-    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px),
-    linear-gradient(45deg, rgba(255,255,255,.01) 1px, transparent 1px),
-    linear-gradient(-45deg, rgba(255,255,255,.01) 1px, transparent 1px);
+    linear-gradient(rgba(184,203,208,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,203,208,.04) 1px, transparent 1px),
+    linear-gradient(45deg, rgba(184,203,208,.02) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(184,203,208,.02) 1px, transparent 1px);
   background-size: 60px 60px, 60px 60px, 40px 40px, 40px 40px;
 }
 .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
 .badge {
   display: inline-block; padding: 6px 14px; border-radius: 999px;
-  background: rgba(255,255,255,.12); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
+  border: 1px solid var(--teal-mid); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
 }
-.hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; }
-.hero h1 span { color: var(--mist); }
-.hero p.lead { font-size: 1.15rem; opacity: .9; margin: 0 0 30px; max-width: 560px; }
+.hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; color: var(--mist); }
+.hero h1 span { color: var(--teal-mid); }
+.hero p.lead { font-size: 1.15rem; margin: 0 0 30px; max-width: 560px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-.hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; opacity: .95; }
-.hero-checks li::before { content: "✓"; color: var(--mist); font-weight: 800; margin-right: 8px; }
+.hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; }
+.hero-checks li::before { content: "✓"; color: var(--teal-mid); font-weight: 800; margin-right: 8px; }
 .hero-card {
-  background: #fff; color: var(--text); border-radius: var(--radius);
-  padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,.25);
+  background: var(--mist); color: var(--navy); border-radius: var(--radius);
+  padding: 28px; border-top: 6px solid var(--teal);
 }
 .hero-card h2 { margin: 0 0 6px; font-size: 1.25rem; color: var(--navy); }
-.hero-card p { margin: 0 0 18px; color: var(--muted); font-size: .95rem; }
+.hero-card p { margin: 0 0 18px; font-size: .95rem; }
 .hero-card .phone-big {
   display: block; font-size: 1.7rem; font-weight: 800; color: var(--navy);
   text-decoration: none; margin-bottom: 14px;
 }
-.hours { margin: 0; padding: 0; list-style: none; font-size: .92rem; border-top: 1px solid var(--border); }
-.hours li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
-.hours li span:last-child { font-weight: 600; }
+.hours { margin: 0; padding: 0; list-style: none; font-size: .92rem; border-top: 1px solid var(--teal-mid); }
+.hours li { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--teal-mid); }
+.hours li span:last-child { font-weight: 700; }
 
 /* ---------- Sections ---------- */
 section { padding: 80px 0; scroll-margin-top: 68px; }
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
-.section-head .eyebrow { color: var(--teal); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
+.section-head .eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--navy); font-weight: 800; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em;
+}
+.section-head .eyebrow::before { content: ""; width: 24px; height: 3px; border-radius: 2px; background: var(--teal); }
 .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--navy); letter-spacing: -.01em; }
-.section-head p { color: var(--muted); margin: 0; }
+.section-head p { margin: 0; }
 
 .grid { display: grid; gap: 22px; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
 .card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 28px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
+  background: var(--mist); border: 2px solid var(--teal-mid); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s;
 }
-.card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(52,77,89,.14); }
+.card:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 14px 32px rgba(52,77,89,.28); }
 .card .icon {
-  width: 52px; height: 52px; border-radius: 12px; background: var(--tint); color: var(--teal);
+  width: 52px; height: 52px; border-radius: 12px; background: var(--navy); color: var(--mist);
   display: grid; place-items: center; margin-bottom: 18px;
 }
 .card .icon svg { width: 28px; height: 28px; }
 .card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--navy); }
-.card p { margin: 0; color: var(--muted); font-size: .95rem; }
+.card p { margin: 0; font-size: .95rem; }
 
 /* ---------- Couleurs + animations « Nos services » ---------- */
-/* Fond de section avec halos colorés */
 #services {
   background:
-    radial-gradient(600px 400px at 0% 10%, rgba(19,124,139,.12), transparent 70%),
-    radial-gradient(500px 380px at 100% 40%, rgba(224,122,95,.12), transparent 70%),
-    radial-gradient(520px 380px at 30% 100%, rgba(242,176,30,.12), transparent 70%),
-    var(--bg);
+    radial-gradient(600px 400px at 0% 10%, rgba(19,124,139,.22), transparent 70%),
+    radial-gradient(500px 380px at 100% 45%, rgba(122,144,164,.35), transparent 70%),
+    radial-gradient(520px 380px at 30% 100%, rgba(112,156,167,.35), transparent 70%),
+    var(--mist);
 }
-/* Une couleur par appareil : --c (couleur) / --c2 (plus foncée) */
-#services .card:nth-child(1) { --c: #137C8B; --c2: #0D5C68; } /* Lave-linge : teal */
-#services .card:nth-child(2) { --c: #3A86C8; --c2: #2A65A0; } /* Lave-vaisselle : bleu */
-#services .card:nth-child(3) { --c: #2BA3B8; --c2: #1D7F91; } /* Réfrigérateur : turquoise froid */
-#services .card:nth-child(4) { --c: #E07A5F; --c2: #C25A3F; } /* Four : orange chaud */
-#services .card:nth-child(5) { --c: #E3A21A; --c2: #B97F0A; } /* Sèche-linge : doré */
-#services .card:nth-child(6) { --c: #7A6FBE; --c2: #5A4F9E; } /* Micro-ondes : violet */
+/* Chaque carte alterne les couleurs de la palette */
+#services .card:nth-child(3n+1) { --c: var(--teal); }
+#services .card:nth-child(3n+2) { --c: var(--navy); }
+#services .card:nth-child(3n)   { --c: var(--slate); }
 
 #services .card {
   position: relative; overflow: hidden;
-  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 15%, #fff) 0%, #fff 60%);
-  border-color: color-mix(in srgb, var(--c) 22%, #fff);
+  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 22%, var(--mist)) 0%, var(--mist) 65%);
+  border-color: var(--c);
 }
 #services .card::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
-  background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 45%, #fff));
-  transform: scaleX(.25); transform-origin: left; transition: transform .4s ease;
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+  background: var(--c);
+  transform: scaleX(.3); transform-origin: left; transition: transform .4s ease;
 }
 #services .card:hover::before { transform: scaleX(1); }
-#services .card:hover {
-  border-color: var(--c);
-  box-shadow: 0 14px 36px color-mix(in srgb, var(--c) 28%, transparent);
-}
+#services .card:hover { box-shadow: 0 14px 36px color-mix(in srgb, var(--c) 40%, transparent); }
 #services .card .icon {
-  background: linear-gradient(135deg, var(--c), var(--c2)); color: #fff;
-  box-shadow: 0 6px 16px color-mix(in srgb, var(--c) 35%, transparent);
-  transition: transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+  background: var(--navy); color: var(--mist); border: 3px solid var(--c);
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1), background .3s;
 }
-#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); box-shadow: 0 10px 22px color-mix(in srgb, var(--c) 45%, transparent); }
-#services .card h3 { transition: color .25s; }
-#services .card:hover h3 { color: var(--c2); }
+#services .card:hover .icon { transform: rotate(-10deg) scale(1.12); background: var(--c); }
+#services .card:nth-child(3n) .icon { color: var(--mist); }
 
 /* Apparition au défilement (activée par JS uniquement) */
 .reveal-on .reveal:not(.in) { opacity: 0; }
@@ -226,20 +225,29 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
   #services .card .icon, #services .card::before { transition: none; }
 }
 
-.alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.alt { background: var(--mist); border-top: 2px solid var(--teal-mid); border-bottom: 2px solid var(--teal-mid); }
 
+/* Pourquoi nous */
 .why { text-align: center; padding: 10px; }
-.why .num { font-size: 2.2rem; font-weight: 800; color: var(--teal); }
+.why .num {
+  width: 64px; height: 64px; margin: 0 auto 10px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--navy); color: var(--mist); border: 3px solid var(--teal);
+}
+.why .num svg { width: 28px; height: 28px; }
 .why h3 { margin: 4px 0 6px; color: var(--navy); font-size: 1.05rem; }
-.why p { margin: 0; color: var(--muted); font-size: .93rem; }
+.why p { margin: 0; font-size: .93rem; }
 
+/* Comment ça marche : section foncée */
+#fonctionnement { background: var(--navy); }
+#fonctionnement .section-head h2,
+#fonctionnement .section-head .eyebrow { color: var(--mist); }
 .steps { counter-reset: step; }
 .step { position: relative; padding-top: 36px; }
 .step::before {
   counter-increment: step; content: counter(step);
   position: absolute; top: -22px; left: 28px;
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--accent); color: #fff; font-weight: 800;
+  background: var(--navy); color: var(--mist); border: 3px solid var(--teal); font-weight: 800;
   display: grid; place-items: center; font-size: 1.1rem;
 }
 
@@ -247,8 +255,9 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 #pourquoi { padding-bottom: 0; }
 .brand-band {
   margin-top: 56px; padding: 22px 0 26px;
-  background: linear-gradient(90deg, var(--navy), var(--teal));
-  color: #fff; overflow: hidden;
+  background: linear-gradient(90deg, var(--navy), color-mix(in srgb, var(--teal) 55%, var(--navy)));
+  border-top: 3px solid var(--teal);
+  color: var(--mist); overflow: hidden;
 }
 .brand-band-title {
   margin: 0 0 14px; text-align: center; font-size: .8rem; font-weight: 700;
@@ -264,7 +273,7 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .brands { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
 .brands li {
   display: flex; align-items: center; white-space: nowrap;
-  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: #fff;
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--mist);
 }
 .brands li::after { content: "•"; margin: 0 32px; color: var(--teal-mid); font-size: 1.1rem; }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -284,26 +293,26 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .reviews-wrap .section-head { text-align: left; margin: 0; }
 .reviews-wrap .section-head p { margin-bottom: 24px; }
 .rating-card {
-  --star: #F2B01E;
-  background: linear-gradient(160deg, var(--surface) 0%, var(--tint) 100%);
-  border: 1px solid var(--border); border-radius: 20px; padding: 32px;
+  --star: var(--teal);
+  background: linear-gradient(160deg, var(--mist) 0%, color-mix(in srgb, var(--teal-mid) 35%, var(--mist)) 100%);
+  border: 2px solid var(--teal); border-radius: 20px; padding: 32px;
   box-shadow: var(--shadow); max-width: 440px; width: 100%; justify-self: center; text-align: center;
 }
-.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; color: var(--muted); }
+.rating-label { display: inline-flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--navy); }
 .rating-label .g {
-  width: 22px; height: 22px; border-radius: 50%; background: #fff; border: 1px solid var(--border);
-  display: grid; place-items: center; font-weight: 800; font-size: .8rem; color: #4285F4;
+  width: 22px; height: 22px; border-radius: 50%; background: var(--navy);
+  display: grid; place-items: center; font-weight: 800; font-size: .8rem; color: var(--mist);
 }
 .rating-score { margin: 10px 0 6px; color: var(--navy); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
 .rating-score .score { font-size: 4.2rem; letter-spacing: -.03em; }
-.rating-score .out { font-size: 1.4rem; color: var(--slate); margin-left: 4px; }
+.rating-score .out { font-size: 1.4rem; color: var(--teal); margin-left: 4px; }
 .stars { display: flex; justify-content: center; gap: 6px; margin: 8px 0 16px; }
 .star { position: relative; width: 34px; height: 34px; }
 .star svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.star .base { color: var(--mist); }
+.star .base { color: var(--teal-mid); }
 .star .fill { position: absolute; inset: 0; overflow: hidden; width: var(--fill, 100%); }
 .star .fill svg { width: 34px; height: 34px; color: var(--star); }
-.rating-count { margin: 0 0 20px; color: var(--muted); }
+.rating-count { margin: 0 0 20px; }
 .rating-count strong { color: var(--navy); font-variant-numeric: tabular-nums; }
 .rating-card .btn { justify-content: center; }
 
@@ -327,33 +336,34 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 /* ---------- Contact ---------- */
 .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
 .contact-info .row { display: flex; gap: 14px; margin-bottom: 20px; }
-.contact-info .row .icon { margin: 0; flex: none; }
+.contact-info .row .icon { margin: 0; flex: none; border: 2px solid var(--teal); }
 .contact-info .row strong { display: block; color: var(--navy); }
-.contact-info .row a, .contact-info .row span { color: var(--muted); text-decoration: none; }
-.map { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); min-height: 220px; margin-top: 8px; }
+.contact-info .row a, .contact-info .row span { color: var(--navy); text-decoration: none; }
+.map { border-radius: var(--radius); overflow: hidden; border: 2px solid var(--teal-mid); min-height: 220px; margin-top: 8px; }
 .map iframe { width: 100%; height: 260px; border: 0; display: block; }
 
 form .field { margin-bottom: 14px; }
-form label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 6px; color: var(--navy); }
+form label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 6px; color: var(--navy); }
 form input, form select, form textarea {
-  width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px;
-  font: inherit; background: var(--bg); color: var(--text);
+  width: 100%; padding: 12px 14px; border: 2px solid var(--teal-mid); border-radius: 10px;
+  font: inherit; background: var(--mist); color: var(--navy);
 }
-form input:focus, form select:focus, form textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+form ::placeholder { color: var(--navy); opacity: .6; }
+form input:focus, form select:focus, form textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(19,124,139,.3); }
 form textarea { min-height: 110px; resize: vertical; }
 form .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-form .note { font-size: .8rem; color: var(--muted); margin-top: 10px; }
+form .note { font-size: .8rem; margin-top: 10px; }
 
 /* ---------- Pied de page ---------- */
-footer { background: var(--navy); color: rgba(255,255,255,.8); padding: 40px 0 30px; font-size: .9rem; }
+footer { background: var(--navy); color: var(--mist); padding: 40px 0 30px; font-size: .9rem; border-top: 3px solid var(--teal); }
 footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
-footer strong { color: #fff; }
+footer strong { color: var(--mist); }
 footer a { color: var(--mist); }
 
 /* Bouton d'appel flottant (mobile) */
 .float-call {
   display: none; position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60;
-  justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  justify-content: center; box-shadow: 0 10px 30px rgba(52,77,89,.45);
 }
 
 /* ---------- Responsive ---------- */
@@ -389,6 +399,9 @@ footer a { color: var(--mist); }
   <symbol id="i-micro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><rect x="5" y="8" width="10" height="8" rx="1"/><path d="M18 9h.01M18 12h.01M18 15h.01"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-euro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6.5A7 7 0 1 0 18 17.5"/><path d="M4 10h10M4 14h10"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
 </svg>
@@ -416,11 +429,11 @@ footer a { color: var(--mist); }
   <section class="hero">
     <div class="container">
       <div>
-        <span class="badge">🔧 Réparateur toutes marques à Montpellier</span>
+        <span class="badge">Réparateur toutes marques à Montpellier</span>
         <h1>Votre électroménager en panne ?<br><span>On le répare chez vous.</span></h1>
         <p class="lead">Lave-linge, lave-vaisselle, réfrigérateur, four, sèche-linge… STE Dépannage Électroménager intervient rapidement à votre domicile à Montpellier et dans les communes voisines.</p>
         <div class="hero-actions">
-          <a href="tel:+33400000000" class="btn btn-accent"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
+          <a href="tel:+33400000000" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler maintenant</a>
           <a href="#contact" class="btn btn-ghost">Demander un devis gratuit</a>
         </div>
         <ul class="hero-checks">
@@ -527,22 +540,22 @@ footer a { color: var(--mist); }
       </div>
       <div class="grid grid-4">
         <div class="why">
-          <div class="num">🏠</div>
+          <div class="num"><svg><use href="#i-home"/></svg></div>
           <h3>À domicile</h3>
           <p>On se déplace chez vous à Montpellier et dans les environs.</p>
         </div>
         <div class="why">
-          <div class="num">⚡</div>
+          <div class="num"><svg><use href="#i-bolt"/></svg></div>
           <h3>Rapide</h3>
           <p>Rendez-vous dans les meilleurs délais, souvent sous 24 à 48 h.</p>
         </div>
         <div class="why">
-          <div class="num">💶</div>
+          <div class="num"><svg><use href="#i-euro"/></svg></div>
           <h3>Prix transparents</h3>
           <p>Devis clair avant toute réparation. Pas de mauvaise surprise.</p>
         </div>
         <div class="why">
-          <div class="num">🛠️</div>
+          <div class="num"><svg><use href="#i-wrench"/></svg></div>
           <h3>Toutes marques</h3>
           <p>Des appareils d'entrée de gamme jusqu'aux grandes marques.</p>
         </div>
