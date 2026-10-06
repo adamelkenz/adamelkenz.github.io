@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>STE Dépannage Électroménager – Réparation à domicile à Montpellier</title>
 <meta name="description" content="STE Dépannage Électroménager : réparation de lave-linge, lave-vaisselle, réfrigérateur, four et sèche-linge à domicile à Montpellier et ses environs. Toutes marques, devis gratuit.">
-<meta name="theme-color" content="#0d3b66">
+<meta name="theme-color" content="#344D59">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,17 +39,22 @@
 
 <style>
 :root {
-  --navy: #0d3b66;
-  --navy-2: #12497c;
-  --accent: #f4a259;
-  --accent-dark: #e0812b;
-  --bg: #f7f9fc;
+  /* Palette : #137C8B #709CA7 #B8CBD0 #7A90A4 #344D59 */
+  --teal: #137C8B;
+  --teal-mid: #709CA7;
+  --mist: #B8CBD0;
+  --slate: #7A90A4;
+  --navy: #344D59;
+  --accent: var(--teal);
+  --accent-dark: #0F6470;
+  --bg: #F2F6F7;
   --surface: #ffffff;
-  --text: #1c2733;
-  --muted: #5d6b7a;
-  --border: #e2e8f0;
+  --text: #1E2E36;
+  --muted: #4F6570;
+  --border: #D6E1E4;
+  --tint: #E4EDEF;
   --radius: 14px;
-  --shadow: 0 6px 24px rgba(13, 59, 102, .08);
+  --shadow: 0 6px 24px rgba(52, 77, 89, .08);
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -72,7 +77,7 @@ a { color: inherit; }
   font-size: 1rem; transition: transform .15s, background .15s;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-accent { background: var(--accent); color: #1c1c1c; }
+.btn-accent { background: var(--accent); color: #fff; }
 .btn-accent:hover { background: var(--accent-dark); }
 .btn-ghost { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
 .btn-ghost:hover { background: rgba(255,255,255,.2); }
@@ -88,13 +93,13 @@ header.site .container { display: flex; align-items: center; justify-content: sp
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; color: var(--navy); line-height: 1.15; }
 .logo-mark {
   width: 40px; height: 40px; border-radius: 10px; background: var(--navy);
-  display: grid; place-items: center; color: var(--accent); flex: none;
+  display: grid; place-items: center; color: var(--mist); flex: none;
 }
 .logo-mark svg { width: 22px; height: 22px; }
 .logo small { display: block; font-weight: 500; color: var(--muted); font-size: .75rem; }
 nav.main { display: flex; gap: 26px; }
 nav.main a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; }
-nav.main a:hover { color: var(--navy); }
+nav.main a:hover { color: var(--teal); }
 .header-call { padding: 10px 18px; font-size: .95rem; }
 
 /* ---------- Hero ---------- */
@@ -102,7 +107,7 @@ nav.main a:hover { color: var(--navy); }
 .hero {
   position: relative; overflow: hidden;
   min-height: calc(100vh - 68px); display: flex; align-items: center;
-  background: linear-gradient(180deg, #000000 0%, #05080F 20%, #032F3A 40%, #0891b2 70%, #22d3ee 100%);
+  background: linear-gradient(180deg, #0B1418 0%, #16252C 20%, #344D59 50%, #137C8B 80%, #709CA7 100%);
   color: #fff; padding: 80px 0 90px;
 }
 .hero::before,
@@ -126,11 +131,11 @@ nav.main a:hover { color: var(--navy); }
   background: rgba(255,255,255,.12); font-size: .85rem; font-weight: 600; margin-bottom: 18px;
 }
 .hero h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.02em; }
-.hero h1 span { color: var(--accent); }
+.hero h1 span { color: var(--mist); }
 .hero p.lead { font-size: 1.15rem; opacity: .9; margin: 0 0 30px; max-width: 560px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 .hero-checks { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 30px; padding: 0; list-style: none; font-size: .95rem; opacity: .95; }
-.hero-checks li::before { content: "✓"; color: var(--accent); font-weight: 800; margin-right: 8px; }
+.hero-checks li::before { content: "✓"; color: var(--mist); font-weight: 800; margin-right: 8px; }
 .hero-card {
   background: #fff; color: var(--text); border-radius: var(--radius);
   padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,.25);
@@ -148,7 +153,7 @@ nav.main a:hover { color: var(--navy); }
 /* ---------- Sections ---------- */
 section { padding: 80px 0; }
 .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
-.section-head .eyebrow { color: var(--accent-dark); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
+.section-head .eyebrow { color: var(--teal); font-weight: 700; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
 .section-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 8px 0 12px; color: var(--navy); letter-spacing: -.01em; }
 .section-head p { color: var(--muted); margin: 0; }
 
@@ -160,9 +165,9 @@ section { padding: 80px 0; }
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
   padding: 28px; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(13,59,102,.12); }
+.card:hover { border-color: var(--slate); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(52,77,89,.14); }
 .card .icon {
-  width: 52px; height: 52px; border-radius: 12px; background: #eaf1f8; color: var(--navy);
+  width: 52px; height: 52px; border-radius: 12px; background: var(--tint); color: var(--teal);
   display: grid; place-items: center; margin-bottom: 18px;
 }
 .card .icon svg { width: 28px; height: 28px; }
@@ -172,7 +177,7 @@ section { padding: 80px 0; }
 .alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 .why { text-align: center; padding: 10px; }
-.why .num { font-size: 2.2rem; font-weight: 800; color: var(--accent-dark); }
+.why .num { font-size: 2.2rem; font-weight: 800; color: var(--teal); }
 .why h3 { margin: 4px 0 6px; color: var(--navy); font-size: 1.05rem; }
 .why p { margin: 0; color: var(--muted); font-size: .93rem; }
 
@@ -182,13 +187,13 @@ section { padding: 80px 0; }
   counter-increment: step; content: counter(step);
   position: absolute; top: -22px; left: 28px;
   width: 44px; height: 44px; border-radius: 50%;
-  background: var(--accent); color: #1c1c1c; font-weight: 800;
+  background: var(--accent); color: #fff; font-weight: 800;
   display: grid; place-items: center; font-size: 1.1rem;
 }
 
 .brands { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
 .brands span {
-  padding: 8px 18px; border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 18px; border: 1px solid var(--mist); border-radius: 999px;
   background: var(--surface); color: var(--muted); font-weight: 600; font-size: .9rem;
 }
 
@@ -216,7 +221,7 @@ form .note { font-size: .8rem; color: var(--muted); margin-top: 10px; }
 footer { background: var(--navy); color: rgba(255,255,255,.8); padding: 40px 0 30px; font-size: .9rem; }
 footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; }
 footer strong { color: #fff; }
-footer a { color: rgba(255,255,255,.8); }
+footer a { color: var(--mist); }
 
 /* Bouton d'appel flottant (mobile) */
 .float-call {
