@@ -116,7 +116,22 @@
       return;
     }
     if (!endpoint()) {
-      show(`La prise de rendez-vous en ligne n'est pas encore activée. Appelez-nous au ${PHONE}.`, true);
+      // Pas encore de prise de rendez-vous en ligne : on prépare un SMS avec la demande
+      const lignes = [
+        'Demande d\'intervention',
+        `Nom : ${f.nom.value.trim()}`, `Tél : ${f.tel.value.trim()}`,
+        f.ville.value.trim() && `Ville : ${f.ville.value.trim()}`,
+        `Prestation : ${f.prestation.value}`,
+        f.urgent.checked ? 'URGENT : dès que possible' : `Souhaité : ${f.date.value} ${f.creneau.options[f.creneau.selectedIndex].text}`,
+        f.message.value.trim()
+      ].filter(Boolean).join('\n');
+      const intl = '+33' + PHONE.replace(/\D/g, '').replace(/^0/, '');
+      if (window.matchMedia('(pointer: coarse)').matches) {
+        show(`Votre application SMS s'ouvre avec votre demande : il ne reste qu'à l'envoyer. Pour une urgence, appelez le ${PHONE}.`);
+        window.location.href = `sms:${intl}?&body=${encodeURIComponent(lignes)}`;
+      } else {
+        show(`Pour nous transmettre votre demande, appelez ou envoyez un SMS au ${PHONE}. Nous vous rappelons rapidement.`);
+      }
       return;
     }
 
