@@ -16,7 +16,9 @@ import os
 from datetime import date
 
 # ---------------------------------------------------------------- Réglages
-SITE = 'https://www.serrurier-vaucluse.fr/'   # adresse définitive du site (canonical, sitemap)
+# Adresse publique du site (canonical, sitemap, partages). Quand le nom de domaine sera relié,
+# remplacer par exemple par 'https://www.serrurier-vaucluse.fr/' puis relancer le script.
+SITE = 'https://adamelkenz.github.io/serrurier-vaucluse/'
 NOM = 'Serrurier Vaucluse'
 TEL = '06 68 88 51 51'
 TEL_HREF = 'tel:+33668885151'
@@ -280,14 +282,34 @@ VILLES = [
     },
 ]
 
+# Urgences : un paragraphe propre à chaque ville
+URGENCES = {
+    'serrurier-avignon': "Porte claquée en rentrant d'une soirée intra-muros, clé cassée un dimanche à Montfavet, serrure forcée pendant les vacances : nous répondons à toute heure. Le tarif de nuit, de dimanche ou de jour férié vous est annoncé au téléphone avant que le serrurier ne parte.",
+    'serrurier-le-pontet': "Au Pontet, une urgence se règle vite : la commune touche Avignon, d'où partent nos interventions. La nuit, le dimanche ou un jour férié, le prix majoré vous est annoncé avant le départ.",
+    'serrurier-sorgues': "Clé perdue en rentrant tard, porte bloquée un dimanche matin : nous intervenons à Sorgues 24h/24. Comme partout, la majoration de nuit ou de jour férié est annoncée au téléphone avant le déplacement.",
+    'serrurier-carpentras': "Une porte claquée un soir dans le centre ancien ou une serrure forcée pendant un week-end : appelez-nous à toute heure. Le tarif d'urgence vous est communiqué avant que le serrurier ne prenne la route vers Carpentras.",
+    'serrurier-monteux': "Porte claquée en revenant du lac, clé cassée un jour férié : notre serrurier intervient à Monteux de jour comme de nuit, avec un prix annoncé avant le départ.",
+    'serrurier-pernes-les-fontaines': "Une clé qui casse dans une vieille serrure du centre historique un dimanche, une porte claquée en pleine nuit : nous intervenons à Pernes-les-Fontaines 7j/7, au tarif annoncé avant le déplacement.",
+    'serrurier-orange': "Après une soirée au théâtre antique, une clé perdue ou une porte claquée ne doit pas tourner au cauchemar : nous intervenons à Orange 24h/24, y compris le dimanche et les jours fériés, avec un prix annoncé à l'avance.",
+    'serrurier-bollene': "Au nord du département, un dépannage de nuit ou de week-end se prépare au téléphone : nous vous annonçons le prix et vous indiquons quand le serrurier pourra être sur place à Bollène.",
+    'serrurier-vaison-la-romaine': "Porte claquée dans la haute ville, serrure grippée dans une maison de vacances un dimanche : nous intervenons à Vaison-la-Romaine et dans les villages du Ventoux 7j/7, au tarif annoncé avant le départ.",
+    'serrurier-valreas': "Même dans l'Enclave des Papes, vous n'êtes pas seul en cas d'urgence : nous intervenons à Valréas la nuit, le week-end et les jours fériés, avec un prix annoncé au téléphone avant le déplacement.",
+    'serrurier-cavaillon': "Serrure forcée sur un local professionnel pendant la nuit, porte claquée un dimanche au pied de la colline Saint-Jacques : nous intervenons à Cavaillon 24h/24, prix annoncé avant le départ.",
+    'serrurier-l-isle-sur-la-sorgue': "Pendant les foires aux antiquaires, la ville vit à toute heure : une porte de boutique bloquée ou une clé perdue se règle 7j/7. Le tarif de nuit ou de jour férié est annoncé avant que le serrurier ne parte pour L'Isle-sur-la-Sorgue.",
+    'serrurier-apt': "Clé perdue un samedi de marché, porte bloquée dans un mas isolé un soir d'hiver : nous intervenons à Apt et dans les villages du Luberon 7j/7, au prix annoncé avant le déplacement.",
+    'serrurier-pertuis': "Porte claquée en rentrant du travail, serrure endommagée après une tentative d'effraction la nuit : nous intervenons à Pertuis et dans le pays d'Aigues 24h/24, prix annoncé au téléphone.",
+}
+
 # ---------------------------------------------------------------- FAQ générale
 FAQ_GENERALE = [
     ("Combien coûte une ouverture de porte ?",
      "Une ouverture de porte claquée coûte 90 € TTC avant 18h. Une porte fermée à clé coûte 130 € TTC avant 18h. Des majorations s'appliquent après 18h, après 22h, le week-end et les jours fériés (voir notre grille tarifaire). Le déplacement est inclus."),
+    ("Comment trouver un serrurier pas cher et honnête ?",
+     "Comparez des prix annoncés, pas des promesses : un serrurier sérieux vous donne son tarif au téléphone, déplacement compris, avant de partir. Méfiez-vous des annonces à prix d'appel très bas qui cachent des frais de déplacement ou de diagnostic. Chez nous, une porte claquée coûte 90 € TTC avant 18h, tout compris."),
     ("Quelle différence entre porte claquée et porte verrouillée ?",
      "Une porte claquée est simplement fermée sans tour de clé : seul le pêne demi-tour la retient. Une porte verrouillée a été fermée à clé, ce qui demande une technique d'ouverture plus longue."),
-    ("Intervenez-vous la nuit et le week-end ?",
-     "Oui, nous intervenons 24h/24 et 7j/7, y compris les jours fériés, dans tout le Vaucluse."),
+    ("Intervenez-vous la nuit, le dimanche et les jours fériés ?",
+     "Oui, nous intervenons 24h/24 et 7j/7, y compris le dimanche et les jours fériés, dans tout le Vaucluse. Les majorations de nuit et de jour férié figurent dans notre grille tarifaire et vous sont confirmées au téléphone."),
     ("Le prix est-il annoncé avant l'intervention ?",
      "Oui. Le tarif vous est communiqué au téléphone avant tout déplacement, et confirmé sur place avant de commencer."),
     ("Faut-il changer toute la serrure ou seulement le cylindre ?",
@@ -298,6 +320,8 @@ FAQ_GENERALE = [
      "Méfiez-vous des numéros sans nom ni adresse et des prix qui ne sont pas annoncés au téléphone. La réglementation (arrêté du 24 janvier 2017) oblige le professionnel à vous informer de ses tarifs avant l'intervention et à vous remettre un devis détaillé avant les travaux au-delà d'un certain montant. Chez nous, le prix est annoncé avant le déplacement et la facture est systématique."),
     ("Mon assurance peut-elle prendre en charge l'intervention ?",
      "Selon votre contrat, certaines interventions (notamment après effraction) peuvent être prises en charge. Nous vous remettons une facture détaillée à transmettre à votre assureur."),
+    ("Pouvez-vous transformer ma porte en porte blindée ?",
+     "Oui : le blindage de porte renforce votre porte existante (plaque d'acier, serrure multipoints, cornières anti-pince, poignée blindée) sans la remplacer. C'est une solution plus économique qu'une porte blindée complète. Nous établissons un devis gratuit après avoir vu la porte."),
 ]
 
 # ---------------------------------------------------------------- Outils
@@ -429,7 +453,7 @@ def local_html(v, root):
     cp = v['cp'] + (f' · {v["cp2"]}' if v.get('cp2') else '')
     depart = 'Notre base' if v['nom'] == 'Avignon' else f'≈ {dist:.0f} km d\'Avignon'.replace('.', ',')
     return f'''  <!-- ========== LOCAL ========== -->
-  <section id="ville" class="alt">
+  <section id="secteur" class="alt">
     <div class="container local">
       <div class="prose">
         <div class="section-head" style="text-align:left;margin:0">
@@ -439,6 +463,8 @@ def local_html(v, root):
 {paras}
           <h3>Les logements {e(v["a"])} et leurs serrures</h3>
 {habitat}
+          <h3>Serrurier en urgence {e(v["a"])} : nuit, dimanche et jours fériés</h3>
+          <p>{e(URGENCES[v["slug"]])}</p>
           <h3>Nos interventions {e(v["a"])}</h3>
           <p>Ouverture de porte claquée ou verrouillée, clé cassée ou coincée, réparation et changement de serrure, remplacement de cylindre, pose de serrure multipoints, blindage de porte, poignée anti-effraction, réparation après effraction et dépannage de volets roulants. <a href="#tarifs">Voir nos tarifs</a> ou <a href="{TEL_HREF}">appeler le {TEL}</a>.</p>
       </div>
@@ -471,7 +497,7 @@ def local_html(v, root):
 '''
 
 
-def tete(titre, desc, url, root, ld, image):
+def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-preview:large'):
     return f'''<!doctype html>
 <html lang="fr">
 <head>
@@ -480,7 +506,7 @@ def tete(titre, desc, url, root, ld, image):
 <title>{e(titre)}</title>
 <meta name="description" content="{e(desc)}">
 <meta name="theme-color" content="#070B18">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{robots}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
@@ -489,14 +515,17 @@ def tete(titre, desc, url, root, ld, image):
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="geo.region" content="FR-84">
 <link rel="icon" type="image/svg+xml" href="{root}img/logo-cle-ventoux.svg">
-<link rel="apple-touch-icon" href="{root}img/logo-cle-ventoux.svg">
+<link rel="apple-touch-icon" href="{root}img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="{root}css/style.css">
 <!-- Page générée par _outils/generer.py : modifier le script, pas ce fichier. -->
 <script type="application/ld+json">
@@ -507,28 +536,30 @@ def tete(titre, desc, url, root, ld, image):
 '''
 
 
-def bas(root):
+def bas(root, complet=True):
+    if not complet:
+        return f'\n<script defer src="{root}js/site.js"></script>\n</body>\n</html>\n'
     return f'''
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="{root}js/door3d.js"></script>
-<script src="{root}js/booking.js"></script>
-<script src="{root}js/site.js"></script>
-<script src="{root}js/zones-map.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script defer src="{root}js/door3d.js"></script>
+<script defer src="{root}js/booking.js"></script>
+<script defer src="{root}js/site.js"></script>
+<script defer src="{root}js/zones-map.js"></script>
 </body>
 </html>
 '''
 
 
-def page(root, valeurs, sections, titre, desc, url, ld):
-    image = SITE + 'img/realisations/' + REALISATIONS[0]['photo'] + '.jpg'
+def page(root, valeurs, sections, titre, desc, url, ld, robots='index, follow, max-image-preview:large', complet=True):
+    image = SITE + 'img/partage-serrurier-vaucluse.jpg'
     commun = {
-        'ROOT': root, 'HOME': root or './', 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
+        'ROOT': root, 'HOME': root or './', 'NAV': '', 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
         'PIED_VILLES': '\n'.join(f'          <li><a href="{root}{v["slug"]}/">Serrurier {e(v["nom"])}</a></li>' for v in VILLES),
     }
     commun.update(valeurs)
     corps = bloc('sprite') + '\n' + bloc('entete') + '\n<main>\n' + ''.join(sections) + '</main>\n\n' + bloc('pied')
-    return tete(titre, desc, url, root, ld, image) + remplir(corps, commun) + bas(root)
+    return tete(titre, desc, url, root, ld, image, robots) + remplir(corps, commun) + bas(root, complet)
 
 
 def ecrire(chemin, texte):
@@ -557,8 +588,8 @@ def accueil():
     sections = [bloc('hero'), bloc('services'), bloc('tarifs'), realisations_html('', 'dans le Vaucluse'), bloc('pourquoi'),
                 bloc('fonctionnement'), bloc('zones'), villes_html(''), bloc('urgence'), bloc('faq'), bloc('contact')]
     ecrire('index.html', page('', valeurs, sections,
-                              'Serrurier Vaucluse (84) – Dépannage 24h/24 à Avignon et dans tout le 84',
-                              "Serrurier dans le Vaucluse : ouverture de porte dès 90 € TTC, changement de serrure, blindage, réparation après effraction. Intervention 24h/24 à Avignon, Carpentras, Orange, Cavaillon, Apt, Pertuis. ☎ " + TEL,
+                              'Serrurier Vaucluse (84) – Dépannage 24h/24, ouverture de porte',
+                              "Serrurier dans le Vaucluse 24h/24 : ouverture de porte dès 90 € TTC, changement de serrure, blindage. Avignon, Carpentras, Orange, Cavaillon… ☎ " + TEL,
                               SITE, ld))
 
 
@@ -570,7 +601,7 @@ def ville(v):
          f"Nos tarifs sont les mêmes {v['a']} que dans tout le Vaucluse, déplacement inclus : 90 € TTC pour une porte claquée et 130 € TTC pour une porte fermée à clé avant 18h. Des majorations s'appliquent après 18h, après 22h, le week-end et les jours fériés."),
         (f"Intervenez-vous autour de {v['nom']} ?",
          f"Oui. Nous intervenons {v['a']} ({v['cp']}) et dans les communes voisines comme {', '.join(v['voisines'][:-1])} et {v['voisines'][-1]}, ainsi que dans tout le département."),
-    ] + [FAQ_GENERALE[i] for i in (1, 2, 4, 5)]
+    ] + [FAQ_GENERALE[i] for i in (1, 3, 6, 9)]
     zone = [{'@type': 'City', 'name': v['nom'], 'address': {'@type': 'PostalAddress', 'postalCode': v['cp'], 'addressLocality': v['nom'], 'addressRegion': 'Vaucluse', 'addressCountry': 'FR'}}]
     ld = [
         dict(entreprise_ld(zone)),
@@ -595,12 +626,63 @@ def ville(v):
         'VILLE_EX': e(v['nom']),
     }
     sections = [bloc('hero'), local_html(v, root), bloc('services'), bloc('tarifs'), realisations_html(root, 'dans le Vaucluse'),
-                bloc('pourquoi'), bloc('fonctionnement'), bloc('zones'), bloc('urgence'), bloc('faq'), villes_html(root, v['nom']),
+                bloc('zones'), bloc('urgence'), bloc('faq'), villes_html(root, v['nom']),
                 bloc('contact')]
     titre = f'Serrurier {v["nom"]} ({v["cp"]}) – Dépannage 24h/24 dès 90 €'
-    desc = (f"Serrurier {v['a']} ({v['cp']}) : ouverture de porte dès 90 € TTC, changement de serrure et de cylindre, blindage, "
-            f"réparation après effraction. Prix annoncé avant le déplacement, 24h/24 et 7j/7. ☎ {TEL}")
+    desc = (f"Serrurier {v['a']} ({v['cp']}) 24h/24 : ouverture de porte dès 90 € TTC, changement de serrure, "
+            f"blindage, prix annoncé à l'avance. ☎ {TEL}")
     ecrire(f'{v["slug"]}/index.html', page(root, valeurs, sections, titre, desc, url, ld))
+
+
+# Informations légales : à compléter par le client avant la mise en ligne définitive
+A_COMPLETER = '<span class="todo">[à compléter]</span>'
+LEGAL = {
+    'raison': A_COMPLETER,      # ex. « Jean Dupont, entrepreneur individuel » ou « SARL Serrurier Vaucluse »
+    'siret': A_COMPLETER,
+    'adresse': A_COMPLETER,
+    'directeur': A_COMPLETER,   # directeur de la publication
+}
+
+
+def mentions():
+    root = '../'
+    corps = f'''  <section id="legal" class="alt">
+    <div class="container legal">
+      <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="../">Serrurier Vaucluse</a></li><li aria-current="page">Mentions légales</li></ol></nav>
+      <h1>Mentions légales et confidentialité</h1>
+
+      <h2>Éditeur du site</h2>
+      <ul class="facts">
+        <li><span>Nom commercial</span><b>{NOM}</b></li>
+        <li><span>Exploitant</span><b>{LEGAL['raison']}</b></li>
+        <li><span>SIRET</span><b>{LEGAL['siret']}</b></li>
+        <li><span>Adresse</span><b>{LEGAL['adresse']}</b></li>
+        <li><span>Téléphone</span><b><a href="{TEL_HREF}">{TEL}</a></b></li>
+        <li><span>E-mail</span><b><a href="mailto:{EMAIL}">{EMAIL}</a></b></li>
+        <li><span>Directeur de la publication</span><b>{LEGAL['directeur']}</b></li>
+      </ul>
+
+      <h2>Hébergement</h2>
+      <p>GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+      <h2>Tarifs et dépannage</h2>
+      <p>Les prix affichés sont TTC, déplacement inclus, conformément à l'arrêté du 24 janvier 2017 relatif à l'information des consommateurs sur les prestations de dépannage, de réparation et d'entretien dans le secteur du bâtiment et de l'équipement de la maison. Le tarif est annoncé avant l'intervention et confirmé sur place ; une facture détaillée est remise après chaque intervention.</p>
+
+      <h2>Données personnelles</h2>
+      <p>Les informations saisies dans le formulaire de demande (nom, téléphone, e-mail facultatif, ville, prestation, date souhaitée, message) servent uniquement à vous recontacter et à organiser l'intervention. Elles ne sont ni vendues ni cédées à des tiers et sont conservées le temps nécessaire au traitement de votre demande et aux obligations comptables.</p>
+      <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou l'effacement de vos données en nous contactant par téléphone ou par e-mail. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
+      <p>Le site ne dépose aucun cookie publicitaire ni de mesure d'audience. Pour afficher la police de caractères, l'animation et la carte, votre navigateur contacte des services tiers (Google Fonts, cdnjs de Cloudflare, fonds de carte Esri), qui reçoivent votre adresse IP.</p>
+
+      <h2>Propriété intellectuelle et crédits</h2>
+      <p>Les textes, photos d'interventions et le logo appartiennent à {NOM}. Toute reproduction sans autorisation est interdite. Fonds de carte © Esri, HERE, Garmin et les contributeurs OpenStreetMap.</p>
+    </div>
+  </section>
+'''
+    valeurs = {'FIL': '', 'NAV': '../'}
+    ecrire('mentions-legales/index.html', page(root, valeurs, [corps], f'Mentions légales – {NOM}',
+                                               f'Mentions légales, hébergement et politique de confidentialité du site {NOM}.',
+                                               SITE + 'mentions-legales/', [entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}])],
+                                               robots='noindex, follow', complet=False))
 
 
 def plan():
@@ -618,5 +700,6 @@ if __name__ == '__main__':
     accueil()
     for v in VILLES:
         ville(v)
+    mentions()
     plan()
     print(f'{1 + len(VILLES)} pages générées, sitemap.xml et robots.txt à jour.')

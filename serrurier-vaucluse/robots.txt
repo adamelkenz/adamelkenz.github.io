@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /_outils/
 
-Sitemap: https://www.serrurier-vaucluse.fr/sitemap.xml
+Sitemap: https://adamelkenz.github.io/serrurier-vaucluse/sitemap.xml
