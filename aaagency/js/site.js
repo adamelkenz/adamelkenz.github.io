@@ -32,11 +32,16 @@
   /* ---------- Démo de l'assistant IA ---------- */
   var fil = document.getElementById('chat-fil');
   var SCENARIO = [
-    ['client', 'Bonsoir, vous intervenez à Carpentras demain matin ?'],
-    ['ia', 'Bonsoir ! Oui, nous intervenons à Carpentras. Il reste un créneau demain à 9h ou à 11h30. Lequel vous convient ?'],
-    ['client', '9h c’est parfait'],
-    ['ok', '✓ Rendez-vous réservé demain à 9h. Confirmation envoyée par SMS.']
+    ['visiteur', 'Un créneau demain ?'],
+    ['ia', 'Oui : 9h ou 11h30 ?'],
+    ['visiteur', '9h svp'],
+    ['ok', '✓ Réservé · SMS envoyé']
   ];
+  function ajouter(b) {
+    fil.appendChild(b);
+    // La carte est petite : seules les 3 dernières bulles restent visibles.
+    while (fil.children.length > 3) fil.removeChild(fil.firstChild);
+  }
   function bulle(type, texte) {
     var b = document.createElement('div');
     b.className = 'bulle bulle-' + type;
@@ -46,21 +51,21 @@
   function jouer() {
     fil.textContent = '';
     if (reduit) {
-      SCENARIO.forEach(function (m) { fil.appendChild(bulle(m[0], m[1])); });
+      SCENARIO.slice(-3).forEach(function (m) { fil.appendChild(bulle(m[0], m[1])); });
       return;
     }
     var i = 0;
     (function suivant() {
-      if (i >= SCENARIO.length) { setTimeout(jouer, 5200); return; }
+      if (i >= SCENARIO.length) { setTimeout(jouer, 4200); return; }
       var m = SCENARIO[i++];
-      if (m[0] === 'client') {
-        fil.appendChild(bulle(m[0], m[1]));
+      if (m[0] === 'visiteur') {
+        ajouter(bulle(m[0], m[1]));
         setTimeout(suivant, 1100);
         return;
       }
       var attente = bulle('ia', '');
       attente.innerHTML = '<span class="tape" aria-label="L’assistant écrit"><i></i><i></i><i></i></span>';
-      fil.appendChild(attente);
+      ajouter(attente);
       setTimeout(function () {
         fil.replaceChild(bulle(m[0], m[1]), attente);
         setTimeout(suivant, 1500);
@@ -70,7 +75,7 @@
   if (fil) setTimeout(jouer, 600);
 
   /* ---------- Apparition des blocs ---------- */
-  var blocs = document.querySelectorAll('.pole, .cas-ia article, .projet, .etapes li, .offre, .faq details');
+  var blocs = document.querySelectorAll('.section .carte');
   if ('IntersectionObserver' in window && !reduit) {
     var obs = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (en) {
