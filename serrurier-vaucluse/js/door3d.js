@@ -97,8 +97,11 @@
 
   const add = (geo, mat, x, y, z, parent) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m; };
 
+  // stage : rotations et échelle autour du centre de l'objet ; root : contenu recentré
+  const stage = new THREE.Group();
+  scene.add(stage);
   const root = new THREE.Group();
-  scene.add(root);
+  stage.add(root);
 
   // --- Dimensions ---
   const W = 1.6, H = 3.0, T = 0.12;
@@ -129,7 +132,17 @@
   const door = new THREE.Group();
   door.position.x = W / 2;
   pivot.add(door);
-  add(new THREE.BoxGeometry(W, H, T), doorMat, 0, 0, 0, door);
+  // Battant aux arêtes adoucies
+  const leafShape = new THREE.Shape();
+  const rr = 0.05;
+  leafShape.moveTo(-W / 2 + rr, -H / 2);
+  leafShape.lineTo(W / 2 - rr, -H / 2); leafShape.quadraticCurveTo(W / 2, -H / 2, W / 2, -H / 2 + rr);
+  leafShape.lineTo(W / 2, H / 2 - rr); leafShape.quadraticCurveTo(W / 2, H / 2, W / 2 - rr, H / 2);
+  leafShape.lineTo(-W / 2 + rr, H / 2); leafShape.quadraticCurveTo(-W / 2, H / 2, -W / 2, H / 2 - rr);
+  leafShape.lineTo(-W / 2, -H / 2 + rr); leafShape.quadraticCurveTo(-W / 2, -H / 2, -W / 2 + rr, -H / 2);
+  const leafGeo = new THREE.ExtrudeGeometry(leafShape, { depth: T - 0.02, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.01, bevelSegments: 3, curveSegments: 8 });
+  leafGeo.center();
+  const leaf = add(leafGeo, doorMat, 0, 0, 0, door);
   // Moulures (deux panneaux en relief)
   [[0.62, 1.05], [-0.72, 1.1]].forEach(([y, h]) => {
     const g = new THREE.Group();
@@ -201,20 +214,20 @@
   const chips = [];
   for (let i = 0; i < 14; i++) {
     const c = add(new THREE.BoxGeometry(0.04 + Math.random() * 0.08, 0.015, 0.02 + Math.random() * 0.05), chipMat,
-      W / 2 - 0.2 + Math.random() * 0.9, -H / 2 + 0.01, 0.1 + Math.random() * 0.5, root);
+      -0.1 + Math.random() * 0.95, -H / 2 + 0.01, 0.1 + Math.random() * 0.35, root);
     c.rotation.y = Math.random() * Math.PI;
     chips.push(c);
   }
 
   // Ombre au sol
-  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 1.6),
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 1.2),
     new THREE.MeshBasicMaterial({ map: radialTexture('rgba(0,0,0,0.7)', 'rgba(0,0,0,0)'), transparent: true, depthWrite: false }));
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.set(0, -H / 2 - 0.09, 0.1);
   root.add(shadow);
 
   // Onde et étincelles au verrouillage
-  const wave = add(new THREE.RingGeometry(0.85, 0.95, 64),
+  const wave = add(new THREE.RingGeometry(0.2, 0.235, 64),
     new THREE.MeshBasicMaterial({ color: 0x00d1ff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }),
     LX, CYL_Y, FRONT + 0.05, door);
   const SP = 70;
@@ -227,7 +240,7 @@
   // Poussière ambiante
   const N = 160, pts = new Float32Array(N * 3);
   for (let i = 0; i < N; i++) {
-    const r = 2.4 + Math.random() * 2.5, a = Math.random() * Math.PI * 2, b = (Math.random() - 0.5) * Math.PI;
+    const r = 1.9 + Math.random() * 1.3, a = Math.random() * Math.PI * 2, b = (Math.random() - 0.5) * Math.PI;
     pts[i * 3] = r * Math.cos(a) * Math.cos(b);
     pts[i * 3 + 1] = r * Math.sin(b);
     pts[i * 3 + 2] = r * Math.sin(a) * Math.cos(b) - 1;
@@ -268,19 +281,20 @@
 
     // Gâche arrachée qui revient en place
     const s = easeOutBack(seg(t, 2.6, 3.3));
-    brokenStrike.position.set(lerp(W / 2 + 0.3, W / 2 + 0.03, s), lerp(CYL_Y - 0.5, CYL_Y, s), lerp(0.35, FZ + 0.06, s));
-    brokenStrike.rotation.set(0, 0, lerp(1.1, 0, s));
+    brokenStrike.position.set(lerp(W / 2 + 0.12, W / 2 + 0.03, s), lerp(-H / 2 + 0.05, CYL_Y, s), lerp(0.3, FZ + 0.06, s));
+    brokenStrike.rotation.set(lerp(-1.5, 0, s), 0, lerp(1.2, 0, s));
 
-    // Ancien cylindre : de travers, puis arraché
-    const out = ease(seg(t, 3.2, 3.8));
-    oldCyl.visible = t < 3.8;
-    oldCyl.position.set(CYL_HOME.x + out * 0.6, CYL_HOME.y - out * 0.3 + Math.sin(time * 14) * 0.004 * (1 - out), CYL_HOME.z + 0.07 + out * 1.4);
-    oldCyl.rotation.set(0.35 + out * 2, 0.2, 0.5 + out * 3);
+    // Ancien cylindre : de travers, puis il tombe au pied de la porte et disparaît
+    const fall = seg(t, 3.2, 3.9), gone = ease(seg(t, 3.9, 4.3));
+    oldCyl.visible = t < 4.3;
+    oldCyl.position.set(CYL_HOME.x + fall * 0.12, lerp(CYL_HOME.y, -H / 2 + 0.06, fall * fall), CYL_HOME.z + 0.07 + Math.sin(fall * Math.PI) * 0.25);
+    oldCyl.rotation.set(0.35 + fall * 2.5, 0.2, 0.5 + fall * 4);
+    oldCyl.scale.setScalar(Math.max(0.001, 1 - gone));
 
     // Cylindre neuf qui arrive
     const inn = easeOutBack(seg(t, 3.8, 4.6));
     newCyl.visible = t >= 3.8;
-    newCyl.position.set(CYL_HOME.x, CYL_HOME.y, CYL_HOME.z + (1 - inn) * 1.6);
+    newCyl.position.set(CYL_HOME.x, CYL_HOME.y, CYL_HOME.z + (1 - inn) * 0.7);
     newCyl.rotation.set(0, 0, (1 - inn) * 3);
 
     // Tournevis : vis du haut puis vis du bas
@@ -288,8 +302,8 @@
     driver.visible = t > 4.4 && t < 6.2;
     const target = t < 5.2 ? SCREWS[0] : SCREWS[1];
     const hop = t > 5.1 && t < 5.3 ? Math.sin(seg(t, 5.1, 5.3) * Math.PI) * 0.15 : 0;
-    driver.position.set(LX + (1 - dIn + dOut) * 0.8, target + (1 - dIn + dOut) * 0.4,
-      FRONT + 0.03 + (1 - dIn + dOut) * 1.2 + hop);
+    const dAway = 1 - dIn + dOut;
+    driver.position.set(LX + dAway * 0.4, target + dAway * 0.3, FRONT + 0.03 + dAway * 0.6 + hop);
     driver.rotation.set(0, 0, t > 4.8 && t < 5.8 ? time * 18 : 0);
 
     // Fissure et éclats qui disparaissent
@@ -303,7 +317,7 @@
     const kIn = ease(seg(t, 6.2, 7.0)) - ease(seg(t, 9.6, 10.3));
     key.visible = t > 6.2 && t < 10.3;
     const away = 1 - kIn;
-    key.position.set(CYL_HOME.x + away * away * 0.8, CYL_HOME.y + away * away * 0.4, FRONT + 0.03 + away * 1.4);
+    key.position.set(CYL_HOME.x + away * away * 0.35, CYL_HOME.y + away * away * 0.25, FRONT + 0.03 + away * 0.7);
     const turn = t < 9.6 ? easeOutBack(seg(t, 7.0, 7.5)) : 1 - ease(seg(t, 9.4, 9.8));
     key.rotation.set(0, away * 0.6, -turn * Math.PI / 2 + away * 1.2);
 
@@ -319,10 +333,10 @@
   function burst() {
     for (let i = 0; i < SP; i++) {
       spPos[i * 3] = LX; spPos[i * 3 + 1] = CYL_Y; spPos[i * 3 + 2] = FRONT + 0.1;
-      const a = Math.random() * Math.PI * 2, sp = 1 + Math.random() * 2.2;
+      const a = Math.random() * Math.PI * 2, sp = 0.35 + Math.random() * 0.8;
       spVel[i * 3] = Math.cos(a) * sp;
-      spVel[i * 3 + 1] = Math.sin(a) * sp + 1;
-      spVel[i * 3 + 2] = 0.5 + Math.random() * 1.5;
+      spVel[i * 3 + 1] = Math.sin(a) * sp + 0.4;
+      spVel[i * 3 + 2] = 0.2 + Math.random() * 0.5;
     }
     sparkAge = 0;
     waveAge = 0;
@@ -331,7 +345,7 @@
     if (sparkAge < 1.3) {
       sparkAge += dt;
       for (let i = 0; i < SP; i++) {
-        spVel[i * 3 + 1] -= 5 * dt;
+        spVel[i * 3 + 1] -= 2 * dt;
         spPos[i * 3] += spVel[i * 3] * dt;
         spPos[i * 3 + 1] += spVel[i * 3 + 1] * dt;
         spPos[i * 3 + 2] += spVel[i * 3 + 2] * dt;
@@ -342,7 +356,7 @@
     if (waveAge < 0.9) {
       waveAge += dt;
       const k = waveAge / 0.9;
-      wave.scale.setScalar(0.2 + k * 2.4);
+      wave.scale.setScalar(0.4 + k * 2.2);
       wave.material.opacity = 0.9 * (1 - k);
     } else {
       wave.material.opacity = 0;
@@ -353,29 +367,82 @@
     neon.color.setRGB(0, 0.82 * (0.55 + lockFx * 0.45), 1 * (0.55 + lockFx * 0.45));
   }
 
-  // Souris (inclinaison) et glisser pour faire tourner
+  // Souris (inclinaison) et glisser pour faire tourner (amplitude limitée pour rester dans le cadre)
+  const MAX_YAW = 0.3;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const mouse = { x: 0, y: 0 }, tilt = { x: 0, y: 0 };
   let spin = 0, spinVel = 0, dragging = false, lastX = 0;
   window.addEventListener('pointermove', e => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = (e.clientY / window.innerHeight) * 2 - 1;
     if (dragging) {
-      spinVel = (e.clientX - lastX) * 0.008;
-      spin += spinVel;
+      spinVel = (e.clientX - lastX) * 0.006;
+      spin = clamp(spin + spinVel, -MAX_YAW, MAX_YAW);
       lastX = e.clientX;
     }
   });
   canvas.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; canvas.style.cursor = 'grabbing'; });
   window.addEventListener('pointerup', () => { dragging = false; canvas.style.cursor = ''; });
 
+  // --- Cadrage automatique ---
+  // On mesure la porte au repos (fermée, verrouillée), on la recentre, puis on cherche la distance
+  // de caméra qui la fait tenir entre le bandeau de prix (en haut) et les boutons (en bas),
+  // pour toutes les orientations autorisées.
+  const BASE_YAW = -0.42, BASE_PITCH = 0.04;
+  const CAM_DIR = new THREE.Vector3(0.12, 0.14, 1).normalize();
+  const corners = [];
+  (function measure() {
+    pose(8.6, 0);
+    stage.updateMatrixWorld(true);
+    const box = new THREE.Box3();
+    [frame, leaf, key].forEach(o => box.expandByObject(o));
+    bolts.forEach(o => box.expandByObject(o));
+    const c = box.getCenter(new THREE.Vector3());
+    root.position.copy(c).negate();
+    box.translate(root.position);
+    for (let i = 0; i < 8; i++) {
+      corners.push(new THREE.Vector3(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z));
+    }
+  })();
+  halo.position.set(0, 0, -1.6);
+
+  const badge = container.querySelector('.price-badge');
+  const ui = container.querySelector('.hero-3d-ui');
+  const v3 = new THREE.Vector3(), m4 = new THREE.Matrix4(), e3 = new THREE.Euler();
+  function fit(w, h) {
+    const top = (badge ? badge.offsetHeight : 0) + 16;
+    const bottom = (ui ? ui.offsetHeight : 0) + 16;
+    const band = Math.max(h - top - bottom, h * 0.5);
+    camera.clearViewOffset();
+    let d = 8;
+    for (let it = 0; it < 6; it++) {
+      camera.position.copy(CAM_DIR).multiplyScalar(d);
+      camera.lookAt(0, 0, 0);
+      camera.updateMatrixWorld();
+      camera.updateProjectionMatrix();
+      let mx = 0, my = 0;
+      [-MAX_YAW, -MAX_YAW / 2, 0, MAX_YAW / 2, MAX_YAW].forEach(r => {
+        m4.makeRotationFromEuler(e3.set(BASE_PITCH, BASE_YAW + r, 0));
+        corners.forEach(p => {
+          v3.copy(p).applyMatrix4(m4).project(camera);
+          mx = Math.max(mx, Math.abs(v3.x));
+          my = Math.max(my, Math.abs(v3.y));
+        });
+      });
+      d *= Math.max(mx / 0.92, my / (0.95 * band / h));
+    }
+    camera.userData.dist = d;
+    // Décale l'image pour centrer la porte dans l'espace libre
+    camera.setViewOffset(w, h, 0, (bottom - top) / 2, w, h);
+    camera.updateProjectionMatrix();
+  }
+
   function resize() {
-    const w = container.clientWidth, h = canvas.clientHeight || container.clientHeight;
+    const w = container.clientWidth, h = container.clientHeight;
     if (!w || !h) return;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    camera.userData.dist = camera.aspect < 1.1 ? 7.8 : 7.4;
-    camera.userData.lookX = camera.aspect < 1.1 ? 0.3 : 0.45;
-    camera.updateProjectionMatrix();
+    fit(w, h);
     if (reduceMotion) render(0, 0);
   }
 
@@ -384,10 +451,13 @@
 
   function render(time, dt) {
     const t = time / 1000;
-    const dist = camera.userData.dist || 7.4;
-    camera.position.set(1.6 + Math.sin(t * 0.3) * 0.2, 0.6 + Math.sin(t * 0.4) * 0.08, dist);
-    camera.lookAt(camera.userData.lookX || 0.45, -0.2, 0);
+    const d = camera.userData.dist || 8;
+    camera.position.copy(CAM_DIR).multiplyScalar(d);
+    camera.position.x += Math.sin(t * 0.3) * 0.08;
+    camera.position.y += Math.sin(t * 0.4) * 0.05;
+    camera.lookAt(0, 0, 0);
 
+    let scale = 1, introSpin = 0;
     if (reduceMotion) {
       pose(8.5, 0);
       setPhase(8.5);
@@ -395,26 +465,29 @@
       updateFx(0);
     } else {
       const intro = Math.min(t / INTRO, 1);
-      root.scale.setScalar(Math.max(0.001, easeOutBack(intro)));
+      scale = Math.max(0.001, ease(intro));
+      introSpin = (1 - ease(intro)) * -0.6;
       if (intro >= 1) introDone = true;
       const ct = introDone ? (t - INTRO) % CYCLE : 0;
       if (introDone && prevT < LOCK_AT && ct >= LOCK_AT) burst();
       prevT = ct;
       pose(ct, t);
-      if (introDone) setPhase(ct);
+      if (introDone) {
+        setPhase(ct);
+        // Petit « clignement » d'échelle au moment où le cycle recommence
+        scale = 1 - Math.sin(seg(ct, 10.5, 11) * Math.PI) * 0.05;
+      }
       updateFx(dt);
-      // Petit « clignement » d'échelle au moment où le cycle recommence
-      const blink = Math.sin(seg(ct, 10.5, 11) * Math.PI) * 0.06;
-      if (introDone) root.scale.setScalar(1 - blink);
 
-      if (!dragging) { spinVel *= 0.94; spin += spinVel; spin *= 0.97; }
-      tilt.x += (mouse.y * 0.15 - tilt.x) * 0.05;
-      tilt.y += (mouse.x * 0.35 - tilt.y) * 0.05;
-      root.position.y = Math.sin(t * 1.1) * 0.05;
+      if (!dragging) { spinVel *= 0.94; spin = clamp(spin + spinVel, -MAX_YAW, MAX_YAW); spin *= 0.97; }
+      tilt.x += (mouse.y * 0.05 - tilt.x) * 0.05;
+      tilt.y += (mouse.x * 0.15 - tilt.y) * 0.05;
       dust.rotation.y = t * 0.05;
     }
-    const introSpin = reduceMotion ? 0 : (1 - ease(Math.min(t / INTRO, 1))) * -Math.PI;
-    root.rotation.set(0.04 + tilt.x, -0.5 + tilt.y + spin + introSpin + Math.sin(t * 0.5) * 0.06, 0);
+    const yaw = clamp(tilt.y + spin + Math.sin(t * 0.5) * 0.05, -MAX_YAW, MAX_YAW);
+    stage.scale.setScalar(scale);
+    stage.position.y = reduceMotion ? 0 : Math.sin(t * 1.1) * 0.03;
+    stage.rotation.set(BASE_PITCH + tilt.x, BASE_YAW + yaw + introSpin, 0);
     renderer.render(scene, camera);
   }
 
