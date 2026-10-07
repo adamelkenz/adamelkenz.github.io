@@ -6,7 +6,7 @@
 
   // Numéro affiché dans les messages d'erreur (attribut data-phone du formulaire)
   const PHONE = form.dataset.phone || '06 68 88 51 51';
-  // Doit correspondre à CONFIG.SLOTS dans google-apps-script/Code.gs
+  // Doit correspondre à CONFIG.SLOTS dans _outils/google-apps-script/Code.gs
   const SLOTS = [
     ['08-10', '8h – 10h', 8],
     ['10-12', '10h – 12h', 10],
