@@ -511,7 +511,7 @@ def bas(root):
     return f'''
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="{root}js/lock3d.js"></script>
+<script src="{root}js/door3d.js"></script>
 <script src="{root}js/booking.js"></script>
 <script src="{root}js/site.js"></script>
 <script src="{root}js/zones-map.js"></script>
