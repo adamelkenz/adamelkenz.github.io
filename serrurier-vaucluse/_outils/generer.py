@@ -24,6 +24,9 @@ TEL = '06 68 88 51 51'
 TEL_HREF = 'tel:+33668885151'
 TEL_INTL = '+33668885151'
 EMAIL = 'contact@serrurier-vaucluse.fr'      # À VÉRIFIER
+# Prise de rendez-vous dans le Google Agenda du client : URL de l'application web Apps Script
+# (voir _outils/google-apps-script/INSTALLATION.md). Vide = le formulaire propose d'appeler ou d'envoyer un SMS.
+AGENDA_URL = ''
 AVIGNON = (43.9493, 4.8055)
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -554,7 +557,7 @@ def bas(root, complet=True):
 def page(root, valeurs, sections, titre, desc, url, ld, robots='index, follow, max-image-preview:large', complet=True):
     image = SITE + 'img/partage-serrurier-vaucluse.jpg'
     commun = {
-        'ROOT': root, 'HOME': root or './', 'NAV': '', 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
+        'ROOT': root, 'HOME': root or './', 'NAV': '', 'ENDPOINT': AGENDA_URL, 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
         'PIED_VILLES': '\n'.join(f'          <li><a href="{root}{v["slug"]}/">Serrurier {e(v["nom"])}</a></li>' for v in VILLES),
     }
     commun.update(valeurs)
@@ -669,7 +672,7 @@ def mentions():
       <p>Les prix affichés sont TTC, déplacement inclus, conformément à l'arrêté du 24 janvier 2017 relatif à l'information des consommateurs sur les prestations de dépannage, de réparation et d'entretien dans le secteur du bâtiment et de l'équipement de la maison. Le tarif est annoncé avant l'intervention et confirmé sur place ; une facture détaillée est remise après chaque intervention.</p>
 
       <h2>Données personnelles</h2>
-      <p>Les informations saisies dans le formulaire de demande (nom, téléphone, e-mail facultatif, ville, prestation, date souhaitée, message) servent uniquement à vous recontacter et à organiser l'intervention. Elles ne sont ni vendues ni cédées à des tiers et sont conservées le temps nécessaire au traitement de votre demande et aux obligations comptables.</p>
+      <p>Les informations saisies dans le formulaire de demande (nom, téléphone, e-mail facultatif, ville, prestation, date souhaitée, message) servent uniquement à vous recontacter et à organiser l'intervention ; les demandes de rendez-vous sont enregistrées dans l'agenda Google du serrurier. Elles ne sont ni vendues ni cédées à des tiers et sont conservées le temps nécessaire au traitement de votre demande et aux obligations comptables.</p>
       <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou l'effacement de vos données en nous contactant par téléphone ou par e-mail. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
       <p>Le site ne dépose aucun cookie publicitaire ni de mesure d'audience. Pour afficher la police de caractères, l'animation et la carte, votre navigateur contacte des services tiers (Google Fonts, cdnjs de Cloudflare, fonds de carte Esri), qui reçoivent votre adresse IP.</p>
 

@@ -34,8 +34,8 @@
           <a href="{{TEL_HREF}}" class="btn btn-light contact-call"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
         </div>
 
-        <!-- data-endpoint : URL de l'application web Google Apps Script qui gère l'agenda (voir js/booking.js) -->
-        <form class="card" id="contactForm" data-endpoint="" data-phone="{{TEL}}" novalidate>
+        <!-- data-endpoint : URL de l'application web Google Apps Script qui gère l'agenda (réglage AGENDA_URL de _outils/generer.py) -->
+        <form class="card" id="contactForm" data-endpoint="{{ENDPOINT}}" data-phone="{{TEL}}" novalidate>
           <div class="two">
             <div class="field">
               <label for="nom">Nom</label>
