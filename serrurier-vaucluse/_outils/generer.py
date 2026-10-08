@@ -29,7 +29,7 @@ EMAIL = 'contact@serrurier-vaucluse.fr'      # À VÉRIFIER
 AGENDA_URL = ''
 # Code de vérification Google Search Console (balise HTML) : coller ici la valeur de content="..."
 # fournie par Search Console, puis relancer le script. Vide = pas de balise.
-GOOGLE_VERIFICATION = ''
+GOOGLE_VERIFICATION = 'pIzGQQdSCMajAjUnPoYwvMJr5KDuuZQH1yya1rsGRVw'
 AVIGNON = (43.9493, 4.8055)
 
 ICI = os.path.dirname(os.path.abspath(__file__))
