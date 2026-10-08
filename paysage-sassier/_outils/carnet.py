@@ -88,7 +88,7 @@ def head(titre, description, canonical, prefix, og_type, ld):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="{prefix}css/style.css">
+<link rel="stylesheet" href="{prefix}css/style.css?v=3">
 <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=1)}
 </script>
@@ -185,7 +185,7 @@ def page_article(i, a):
     </aside>
   </div>
 </main>
-""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js" defer></script>\n</body>\n</html>\n'
+""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js?v=3" defer></script>\n</body>\n</html>\n'
     return out
 
 
@@ -230,7 +230,7 @@ def page_index():
   </header>
   {cartes("")}
 </main>
-""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js" defer></script>\n</body>\n</html>\n'
+""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js?v=3" defer></script>\n</body>\n</html>\n'
     return out
 
 
