@@ -66,6 +66,27 @@ var SALON = {
   var ligne = document.querySelector('.horaires tr[data-j="' + n.j + '"]');
   if (ligne) ligne.className = 'auj';
 
+  // profondeur du salon : les plans bougent un peu avec la souris et le défilement
+  var hero = document.querySelector('.hero');
+  if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var prevuH = false, mx = 0, my = 0;
+    var majH = function () {
+      prevuH = false;
+      hero.style.setProperty('--sy', Math.min(window.scrollY, hero.offsetHeight).toFixed(1));
+      hero.style.setProperty('--mx', mx.toFixed(3));
+      hero.style.setProperty('--my', my.toFixed(3));
+    };
+    var demandeH = function () { if (!prevuH) { prevuH = true; requestAnimationFrame(majH); } };
+    window.addEventListener('scroll', demandeH, { passive: true });
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('pointermove', function (e) {
+        mx = e.clientX / window.innerWidth * 2 - 1;
+        my = e.clientY / window.innerHeight * 2 - 1;
+        demandeH();
+      });
+    }
+  }
+
   // apparition douce des blocs
   var blocs = document.querySelectorAll('.monte');
   if ('IntersectionObserver' in window) {
