@@ -243,7 +243,10 @@ p { margin: 0 0 1em; }
 .section + .section { border-top: 1px solid var(--ligne); }
 .tete { margin-bottom: clamp(32px, 5vw, 56px); max-width: 720px; }
 .tete .num { font-family: var(--f-titre); color: var(--neon); font-size: 1.1rem; letter-spacing: .2em; text-shadow: 0 0 10px var(--neon-glow); }
-.tete h2 { font-size: clamp(2.8rem, 7vw, 5rem); margin: 8px 0 14px; }
+.tete h2 {
+  font-size: clamp(2.8rem, 7vw, 5rem); margin: 8px 0 14px;
+  text-shadow: 1px 1px 0 #5a121d, 2px 2px 0 #4a0f18, 3px 3px 0 #3a0c13, 4px 4px 0 #2a080e, 6px 9px 16px rgba(0, 0, 0, .65);
+}
 .tete p { color: var(--creme-2); font-size: 1.08rem; max-width: 58ch; }
 
 /* ---------- tarifs : tableau à lettres ---------- */
@@ -328,17 +331,35 @@ p { margin: 0 0 1em; }
 .galerie-note a { color: var(--creme); }
 
 /* ---------- lexique ---------- */
-.lexique { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 0; }
+.lexique { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 0; perspective: 1200px; }
 .mot {
+  position: relative; min-height: 186px; cursor: pointer;
   background: var(--nuit-2); border: 1px solid var(--ligne); border-radius: 12px;
-  padding: 22px 22px 20px; display: grid; grid-template-columns: 1fr 64px; gap: 4px 16px; align-content: start;
-  transition: border-color .25s, transform .25s;
+  padding: 22px 22px 20px; display: grid; grid-template-columns: 1fr 88px; gap: 4px 16px; align-content: start;
+  transform-style: preserve-3d;
+  transition: border-color .25s, rotate .75s cubic-bezier(.3, 1.3, .5, 1), translate .25s;
 }
-.mot:hover { border-color: rgba(255,68,88,.5); transform: translateY(-3px); }
+.mot:hover { border-color: rgba(255,68,88,.5); translate: 0 -3px; }
+.mot.retourne { rotate: y 180deg; border-color: rgba(255,68,88,.55); }
+.mot > dt, .mot > .tete-svg, .mot > .indice { transform: translateZ(1px); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.mot .indice {
+  grid-column: 1 / -1; align-self: end; margin-top: 14px;
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--creme-3);
+}
+.js .mot > dd { /* le dos de la carte */
+  position: absolute; inset: 0; margin: 0; padding: 22px;
+  display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  border-radius: 12px; background: radial-gradient(ellipse at 50% 0%, rgba(215, 38, 61, .2), transparent 70%), var(--nuit-2);
+  color: var(--creme); font-size: .98rem;
+  transform: rotateY(180deg) translateZ(1px); backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.js .mot > dd::before {
+  content: attr(data-terme); font-family: var(--f-titre); font-size: 1.5rem; letter-spacing: .05em; color: var(--neon);
+}
 .mot dt { font-family: var(--f-titre); font-size: 1.9rem; letter-spacing: .04em; line-height: 1; }
 .mot dt small { display: block; font-family: var(--f-texte); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--neon); margin-top: 6px; }
 .mot dd { margin: 10px 0 0; color: var(--creme-2); font-size: .95rem; grid-column: 1 / -1; }
-.mot .tete-svg { grid-row: 1; grid-column: 2; width: 64px; height: 64px; }
+.mot .tete-svg { grid-row: 1; grid-column: 2; width: 88px; height: 88px; }
 .tete-svg .trait { fill: none; stroke: var(--neon); stroke-width: 1.4; }
 
 /* ---------- carnet ---------- */
@@ -348,9 +369,10 @@ p { margin: 0 0 1em; }
   padding: 26px 24px; border-radius: 12px; text-decoration: none;
   background: linear-gradient(180deg, var(--nuit-2), var(--nuit));
   border: 1px solid var(--ligne);
-  transition: border-color .25s, transform .25s;
+  transition: border-color .25s, translate .25s, rotate .7s cubic-bezier(.2, .8, .2, 1);
 }
-.carte-art a:hover { border-color: var(--neon); transform: translateY(-3px); }
+.carte-art a.suit { transition: border-color .25s, translate .25s, rotate .12s linear; }
+.carte-art a:hover { border-color: var(--neon); translate: 0 -4px; }
 .carte-art .meta { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--neon); }
 .carte-art h3, .carte-art h2 { font-size: 1.85rem; margin: 12px 0 10px; }
 .carte-art p { color: var(--creme-2); font-size: .95rem; flex: 1; }
@@ -632,9 +654,130 @@ p { margin: 0 0 1em; }
 }
 @keyframes respire { from { opacity: .5; } to { opacity: 1; } }
 
+/* ---------- effets 3D interactifs ---------- */
+/* inclinaison (rotate posé par effets3d.js) et reflet de lumière */
+[data-tilt] { position: relative; transition: rotate .7s cubic-bezier(.2, .8, .2, 1); }
+[data-tilt].suit { transition: rotate .12s linear; }
+.reflet {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, .16), transparent 50%);
+  opacity: 0; transition: opacity .35s;
+}
+[data-tilt].suit > .reflet { opacity: 1; }
+@media (hover: none) { [data-tilt] > .reflet { opacity: .7; } }
+#tarifs .wrap, .salon-grid, .carnet-cards { perspective: 1300px; }
+
+/* 01 tarifs : lignes qui se retournent comme un panneau à palettes, et qui avancent au survol */
+.letterboard { transform-style: preserve-3d; }
+.letterboard li { transform-style: preserve-3d; transform-origin: 50% 0; }
+.letterboard li > span:last-child { display: inline-block; }
+.letterboard li > .l, .letterboard li > span:last-child { transition: translate .25s, text-shadow .25s; }
+.letterboard li:hover > .l, .letterboard li:hover > span:last-child { translate: 0 0 26px; }
+.letterboard li:hover > span:last-child em { text-shadow: 0 0 10px var(--neon); }
+.js .letterboard.monte li { transform: rotateX(-95deg); opacity: 0; }
+.js .letterboard.monte.vu li {
+  transform: none; opacity: 1;
+  transition: transform .7s cubic-bezier(.3, 1.5, .5, 1) calc(var(--i, 0) * 85ms + .3s), opacity .25s calc(var(--i, 0) * 85ms + .3s);
+}
+
+/* 02 le salon : fauteuil en calques (profondeur) qui pivote au toucher */
+.fauteuil-carte { cursor: pointer; perspective: 700px; }
+.fauteuil-carte .calque { transition: translate .25s ease-out; }
+.calque-fond { translate: calc(var(--tx, 0) * -7px) calc(var(--ty, 0) * -5px); }
+.calque-chaise { translate: calc(var(--tx, 0) * 5px) calc(var(--ty, 0) * 3px); transform-origin: 44.5% 70%; }
+.calque-desserte { translate: calc(var(--tx, 0) * 14px) calc(var(--ty, 0) * 8px); transform-origin: 85% 90%; }
+.fauteuil-carte.pivote .calque-chaise { animation: pivote 1.7s cubic-bezier(.3, .7, .3, 1); }
+.fauteuil-carte.pivote .calque-desserte { animation: secoue-outils .7s ease-out .25s; }
+@keyframes pivote {
+  0% { rotate: y 0deg; transform: translateY(0); }
+  18% { transform: translateY(-14px); }
+  32% { rotate: y 58deg; }
+  58% { rotate: y -34deg; transform: translateY(-14px); }
+  78% { rotate: y 12deg; }
+  100% { rotate: y 0deg; transform: translateY(0); }
+}
+@keyframes secoue-outils { 0%, 100% { rotate: 0deg; } 25% { rotate: -2deg; } 55% { rotate: 1.5deg; } 80% { rotate: -.6deg; } }
+.indice-chaise {
+  position: absolute; left: 12px; bottom: 12px; z-index: 5;
+  padding: 6px 10px; border-radius: 999px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(14, 13, 12, .78); border: 1px solid var(--ligne); color: var(--creme-2);
+}
+.atouts li { perspective: 300px; }
+.atouts svg { transition: rotate .9s cubic-bezier(.3, 1.3, .5, 1); }
+.atouts li:hover svg { rotate: y 360deg; }
+
+/* 03 galerie : carrousel 3D au doigt sur téléphone */
+.galerie { perspective: 1000px; }
+.glisser { display: none; }
+@media (max-width: 760px) {
+  .galerie {
+    display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin: 0 calc(-1 * (var(--gouttiere) + var(--poteau))) 0 calc(-1 * var(--gouttiere));
+    padding: 14px 15vw 22px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .galerie::-webkit-scrollbar { display: none; }
+  .galerie li { flex: 0 0 70vw; scroll-snap-align: center; }
+  .glisser { display: block; text-align: center; margin: 4px 0 0; font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: var(--creme-3); }
+}
+
+/* 05 carnet : cartes qui s'inclinent, avec épaisseur */
+.carte-art a { position: relative; box-shadow: 0 1px 0 rgba(255, 255, 255, .03), 0 18px 30px -18px rgba(0, 0, 0, .9); }
+
+/* 06 infos : pancarte suspendue qui se balance et se retourne */
+.tete-ligne { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.tete-ligne .tete { margin-bottom: clamp(32px, 5vw, 56px); }
+.pancarte {
+  position: relative; flex: 0 0 220px; width: 220px; height: 190px; margin: 0 0 40px; padding: 0;
+  background: none; border: 0; cursor: pointer; color: inherit; font: inherit;
+}
+.pancarte .clou {
+  position: absolute; left: 50%; top: 0; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; z-index: 2;
+  background: radial-gradient(circle at 35% 30%, #fff, #b9bec4 40%, #4f545b);
+}
+.pancarte .balancier {
+  position: absolute; inset: 6px 0 0; display: block; transform-origin: 50% 0;
+  animation: berce 4.5s ease-in-out infinite alternate;
+}
+.pancarte .balancier.secoue { animation: secoue 2.4s cubic-bezier(.3, .6, .4, 1), berce 4.5s ease-in-out 2.4s infinite alternate; }
+@keyframes berce { from { rotate: -1.6deg; } to { rotate: 1.6deg; } }
+@keyframes secoue { 0% { rotate: 0deg; } 12% { rotate: 14deg; } 30% { rotate: -10deg; } 48% { rotate: 6deg; } 66% { rotate: -3.5deg; } 84% { rotate: 1.5deg; } 100% { rotate: 0deg; } }
+.pancarte .fils { position: absolute; left: 0; top: 0; width: 100%; height: 62px; fill: none; stroke: #8a8f96; stroke-width: 2; }
+.pancarte .plaque {
+  position: absolute; left: 14px; right: 14px; top: 56px; height: 112px; display: block;
+  perspective: 700px; transform-style: preserve-3d;
+  transition: rotate .9s cubic-bezier(.3, 1.3, .5, 1);
+}
+.pancarte.retournee .plaque { rotate: y 180deg; }
+.pancarte .face {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  border-radius: 10px; border: 2px solid #3a2a1d;
+  background: linear-gradient(180deg, #1d1814, #110e0c);
+  box-shadow: 0 14px 24px -10px rgba(0, 0, 0, .8), inset 0 0 0 4px rgba(196, 156, 108, .12);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.pancarte .verso { transform: rotateY(180deg); }
+.pancarte b { font-family: var(--f-neon); font-weight: 400; font-size: 1.9rem; letter-spacing: .04em; line-height: 1; }
+.pancarte .verso b { font-family: var(--f-titre); font-size: 2rem; color: var(--creme); }
+.pancarte small { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--creme-3); }
+.pancarte .si-ouvert { color: #e6f8ff; text-shadow: 0 0 6px var(--bleu-neon), 0 0 18px var(--bleu-neon); }
+.pancarte .si-ferme { display: none; color: #ffe9ec; text-shadow: 0 0 6px var(--neon), 0 0 18px var(--neon); }
+[data-salon="ferme"] .pancarte .si-ouvert { display: none; }
+[data-salon="ferme"] .pancarte .si-ferme { display: inline; }
+@media (max-width: 760px) {
+  .tete-ligne { flex-direction: column; align-items: stretch; gap: 0; }
+  .tete-ligne .tete { margin-bottom: 8px; }
+  .pancarte { flex: none; align-self: center; margin: 0 0 34px; }
+}
+
 /* ---------- apparition au scroll ---------- */
-.js .monte { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+.js .monte {
+  opacity: 0; transform: perspective(900px) translateY(36px) rotateX(16deg); transform-origin: 50% 100%;
+  transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1);
+}
 .js .monte.vu { opacity: 1; transform: none; }
+.js .monte[data-tilt] { transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1), rotate .7s cubic-bezier(.2, .8, .2, 1); }
+.js .monte[data-tilt].suit { transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1), rotate .12s linear; }
+.js .mot.monte { transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1), border-color .25s, rotate .75s cubic-bezier(.3, 1.3, .5, 1), translate .25s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -642,7 +785,9 @@ p { margin: 0 0 1em; }
   .js .monte { opacity: 1; transform: none; transition: none; }
   .poteau .halo, .poteau .globe, .bras-coupe, .journal, .piece { animation: none; }
   .btn, .mot, .carte-art a { transition: none; }
-  .fond-anime *, .repere i { animation: none !important; }
+  .fond-anime *, .repere i, .pancarte .balancier, .fauteuil-carte .calque { animation: none !important; }
+  .js .letterboard.monte li { transform: none; opacity: 1; transition: none; }
+  .mot, .pancarte .plaque, .atouts svg { transition: none; }
 }
 
 @media (max-width: 899px) { :root { --poteau: 18px; } }

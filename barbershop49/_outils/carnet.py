@@ -64,8 +64,9 @@ def pied(prefix):
     </nav>
   </div>
 </footer>
-<script src="{prefix}js/site.js?v=4" defer></script>
-<script src="{prefix}js/poteau.js?v=4" defer></script>
+<script src="{prefix}js/site.js?v=5" defer></script>
+<script src="{prefix}js/poteau.js?v=5" defer></script>
+<script src="{prefix}js/effets3d.js?v=5" defer></script>
 </body>
 </html>
 """
@@ -94,7 +95,7 @@ def head(titre, description, canonical, prefix, og_type, ld):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Monoton&display=swap">
-<link rel="stylesheet" href="{prefix}css/style.css?v=4">
+<link rel="stylesheet" href="{prefix}css/style.css?v=5">
 <script>document.documentElement.className = 'js';</script>
 <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=1)}
@@ -193,7 +194,7 @@ def cartes(prefix_articles, niveau_titre="h3"):
     items = []
     for i, a in enumerate(ARTICLES):
         items.append(f"""    <li class="carte-art monte">
-      <a href="{prefix_articles}{a['slug']}/">
+      <a href="{prefix_articles}{a['slug']}/" data-tilt="7">
         <span class="meta">N° {i + 1:02d} · {a['lecture']} min</span>
         <{niveau_titre}>{e(a['titre'])}</{niveau_titre}>
         <p>{e(a['chapeau'])}</p>

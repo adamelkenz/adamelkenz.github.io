@@ -62,6 +62,7 @@ var SALON = {
       }
     }
     if (txt) { statut.className = 'statut ' + cls; statut.innerHTML = '<i></i>' + txt; }
+    document.documentElement.setAttribute('data-salon', cls); // lu par la pancarte de la section infos
   }
   var ligne = document.querySelector('.horaires tr[data-j="' + n.j + '"]');
   if (ligne) ligne.className = 'auj';
