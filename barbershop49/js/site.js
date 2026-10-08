@@ -105,6 +105,28 @@ var SALON = {
     });
   }
 
+  // menu téléphone
+  var bouton = document.querySelector('.menu-btn'), menu = document.getElementById('menu-mobile');
+  if (bouton && menu) {
+    var ferme = function () { menu.hidden = true; bouton.setAttribute('aria-expanded', 'false'); bouton.setAttribute('aria-label', 'Ouvrir le menu'); };
+    bouton.addEventListener('click', function () {
+      var ouvre = menu.hidden;
+      menu.hidden = !ouvre;
+      bouton.setAttribute('aria-expanded', String(ouvre));
+      bouton.setAttribute('aria-label', ouvre ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) ferme(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { ferme(); bouton.focus(); } });
+  }
+
+  // barre d'actions du bas : elle apparaît une fois l'accueil dépassé
+  var barre = document.querySelector('.barre-mobile'), accueil = document.querySelector('.hero');
+  if (barre && accueil && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      barre.classList.toggle('visible', !es[0].isIntersecting);
+    }, { rootMargin: '-40% 0px 0px 0px' }).observe(accueil);
+  } else if (barre) barre.classList.add('visible');
+
   // apparition douce des blocs
   var blocs = document.querySelectorAll('.monte');
   if ('IntersectionObserver' in window) {

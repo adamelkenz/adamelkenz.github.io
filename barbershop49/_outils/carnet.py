@@ -46,7 +46,16 @@ def topbar(prefix):
       <a href="{prefix}#infos">Infos</a>
       <a class="btn btn-petit" href="{prefix}#infos" data-resa>Réserver</a>
     </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
   </div>
+  <nav class="menu-mobile" id="menu-mobile" aria-label="Menu" hidden>
+      <a href="{prefix}#tarifs">Tarifs</a>
+      <a href="{prefix}#salon">Le salon</a>
+      <a href="{prefix}#galerie">Galerie</a>
+      <a href="{prefix}#lexique">Lexique</a>
+      <a href="{prefix}carnet/">Carnet</a>
+      <a href="{prefix}#infos">Horaires &amp; accès</a>
+  </nav>
 </header>"""
 
 
@@ -64,9 +73,9 @@ def pied(prefix):
     </nav>
   </div>
 </footer>
-<script src="{prefix}js/site.js?v=5" defer></script>
-<script src="{prefix}js/poteau.js?v=5" defer></script>
-<script src="{prefix}js/effets3d.js?v=5" defer></script>
+<script src="{prefix}js/site.js?v=6" defer></script>
+<script src="{prefix}js/poteau.js?v=6" defer></script>
+<script src="{prefix}js/effets3d.js?v=6" defer></script>
 </body>
 </html>
 """
@@ -77,7 +86,7 @@ def head(titre, description, canonical, prefix, og_type, ld):
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{e(titre)}</title>
 <meta name="description" content="{e(description)}">
 <meta name="theme-color" content="#0e0d0c">
@@ -95,7 +104,7 @@ def head(titre, description, canonical, prefix, og_type, ld):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Monoton&display=swap">
-<link rel="stylesheet" href="{prefix}css/style.css?v=5">
+<link rel="stylesheet" href="{prefix}css/style.css?v=6">
 <script>document.documentElement.className = 'js';</script>
 <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=1)}

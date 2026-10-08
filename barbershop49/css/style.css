@@ -792,3 +792,107 @@ p { margin: 0 0 1em; }
 
 @media (max-width: 899px) { :root { --poteau: 18px; } }
 @media (max-width: 480px) { .surtitre { letter-spacing: .2em; font-size: .74rem; } }
+
+/* ---------- version téléphone ---------- */
+.menu-btn, .menu-mobile, .barre-mobile { display: none; }
+@media (max-width: 760px) {
+  .section { padding: 60px 0 64px; }
+  .tete { margin-bottom: 26px; }
+  .tete p { font-size: 1rem; }
+  .ctas .btn { min-width: 250px; justify-content: center; }
+
+  /* menu */
+  .topbar .wrap { gap: 10px; }
+  .nav .btn { padding: 9px 14px; }
+  .logo span { font-size: 1.45rem; }
+  .menu-btn {
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 0 10px; margin-right: -8px; background: none; border: 0; cursor: pointer;
+  }
+  .menu-btn span { display: block; height: 2px; border-radius: 2px; background: var(--creme); transition: transform .3s, opacity .3s; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-mobile:not([hidden]) {
+    display: grid; position: absolute; left: 0; right: 0; top: 100%;
+    padding: 6px var(--gouttiere) 16px;
+    background: rgba(14, 13, 12, .97); border-bottom: 1px solid var(--ligne); box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+    transform-origin: 50% 0; animation: deplie .35s cubic-bezier(.2, .8, .2, 1);
+  }
+  .menu-mobile a {
+    padding: 13px 0; border-bottom: 1px solid var(--ligne); text-decoration: none;
+    font-family: var(--f-titre); font-size: 1.65rem; letter-spacing: .06em;
+  }
+  .menu-mobile a:last-child { border-bottom: 0; color: var(--neon); }
+
+  /* barre d'actions en bas d'écran */
+  .barre-mobile {
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 8px;
+    position: fixed; z-index: 45; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom));
+    padding: 7px; border-radius: 18px;
+    background: rgba(23, 21, 19, .92); border: 1px solid var(--ligne);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .6);
+    transform: translateY(150%); transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+  }
+  .barre-mobile.visible { transform: none; }
+  .barre-mobile a {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 52px; border-radius: 12px; text-decoration: none;
+    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--creme-2);
+  }
+  .barre-mobile svg { width: 20px; height: 20px; fill: currentColor; }
+  .barre-mobile .principal { background: var(--rouge); color: var(--creme); box-shadow: 0 6px 18px -6px var(--neon-glow); }
+  body:has(.barre-mobile) { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+
+  /* tarifs : les prix ne se coupent plus */
+  .letterboard { border-width: 9px; padding: 22px 14px 18px; }
+  .letterboard h3 { font-size: 1.45rem; margin-bottom: 12px; }
+  .letterboard li { gap: 8px; padding: 7px 0; font-size: 1.12rem; letter-spacing: .08em; }
+  .letterboard li > span:last-child { white-space: nowrap; }
+  .letterboard li small { font-size: .74rem; }
+  .letterboard li .p { min-width: 12px; }
+
+  /* le salon : le fauteuil juste après le texte, avant la liste */
+  .salon-grid { display: flex; flex-direction: column; gap: 0; }
+  .salon-txt { display: contents; }
+  .salon-txt > .tete { order: 1; }
+  .salon-txt > p { order: 2; }
+  .fauteuil-carte { order: 3; margin: 12px 0 6px; }
+  .atouts { order: 4; }
+
+  /* lexique et carnet : on fait glisser au lieu d'empiler */
+  .lexique, #carnet .carnet-cards {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin: 0 calc(32px - var(--gouttiere) - var(--poteau)) 0 calc(-1 * var(--gouttiere));
+    padding: 10px 12px 16px var(--gouttiere);
+    scroll-padding-inline-start: var(--gouttiere); scrollbar-width: none;
+  }
+  .lexique::-webkit-scrollbar, #carnet .carnet-cards::-webkit-scrollbar { display: none; }
+  .mot { flex: 0 0 80%; min-height: 236px; scroll-snap-align: start; }
+  .js .mot > dd { padding: 16px 18px; gap: 6px; font-size: .9rem; line-height: 1.5; }
+  .js .mot > dd::before { font-size: 1.3rem; }
+  #carnet .carte-art { flex: 0 0 84%; scroll-snap-align: start; }
+  #carnet .carte-art p { flex: none; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 auto; }
+  #carnet .carte-art .lire { margin-top: 14px; }
+  /* les carrousels s'arrêtent avant le poteau, avec un fondu */
+  .galerie { margin-right: calc(32px - var(--gouttiere) - var(--poteau)); }
+  .galerie, .lexique, #carnet .carnet-cards {
+    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, #000 88%, transparent);
+  }
+
+  /* infos : libellé au-dessus de chaque coordonnée */
+  .coord { gap: 14px; }
+  .coord > div { display: grid; gap: 2px; }
+  .coord span { min-width: 0; }
+  .carte { min-height: 300px; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .menu-mobile:not([hidden]) { animation: none; }
+  .barre-mobile { transition: none; }
+}
+@media (max-width: 480px) {
+  .nav { display: none; } /* « Réserver » reste dans l'accueil puis dans la barre du bas */
+  .menu-btn { margin-left: auto; }
+}
