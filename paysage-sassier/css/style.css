@@ -1,17 +1,22 @@
 /* Clément Sassier Paysage — planches d'herbier */
 
 :root {
-  --paper: #F2EEE3;
-  --paper-2: #E9E3D2;
-  --card: #FBF9F3;
+  --paper: #EEF0E1;
+  --paper-2: #E2E6CF;
+  --card: #FAFBF3;
   --ink: #2A2620;
   --ink-2: #5E574B;
   --ink-3: #8C8474;
-  --rule: #CFC6B1;
+  --rule: #C6CCAE;
   --green: #5B6B3A;
   --green-2: #7B8A55;
+  --forest: #2F3D26;
+  --moss: #4E6236;
+  --sage: #A9B98A;
+  --sage-2: #C9D6A8;
+  --on-forest: #EEF0E1;
   --brick: #9A4A2E;
-  --tape: rgba(196, 170, 120, .55);
+  --tape: rgba(169, 185, 138, .6);
   --serif: "Cormorant Garamond", "EB Garamond", Garamond, "Times New Roman", serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
   --gutter: clamp(16px, 4vw, 56px);
@@ -315,6 +320,84 @@ p { margin: 0 0 1em; }
 /* ---------- apparition ---------- */
 .js .reveal { opacity: 0; translate: 0 18px; transition: opacity .8s ease, translate .8s ease; }
 .js .reveal.is-in { opacity: 1; translate: 0 0; }
+
+/* ---------- vert ---------- */
+.masthead { border-bottom: 2px solid var(--moss); }
+.mark span { color: var(--forest); }
+.label { border-color: var(--moss); outline-color: var(--moss); }
+.label dt { color: var(--moss); }
+.ink-link { color: var(--forest); border-color: var(--moss); }
+.ph { background: repeating-linear-gradient(-35deg, transparent 0 9px, rgba(78,98,54,.2) 9px 10px), var(--paper-2); border-color: var(--green-2); color: var(--moss); }
+.plate-head h2, .hero h1 { color: var(--forest); }
+.margin-note { border-color: var(--moss); color: var(--moss); }
+
+/* accueil : lavis vert derrière le rameau, feuilles teintées */
+.hero-art { position: relative; }
+.hero-art::before {
+  content: ""; position: absolute; z-index: -1;
+  inset: -8% -14% 4% -14%;
+  background:
+    radial-gradient(closest-side at 46% 44%, rgba(169,185,138,.55), rgba(169,185,138,.22) 62%, transparent 100%),
+    radial-gradient(closest-side at 70% 70%, rgba(78,98,54,.18), transparent 100%);
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  filter: blur(2px);
+}
+.hero-art .branch .o { stroke: var(--moss); fill: rgba(123,138,85,.28); }
+.hero-art .branch .s { stroke: var(--forest); stroke-width: 1.8; }
+.hero-art .branch .v { stroke: var(--moss); }
+.hero { position: relative; isolation: isolate; }
+
+/* planches pleines en vert forêt, bord à bord */
+.plate:has(+ .forest) { border-bottom: 0; }
+.plate.forest {
+  background: var(--forest);
+  color: var(--on-forest);
+  box-shadow: 0 0 0 100vmax var(--forest);
+  clip-path: inset(0 -100vmax);
+  border-bottom: 0;
+}
+.forest .plate-num { color: var(--sage); }
+.forest .plate-head h2 { color: var(--on-forest); }
+.forest .plate-intro { color: var(--sage-2); }
+.forest .reveal { color: inherit; }
+.forest .index li { border-top-color: rgba(169,185,138,.35); }
+.forest .index .no { color: var(--sage); }
+.forest .index .lat { color: var(--sage-2); }
+.forest .index p { color: #D6DBC6; }
+.forest .draw .s { stroke: var(--on-forest); }
+.forest .draw .o { stroke: var(--sage); fill: rgba(169,185,138,.12); }
+.forest .draw .v { stroke: var(--sage); }
+.forest .cal { border-top-color: var(--sage); border-left-color: rgba(169,185,138,.3); }
+.forest .cal li { border-color: rgba(169,185,138,.3); }
+.forest .cal b { color: var(--sage); }
+.forest .cal li.now { background: var(--on-forest); color: var(--ink); box-shadow: none; }
+.forest .cal li.now b { color: var(--moss); }
+.forest .cal-now { color: var(--sage-2); }
+
+/* carte */
+.map { border-color: var(--moss); outline-color: var(--moss); }
+.map .zone { fill: rgba(123,150,70,.18); }
+.map .zone-line { stroke-width: 1.8; }
+.map .river { stroke-width: 3; }
+.map .river.thin { stroke-width: 2; }
+.map .hatch { stroke: var(--green-2); }
+
+/* fiche */
+.fiche { border-color: var(--moss); outline-color: var(--moss); }
+.fiche-head { color: var(--moss); border-bottom-color: var(--moss); }
+.stamp { color: var(--moss); border-color: var(--moss); outline-color: var(--moss); }
+.stamp:hover { background: var(--moss); color: var(--card); }
+.direct h3 { color: var(--forest); }
+
+/* pied de page */
+.colophon {
+  max-width: none;
+  background: var(--forest);
+  color: #D6DBC6;
+}
+.colophon > * { max-width: 640px; margin-left: auto; margin-right: auto; }
+.colophon .colo-title { color: var(--sage); }
+.colophon a { color: var(--on-forest); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1040px) {
