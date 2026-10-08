@@ -369,10 +369,31 @@ p { margin: 0 0 1em; }
 .coord a { text-decoration-color: rgba(243,236,220,.35); text-underline-offset: 4px; }
 .coord span { color: var(--creme-3); display: inline-block; min-width: 92px; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; }
 .carte {
-  position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--ligne);
-  min-height: 360px; background: var(--nuit-2);
+  position: relative; border-radius: 14px; overflow: hidden; isolation: isolate;
+  min-height: 360px; background: #1a0b0e;
+  border: 1px solid rgba(255, 68, 88, .45);
+  box-shadow: 0 0 0 1px rgba(255, 68, 88, .12), 0 0 26px rgba(255, 68, 88, .22), inset 0 0 30px rgba(255, 68, 88, .15);
 }
-.carte iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(.92) contrast(.9) brightness(.95); }
+/* carte « nuit rouge néon » : on assombrit, puis on teinte les rues en rouge */
+.carte iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  filter: grayscale(1) invert(.9) sepia(1) hue-rotate(310deg) saturate(2.6) brightness(.7) contrast(1.25);
+}
+.carte::after { /* vignette et reflet néon par-dessus la carte */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(14, 6, 8, .55));
+  box-shadow: inset 0 0 0 1px rgba(255, 120, 135, .25);
+}
+.repere { position: absolute; left: 50%; top: 50%; z-index: 2; pointer-events: none; transition: opacity .3s; }
+.repere img { position: absolute; left: -15px; bottom: 4px; width: 30px; height: 30px; max-width: none; filter: drop-shadow(0 0 6px rgba(255, 68, 88, .9)); }
+.repere i {
+  position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--neon); box-shadow: 0 0 10px var(--neon);
+  animation: pulse 2s ease-out infinite;
+}
+.repere i + i { animation-delay: 1s; }
+@keyframes pulse { from { transform: scale(.6); opacity: 1; } to { transform: scale(3.2); opacity: 0; } }
+.carte.touche .repere { opacity: 0; }
 .carte .epingle {
   position: absolute; left: 14px; bottom: 14px; z-index: 2;
   padding: 10px 14px; border-radius: 8px; background: rgba(14,13,12,.9); border: 1px solid var(--ligne); font-size: .9rem;
@@ -529,6 +550,88 @@ p { margin: 0 0 1em; }
 .legal h2 { font-size: 1.9rem; margin: 36px 0 10px; }
 .legal p { color: var(--creme-2); }
 
+/* ---------- fonds animés des sections ---------- */
+.section { overflow: hidden; }
+.section > .wrap { position: relative; z-index: 1; }
+.fond-anime { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.fond-anime * { animation-play-state: paused; }
+.fond-anime.actif * { animation-play-state: running; }
+
+/* 01 tarifs : bandes du poteau, floues, qui glissent */
+.fa-poteau {
+  opacity: .07;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+          mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+}
+.fa-poteau span { position: absolute; inset: -60% -40%; transform: rotate(-28deg); }
+.fa-poteau i {
+  position: absolute; top: 0; bottom: 0; left: -240px; right: 0;
+  background: repeating-linear-gradient(90deg, var(--rouge) 0 70px, var(--creme) 70px 120px, #3b62c4 120px 190px, var(--creme) 190px 240px);
+  filter: blur(14px);
+  animation: glisse 16s linear infinite;
+}
+@keyframes glisse { to { transform: translateX(240px); } }
+
+/* 02 le salon : vapeur de serviette chaude */
+.fa-vapeur span {
+  position: absolute; bottom: -380px; left: var(--x); width: 260px; height: 380px; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 60%, rgba(243, 236, 220, .16), transparent 66%);
+  filter: blur(22px);
+  animation: vapeur var(--t, 18s) ease-in infinite; animation-delay: var(--d, 0s);
+}
+@keyframes vapeur {
+  0% { transform: translate(0, 0) scale(.6); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(60px, -900px) scale(1.5); opacity: 0; }
+}
+
+/* 03 galerie : faisceaux de projecteur */
+.fa-projo span {
+  position: absolute; top: -10%; left: var(--x); width: 1400px; height: 1400px; margin-left: -700px;
+  background: conic-gradient(from 166deg at 50% 0%, transparent 0deg, var(--c) 14deg, transparent 28deg);
+  transform-origin: 50% 0;
+  animation: balaie var(--t, 14s) ease-in-out infinite alternate;
+}
+@keyframes balaie { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+
+/* 04 lexique : outils qui flottent */
+.fa-outils span {
+  position: absolute; left: var(--x); top: var(--y); width: var(--s); opacity: .07;
+  animation: flotte var(--t, 24s) ease-in-out infinite alternate;
+}
+.fa-outils svg { width: 100%; height: auto; fill: none; stroke: var(--creme); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes flotte {
+  from { transform: translate(0, 0) rotate(var(--r, -10deg)); }
+  to { transform: translate(34px, -46px) rotate(calc(var(--r, -10deg) * -1)); }
+}
+
+/* 05 carnet : lumières néon floues */
+.fa-bokeh { opacity: .55; }
+.fa-bokeh span {
+  position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, var(--c) 0, transparent 68%);
+  filter: blur(2px);
+  animation: derive var(--t, 20s) ease-in-out infinite alternate, scintille calc(var(--t, 20s) / 4) ease-in-out infinite alternate;
+}
+@keyframes derive { to { transform: translate(50px, -70px); } }
+@keyframes scintille { from { opacity: .2; } to { opacity: .75; } }
+
+/* 06 infos : enseigne OPEN diffuse */
+.fa-open span {
+  position: absolute; right: -2%; top: 4%;
+  font-family: var(--f-neon); font-size: clamp(6rem, 22vw, 17rem); line-height: 1; letter-spacing: .04em;
+  color: rgba(255, 233, 236, .035);
+  text-shadow: 0 0 18px rgba(255, 68, 88, .14), 0 0 60px rgba(255, 68, 88, .12);
+  transform: rotate(-6deg);
+  animation: grésille 9s linear infinite;
+}
+.fa-open i {
+  position: absolute; right: 0; top: 0; width: 70%; height: 70%;
+  background: radial-gradient(ellipse at 80% 20%, rgba(255, 68, 88, .1), transparent 65%);
+  animation: respire 6s ease-in-out infinite alternate;
+}
+@keyframes respire { from { opacity: .5; } to { opacity: 1; } }
+
 /* ---------- apparition au scroll ---------- */
 .js .monte { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .js .monte.vu { opacity: 1; transform: none; }
@@ -539,6 +642,7 @@ p { margin: 0 0 1em; }
   .js .monte { opacity: 1; transform: none; transition: none; }
   .poteau .halo, .poteau .globe, .bras-coupe, .journal, .piece { animation: none; }
   .btn, .mot, .carte-art a { transition: none; }
+  .fond-anime *, .repere i { animation: none !important; }
 }
 
 @media (max-width: 899px) { :root { --poteau: 18px; } }

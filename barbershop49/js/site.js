@@ -87,6 +87,23 @@ var SALON = {
     }
   }
 
+  // fonds animés : ils ne tournent que quand la section est à l'écran
+  var fonds = document.querySelectorAll('.fond-anime');
+  if ('IntersectionObserver' in window) {
+    var iof = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle('actif', e.isIntersecting); });
+    });
+    fonds.forEach(function (f) { iof.observe(f); });
+  } else fonds.forEach(function (f) { f.classList.add('actif'); });
+
+  // le repère de la carte disparaît dès qu'on manipule la carte (elle peut alors bouger)
+  var carte = document.querySelector('.carte');
+  if (carte) {
+    window.addEventListener('blur', function () {
+      if (document.activeElement && carte.contains(document.activeElement)) carte.classList.add('touche');
+    });
+  }
+
   // apparition douce des blocs
   var blocs = document.querySelectorAll('.monte');
   if ('IntersectionObserver' in window) {
