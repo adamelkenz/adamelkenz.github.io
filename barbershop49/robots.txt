@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adamelkenz.github.io/barbershop49/sitemap.xml
