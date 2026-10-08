@@ -21,7 +21,7 @@
   if (!ctx) return;
 
   var DPR = 1, VW = 0, VH = 0, DOC_H = 0, W = 0;
-  var boughs = [], twigs = [], falling = [], chunks = {};
+  var boughs = [], twigs = [], falling = [], chunks = {}, pieces = [];
   var CH = 700;                          // hauteur d'une tranche de bois en cache
   var mouse = { x: -1e4, y: -1e4, cy: 0, vx: 0, vy: 0, t: 0, on: false };
   var scrollY = window.scrollY, lastScroll = scrollY;
@@ -249,7 +249,7 @@
     });
     var bo = { pts: pts, total: total, x0: x0, x1: x1, y0: y0, y1: y1, seed: seed,
                knots: knots, cut: !!opts.cut, uOff: rr(0, TW) };
-    boughs.push(bo);
+    if (!opts.detached) boughs.push(bo);
     return bo;
   }
 
@@ -314,11 +314,17 @@
     return (W - content) / 2 + gutter;
   }
 
+  function pageSeed() {
+    var h = 0, s = location.pathname;
+    for (var i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 2654435761) >>> 0;
+    return h % 100000;
+  }
+
   function build() {
-    R = rng(1975);
+    R = rng(document.querySelector('.hero-art') ? 1975 : 1975 + pageSeed());
     W = document.documentElement.clientWidth;
     DOC_H = Math.max(document.documentElement.scrollHeight, VH);
-    boughs = []; twigs = []; falling = []; chunks = {};
+    boughs = []; twigs = []; falling = []; chunks = {}; pieces = [];
     var m = marginRight(), mobile = W < 760;
     var S = mobile ? 0.5 : clamp(m / 176, 0.62, 1.35);
     var edge = mobile ? W - 10 : W - Math.max(30, m * 0.42);
@@ -393,6 +399,186 @@
     }
     var end2 = trunk.pts[trunk.pts.length - 1];
     addTwig(end2.x, end2.y, -Math.PI / 2 - 0.5, 45 * S, 2, S, { pairs: 4 });
+
+    // pages intérieures : l'arbre s'organise autour du contenu
+    if (!art && !mobile) growAroundPage(trunk, S, m, top, bot);
+  }
+
+  /* ---------- l'arbre contourne le contenu ---------- */
+  // Grille d'occupation de la page (texte, images, formulaires…) et carte des
+  // distances au contenu le plus proche : les branches ne poussent que là où
+  // il reste de la place.
+  var GRID = 16, gw = 0, gh = 0, occ = null, dist = null;
+
+  function buildClearance() {
+    gw = Math.ceil(W / GRID) + 1; gh = Math.ceil(DOC_H / GRID) + 1;
+    occ = new Uint8Array(gw * gh);
+    function mark(x0, y0, x1, y1, pad) {
+      var a = Math.max(0, Math.floor((x0 - pad) / GRID)), b = Math.min(gw - 1, Math.floor((x1 + pad) / GRID));
+      var c = Math.max(0, Math.floor((y0 - pad) / GRID)), d = Math.min(gh - 1, Math.floor((y1 + pad) / GRID));
+      for (var j = c; j <= d; j++) for (var i = a; i <= b; i++) occ[j * gw + i] = 1;
+    }
+    mark(0, 0, W, 70, 0);                                   // bandeau de navigation
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), range = document.createRange(), n;
+    while ((n = walker.nextNode())) {
+      if (!n.nodeValue.trim() || !n.parentElement || n.parentElement.closest('script,style,noscript')) continue;
+      range.selectNodeContents(n);
+      var rs = range.getClientRects();
+      for (var k = 0; k < rs.length; k++) {
+        var r = rs[k];
+        if (r.width && r.height) mark(r.left, r.top + scrollY, r.right, r.bottom + scrollY, 12);
+      }
+    }
+    document.querySelectorAll('img, svg, input, select, textarea, button, .ph, .label, .fiche, .fiche-card a, .toc, .encadre, .cta, .faq details, .map, .specimen').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width && r.height) mark(r.left, r.top + scrollY, r.right, r.bottom + scrollY, 10);
+    });
+    // éléments collants : ils balaient toute la hauteur de leur parent
+    document.querySelectorAll('.art-side, .index-art').forEach(function (el) {
+      var r = el.getBoundingClientRect(), q = el.parentElement.getBoundingClientRect();
+      if (r.width) mark(r.left, q.top + scrollY, r.right, q.bottom + scrollY, 12);
+    });
+    distanceField();
+  }
+
+  function distanceField() {
+    var N = gw * gh, D = dist = new Float32Array(N), i, j, k, v, SQ = 1.4142;
+    for (k = 0; k < N; k++) D[k] = occ[k] ? 0 : 1e6;
+    for (j = 0; j < gh; j++) for (i = 0; i < gw; i++) {
+      k = j * gw + i; v = D[k];
+      if (i > 0) v = Math.min(v, D[k - 1] + 1);
+      if (j > 0) {
+        v = Math.min(v, D[k - gw] + 1);
+        if (i > 0) v = Math.min(v, D[k - gw - 1] + SQ);
+        if (i < gw - 1) v = Math.min(v, D[k - gw + 1] + SQ);
+      }
+      D[k] = v;
+    }
+    for (j = gh - 1; j >= 0; j--) for (i = gw - 1; i >= 0; i--) {
+      k = j * gw + i; v = D[k];
+      if (i < gw - 1) v = Math.min(v, D[k + 1] + 1);
+      if (j < gh - 1) {
+        v = Math.min(v, D[k + gw] + 1);
+        if (i < gw - 1) v = Math.min(v, D[k + gw + 1] + SQ);
+        if (i > 0) v = Math.min(v, D[k + gw - 1] + SQ);
+      }
+      D[k] = v;
+    }
+  }
+
+  function clearAt(x, y) {
+    if (y > DOC_H - 4 || x > W - 4) return 200;                // pied de page et marge du tronc
+    var i = Math.floor(x / GRID), j = Math.floor(y / GRID);
+    if (i < 0 || j < 0 || i >= gw || j >= gh) return 0;
+    return dist[j * gw + i] * GRID;
+  }
+
+  function occupyPath(pts, rad) {
+    for (var k = 0; k < pts.length; k += 2) {
+      var p = pts[k], r = Math.ceil(rad / GRID);
+      var ci = Math.floor(p.x / GRID), cj = Math.floor(p.y / GRID);
+      for (var j = cj - r; j <= cj + r; j++) for (var i = ci - r; i <= ci + r; i++)
+        if (i >= 0 && j >= 0 && i < gw && j < gh) occ[j * gw + i] = 1;
+    }
+    distanceField();
+  }
+
+  // Croissance pas à pas : à chaque pas on choisit la direction qui garde
+  // le plus de place tout en allant vers le but, avec un peu d'hésitation.
+  function grow(start, ang, goal, maxLen, mode, stopX, w0, targetX) {
+    var pos = { x: start.x, y: start.y }, pts = [{ x: pos.x, y: pos.y }], len = 0, STEP = 6, seed = R() * 1000;
+    while (len < maxLen) {
+      var best = null, need = lerp(w0, 3, Math.min(1, len / maxLen)) / 2 + 14;
+      // les troncs verticaux sont ramenés vers le milieu de la marge
+      if (targetX !== undefined) {
+        var pull = clamp((targetX - pos.x) / 120, -0.7, 0.7);
+        goal = mode === 'down' ? Math.PI / 2 - pull : -Math.PI / 2 + pull;
+      }
+      // d'abord de petites inflexions ; si c'est bouché, elle tourne franchement
+      for (var spread = 4; spread <= 12 && !best; spread += 8) {
+        for (var k = -spread; k <= spread; k++) {
+          var a = ang + k * 0.1, nx = pos.x + Math.cos(a) * STEP, ny = pos.y + Math.sin(a) * STEP;
+          var c = clearAt(nx, ny);
+          if (len > 50 && c < need) continue;
+          if (mode === 'cross' && Math.cos(a) > 0.25) continue;         // une traversée ne revient pas vers le tronc
+          var sc = Math.min(c, 70) / 70 * 0.6 + Math.cos(a - goal) * (mode === 'cross' ? 1.4 : 1) - Math.abs(k) * 0.03 + n1(len / 90 + k * 0.3, seed) * 0.35;
+          if (!best || sc > best.s) best = { a: a, x: nx, y: ny, s: sc };
+        }
+      }
+      if (!best) break;
+      ang = best.a; pos = { x: best.x, y: best.y };
+      pts.push(pos); len += STEP;
+      if (mode === 'cross' && pos.x < stopX) return { pts: pts, len: len, reached: true, ang: ang };
+      if (mode === 'cross' && len > 220 && start.x - pos.x < len * 0.4) break;   // elle tourne en rond : abandon
+      if (pos.x < 8 || pos.x > W + 40 || pos.y < 70) break;
+    }
+    return { pts: pts, len: len, reached: false, ang: ang };
+  }
+
+  function smoothPts(pts, it) {
+    for (var n = 0; n < it; n++) {
+      var out = [pts[0]];
+      for (var i = 1; i < pts.length - 1; i++) {
+        var a = pts[Math.max(0, i - 2)], b = pts[i - 1], c = pts[i], d = pts[i + 1], e = pts[Math.min(pts.length - 1, i + 2)];
+        out.push({ x: (a.x + b.x + c.x + d.x + e.x) / 5, y: (a.y + b.y + c.y + d.y + e.y) / 5 });
+      }
+      out.push(pts[pts.length - 1]);
+      pts = out;
+    }
+    return pts;
+  }
+
+  // Une branche libre : bois peint en tranches, rameaux là où il y a de la place.
+  function makeLimb(path, w0, S) {
+    path = smoothPts(path, 3);
+    var bo = makeBough(path, function (t) { return lerp(w0, 3.2, Math.pow(t, 0.8)); }, (R() * 9999) | 0, { detached: true });
+    for (var k = Math.floor(bo.y0 / CH); k <= Math.floor(bo.y1 / CH); k++) pieces.push({ boughs: [bo], ya: k * CH, yb: (k + 1) * CH, img: null });
+    var p = bo.pts, s = rr(40, 80);
+    for (var i = 2; i < p.length - 2; i++) {
+      if (p[i].s < s) continue;
+      s += rr(60, 115);
+      var tang = Math.atan2(p[i + 2].y - p[i - 2].y, p[i + 2].x - p[i - 2].x), best = null;
+      for (var sd = -1; sd <= 1; sd += 2) {
+        var dir = tang + sd * rr(0.6, 1.15), L = rr(50, 95) * S;
+        var room = clearAt(p[i].x + Math.cos(dir) * L * 0.6, p[i].y + Math.sin(dir) * L * 0.6);
+        if (!best || room > best.room) best = { dir: dir, L: L, room: room };
+      }
+      if (best.room < 34) continue;
+      var Lf = Math.min(best.L, best.room * 0.7);
+      if (Lf < 30) continue;
+      addTwig(p[i].x, p[i].y, best.dir, Lf, Math.max(1.4, p[i].w * 0.22), S, { pairs: Lf > 60 ? (rr(4, 6) | 0) : 3, olives: R() < 0.2 });
+    }
+    var tip = p[p.length - 1], pre = p[Math.max(0, p.length - 5)];
+    addTwig(tip.x, tip.y, Math.atan2(tip.y - pre.y, tip.x - pre.x), rr(45, 65) * S, 2, S, { pairs: 4 });
+    occupyPath(p, w0 / 2 + 26);
+    return bo;
+  }
+
+  function growAroundPage(trunk, S, m, top, bot) {
+    buildClearance();
+    var leftX = Math.max(26, m * 0.42), y = top + 60, made = 0;
+    // de grosses branches partent du tronc et traversent la page par les vides
+    while (y < bot - 240 && made < 5) {
+      var p = pointOn(trunk, (y - top) / (bot - top));
+      var cross = grow({ x: p.x - p.w * 0.3, y: p.y }, Math.PI + rr(-0.25, 0.1), Math.PI, W * 1.3, 'cross', leftX + 24, p.w * 0.6);
+      var lastC = cross.pts[cross.pts.length - 1];
+      if (cross.len > 220 && p.x - lastC.x > 260) {
+        var path = cross.pts;
+        // arrivée dans la marge de gauche : elle redescend en second tronc
+        if (cross.reached && R() < 0.75) {
+          var down = grow(path[path.length - 1], cross.ang, Math.PI / 2, made ? rr(450, 1100) : rr(1400, 2600), 'down', 0, p.w * 0.5, leftX);
+          path = path.concat(down.pts.slice(1));
+        }
+        makeLimb(path, p.w * 0.6, S);
+        made++;
+        y += rr(600, 1050);
+      } else y += rr(80, 150);                                    // pas de place ici : un peu plus bas
+    }
+    // un autre tronc surgit du pied de page, à gauche, et remonte
+    if (R() < 0.85) {
+      var up = grow({ x: leftX + rr(-6, 6), y: bot + 30 }, -Math.PI / 2, -Math.PI / 2, rr(500, 1000), 'up', 0, 24 * S, leftX);
+      if (up.len > 200) makeLimb(up.pts, 24 * S, S);
+    }
   }
 
   /* ---------- peinture du bois (en cache, par tranches) ---------- */
@@ -491,20 +677,24 @@
 
   function chunk(k) {
     if (chunks[k] !== undefined) return chunks[k];
-    var ya = k * CH, yb = ya + CH, x0 = Infinity, x1 = -Infinity;
-    var list = boughs.filter(function (bo) { return bo.y1 > ya - 30 && bo.y0 < yb + 30; });
+    var list = boughs.filter(function (bo) { return bo.y1 > k * CH - 30 && bo.y0 < (k + 1) * CH + 30; });
+    return (chunks[k] = paintSlice(list, k * CH, (k + 1) * CH));
+  }
+
+  function paintSlice(list, ya, yb) {
+    var x0 = Infinity, x1 = -Infinity;
     list.forEach(function (bo) {
       bo.pts.forEach(function (p) {
         if (p.y > ya - 40 && p.y < yb + 40) { x0 = Math.min(x0, p.lx, p.rx); x1 = Math.max(x1, p.lx, p.rx); }
       });
     });
-    if (!list.length || x0 === Infinity) return (chunks[k] = null);
+    if (!list.length || x0 === Infinity) return null;
     x0 = Math.floor(x0 - 50); x1 = Math.ceil(Math.min(x1 + 60, W + 80));
     var c = mk(x1 - x0, CH), x = c.x;
     x.translate(-x0, -ya);
     list.forEach(function (bo) { paintBough(x, bo, ya, yb, 'shadow'); });
     list.forEach(function (bo) { paintBough(x, bo, ya, yb, 'bark'); });
-    return (chunks[k] = { img: c.c, x: x0, y: ya, w: x1 - x0, h: CH });
+    return { img: c.c, x: x0, y: ya, w: x1 - x0, h: CH };
   }
 
   /* ---------- rendu à l'écran ---------- */
@@ -534,6 +724,14 @@
       var ch = chunk(k);
       if (ch) ctx.drawImage(ch.img, ch.x, ch.y, ch.w, ch.h);
     }
+    pieces.forEach(function (pc) {
+      if (pc.yb < y0 || pc.ya > y1) {
+        if (pc.img && (pc.yb < y0 - 2 * VH || pc.ya > y1 + 2 * VH)) pc.img = null;   // mémoire
+        return;
+      }
+      if (pc.img === null) pc.img = paintSlice(pc.boughs, pc.ya, pc.yb) || false;
+      if (pc.img) ctx.drawImage(pc.img.img, pc.img.x, pc.img.y, pc.img.w, pc.img.h);
+    });
     var vis = twigs.filter(function (t) { return t.y1 > y0 && t.y0 < y1; });
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     vis.forEach(function (tw) {
