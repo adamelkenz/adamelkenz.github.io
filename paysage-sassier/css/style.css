@@ -132,8 +132,6 @@ p { margin: 0 0 1em; }
 .lede { max-width: 32em; margin: 36px 0 32px; font-size: 1.4rem; color: var(--ink-2); }
 .hero-links { display: flex; flex-wrap: wrap; gap: 14px 32px; align-items: baseline; }
 .hero-art { grid-area: art; margin: 0; justify-self: center; text-align: center; }
-.hero-art .branch { width: min(100%, 400px); height: auto; }
-.hero-art .branch .o { stroke: var(--green); }
 .hero-art figcaption { font-size: 1rem; color: var(--ink-3); margin-top: 6px; }
 .label-hero { grid-area: label; justify-self: end; width: min(100%, 320px); margin-top: 24px; transform: rotate(.6deg); }
 
@@ -341,9 +339,6 @@ p { margin: 0 0 1em; }
   border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
   filter: blur(2px);
 }
-.hero-art .branch .o { stroke: var(--moss); fill: rgba(123,138,85,.28); }
-.hero-art .branch .s { stroke: var(--forest); stroke-width: 1.8; }
-.hero-art .branch .v { stroke: var(--moss); }
 .hero { position: relative; isolation: isolate; }
 
 /* planches pleines en vert forêt, bord à bord */
@@ -398,13 +393,13 @@ p { margin: 0 0 1em; }
 .colophon .colo-title { color: var(--sage); }
 .colophon a { color: var(--on-forest); }
 
-/* rameau interactif */
-.hero-art .branch { overflow: visible; touch-action: pan-y; }
-.hero-art { cursor: grab; }
-.hero-art .fall-leaf .o { stroke: var(--moss); fill: rgba(176, 140, 60, .32); }
-.hero-art .fall-leaf .v { stroke: var(--moss); }
+/* rameau peint qui longe le site (js/branche.js) */
+.rameau { position: fixed; top: 0; left: 0; z-index: 45; pointer-events: none; }
+.hero-art { min-height: 500px; display: flex; flex-direction: column; justify-content: flex-end; }
 .hint { display: none; font: 500 .66rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--moss); margin-top: 8px; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .hint { display: block; } }
+@media (max-width: 1040px) { .hero-art { min-height: 360px; width: 100%; } }
+@media print { .rameau { display: none; } }
 
 /* ---------- carnet : cartes ---------- */
 .carnet-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 36px; }
@@ -477,7 +472,6 @@ h1.h2 { font-size: clamp(2.6rem, 6vw, 4.6rem); color: var(--forest); }
   .masthead nav li:not(:last-child) { display: none; }
   .hero { grid-template-columns: 1fr; grid-template-areas: "num" "text" "art" "label"; min-height: 0; }
   .hero-art { margin-top: 40px; }
-  .hero-art .branch { width: min(80%, 340px); }
   .label-hero { justify-self: center; }
   .herbarium { grid-template-columns: repeat(2, 1fr); }
   .herbarium .specimen:nth-child(3n+2) { margin-top: 0; }

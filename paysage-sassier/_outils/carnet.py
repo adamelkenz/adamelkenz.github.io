@@ -185,7 +185,7 @@ def page_article(i, a):
     </aside>
   </div>
 </main>
-""" + colophon(prefix) + "\n</body>\n</html>\n"
+""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js" defer></script>\n</body>\n</html>\n'
     return out
 
 
@@ -230,7 +230,7 @@ def page_index():
   </header>
   {cartes("")}
 </main>
-""" + colophon(prefix) + "\n</body>\n</html>\n"
+""" + colophon(prefix) + f'\n<script src="{prefix}js/branche.js" defer></script>\n</body>\n</html>\n'
     return out
 
 
