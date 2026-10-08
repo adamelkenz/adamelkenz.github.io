@@ -1,0 +1,5 @@
+Déposer ici les photos de chantiers (JPG, ~1600 px de large, < 400 Ko).
+Nommer les fichiers de façon descriptive : taille-haie-charmes-pont-audemer.jpg
+Puis, dans index.html (Planche IV), remplacer chaque <div class="ph">…</div>
+par : <img src="img/realisations/NOM.jpg" alt="Description" loading="lazy" width="1600" height="1200">
+Téléphone et e-mail : à renseigner en haut de js/site.js (objet CONTACT).
