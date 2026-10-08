@@ -295,18 +295,7 @@ p { margin: 0 0 1em; }
     linear-gradient(180deg, #17120f, #0f0c0a);
   border: 1px solid var(--ligne);
 }
-.fauteuil-carte::before { /* sol en damier vu en perspective */
-  content: ""; position: absolute; left: -60%; right: -60%; bottom: 0; height: 75%;
-  background: conic-gradient(#e6dfcf 0 25%, #121110 0 50%, #e6dfcf 0 75%, #121110 0) 50% 100% / 64px 64px;
-  transform: perspective(520px) rotateX(62deg); transform-origin: 50% 100%;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 45%);
-          mask-image: linear-gradient(180deg, transparent, #000 45%);
-  opacity: .8;
-}
-.fauteuil-carte::after { /* plinthe */
-  content: ""; position: absolute; left: 0; right: 0; bottom: 37%; height: 3px; background: rgba(196, 156, 108, .18);
-}
-.fauteuil-carte svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+
 
 /* ---------- galerie ---------- */
 .galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
@@ -680,28 +669,29 @@ p { margin: 0 0 1em; }
   transition: transform .7s cubic-bezier(.3, 1.5, .5, 1) calc(var(--i, 0) * 85ms + .3s), opacity .25s calc(var(--i, 0) * 85ms + .3s);
 }
 
-/* 02 le salon : fauteuil en calques (profondeur) qui pivote au toucher */
-.fauteuil-carte { cursor: pointer; perspective: 700px; }
-.fauteuil-carte .calque { transition: translate .25s ease-out; }
-.calque-fond { translate: calc(var(--tx, 0) * -7px) calc(var(--ty, 0) * -5px); }
-.calque-chaise { translate: calc(var(--tx, 0) * 5px) calc(var(--ty, 0) * 3px); transform-origin: 44.5% 70%; }
-.calque-desserte { translate: calc(var(--tx, 0) * 14px) calc(var(--ty, 0) * 8px); transform-origin: 85% 90%; }
-.fauteuil-carte.pivote .calque-chaise { animation: pivote 1.7s cubic-bezier(.3, .7, .3, 1); }
-.fauteuil-carte.pivote .calque-desserte { animation: secoue-outils .7s ease-out .25s; }
-@keyframes pivote {
-  0% { rotate: y 0deg; transform: translateY(0); }
-  18% { transform: translateY(-14px); }
-  32% { rotate: y 58deg; }
-  58% { rotate: y -34deg; transform: translateY(-14px); }
-  78% { rotate: y 12deg; }
-  100% { rotate: y 0deg; transform: translateY(0); }
+/* 02 le salon : fauteuil 3D et mise en lumière (js/salon.js) */
+.fauteuil-3d { width: 100%; background: #0e0d0c; }
+.fauteuil-3d img, .fauteuil-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fauteuil-3d img { object-fit: cover; transition: opacity .5s; }
+.fauteuil-3d canvas { opacity: 0; transition: opacity .3s; }
+.fauteuil-3d.pret canvas { opacity: 1; }
+.fauteuil-3d.pret img { opacity: 0; }
+/* sans 3D, c'est l'image qui s'éclaire */
+.mod #salon .fauteuil-3d img { filter: brightness(.1); transition: filter 1.6s ease .4s, opacity .5s; }
+.mod #salon.allume .fauteuil-3d img { filter: none; }
+/* le texte sort de l'ombre avec la lumière : fini à 3,5 s */
+.mod #salon .salon-txt > :not(.atouts), .mod #salon .atouts li {
+  opacity: 0; filter: brightness(.25) blur(1.5px);
+  transition: opacity .8s ease, filter 1s ease;
 }
-@keyframes secoue-outils { 0%, 100% { rotate: 0deg; } 25% { rotate: -2deg; } 55% { rotate: 1.5deg; } 80% { rotate: -.6deg; } }
-.indice-chaise {
-  position: absolute; left: 12px; bottom: 12px; z-index: 5;
-  padding: 6px 10px; border-radius: 999px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-  background: rgba(14, 13, 12, .78); border: 1px solid var(--ligne); color: var(--creme-2);
-}
+.mod #salon.allume .salon-txt > :not(.atouts), .mod #salon.allume .atouts li { opacity: 1; filter: none; }
+.mod #salon.allume .salon-txt > .tete { transition-delay: .9s; }
+.mod #salon.allume .salon-txt > p:nth-of-type(1) { transition-delay: 1.25s; }
+.mod #salon.allume .salon-txt > p:nth-of-type(2) { transition-delay: 1.5s; }
+.mod #salon.allume .atouts li:nth-child(1) { transition-delay: 1.75s; }
+.mod #salon.allume .atouts li:nth-child(2) { transition-delay: 1.95s; }
+.mod #salon.allume .atouts li:nth-child(3) { transition-delay: 2.15s; }
+.mod #salon.allume .atouts li:nth-child(4) { transition-delay: 2.35s; }
 .atouts li { perspective: 300px; }
 .atouts svg { transition: rotate .9s cubic-bezier(.3, 1.3, .5, 1); }
 .atouts li:hover svg { rotate: y 360deg; }
@@ -785,7 +775,8 @@ p { margin: 0 0 1em; }
   .js .monte { opacity: 1; transform: none; transition: none; }
   .poteau .halo, .poteau .globe, .bras-coupe, .journal, .piece { animation: none; }
   .btn, .mot, .carte-art a { transition: none; }
-  .fond-anime *, .repere i, .pancarte .balancier, .fauteuil-carte .calque { animation: none !important; }
+  .fond-anime *, .repere i, .pancarte .balancier { animation: none !important; }
+  .mod #salon .salon-txt > *, .mod #salon .atouts li, .mod #salon .fauteuil-3d img { transition: none !important; }
   .js .letterboard.monte li { transform: none; opacity: 1; transition: none; }
   .mot, .pancarte .plaque, .atouts svg { transition: none; }
 }

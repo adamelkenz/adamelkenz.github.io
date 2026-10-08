@@ -73,9 +73,9 @@ def pied(prefix):
     </nav>
   </div>
 </footer>
-<script src="{prefix}js/site.js?v=6" defer></script>
-<script src="{prefix}js/poteau.js?v=6" defer></script>
-<script src="{prefix}js/effets3d.js?v=6" defer></script>
+<script src="{prefix}js/site.js?v=7" defer></script>
+<script src="{prefix}js/poteau.js?v=7" defer></script>
+<script src="{prefix}js/effets3d.js?v=7" defer></script>
 </body>
 </html>
 """
@@ -104,7 +104,7 @@ def head(titre, description, canonical, prefix, og_type, ld):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Monoton&display=swap">
-<link rel="stylesheet" href="{prefix}css/style.css?v=6">
+<link rel="stylesheet" href="{prefix}css/style.css?v=7">
 <script>document.documentElement.className = 'js';</script>
 <script type="application/ld+json">
 {json.dumps(ld, ensure_ascii=False, indent=1)}
