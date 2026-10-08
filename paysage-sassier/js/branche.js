@@ -401,7 +401,10 @@
     addTwig(end2.x, end2.y, -Math.PI / 2 - 0.5, 45 * S, 2, S, { pairs: 4 });
 
     // pages intérieures : l'arbre s'organise autour du contenu
-    if (!art && !mobile) growAroundPage(trunk, S, m, top, bot);
+    // sous l'accueil, elles ne commencent qu'après la grosse branche du haut
+    var hero = document.querySelector('.hero');
+    var startY = hero ? hero.getBoundingClientRect().bottom + scrollY + 40 : top + 60;
+    if (!mobile) growAroundPage(trunk, S, m, top, bot, startY);
   }
 
   /* ---------- l'arbre contourne le contenu ---------- */
@@ -419,6 +422,8 @@
       for (var j = c; j <= d; j++) for (var i = a; i <= b; i++) occ[j * gw + i] = 1;
     }
     mark(0, 0, W, 70, 0);                                   // bandeau de navigation
+    var hero = document.querySelector('.hero');             // l'accueil garde sa branche à lui
+    if (hero) { var hr = hero.getBoundingClientRect(); mark(0, hr.top + scrollY, W, hr.bottom + scrollY, 0); }
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), range = document.createRange(), n;
     while ((n = walker.nextNode())) {
       if (!n.nodeValue.trim() || !n.parentElement || n.parentElement.closest('script,style,noscript')) continue;
@@ -429,7 +434,7 @@
         if (r.width && r.height) mark(r.left, r.top + scrollY, r.right, r.bottom + scrollY, 12);
       }
     }
-    document.querySelectorAll('img, svg, input, select, textarea, button, .ph, .label, .fiche, .fiche-card a, .toc, .encadre, .cta, .faq details, .map, .specimen').forEach(function (el) {
+    document.querySelectorAll('img, svg, input, select, textarea, button, .ph, .label, .fiche, .fiche-card a, .toc, .encadre, .cta, .faq details, .map, .specimen, .compare, .cal, .filters').forEach(function (el) {
       var r = el.getBoundingClientRect();
       if (r.width && r.height) mark(r.left, r.top + scrollY, r.right, r.bottom + scrollY, 10);
     });
@@ -548,17 +553,19 @@
       if (Lf < 30) continue;
       addTwig(p[i].x, p[i].y, best.dir, Lf, Math.max(1.4, p[i].w * 0.22), S, { pairs: Lf > 60 ? (rr(4, 6) | 0) : 3, olives: R() < 0.2 });
     }
-    var tip = p[p.length - 1], pre = p[Math.max(0, p.length - 5)];
-    addTwig(tip.x, tip.y, Math.atan2(tip.y - pre.y, tip.x - pre.x), rr(45, 65) * S, 2, S, { pairs: 4 });
+    // rameau terminal, lui aussi seulement s'il a la place
+    var tip = p[p.length - 1], pre = p[Math.max(0, p.length - 5)], ta = Math.atan2(tip.y - pre.y, tip.x - pre.x);
+    var troom = clearAt(tip.x + Math.cos(ta) * 30, tip.y + Math.sin(ta) * 30), tl = Math.min(rr(45, 65) * S, troom * 0.7);
+    if (troom >= 34 && tl >= 28) addTwig(tip.x, tip.y, ta, tl, 2, S, { pairs: 4 });
     occupyPath(p, w0 / 2 + 26);
     return bo;
   }
 
-  function growAroundPage(trunk, S, m, top, bot) {
+  function growAroundPage(trunk, S, m, top, bot, startY) {
     buildClearance();
-    var leftX = Math.max(26, m * 0.42), y = top + 60, made = 0;
+    var leftX = Math.max(26, m * 0.42), y = startY, made = 0, maxMade = clamp(Math.round(DOC_H / 1500), 3, 7);
     // de grosses branches partent du tronc et traversent la page par les vides
-    while (y < bot - 240 && made < 5) {
+    while (y < bot - 240 && made < maxMade) {
       var p = pointOn(trunk, (y - top) / (bot - top));
       var cross = grow({ x: p.x - p.w * 0.3, y: p.y }, Math.PI + rr(-0.25, 0.1), Math.PI, W * 1.3, 'cross', leftX + 24, p.w * 0.6);
       var lastC = cross.pts[cross.pts.length - 1];
