@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills/ai-seo/SKILL.md",
       "computedHash": "7e11b805c31d342f28ffdf976ea7a9342cb911e08b6568b33a714483f033c6be"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
     }
   }
 }
