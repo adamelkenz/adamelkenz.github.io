@@ -18,7 +18,7 @@ from datetime import date
 # ---------------------------------------------------------------- Réglages
 # Adresse publique du site (canonical, sitemap, partages). Quand le nom de domaine sera relié,
 # remplacer par exemple par 'https://www.serrurier-vaucluse.fr/' puis relancer le script.
-SITE = 'https://adamelkenz.github.io/serrurier-vaucluse/'
+SITE = 'https://serrurier-vaucluse.fr/'
 NOM = 'Serrurier Vaucluse'
 TEL = '06 68 88 51 51'
 TEL_HREF = 'tel:+33668885151'
@@ -27,6 +27,9 @@ EMAIL = 'contact@serrurier-vaucluse.fr'      # À VÉRIFIER
 # Prise de rendez-vous dans le Google Agenda du client : URL de l'application web Apps Script
 # (voir _outils/google-apps-script/INSTALLATION.md). Vide = le formulaire propose d'appeler ou d'envoyer un SMS.
 AGENDA_URL = ''
+# Code de vérification Google Search Console (balise HTML) : coller ici la valeur de content="..."
+# fournie par Search Console, puis relancer le script. Vide = pas de balise.
+GOOGLE_VERIFICATION = ''
 AVIGNON = (43.9493, 4.8055)
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -378,6 +381,9 @@ def entreprise_ld(zone):
         'image': SITE + 'img/realisations/' + REALISATIONS[0]['photo'] + '.jpg',
         'logo': SITE + 'img/logo-cle-ventoux.svg',
         'priceRange': '90 € - 290 €',
+        'address': {'@type': 'PostalAddress', 'addressLocality': 'Avignon', 'postalCode': '84000',
+                    'addressRegion': 'Vaucluse', 'addressCountry': 'FR'},
+        'geo': {'@type': 'GeoCoordinates', 'latitude': AVIGNON[0], 'longitude': AVIGNON[1]},
         'openingHoursSpecification': [{
             '@type': 'OpeningHoursSpecification',
             'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -501,10 +507,12 @@ def local_html(v, root):
 
 
 def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-preview:large'):
+    verif = (f'\n<meta name="google-site-verification" content="{e(GOOGLE_VERIFICATION)}">'
+             if GOOGLE_VERIFICATION and url == SITE else '')
     return f'''<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8">{verif}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titre)}</title>
 <meta name="description" content="{e(desc)}">
