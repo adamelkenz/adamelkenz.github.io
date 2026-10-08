@@ -13,11 +13,19 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
   /* Tracé des planches et apparitions au défilement */
-  $$('.draw').forEach(function (svg) {
+  // Le tracé passe par l'API Web Animations : une transition CSS sur
+  // stroke-dashoffset reste parfois figée dans Chrome.
+  function drawIn(svg) {
     var paths = $$('[pathLength]', svg);
     var step = Math.min(30, 1100 / Math.max(paths.length, 1));
-    paths.forEach(function (p, i) { p.style.transitionDelay = (i * step) + 'ms'; });
-  });
+    svg.classList.add('is-drawn');
+    if (!paths[0] || !paths[0].animate) return;
+    paths.forEach(function (p, i) {
+      p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], {
+        duration: 1600, delay: i * step, easing: 'cubic-bezier(.45, .05, .3, 1)', fill: 'backwards'
+      });
+    });
+  }
   $$('.plate-head, .index li, .specimen, .cal li, .label, .fiche, .prose, .compare-block').forEach(function (el) {
     el.classList.add('reveal');
   });
@@ -26,7 +34,8 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        e.target.classList.add(e.target.classList.contains('draw') ? 'is-drawn' : 'is-in');
+        if (e.target.classList.contains('draw')) drawIn(e.target);
+        else e.target.classList.add('is-in');
         io.unobserve(e.target);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });

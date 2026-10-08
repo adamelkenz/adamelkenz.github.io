@@ -61,7 +61,6 @@ p { margin: 0 0 1em; }
 .draw .v { stroke-width: .7; stroke: var(--ink-2); }
 .draw [pathLength] { stroke-dasharray: 1; stroke-dashoffset: 0; }
 .js .draw:not(.is-drawn) [pathLength] { stroke-dashoffset: 1; }
-.js .draw [pathLength] { transition: stroke-dashoffset 1.6s cubic-bezier(.45, .05, .3, 1); }
 
 /* ---------- en-tête ---------- */
 .masthead {
@@ -399,6 +398,80 @@ p { margin: 0 0 1em; }
 .colophon .colo-title { color: var(--sage); }
 .colophon a { color: var(--on-forest); }
 
+/* rameau interactif */
+.hero-art .branch { overflow: visible; touch-action: pan-y; }
+.hero-art { cursor: grab; }
+.hero-art .fall-leaf .o { stroke: var(--moss); fill: rgba(176, 140, 60, .32); }
+.hero-art .fall-leaf .v { stroke: var(--moss); }
+.hint { display: none; font: 500 .66rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--moss); margin-top: 8px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) { .hint { display: block; } }
+
+/* ---------- carnet : cartes ---------- */
+.carnet-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 36px; }
+.fiche-card a {
+  display: flex; flex-direction: column; height: 100%;
+  text-decoration: none; color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--moss); outline: 1px solid var(--moss); outline-offset: -6px;
+  padding: 26px 24px 22px;
+  transform: rotate(var(--r, 0deg));
+  box-shadow: 0 14px 24px -20px rgba(42,38,32,.6);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.fiche-card a:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 20px 30px -20px rgba(47,61,38,.6); }
+.fiche-card h3, .fiche-card h2 { font-size: 1.6rem; line-height: 1.1; color: var(--forest); margin: 8px 0 12px; }
+.fiche-card p { font-size: 1.08rem; line-height: 1.4; color: var(--ink-2); margin-bottom: 18px; }
+.fiche-card .inv { color: var(--moss); }
+.fiche-card .lire { margin-top: auto; font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--moss); }
+.carnet-all { margin-top: 44px; }
+h1.h2 { font-size: clamp(2.6rem, 6vw, 4.6rem); color: var(--forest); }
+
+/* ---------- carnet : article ---------- */
+.crumbs { font: 500 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 40px; }
+.crumbs a { color: var(--moss); text-decoration: none; }
+.crumbs span { margin: 0 6px; }
+.art-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: clamp(32px, 6vw, 96px); align-items: start; }
+.art-head h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); line-height: 1.02; color: var(--forest); margin: 14px 0 18px; }
+.art-meta { font: 400 .74rem var(--mono); letter-spacing: .04em; color: var(--ink-3); }
+.chapeau { font-size: 1.5rem; font-style: italic; line-height: 1.45; color: var(--ink-2); max-width: 34em; }
+.toc { margin: 36px 0 44px; padding: 18px 22px; border-left: 2px solid var(--moss); background: rgba(169,185,138,.14); }
+.toc p { font: 500 .7rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--moss); margin-bottom: 8px; }
+.toc ol { margin: 0; padding-left: 1.2em; }
+.toc li { margin: 3px 0; font-size: 1.12rem; }
+.toc a { text-decoration: none; }
+.toc a:hover { color: var(--moss); text-decoration: underline; }
+.art-body { max-width: 38em; font-size: 1.3rem; }
+.art-body h2, .faq h2 { font-size: 2.1rem; color: var(--forest); margin: 52px 0 16px; scroll-margin-top: 90px; }
+.art-body ul { padding-left: 1.1em; margin: 0 0 1.2em; }
+.art-body li { margin: 0 0 .55em; }
+.art-body li::marker { content: "❧  "; color: var(--moss); font-size: .9em; }
+.art-body a, .faq a { color: var(--moss); text-underline-offset: 3px; }
+.art-body strong { font-weight: 600; color: var(--forest); }
+.encadre { margin: 40px 0; padding: 20px 24px; background: var(--forest); color: var(--on-forest); transform: rotate(-.4deg); }
+.encadre p { margin: 0; font-size: 1.22rem; }
+.encadre strong { color: var(--sage-2); }
+.faq { max-width: 38em; }
+.faq details { border-top: 1px solid var(--rule); padding: 14px 0; }
+.faq details:last-child { border-bottom: 1px solid var(--rule); }
+.faq summary { cursor: pointer; font-size: 1.32rem; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--mono); color: var(--moss); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 10px 0 4px; color: var(--ink-2); font-size: 1.2rem; }
+.cta { margin-top: 56px; padding: 28px 30px; border: 1px solid var(--moss); outline: 1px solid var(--moss); outline-offset: -7px; background: var(--card); max-width: 38em; }
+.cta-t { font-size: 1.5rem; margin: 8px 0 22px; }
+.cta .stamp { display: inline-block; text-decoration: none; }
+.art-side { position: sticky; top: 96px; }
+.art-art { max-width: 180px; margin: 0 auto 28px; }
+.art-art svg { width: 100%; height: auto; }
+.art-art .o { stroke: var(--moss); fill: rgba(123,138,85,.18); }
+.related { margin-top: 32px; }
+.related ul { list-style: none; padding: 0; margin: 10px 0 0; }
+.related li { border-top: 1px solid var(--rule); padding: 12px 0; }
+.related a { text-decoration: none; font-size: 1.15rem; line-height: 1.25; display: block; }
+.related a:hover { color: var(--moss); }
+.related .inv { color: var(--moss); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1040px) {
   .masthead nav li:not(:last-child) { display: none; }
@@ -412,6 +485,10 @@ p { margin: 0 0 1em; }
   .cal { grid-template-columns: repeat(4, 1fr); }
   .map-wrap, .devis { grid-template-columns: 1fr; }
   .oak-art { display: none; }
+  .carnet-cards { grid-template-columns: 1fr 1fr; }
+  .art-grid { grid-template-columns: 1fr; }
+  .art-side { position: static; }
+  .art-art { display: none; }
 }
 @media (max-width: 720px) {
   body { font-size: 1.15rem; }
@@ -428,10 +505,12 @@ p { margin: 0 0 1em; }
   .fiche { grid-template-columns: 1fr; transform: none; }
   .lede, .prose { font-size: 1.22rem; }
   .filters { margin-top: -12px; }
+  .carnet-cards { grid-template-columns: 1fr; }
+  .art-body, .chapeau { font-size: 1.2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .draw [pathLength], .js .reveal, .specimen { transition: none !important; }
+  .js .reveal, .specimen { transition: none !important; }
   .js .draw:not(.is-drawn) [pathLength] { stroke-dashoffset: 0; }
   .js .reveal { opacity: 1; translate: none; }
 }
