@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Monoton&display=swap">
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 <script>document.documentElement.className = 'js';</script>
 <!-- À COMPLÉTER : adresse exacte, téléphone, horaires et lien de réservation (aussi dans js/site.js) -->
 <script type="application/ld+json">
@@ -238,13 +238,13 @@
 <section class="section" id="tarifs" aria-labelledby="t-tarifs">
   <div class="fond-anime fa-poteau" aria-hidden="true"><span><i></i></span></div>
   <div class="wrap">
-    <header class="tete">
+    <header class="tete monte">
       <div class="num">01 — La carte</div>
       <h2 id="t-tarifs">Prestations &amp; tarifs</h2>
       <p>Des prix clairs, affichés comme au salon. Chaque coupe se termine par le contour au rasoir et le coiffage.</p>
     </header>
     <!-- À COMPLÉTER : tarifs réels du salon -->
-    <div class="letterboard monte">
+    <div class="letterboard monte" data-tilt="7">
       <h3>— Menu —</h3>
       <ul>
         <li><span class="l">Coupe homme</span><span class="p"></span><span>20 <em>€</em></span></li>
@@ -266,7 +266,7 @@
   <div class="fond-anime fa-vapeur" aria-hidden="true"><span style="--x:4%;--t:19s;--d:0s"></span><span style="--x:22%;--t:23s;--d:-7s"></span><span style="--x:46%;--t:17s;--d:-3s"></span><span style="--x:66%;--t:21s;--d:-12s"></span><span style="--x:84%;--t:25s;--d:-16s"></span></div>
   <div class="wrap salon-grid">
     <div class="salon-txt monte">
-      <header class="tete">
+      <header class="tete monte">
         <div class="num">02 — Le salon</div>
         <h2 id="t-salon">Un fauteuil, un miroir, du temps pour vous</h2>
       </header>
@@ -291,8 +291,8 @@
         </li>
       </ul>
     </div>
-    <figure class="fauteuil-carte monte" aria-hidden="true">
-      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMax meet">
+    <figure class="fauteuil-carte monte" data-tilt="6" role="button" tabindex="0" aria-label="Faire pivoter le fauteuil">
+      <svg class="calque calque-fond" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
         <defs>
           <linearGradient id="f-cuir" x1="0" x2="1"><stop offset="0" stop-color="#4f0c17"/><stop offset=".28" stop-color="#9c2034"/><stop offset=".55" stop-color="#c8384d"/><stop offset=".8" stop-color="#8f1b2d"/><stop offset="1" stop-color="#4a0b15"/></linearGradient>
           <linearGradient id="f-cuir-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4495e"/><stop offset="1" stop-color="#8e1b2d"/></linearGradient>
@@ -309,6 +309,8 @@
         <path d="M96 236 V92 A80 80 0 0 1 256 92 V236 Z" fill="url(#f-miroir)" stroke="url(#f-chrome)" stroke-width="7"/>
         <path d="M130 40 L176 236 M196 26 L240 236" stroke="#fff" stroke-opacity=".07" stroke-width="16"/>
 
+      </svg>
+      <svg class="calque calque-chaise" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
         <!-- ombre au sol -->
         <ellipse cx="190" cy="462" rx="150" ry="20" fill="#000" opacity=".6" filter="url(#f-flou)"/>
 
@@ -357,6 +359,8 @@
         <path d="M112 403 L106 414 M128 403 L124 414 M144 403 L142 414 M160 403 L159 414 M176 403 L176 414 M192 403 L193 414 M208 403 L210 414 M224 403 L228 414 M240 403 L245 414" stroke="#5d6269" stroke-width="2"/>
         <rect x="90" y="416" width="176" height="5" fill="#3a3e44"/>
 
+      </svg>
+      <svg class="calque calque-desserte" viewBox="0 0 400 500" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
         <!-- desserte : bocal à peignes, tondeuse, ciseaux, rasoir, serviettes, blaireau -->
         <g>
           <path d="M300 250 V444 M384 250 V444" stroke="url(#f-chrome-v)" stroke-width="5"/>
@@ -396,6 +400,7 @@
           <path d="M302 312 Q292 314 286 318 L290 320 Q298 317 304 317 Z" fill="#1a1a1a"/>
         </g>
       </svg>
+      <span class="indice-chaise" aria-hidden="true">↻ Touchez le fauteuil</span>
     </figure>
   </div>
 </section>
@@ -404,18 +409,19 @@
 <section class="section" id="galerie" aria-labelledby="t-galerie">
   <div class="fond-anime fa-projo" aria-hidden="true"><span style="--x:22%;--c:rgba(255,228,196,.06);--t:15s"></span><span style="--x:78%;--c:rgba(127,216,255,.05);--t:19s"></span></div>
   <div class="wrap">
-    <header class="tete">
+    <header class="tete monte">
       <div class="num">03 — Le travail</div>
       <h2 id="t-galerie">Sortis du fauteuil</h2>
       <p>Quelques coupes réalisées au salon.</p>
     </header>
     <!-- À COMPLÉTER : remplacer chaque .vide par <img src="img/realisations/xxx.jpg" alt="…"> -->
     <ul class="galerie">
-      <li class="monte"><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Dégradé américain</figcaption></figure></li>
-      <li class="monte"><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Taper &amp; contour</figcaption></figure></li>
-      <li class="monte"><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Barbe sculptée</figcaption></figure></li>
-      <li class="monte"><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Crop texturé</figcaption></figure></li>
+      <li class="monte" data-tilt="9" data-tilt-souris><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Dégradé américain</figcaption></figure></li>
+      <li class="monte" data-tilt="9" data-tilt-souris><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Taper &amp; contour</figcaption></figure></li>
+      <li class="monte" data-tilt="9" data-tilt-souris><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Barbe sculptée</figcaption></figure></li>
+      <li class="monte" data-tilt="9" data-tilt-souris><figure><div class="vide"><svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></div><figcaption>Crop texturé</figcaption></figure></li>
     </ul>
+    <p class="glisser" aria-hidden="true">← Faites glisser →</p>
     <p class="galerie-note">Toutes les coupes sont aussi sur Instagram. <!-- À COMPLÉTER : lien Instagram --></p>
   </div>
 </section>
@@ -424,7 +430,7 @@
 <section class="section" id="lexique" aria-labelledby="t-lexique">
   <div class="fond-anime fa-outils" aria-hidden="true"><span style="--x:3%;--y:8%;--s:110px;--t:26s;--r:-14deg"><svg viewBox="0 0 44 44"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></span><span style="--x:80%;--y:4%;--s:150px;--t:30s;--r:8deg"><svg viewBox="0 0 60 24"><path d="M2 4 H58 V10 H2 Z M6 10 V22 M11 10 V22 M16 10 V22 M21 10 V22 M26 10 V22 M31 10 V22 M36 10 V22 M41 10 V22 M46 10 V22 M51 10 V22 M56 10 V22"/></svg></span><span style="--x:62%;--y:46%;--s:120px;--t:22s;--r:-6deg"><svg viewBox="0 0 64 40"><path d="M4 30 Q20 30 30 22 L60 6 L62 12 L34 28 Q24 36 6 36 Z M30 22 L22 12 Q18 6 10 8"/></svg></span><span style="--x:8%;--y:62%;--s:60px;--t:28s;--r:12deg"><svg viewBox="0 0 30 64"><rect x="5" y="12" width="20" height="48" rx="9"/><path d="M4 12 H26 V6 H4 Z M8 6 V2 M12 6 V2 M16 6 V2 M20 6 V2 M24 6 V2 M11 24 V46"/></svg></span><span style="--x:88%;--y:70%;--s:64px;--t:24s;--r:-10deg"><svg viewBox="0 0 34 64"><path d="M6 30 Q4 10 17 4 Q30 10 28 30 Z M10 30 H24 L22 58 H12 Z"/></svg></span><span style="--x:36%;--y:86%;--s:90px;--t:32s;--r:16deg"><svg viewBox="0 0 44 44"><circle cx="12" cy="32" r="6"/><circle cx="32" cy="32" r="6"/><path d="M16 28 L34 6 M28 28 L10 6"/></svg></span></div>
   <div class="wrap">
-    <header class="tete">
+    <header class="tete monte">
       <div class="num">04 — Le lexique</div>
       <h2 id="t-lexique">Parler barbier</h2>
       <p>Low fade, taper, burst… Les mots du métier, expliqués simplement, pour demander exactement la coupe que vous avez en tête.</p>
@@ -446,47 +452,47 @@
     </svg>
 
     <dl class="lexique">
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Low fade<small>Dégradé bas</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><rect clip-path="url(#crane)" x="0" y="40" width="64" height="24" fill="url(#fondu)"/><use href="#tete-contour"/></svg>
         <dd>Le dégradé commence juste au-dessus de l'oreille et de la nuque. Discret, il passe partout, même au bureau.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Mid fade<small>Dégradé moyen</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><rect clip-path="url(#crane)" x="0" y="31" width="64" height="33" fill="url(#fondu)"/><use href="#tete-contour"/></svg>
         <dd>Il monte jusqu'à mi-hauteur, au niveau des tempes. Le plus demandé : net sans être trop marqué.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>High fade<small>Dégradé haut</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><rect clip-path="url(#crane)" x="0" y="20" width="64" height="44" fill="url(#fondu)"/><use href="#tete-contour"/></svg>
         <dd>Le dégradé remonte haut sur le crâne et fait ressortir le dessus. Très graphique, idéal avec un crop ou une coupe courte.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Taper<small>Effilé nuque &amp; pattes</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><rect clip-path="url(#crane)" x="0" y="47" width="64" height="17" fill="url(#fondu)"/><circle clip-path="url(#crane)" cx="13" cy="40" r="5" fill="url(#eclat)"/><circle clip-path="url(#crane)" cx="51" cy="40" r="5" fill="url(#eclat)"/><use href="#tete-contour"/></svg>
         <dd>Seuls la nuque et le bas des pattes sont dégradés. Le reste garde sa longueur : l'effet le plus naturel.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Burst fade<small>Dégradé en demi-cercle</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><circle clip-path="url(#crane)" cx="12" cy="36" r="13" fill="url(#eclat)"/><circle clip-path="url(#crane)" cx="52" cy="36" r="13" fill="url(#eclat)"/><use href="#tete-contour"/></svg>
         <dd>Le dégradé fait un arc autour de l'oreille et laisse de la longueur à la nuque. Souvent associé au mullet moderne.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>À blanc<small>Skin fade</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><rect clip-path="url(#crane)" x="0" y="30" width="64" height="34" fill="url(#fondu)"/><rect clip-path="url(#crane)" x="0" y="44" width="64" height="20" fill="#2a2622"/><use href="#tete-contour"/></svg>
         <dd>Le bas est rasé jusqu'à la peau avant de remonter en fondu. Le dégradé le plus contrasté.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Contour<small>Line up</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><use href="#tete-base"/><use href="#tete-contour"/><path class="trait" d="M14 36 C18 44 22 48 22 50 M50 36 C46 44 42 48 42 50 M22 50 H42"/></svg>
         <dd>Les lignes de la coupe (front, tempes, nuque) redessinées au rasoir. C'est ce qui donne l'aspect net.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Sabot<small>Hauteur de tondeuse</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#ff4458" stroke-width="1.6"><rect x="20" y="10" width="24" height="16" rx="3"/><path d="M22 26 V54 M27 26 V54 M32 26 V54 M37 26 V54 M42 26 V54"/></g></svg>
         <dd>Le peigne posé sur la tondeuse. Le n° 1 laisse environ 3 mm, le n° 2 environ 6 mm, le n° 3 environ 9 mm. Le « 0 » rase presque à blanc.</dd>
       </div>
-      <div class="mot monte">
+      <div class="mot monte" tabindex="0">
         <dt>Rasage à l'ancienne<small>Coupe-chou</small></dt>
         <svg class="tete-svg" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#ff4458" stroke-width="1.6" stroke-linejoin="round"><path d="M10 40 L44 14 L52 20 L20 46 Z"/><path d="M44 14 L56 8"/><path d="M20 46 L12 54"/></g></svg>
         <dd>Serviette chaude, mousse au blaireau, lame droite puis serviette froide et baume. Une demi-heure rien que pour vous.</dd>
@@ -499,7 +505,7 @@
 <section class="section" id="carnet" aria-labelledby="t-carnet">
   <div class="fond-anime fa-bokeh" aria-hidden="true"><span style="--x:6%;--y:14%;--s:46px;--t:22s;--c:rgba(255,68,88,.5)"></span><span style="--x:18%;--y:70%;--s:22px;--t:18s;--c:rgba(127,216,255,.55)"></span><span style="--x:34%;--y:30%;--s:14px;--t:26s;--c:rgba(255,68,88,.6)"></span><span style="--x:52%;--y:82%;--s:58px;--t:30s;--c:rgba(127,216,255,.35)"></span><span style="--x:64%;--y:12%;--s:26px;--t:20s;--c:rgba(255,68,88,.5)"></span><span style="--x:78%;--y:56%;--s:40px;--t:24s;--c:rgba(255,68,88,.4)"></span><span style="--x:90%;--y:24%;--s:18px;--t:16s;--c:rgba(127,216,255,.6)"></span><span style="--x:44%;--y:56%;--s:10px;--t:14s;--c:rgba(255,233,236,.6)"></span><span style="--x:88%;--y:88%;--s:30px;--t:28s;--c:rgba(255,68,88,.45)"></span><span style="--x:26%;--y:8%;--s:12px;--t:19s;--c:rgba(127,216,255,.5)"></span></div>
   <div class="wrap">
-    <header class="tete">
+    <header class="tete monte">
       <div class="num">05 — Le carnet</div>
       <h2 id="t-carnet">Conseils du barbier</h2>
       <p>Choisir son dégradé, entretenir sa barbe, trouver la coupe qui va à son visage : nos conseils, écrits noir sur blanc.</p>
@@ -507,7 +513,7 @@
   <!-- CARNET:DEBUT (généré par _outils/carnet.py) -->
   <ol class="carnet-cards">
     <li class="carte-art monte">
-      <a href="carnet/degrade-angers/">
+      <a href="carnet/degrade-angers/" data-tilt="7">
         <span class="meta">N° 01 · 5 min</span>
         <h3>Dégradé à Angers : low, mid ou high fade, lequel choisir ?</h3>
         <p>C&#x27;est la question qu&#x27;on entend le plus au fauteuil : « je veux un dégradé, mais lequel ? ». Voici comment on raisonne au salon pour choisir la bonne hauteur, et comment le demander pour obtenir exactement ce que vous avez en tête.</p>
@@ -515,7 +521,7 @@
       </a>
     </li>
     <li class="carte-art monte">
-      <a href="carnet/entretenir-sa-barbe/">
+      <a href="carnet/entretenir-sa-barbe/" data-tilt="7">
         <span class="meta">N° 02 · 4 min</span>
         <h3>Entretenir sa barbe entre deux passages chez le barbier</h3>
         <p>Une belle barbe se fait au salon, mais elle se garde à la maison. Quelques gestes suffisent pour qu&#x27;elle reste douce, propre et bien dessinée jusqu&#x27;au prochain passage.</p>
@@ -523,7 +529,7 @@
       </a>
     </li>
     <li class="carte-art monte">
-      <a href="carnet/quelle-coupe-pour-quel-visage/">
+      <a href="carnet/quelle-coupe-pour-quel-visage/" data-tilt="7">
         <span class="meta">N° 03 · 4 min</span>
         <h3>Quelle coupe homme pour quelle forme de visage ?</h3>
         <p>Avant de prendre la tondeuse, un bon barbier regarde votre visage. La même coupe peut être parfaite sur une personne et ratée sur une autre. Voici les repères qu&#x27;on utilise au salon.</p>
@@ -531,7 +537,7 @@
       </a>
     </li>
     <li class="carte-art monte">
-      <a href="carnet/rasage-a-l-ancienne/">
+      <a href="carnet/rasage-a-l-ancienne/" data-tilt="7">
         <span class="meta">N° 04 · 4 min</span>
         <h3>Le rasage à l&#x27;ancienne : comment se passe un rasage au coupe-chou</h3>
         <p>C&#x27;est le soin qui a fait la réputation des barbiers. Un rasage à l&#x27;ancienne, ce n&#x27;est pas juste « enlever la barbe » : c&#x27;est une demi-heure de préparation, de précision et de détente.</p>
@@ -539,7 +545,7 @@
       </a>
     </li>
     <li class="carte-art monte">
-      <a href="carnet/barbier-pres-gare-angers/">
+      <a href="carnet/barbier-pres-gare-angers/" data-tilt="7">
         <span class="meta">N° 05 · 3 min</span>
         <h3>Barbier près de la gare Saint-Laud à Angers</h3>
         <p>Vous travaillez près de la gare, vous habitez Saint-Laud ou vous attendez un train ? Barbershop49 est à quelques minutes à pied. Voici ce qu&#x27;on y fait et comment venir.</p>
@@ -556,11 +562,23 @@
 <section class="section" id="infos" aria-labelledby="t-infos">
   <div class="fond-anime fa-open" aria-hidden="true"><i></i><span>Open</span></div>
   <div class="wrap">
-    <header class="tete">
-      <div class="num">06 — Infos pratiques</div>
-      <h2 id="t-infos">Passer au salon</h2>
-      <p>À Angers, quartier gare Saint-Laud. Accessible à pied depuis le centre-ville, en tram et en train.</p>
-    </header>
+    <div class="tete-ligne">
+    <header class="tete monte">
+        <div class="num">06 — Infos pratiques</div>
+        <h2 id="t-infos">Passer au salon</h2>
+        <p>À Angers, quartier gare Saint-Laud. Accessible à pied depuis le centre-ville, en tram et en train.</p>
+      </header>
+      <button class="pancarte" type="button" aria-label="Pancarte du salon : touchez pour la retourner">
+        <span class="clou"></span>
+        <span class="balancier">
+          <svg class="fils" viewBox="0 0 220 64" aria-hidden="true"><path d="M110 4 L28 62 M110 4 L192 62"/></svg>
+          <span class="plaque">
+            <span class="face recto"><b class="si-ouvert">Ouvert</b><b class="si-ferme">Fermé</b><small>Barbershop 49</small></span>
+            <span class="face verso"><b>Mar – Sam</b><small>Lundi &amp; dimanche : fermé</small></span>
+          </span>
+        </span>
+      </button>
+    </div>
     <div class="infos-grid">
       <div class="monte">
         <!-- À COMPLÉTER : horaires réels (aussi dans js/site.js et le JSON-LD) -->
@@ -616,7 +634,8 @@
   </div>
 </footer>
 
-<script src="js/site.js?v=4" defer></script>
-<script src="js/poteau.js?v=4" defer></script>
+<script src="js/site.js?v=5" defer></script>
+<script src="js/poteau.js?v=5" defer></script>
+<script src="js/effets3d.js?v=5" defer></script>
 </body>
 </html>
