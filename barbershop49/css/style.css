@@ -295,18 +295,7 @@ p { margin: 0 0 1em; }
     linear-gradient(180deg, #17120f, #0f0c0a);
   border: 1px solid var(--ligne);
 }
-.fauteuil-carte::before { /* sol en damier vu en perspective */
-  content: ""; position: absolute; left: -60%; right: -60%; bottom: 0; height: 75%;
-  background: conic-gradient(#e6dfcf 0 25%, #121110 0 50%, #e6dfcf 0 75%, #121110 0) 50% 100% / 64px 64px;
-  transform: perspective(520px) rotateX(62deg); transform-origin: 50% 100%;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 45%);
-          mask-image: linear-gradient(180deg, transparent, #000 45%);
-  opacity: .8;
-}
-.fauteuil-carte::after { /* plinthe */
-  content: ""; position: absolute; left: 0; right: 0; bottom: 37%; height: 3px; background: rgba(196, 156, 108, .18);
-}
-.fauteuil-carte svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+
 
 /* ---------- galerie ---------- */
 .galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
@@ -680,28 +669,29 @@ p { margin: 0 0 1em; }
   transition: transform .7s cubic-bezier(.3, 1.5, .5, 1) calc(var(--i, 0) * 85ms + .3s), opacity .25s calc(var(--i, 0) * 85ms + .3s);
 }
 
-/* 02 le salon : fauteuil en calques (profondeur) qui pivote au toucher */
-.fauteuil-carte { cursor: pointer; perspective: 700px; }
-.fauteuil-carte .calque { transition: translate .25s ease-out; }
-.calque-fond { translate: calc(var(--tx, 0) * -7px) calc(var(--ty, 0) * -5px); }
-.calque-chaise { translate: calc(var(--tx, 0) * 5px) calc(var(--ty, 0) * 3px); transform-origin: 44.5% 70%; }
-.calque-desserte { translate: calc(var(--tx, 0) * 14px) calc(var(--ty, 0) * 8px); transform-origin: 85% 90%; }
-.fauteuil-carte.pivote .calque-chaise { animation: pivote 1.7s cubic-bezier(.3, .7, .3, 1); }
-.fauteuil-carte.pivote .calque-desserte { animation: secoue-outils .7s ease-out .25s; }
-@keyframes pivote {
-  0% { rotate: y 0deg; transform: translateY(0); }
-  18% { transform: translateY(-14px); }
-  32% { rotate: y 58deg; }
-  58% { rotate: y -34deg; transform: translateY(-14px); }
-  78% { rotate: y 12deg; }
-  100% { rotate: y 0deg; transform: translateY(0); }
+/* 02 le salon : fauteuil 3D et mise en lumière (js/salon.js) */
+.fauteuil-3d { width: 100%; background: #0e0d0c; }
+.fauteuil-3d img, .fauteuil-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fauteuil-3d img { object-fit: cover; transition: opacity .5s; }
+.fauteuil-3d canvas { opacity: 0; transition: opacity .3s; }
+.fauteuil-3d.pret canvas { opacity: 1; }
+.fauteuil-3d.pret img { opacity: 0; }
+/* sans 3D, c'est l'image qui s'éclaire */
+.mod #salon .fauteuil-3d img { filter: brightness(.1); transition: filter 1.6s ease .4s, opacity .5s; }
+.mod #salon.allume .fauteuil-3d img { filter: none; }
+/* le texte sort de l'ombre avec la lumière : fini à 3,5 s */
+.mod #salon .salon-txt > :not(.atouts), .mod #salon .atouts li {
+  opacity: 0; filter: brightness(.25) blur(1.5px);
+  transition: opacity .8s ease, filter 1s ease;
 }
-@keyframes secoue-outils { 0%, 100% { rotate: 0deg; } 25% { rotate: -2deg; } 55% { rotate: 1.5deg; } 80% { rotate: -.6deg; } }
-.indice-chaise {
-  position: absolute; left: 12px; bottom: 12px; z-index: 5;
-  padding: 6px 10px; border-radius: 999px; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-  background: rgba(14, 13, 12, .78); border: 1px solid var(--ligne); color: var(--creme-2);
-}
+.mod #salon.allume .salon-txt > :not(.atouts), .mod #salon.allume .atouts li { opacity: 1; filter: none; }
+.mod #salon.allume .salon-txt > .tete { transition-delay: .9s; }
+.mod #salon.allume .salon-txt > p:nth-of-type(1) { transition-delay: 1.25s; }
+.mod #salon.allume .salon-txt > p:nth-of-type(2) { transition-delay: 1.5s; }
+.mod #salon.allume .atouts li:nth-child(1) { transition-delay: 1.75s; }
+.mod #salon.allume .atouts li:nth-child(2) { transition-delay: 1.95s; }
+.mod #salon.allume .atouts li:nth-child(3) { transition-delay: 2.15s; }
+.mod #salon.allume .atouts li:nth-child(4) { transition-delay: 2.35s; }
 .atouts li { perspective: 300px; }
 .atouts svg { transition: rotate .9s cubic-bezier(.3, 1.3, .5, 1); }
 .atouts li:hover svg { rotate: y 360deg; }
@@ -785,10 +775,115 @@ p { margin: 0 0 1em; }
   .js .monte { opacity: 1; transform: none; transition: none; }
   .poteau .halo, .poteau .globe, .bras-coupe, .journal, .piece { animation: none; }
   .btn, .mot, .carte-art a { transition: none; }
-  .fond-anime *, .repere i, .pancarte .balancier, .fauteuil-carte .calque { animation: none !important; }
+  .fond-anime *, .repere i, .pancarte .balancier { animation: none !important; }
+  .mod #salon .salon-txt > *, .mod #salon .atouts li, .mod #salon .fauteuil-3d img { transition: none !important; }
   .js .letterboard.monte li { transform: none; opacity: 1; transition: none; }
   .mot, .pancarte .plaque, .atouts svg { transition: none; }
 }
 
 @media (max-width: 899px) { :root { --poteau: 18px; } }
 @media (max-width: 480px) { .surtitre { letter-spacing: .2em; font-size: .74rem; } }
+
+/* ---------- version téléphone ---------- */
+.menu-btn, .menu-mobile, .barre-mobile { display: none; }
+@media (max-width: 760px) {
+  .section { padding: 60px 0 64px; }
+  .tete { margin-bottom: 26px; }
+  .tete p { font-size: 1rem; }
+  .ctas .btn { min-width: 250px; justify-content: center; }
+
+  /* menu */
+  .topbar .wrap { gap: 10px; }
+  .nav .btn { padding: 9px 14px; }
+  .logo span { font-size: 1.45rem; }
+  .menu-btn {
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 0 10px; margin-right: -8px; background: none; border: 0; cursor: pointer;
+  }
+  .menu-btn span { display: block; height: 2px; border-radius: 2px; background: var(--creme); transition: transform .3s, opacity .3s; }
+  .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .menu-mobile:not([hidden]) {
+    display: grid; position: absolute; left: 0; right: 0; top: 100%;
+    padding: 6px var(--gouttiere) 16px;
+    background: rgba(14, 13, 12, .97); border-bottom: 1px solid var(--ligne); box-shadow: 0 20px 40px rgba(0, 0, 0, .6);
+    transform-origin: 50% 0; animation: deplie .35s cubic-bezier(.2, .8, .2, 1);
+  }
+  .menu-mobile a {
+    padding: 13px 0; border-bottom: 1px solid var(--ligne); text-decoration: none;
+    font-family: var(--f-titre); font-size: 1.65rem; letter-spacing: .06em;
+  }
+  .menu-mobile a:last-child { border-bottom: 0; color: var(--neon); }
+
+  /* barre d'actions en bas d'écran */
+  .barre-mobile {
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 8px;
+    position: fixed; z-index: 45; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom));
+    padding: 7px; border-radius: 18px;
+    background: rgba(23, 21, 19, .92); border: 1px solid var(--ligne);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .6);
+    transform: translateY(150%); transition: transform .45s cubic-bezier(.2, .8, .2, 1);
+  }
+  .barre-mobile.visible { transform: none; }
+  .barre-mobile a {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 52px; border-radius: 12px; text-decoration: none;
+    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--creme-2);
+  }
+  .barre-mobile svg { width: 20px; height: 20px; fill: currentColor; }
+  .barre-mobile .principal { background: var(--rouge); color: var(--creme); box-shadow: 0 6px 18px -6px var(--neon-glow); }
+  body:has(.barre-mobile) { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+
+  /* tarifs : les prix ne se coupent plus */
+  .letterboard { border-width: 9px; padding: 22px 14px 18px; }
+  .letterboard h3 { font-size: 1.45rem; margin-bottom: 12px; }
+  .letterboard li { gap: 8px; padding: 7px 0; font-size: 1.12rem; letter-spacing: .08em; }
+  .letterboard li > span:last-child { white-space: nowrap; }
+  .letterboard li small { font-size: .74rem; }
+  .letterboard li .p { min-width: 12px; }
+
+  /* le salon : le fauteuil juste après le texte, avant la liste */
+  .salon-grid { display: flex; flex-direction: column; gap: 0; }
+  .salon-txt { display: contents; }
+  .salon-txt > .tete { order: 1; }
+  .salon-txt > p { order: 2; }
+  .fauteuil-carte { order: 3; margin: 12px 0 6px; }
+  .atouts { order: 4; }
+
+  /* lexique et carnet : on fait glisser au lieu d'empiler */
+  .lexique, #carnet .carnet-cards {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    margin: 0 calc(32px - var(--gouttiere) - var(--poteau)) 0 calc(-1 * var(--gouttiere));
+    padding: 10px 12px 16px var(--gouttiere);
+    scroll-padding-inline-start: var(--gouttiere); scrollbar-width: none;
+  }
+  .lexique::-webkit-scrollbar, #carnet .carnet-cards::-webkit-scrollbar { display: none; }
+  .mot { flex: 0 0 80%; min-height: 236px; scroll-snap-align: start; }
+  .js .mot > dd { padding: 16px 18px; gap: 6px; font-size: .9rem; line-height: 1.5; }
+  .js .mot > dd::before { font-size: 1.3rem; }
+  #carnet .carte-art { flex: 0 0 84%; scroll-snap-align: start; }
+  #carnet .carte-art p { flex: none; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; margin: 0 0 auto; }
+  #carnet .carte-art .lire { margin-top: 14px; }
+  /* les carrousels s'arrêtent avant le poteau, avec un fondu */
+  .galerie { margin-right: calc(32px - var(--gouttiere) - var(--poteau)); }
+  .galerie, .lexique, #carnet .carnet-cards {
+    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, #000 88%, transparent);
+  }
+
+  /* infos : libellé au-dessus de chaque coordonnée */
+  .coord { gap: 14px; }
+  .coord > div { display: grid; gap: 2px; }
+  .coord span { min-width: 0; }
+  .carte { min-height: 300px; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .menu-mobile:not([hidden]) { animation: none; }
+  .barre-mobile { transition: none; }
+}
+@media (max-width: 480px) {
+  .nav { display: none; } /* « Réserver » reste dans l'accueil puis dans la barre du bas */
+  .menu-btn { margin-left: auto; }
+}

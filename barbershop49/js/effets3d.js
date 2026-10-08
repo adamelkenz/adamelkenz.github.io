@@ -27,10 +27,6 @@
   // ---------- tarifs : les lignes se retournent une à une ----------
   document.querySelectorAll('.letterboard li').forEach(function (li, i) { li.style.setProperty('--i', i); });
 
-  // ---------- le salon : le fauteuil pivote au toucher ----------
-  var fauteuil = document.querySelector('.fauteuil-carte');
-  if (fauteuil) active(fauteuil, function () { rejoue(fauteuil, 'pivote'); });
-
   // ---------- lexique : cartes à retourner ----------
   var mots = document.querySelectorAll('.mot');
   mots.forEach(function (m) {
