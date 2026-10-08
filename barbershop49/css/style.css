@@ -86,69 +86,100 @@ p { margin: 0 0 1em; }
   background: #0d0b0a;
 }
 .salon { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.couche {
-  position: absolute; will-change: transform;
-  transform: translate3d(calc(var(--mx, 0) * var(--d) * 18px),
-                         calc(var(--sy, 0) * (1 - var(--d)) * .3px + var(--my, 0) * var(--d) * 8px), 0);
+/* la pièce : on regarde depuis l'entrée, murs, plafond et sol en vraie perspective */
+.piece {
+  --p: 820px; --D: 1000px;
+  position: absolute; inset: 0; overflow: hidden;
+  perspective: var(--p);
+  perspective-origin: calc(50% + var(--mx, 0) * 3%) calc(47% + var(--my, 0) * 2%);
 }
-/* mur du fond : papier peint rayé, lambris, flaques de lumière des suspensions */
-.mur {
-  inset: -40px -40px 0 -40px;
+.boite {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transform: translateZ(calc(var(--sy, 0) * .3px));
+}
+.face { position: absolute; }
+.fond {
+  inset: 0; transform: translateZ(calc(var(--D) * -1));
   background:
-    radial-gradient(ellipse 60% 42% at 50% 30%, rgba(215, 38, 61, .17), transparent 70%),
-    radial-gradient(ellipse 20% 36% at 17% 56%, rgba(255, 196, 140, .11), transparent 70%),
-    radial-gradient(ellipse 20% 36% at 83% 56%, rgba(255, 196, 140, .09), transparent 70%),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, .02) 0 1px, transparent 1px 38px),
-    linear-gradient(180deg, #0b0908 0%, #16120f 74%, #1a1511 100%);
+    radial-gradient(ellipse 40% 50% at 50% 70%, rgba(255, 214, 170, .1), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% 25%, rgba(215, 38, 61, .14), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 46px),
+    linear-gradient(180deg, #0f0c0a, #1d1813);
 }
-.mur::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: calc(var(--horizon) - 4px); height: 128px;
+.mur-g, .mur-d { top: 0; bottom: 0; width: var(--D); }
+.mur-g { left: 0; transform-origin: 0 50%; transform: rotateY(90deg); }
+.mur-d { right: 0; transform-origin: 100% 50%; transform: rotateY(-90deg); }
+.mur-g, .mur-d, .fond { overflow: hidden; }
+.mur-g { background: linear-gradient(90deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0) 70%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 46px), linear-gradient(180deg, #0c0a08, #191410); }
+.mur-d { background: linear-gradient(270deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0) 70%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 46px), linear-gradient(180deg, #0c0a08, #191410); }
+/* lambris sur les trois murs */
+.fond::after, .mur-g::after, .mur-d::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 19%;
   background:
-    linear-gradient(rgba(196, 156, 108, .2), rgba(196, 156, 108, .2)) top / 100% 3px no-repeat,
-    linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)) bottom / 100% 7px no-repeat,
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, .45) 0 2px, rgba(255, 255, 255, .035) 2px 3px, transparent 3px 104px),
-    linear-gradient(180deg, #130f0c, #0c0a08);
+    linear-gradient(rgba(196, 156, 108, .24), rgba(196, 156, 108, .24)) top / 100% 4px no-repeat,
+    linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)) bottom / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .45) 0 3px, rgba(255, 255, 255, .04) 3px 4px, transparent 4px 120px),
+    linear-gradient(180deg, #15100c, #0c0907);
 }
-/* faisceau de lumière sur le fauteuil du fond */
-.faisceau {
-  --l: min(560px, 92vw);
-  left: 50%; margin-left: calc(var(--l) / -2); width: var(--l);
-  top: -40px; bottom: calc(var(--horizon) - 18px);
-  background: linear-gradient(180deg, rgba(255, 228, 196, 0) 15%, rgba(255, 228, 196, .08));
-  clip-path: polygon(46% 0, 54% 0, 74% 100%, 26% 100%);
+/* miroirs accrochés aux murs latéraux */
+.glace {
+  position: absolute; top: 26%; height: 40%; width: 17%;
+  border: 6px solid #6a645d; border-radius: 120px 120px 6px 6px;
+  background:
+    linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .07) 30% 40%, transparent 40% 55%, rgba(255, 255, 255, .05) 55% 60%, transparent 60%),
+    linear-gradient(180deg, #3d3730, #241f1b);
+  box-shadow: 0 0 30px rgba(255, 200, 150, .08);
+}
+.glace::after { /* tablette sous le miroir */
+  content: ""; position: absolute; left: -10%; right: -10%; bottom: -18px; height: 8px; background: #0c0a09;
 }
 .sol {
-  position: absolute; left: -60%; right: -60%; bottom: 0; height: 560px;
-  background: conic-gradient(#eae3d3 0 25%, #121110 0 50%, #eae3d3 0 75%, #121110 0) 50% 100% / 110px 110px;
-  transform: perspective(700px) rotateX(58deg);
-  transform-origin: 50% 100%;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 35%, #000 75%);
-          mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 35%, #000 75%);
-  opacity: .85;
+  left: 0; right: 0; bottom: 0; height: var(--D);
+  transform-origin: 50% 100%; transform: rotateX(90deg);
+  background: conic-gradient(#e6dfcf 0 25%, #121110 0 50%, #e6dfcf 0 75%, #121110 0) 50% 100% / 110px 110px;
 }
-.sol::after { /* reflet du néon sur le carrelage */
+.sol::after { /* pénombre au fond, reflet du néon */
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 30% 60% at 50% 0%, rgba(255, 68, 88, .35), transparent 70%);
+  background:
+    radial-gradient(ellipse 40% 30% at 50% 8%, rgba(255, 214, 170, .16), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 70%, rgba(255, 68, 88, .22), transparent 70%),
+    linear-gradient(180deg, rgba(13, 11, 10, .78) 0%, rgba(13, 11, 10, .35) 45%, rgba(13, 11, 10, .05) 100%);
+}
+.plafond {
+  left: 0; right: 0; top: 0; height: var(--D);
+  transform-origin: 50% 0; transform: rotateX(-90deg);
+  background:
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, .025) 0 3px, transparent 3px 160px),
+    linear-gradient(180deg, #050404, #0d0a08);
+}
+/* éléments debout dans la pièce, à une profondeur donnée */
+.figurant { position: absolute; bottom: 0; transform: translateZ(var(--z)); }
+.faisceau {
+  --z: calc(var(--D) * -.9);
+  left: 30%; width: 40%; top: 0;
+  background: linear-gradient(180deg, rgba(255, 228, 196, 0) 15%, rgba(255, 228, 196, .09));
+  clip-path: polygon(46% 0, 54% 0, 76% 100%, 24% 100%);
 }
 .fond-chaise {
-  --h: clamp(92px, 16vh, 150px);
-  left: 50%; bottom: calc(var(--horizon) - 8px);
-  height: var(--h); width: calc(var(--h) * 220 / 260); margin-left: calc(var(--h) * -110 / 260);
-  filter: blur(.9px); opacity: .7;
+  --z: calc(var(--D) * -.86);
+  left: 50%; height: 30%; aspect-ratio: 220 / 260; transform: translateX(-50%) translateZ(var(--z));
+  filter: blur(.6px); opacity: .85;
 }
 .poste {
-  bottom: calc(var(--horizon) - 40px);
-  height: clamp(280px, 56%, 500px); aspect-ratio: 460 / 540; width: auto;
-  overflow: visible;
-  filter: blur(.6px) drop-shadow(0 0 1.5px rgba(255, 68, 88, .35));
-  opacity: .62;
+  --z: calc(var(--D) * -.42);
+  height: 72%; aspect-ratio: 460 / 540; overflow: visible;
+  filter: blur(.4px) drop-shadow(0 0 1.5px rgba(255, 68, 88, .35));
 }
-.poste-gauche { left: max(-40px, calc(50% - 760px)); }
-.poste-droite { right: max(-40px, calc(50% - 760px)); }
+.poste-gauche { left: 2%; }
+.poste-droite { right: 2%; }
 .bras-coupe { transform-box: view-box; transform-origin: 134px 194px; animation: coupe 1.9s ease-in-out infinite; }
 @keyframes coupe { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-7deg); } }
 .journal { transform-box: fill-box; transform-origin: 50% 100%; animation: lecture 6s ease-in-out infinite; }
 @keyframes lecture { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.2deg); } }
+@media (pointer: coarse) { /* sur téléphone, le regard dérive doucement dans la pièce */
+  .piece { animation: regard 14s ease-in-out infinite alternate; }
+}
+@keyframes regard { from { perspective-origin: 46% 54%; } to { perspective-origin: 54% 53%; } }
 /* voile : garde l'enseigne et le texte lisibles */
 .brume {
   position: absolute; inset: 0;
@@ -157,27 +188,33 @@ p { margin: 0 0 1em; }
     linear-gradient(180deg, rgba(13, 11, 10, .6) 0%, rgba(13, 11, 10, 0) 45%);
 }
 @media (max-width: 760px) {
-  .poste { height: 300px; opacity: .55; }
-  .poste-gauche { left: -118px; }
-  .poste-droite { right: -128px; }
+  .hero { justify-content: flex-start; padding-top: 36px; }
+  .piece { --p: 520px; --D: 640px; perspective-origin: 50% 54%; }
+  .poste { --z: calc(var(--D) * -.5); height: 46%; }
+  .poste-gauche { left: -14%; }
+  .poste-droite { right: -16%; }
+  .fond-chaise { height: 24%; }
 }
 .hero .wrap { position: relative; z-index: 2; text-align: center; }
 .surtitre { font-size: .82rem; letter-spacing: .32em; text-transform: uppercase; color: var(--creme-2); margin-bottom: 18px; }
 
-.enseigne { margin: 0 auto 26px; line-height: .9; }
+.enseigne {
+  margin: 0 auto 26px; line-height: .9;
+  display: flex; align-items: center; justify-content: center; gap: .14em; flex-wrap: nowrap;
+}
 .enseigne .n1 {
-  display: block; font-family: var(--f-neon); font-weight: 400;
-  font-size: clamp(2.6rem, 10.5vw, 7.8rem); letter-spacing: .04em;
+  font-family: var(--f-neon); font-weight: 400;
+  font-size: clamp(1.75rem, 7.9vw, 6.6rem); letter-spacing: .03em;
   color: #ffe9ec;
   text-shadow: 0 0 4px #fff, 0 0 10px var(--neon), 0 0 22px var(--neon), 0 0 46px var(--neon), 0 0 90px var(--neon-glow);
 }
 .enseigne .n2 {
-  display: inline-block; margin-top: 12px;
-  font-family: var(--f-titre); font-size: clamp(4.4rem, 17vw, 11rem); line-height: .85;
+  font-family: var(--f-titre); font-size: clamp(2.5rem, 11.2vw, 9.2rem); line-height: .82;
   color: #e6f8ff;
   text-shadow: 0 0 4px #fff, 0 0 12px var(--bleu-neon), 0 0 30px var(--bleu-neon), 0 0 70px rgba(127, 216, 255, .5);
-  padding: 0 .18em; border: 3px solid #e6f8ff; border-radius: 18px;
+  padding: .04em .14em 0; border: max(2px, .025em) solid #e6f8ff; border-radius: .14em;
   box-shadow: 0 0 8px var(--bleu-neon), 0 0 26px rgba(127,216,255,.6), inset 0 0 18px rgba(127,216,255,.45);
+  transform: rotate(-4deg);
 }
 .js .enseigne .n1 { animation: allumage 2.4s steps(1) .3s both; }
 .js .enseigne .clignote { animation: grésille 7s linear 3s infinite; }
@@ -248,22 +285,25 @@ p { margin: 0 0 1em; }
 .atouts svg { width: 44px; height: 44px; stroke: var(--neon); fill: none; stroke-width: 1.6; filter: drop-shadow(0 0 4px var(--neon-glow)); }
 
 .fauteuil-carte {
-  position: relative; aspect-ratio: 4/5; border-radius: 14px; overflow: hidden;
+  position: relative; aspect-ratio: 4/5; border-radius: 14px; overflow: hidden; margin: 0;
   background:
-    radial-gradient(ellipse 60% 40% at 50% 18%, rgba(127,216,255,.18), transparent 70%),
-    linear-gradient(180deg, #1b1917 0%, #0f0e0d 62%, transparent 62%),
-    conic-gradient(#e9e2d2 0 25%, #141312 0 50%, #e9e2d2 0 75%, #141312 0) 0 0 / 46px 46px;
+    radial-gradient(ellipse 55% 45% at 45% 30%, rgba(255, 214, 170, .14), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 34px),
+    linear-gradient(180deg, #17120f, #0f0c0a);
   border: 1px solid var(--ligne);
 }
-.fauteuil-carte svg { position: absolute; left: 50%; bottom: 14%; width: 66%; transform: translateX(-50%); }
-.fauteuil-carte .miroir {
-  position: absolute; left: 50%; top: 9%; width: 46%; aspect-ratio: 3/4; transform: translateX(-50%);
-  border-radius: 50% 50% 8px 8px / 30% 30% 8px 8px;
-  border: 3px solid #cfd3d8;
-  background: linear-gradient(160deg, rgba(255,255,255,.18), rgba(255,255,255,.02) 50%, rgba(127,216,255,.12));
-  box-shadow: 0 0 22px rgba(127,216,255,.25);
+.fauteuil-carte::before { /* sol en damier vu en perspective */
+  content: ""; position: absolute; left: -60%; right: -60%; bottom: 0; height: 75%;
+  background: conic-gradient(#e6dfcf 0 25%, #121110 0 50%, #e6dfcf 0 75%, #121110 0) 50% 100% / 64px 64px;
+  transform: perspective(520px) rotateX(62deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 45%);
+          mask-image: linear-gradient(180deg, transparent, #000 45%);
+  opacity: .8;
 }
-.fauteuil-carte figcaption { position: absolute; left: 16px; bottom: 14px; font-size: .8rem; color: var(--creme-3); letter-spacing: .1em; text-transform: uppercase; }
+.fauteuil-carte::after { /* plinthe */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 37%; height: 3px; background: rgba(196, 156, 108, .18);
+}
+.fauteuil-carte svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
 
 /* ---------- galerie ---------- */
 .galerie { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
@@ -497,7 +537,7 @@ p { margin: 0 0 1em; }
   html { scroll-behavior: auto; }
   .js .enseigne .n1, .js .enseigne .clignote { animation: none; }
   .js .monte { opacity: 1; transform: none; transition: none; }
-  .poteau .halo, .poteau .globe, .bras-coupe, .journal { animation: none; }
+  .poteau .halo, .poteau .globe, .bras-coupe, .journal, .piece { animation: none; }
   .btn, .mot, .carte-art a { transition: none; }
 }
 
