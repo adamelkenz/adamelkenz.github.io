@@ -74,6 +74,9 @@ var SALON = {
       bouton.setAttribute('aria-label', ouvre ? 'Fermer le menu' : 'Ouvrir le menu');
     });
     menu.addEventListener('click', function (e) { if (e.target.closest('a')) ferme(); });
+    document.addEventListener('click', function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && !bouton.contains(e.target)) ferme();
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { ferme(); bouton.focus(); } });
   }
 
