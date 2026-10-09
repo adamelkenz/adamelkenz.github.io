@@ -20,8 +20,8 @@
 <link rel="icon" type="image/svg+xml" href="img/fleur.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="css/style.css?v=5">
 <script>document.documentElement.className = 'js';</script>
 <!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON) -->
 <script type="application/ld+json">
@@ -54,9 +54,8 @@
 </head>
 <body>
 
-<!-- décor : halos, mèches de soie, grain -->
+<!-- décor : dégradé, halos et grain (en CSS), mèches de soie -->
 <div class="fond" aria-hidden="true">
-  <div class="halo halo-1"></div><div class="halo halo-2"></div><div class="halo halo-3"></div>
   <svg class="meches" viewBox="0 0 1440 900" preserveAspectRatio="none">
     <defs>
       <linearGradient id="soie" x1="0" x2="1">
@@ -85,7 +84,6 @@
       <path d="M-60 823C300 743 560 903 900 813S1300 723 1500 803"/>
     </g>
   </svg>
-  <div class="grain"></div>
 </div>
 <canvas id="petales" aria-hidden="true"></canvas>
 
@@ -96,9 +94,9 @@
   </a>
   <nav class="nav" aria-label="Navigation principale">
     <a href="#salon">Le salon</a>
+    <a href="#avant-apres">Avant / après</a>
     <a href="#rituel">Le rituel</a>
     <a href="#prestations">Prestations</a>
-    <a href="#avant-apres">Avant / après</a>
     <a href="#avis">Avis</a>
     <a href="#infos">Horaires &amp; accès</a>
   </nav>
@@ -107,9 +105,9 @@
 </header>
 <nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu">
   <a href="#salon">Le salon</a>
+  <a href="#avant-apres">Avant / après</a>
   <a href="#rituel">Le rituel</a>
   <a href="#prestations">Prestations &amp; tarifs</a>
-  <a href="#avant-apres">Avant / après</a>
   <a href="#avis">Avis</a>
   <a href="#infos">Horaires &amp; accès</a>
   <a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Prendre rendez-vous</a>
@@ -137,7 +135,7 @@
     </div>
 
     <div class="hero-arbre" aria-hidden="true">
-      <svg id="sakura" viewBox="0 0 640 620"></svg>
+      <div id="sakura"></div>
     </div>
 
     <!-- outils qui flottent -->
@@ -215,6 +213,44 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ============ AVANT / APRÈS ============ -->
+  <section class="bloc" id="avant-apres">
+    <div class="titre">
+      <p class="surtitre monte">Avant / après</p>
+      <h2 class="monte">La preuve <em>en couleurs</em></h2>
+      <p class="monte">Faites glisser les ciseaux pour découvrir la transformation. Des réalisations faites au salon par Yasmine.</p>
+    </div>
+    <div class="avaps">
+      <figure class="avap monte">
+        <div class="comparateur" style="--pos:50%">
+          <img class="apres" src="img/avant-apres/cuivre-apres.webp" alt="Après : cheveux cuivrés uniformes, lisses et brillants" width="900" height="1200" loading="lazy" decoding="async">
+          <img class="avant" src="img/avant-apres/cuivre-avant.webp" alt="Avant : cheveux châtains aux pointes orangées et ternes" width="900" height="1200" loading="lazy" decoding="async">
+          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
+          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
+          <span class="poignee" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
+          </span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Coloration cuivrée">
+        </div>
+        <figcaption><b>Coloration cuivrée</b>Des longueurs ternies et des pointes orangées transformées en un cuivré uniforme, lisse et brillant.</figcaption>
+      </figure>
+      <figure class="avap monte" style="--d:.12s">
+        <div class="comparateur" style="--pos:50%">
+          <img class="apres" src="img/avant-apres/meches-apres.webp" alt="Après : mèches blondes fines et lumineuses sur cheveux mi-longs" width="900" height="1200" loading="lazy" decoding="async">
+          <img class="avant" src="img/avant-apres/meches-avant.webp" alt="Avant : ancien balayage blond avec racines foncées" width="900" height="1200" loading="lazy" decoding="async">
+          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
+          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
+          <span class="poignee" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
+          </span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Mèches blondes">
+        </div>
+        <figcaption><b>Mèches blondes</b>Un ancien balayage aux racines marquées ravivé par des mèches fines, pour un blond lumineux et naturel.</figcaption>
+      </figure>
+    </div>
+    <p class="cta-centre monte"><a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Je veux ma transformation</a></p>
   </section>
 
   <!-- ============ LE RITUEL ============ -->
@@ -344,44 +380,6 @@
     <p class="cta-centre monte"><a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Choisir ma prestation</a></p>
   </section>
 
-  <!-- ============ AVANT / APRÈS ============ -->
-  <section class="bloc" id="avant-apres">
-    <div class="titre">
-      <p class="surtitre monte">Avant / après</p>
-      <h2 class="monte">La preuve <em>en couleurs</em></h2>
-      <p class="monte">Faites glisser les ciseaux pour découvrir la transformation. Des réalisations faites au salon par Yasmine.</p>
-    </div>
-    <div class="avaps">
-      <figure class="avap monte">
-        <div class="comparateur" style="--pos:50%">
-          <img class="apres" src="img/avant-apres/cuivre-apres.webp" alt="Après : cheveux cuivrés uniformes, lisses et brillants" width="900" height="1200" loading="lazy" decoding="async">
-          <img class="avant" src="img/avant-apres/cuivre-avant.webp" alt="Avant : cheveux châtains aux pointes orangées et ternes" width="900" height="1200" loading="lazy" decoding="async">
-          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
-          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
-          <span class="poignee" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
-          </span>
-          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Coloration cuivrée">
-        </div>
-        <figcaption><b>Coloration cuivrée</b>Des longueurs ternies et des pointes orangées transformées en un cuivré uniforme, lisse et brillant.</figcaption>
-      </figure>
-      <figure class="avap monte" style="--d:.12s">
-        <div class="comparateur" style="--pos:50%">
-          <img class="apres" src="img/avant-apres/meches-apres.webp" alt="Après : mèches blondes fines et lumineuses sur cheveux mi-longs" width="900" height="1200" loading="lazy" decoding="async">
-          <img class="avant" src="img/avant-apres/meches-avant.webp" alt="Avant : ancien balayage blond avec racines foncées" width="900" height="1200" loading="lazy" decoding="async">
-          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
-          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
-          <span class="poignee" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
-          </span>
-          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Mèches blondes">
-        </div>
-        <figcaption><b>Mèches blondes</b>Un ancien balayage aux racines marquées ravivé par des mèches fines, pour un blond lumineux et naturel.</figcaption>
-      </figure>
-    </div>
-    <p class="cta-centre monte"><a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Je veux ma transformation</a></p>
-  </section>
-
   <!-- ============ AVIS ============ -->
   <section class="bloc avis" id="avis">
     <div class="titre">
@@ -490,7 +488,7 @@
   <a class="btn btn-doux" href="#infos">Horaires</a>
 </div>
 
-<script src="js/sakura.js?v=1" defer></script>
+<script src="js/sakura.js?v=3" defer></script>
 <script src="js/site.js?v=2" defer></script>
 </body>
 </html>
