@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passion Coiffure by Yasmine – Salon de coiffure à Saultain | Coupe, couleur, balayage</title>
+<meta name="description" content="Passion Coiffure by Yasmine, salon de coiffure à Saultain (79 bis av. Henri Barbusse) : coupe femme, brushing, coloration, balayage, permanente, chignons. Un cocon tout en douceur, réservation en ligne 24h/24.">
+<meta name="theme-color" content="#fde3eb">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://adamelkenz.github.io/passion-coiffure/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Passion Coiffure by Yasmine">
+<meta property="og:title" content="Passion Coiffure by Yasmine, salon de coiffure à Saultain">
+<meta property="og:description" content="Coupe, brushing, couleur, balayage et chignons dans un cocon rose poudré. Réservation en ligne 24h/24.">
+<meta property="og:url" content="https://adamelkenz.github.io/passion-coiffure/">
+<meta name="geo.region" content="FR-59">
+<meta name="geo.placename" content="Saultain">
+<meta name="geo.position" content="50.336285;3.5806735">
+<link rel="icon" type="image/svg+xml" href="img/fleur.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="css/style.css?v=2">
+<script>document.documentElement.className = 'js';</script>
+<!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON) -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "HairSalon",
+ "@id": "https://adamelkenz.github.io/passion-coiffure/#salon",
+ "name": "Passion Coiffure by Yasmine",
+ "description": "Salon de coiffure à Saultain : coupe femme, brushing, coloration, balayage, permanente, chignons de soirée et de mariée.",
+ "url": "https://adamelkenz.github.io/passion-coiffure/",
+ "logo": "https://adamelkenz.github.io/passion-coiffure/img/fleur.svg",
+ "priceRange": "€€",
+ "address": {
+  "@type": "PostalAddress",
+  "streetAddress": "79 bis avenue Henri Barbusse",
+  "addressLocality": "Saultain",
+  "postalCode": "59990",
+  "addressCountry": "FR"
+ },
+ "geo": { "@type": "GeoCoordinates", "latitude": 50.336285, "longitude": 3.5806735 },
+ "openingHoursSpecification": [
+  { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "14:00", "closes": "18:30" },
+  { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:30" },
+  { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "14:00" },
+  { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:30", "closes": "18:00" }
+ ],
+ "potentialAction": { "@type": "ReserveAction", "target": "https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain" }
+}
+</script>
+</head>
+<body>
+
+<!-- décor : halos, mèches de soie, grain -->
+<div class="fond" aria-hidden="true">
+  <div class="halo halo-1"></div><div class="halo halo-2"></div><div class="halo halo-3"></div>
+  <svg class="meches" viewBox="0 0 1440 900" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="soie" x1="0" x2="1">
+        <stop offset="0" stop-color="#f4a9c0" stop-opacity="0"/>
+        <stop offset=".35" stop-color="#f09ab6"/>
+        <stop offset=".7" stop-color="#e8b49b"/>
+        <stop offset="1" stop-color="#f4a9c0" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g stroke="url(#soie)" stroke-width="1.2">
+      <path d="M-60 170C220 40 420 330 720 190S1180 40 1500 230"/>
+      <path d="M-60 180C220 52 420 342 720 202S1180 52 1500 242"/>
+      <path d="M-60 191C220 65 420 353 720 214S1180 64 1500 254"/>
+      <path d="M-60 203C220 78 420 364 720 227S1180 77 1500 266"/>
+      <path d="M-60 216C220 92 420 376 720 240S1180 90 1500 279"/>
+    </g>
+    <g stroke="url(#soie)" stroke-width="1">
+      <path d="M-60 560C260 690 480 420 780 560S1200 720 1500 520"/>
+      <path d="M-60 572C260 702 480 432 780 572S1200 732 1500 532"/>
+      <path d="M-60 585C260 715 480 445 780 585S1200 745 1500 545"/>
+      <path d="M-60 599C260 729 480 459 780 599S1200 759 1500 559"/>
+    </g>
+    <g stroke="url(#soie)" stroke-width=".9">
+      <path d="M-60 800C300 720 560 880 900 790S1300 700 1500 780"/>
+      <path d="M-60 811C300 731 560 891 900 801S1300 711 1500 791"/>
+      <path d="M-60 823C300 743 560 903 900 813S1300 723 1500 803"/>
+    </g>
+  </svg>
+  <div class="grain"></div>
+</div>
+<canvas id="petales" aria-hidden="true"></canvas>
+
+<header class="entete">
+  <a class="logo" href="#accueil" aria-label="Passion Coiffure by Yasmine, retour à l'accueil">
+    <img src="img/fleur.svg" alt="" width="38" height="38">
+    <span class="logo-txt"><b>Passion Coiffure</b><i>by Yasmine</i></span>
+  </a>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#salon">Le salon</a>
+    <a href="#rituel">Le rituel</a>
+    <a href="#prestations">Prestations</a>
+    <a href="#avant-apres">Avant / après</a>
+    <a href="#avis">Avis</a>
+    <a href="#infos">Horaires &amp; accès</a>
+  </nav>
+  <a class="btn btn-petit btn-rdv" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Prendre rendez-vous</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span></button>
+</header>
+<nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu">
+  <a href="#salon">Le salon</a>
+  <a href="#rituel">Le rituel</a>
+  <a href="#prestations">Prestations &amp; tarifs</a>
+  <a href="#avant-apres">Avant / après</a>
+  <a href="#avis">Avis</a>
+  <a href="#infos">Horaires &amp; accès</a>
+  <a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Prendre rendez-vous</a>
+</nav>
+
+<main>
+  <!-- ============ ACCUEIL ============ -->
+  <section class="hero" id="accueil">
+    <div class="hero-texte">
+      <p class="surtitre monte">Salon de coiffure · Saultain</p>
+      <h1 class="monte" style="--d:.1s">
+        <span class="l">Passion</span>
+        <span class="l"><em>Coiffure</em></span>
+        <span class="script">by Yasmine</span>
+      </h1>
+      <p class="accroche monte" style="--d:.25s">Poussez la porte, posez votre sac, respirez. Ici, on prend le temps de vous écouter, de chouchouter vos cheveux et de vous faire du bien, du shampoing au dernier coup de brosse.</p>
+      <div class="hero-actions monte" style="--d:.4s">
+        <a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          Réserver en ligne
+        </a>
+        <a class="btn btn-doux" href="#prestations">Voir les prestations</a>
+      </div>
+      <p class="statut monte" style="--d:.5s" data-statut aria-live="polite"></p>
+    </div>
+
+    <div class="hero-arbre" aria-hidden="true">
+      <svg id="sakura" viewBox="0 0 640 620"></svg>
+    </div>
+
+    <!-- outils qui flottent -->
+    <div class="flotte flotte-1" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g><circle cx="30" cy="32" r="1.6" fill="currentColor" stroke="none"/></svg>
+    </div>
+    <div class="flotte flotte-2" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="6" y="18" width="52" height="9" rx="3"/><path d="M10 27v16M14 27v16M18 27v16M22 27v16M26 27v16M30 27v16M34 27v12M38 27v12M42 27v12M46 27v12M50 27v12M54 27v12"/></svg>
+    </div>
+    <div class="flotte flotte-3" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="28" cy="25" rx="16" ry="19"/><ellipse cx="28" cy="25" rx="11" ry="14" opacity=".5"/><path d="M36 41 50 59" stroke-width="5"/><path d="M21 15l4 6M19 21l2 3"/></svg>
+    </div>
+    <div class="flotte flotte-4" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="8" y="22" width="30" height="16" rx="8"/><path d="M12 18v4M17 18v4M22 18v4M27 18v4M32 18v4M12 38v4M17 38v4M22 38v4M27 38v4M32 38v4"/><rect x="38" y="26" width="22" height="8" rx="4"/></svg>
+    </div>
+
+    <a class="descendre" href="#salon">
+      <svg viewBox="0 0 26 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="22" height="7" rx="2.5"/><g class="peigne-dent"><path d="M6 13v7M10 13v9M14 13v11M18 13v9M22 13v7"/></g><path d="M9 33l4 4 4-4" opacity=".6"/></svg>
+      Découvrir
+    </a>
+  </section>
+
+  <div class="coupe" aria-hidden="true">
+    <div class="coupe-trace"></div>
+    <div class="coupe-ciseaux"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7" fill="#fff"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7" fill="#fff"/><path d="M16.8 41 30 32 58 24"/></g><circle cx="30" cy="32" r="1.8" fill="currentColor" stroke="none"/></svg></div>
+  </div>
+
+  <!-- ============ LE SALON ============ -->
+  <section class="bloc" id="salon">
+    <div class="salon-grille">
+      <div class="cocon monte" aria-hidden="false">
+        <div class="cocon-fond"></div>
+        <button class="cocon-seche" type="button" aria-label="Le sèche-cheveux : cliquez pour faire s'envoler les pétales">
+          <svg viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <g class="corps">
+              <path d="M40 54 34 88a5 5 0 0 0 5 6h6a5 5 0 0 0 5-4.6L54 54" fill="#fff"/>
+              <path d="M38 76h13" opacity=".5"/>
+              <path d="M26 22h50a16 16 0 0 1 0 32H26a18 18 0 0 1 0-32Z" fill="#fff"/>
+              <path d="M90 26h10a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H90" fill="#fde3eb"/>
+              <circle cx="26" cy="38" r="11" fill="#fde3eb"/>
+              <g class="helice"><path d="M26 31v14M19 38h14M21 33l10 10M31 33 21 43" stroke-width="1.6" opacity=".7"/></g>
+              <path d="M52 30h22" stroke="#dc6790" opacity=".7"/>
+              <circle cx="60" cy="45" r="2.2" fill="#dc6790" stroke="none"/>
+              <circle cx="67" cy="45" r="2.2" fill="#f8c8d6" stroke="none"/>
+            </g>
+            <g class="air" stroke="#dc6790" stroke-width="2">
+              <path d="M107 30q4-3 8 0"/>
+              <path d="M107 38q5-3 10 0"/>
+              <path d="M107 46q4-3 8 0"/>
+            </g>
+          </svg>
+        </button>
+        <p class="cocon-bulle verre"><b>Psst…</b>un clic sur le sèche-cheveux</p>
+      </div>
+
+      <div class="salon-texte">
+        <p class="surtitre monte">Bienvenue chez Yasmine</p>
+        <h2 class="monte">Votre petite <em>bulle</em> de douceur</h2>
+        <p class="monte">Chez Passion Coiffure, on ne vient pas seulement « se faire couper les cheveux ». On s'installe, on discute de ses envies, et on repart légère, avec une coiffure qui vous ressemble.</p>
+        <p class="monte">Yasmine vous reçoit dans un salon à la décoration raffinée, pensé comme un cocon : lumière douce, fauteuil confortable et conseils sincères. Coupe, brushing, couleur, balayage, permanente ou chignon de mariée, chaque prestation est faite sur mesure, pour les femmes comme pour toute la famille.</p>
+        <p class="signature monte">Yasmine</p>
+        <div class="valeurs">
+          <div class="valeur verre monte">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 40S7 30 7 18a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 12-17 22-17 22Z"/><path d="M16 19a5 5 0 0 1 5-5" opacity=".5"/></svg>
+            <b>L'écoute</b><span>On prend le temps de comprendre ce que vous voulez vraiment.</span>
+          </div>
+          <div class="valeur verre monte" style="--d:.1s">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 30c4-10 10-14 16-14s12 4 16 14"/><path d="M5 34c6 4 12 6 19 6s13-2 19-6"/><path d="M24 8v4M14 11l2 3M34 11l-2 3"/></svg>
+            <b>La douceur</b><span>Un moment pour souffler, rien que pour vous.</span>
+          </div>
+          <div class="valeur verre monte" style="--d:.2s">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1Z"/></svg>
+            <b>Le conseil</b><span>Des recommandations honnêtes, adaptées à vos cheveux.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LE RITUEL ============ -->
+  <section class="rituel" id="rituel">
+    <div class="bloc">
+      <div class="titre">
+        <p class="surtitre monte">Le rituel cocooning</p>
+        <h2 class="monte">Quatre temps <em>pour vous</em></h2>
+        <p class="monte">Du moment où vous arrivez jusqu'au dernier regard dans le miroir, tout est fait pour que vous vous sentiez bien.</p>
+      </div>
+      <ol class="etapes">
+        <li class="etape monte">
+          <div class="etape-icone">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="vapeur" stroke="#dc6790"><path d="M24 22c-3-4 3-6 0-10"/><path d="M32 22c-3-4 3-6 0-10"/><path d="M40 22c-3-4 3-6 0-10"/></g><path d="M16 28h32v8a16 16 0 0 1-32 0Z" fill="#fff"/><path d="M48 31h3a6 6 0 0 1 0 12h-4"/><path d="M10 56h44"/></svg>
+          </div>
+          <h3>L'accueil</h3>
+          <p>On s'installe tranquillement et on prend le temps de faire connaissance.</p>
+        </li>
+        <li class="etape monte" style="--d:.12s">
+          <div class="etape-icone">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="28" cy="25" rx="15" ry="18" fill="#fff"/><path d="M36 40.5 49 57" stroke-width="5"/><g class="eclat" stroke="#dc6790"><path d="M21 16v7M17.5 19.5h7"/><path d="M33 30v4M31 32h4"/></g></svg>
+          </div>
+          <h3>Le diagnostic</h3>
+          <p>Nature de cheveux, envies, entretien : on choisit ensemble ce qui vous ira le mieux.</p>
+        </li>
+        <li class="etape monte" style="--d:.24s">
+          <div class="etape-icone">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 24h18v29a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4Z" fill="#fff"/><path d="M25 24v-6h8v6M29 18v-6h10"/><path d="M20 36h18" opacity=".5"/><g class="bulles" stroke="#dc6790"><circle cx="47" cy="30" r="4"/><circle cx="52" cy="21" r="2.6"/><circle cx="45" cy="15" r="2"/></g></svg>
+          </div>
+          <h3>Le shampoing</h3>
+          <p>Eau tiède, massage du cuir chevelu et soin adapté : on ferme les yeux.</p>
+        </li>
+        <li class="etape monte" style="--d:.36s">
+          <div class="etape-icone ciseaux-anim">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="lame-a"><circle cx="11" cy="19" r="7" fill="#fff"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7" fill="#fff"/><path d="M16.8 41 30 32 58 24"/></g><circle cx="30" cy="32" r="1.6" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>La mise en beauté</h3>
+          <p>Coupe, couleur ou coiffage, puis brushing : vous repartez rayonnante.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="coupe" aria-hidden="true">
+    <div class="coupe-trace"></div>
+    <div class="coupe-ciseaux"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7" fill="#fff"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7" fill="#fff"/><path d="M16.8 41 30 32 58 24"/></g><circle cx="30" cy="32" r="1.8" fill="currentColor" stroke="none"/></svg></div>
+  </div>
+
+  <!-- ============ PRESTATIONS ============ -->
+  <section class="bloc" id="prestations">
+    <div class="titre">
+      <p class="surtitre monte">Prestations &amp; tarifs</p>
+      <h2 class="monte">Prenez soin <em>de vous</em></h2>
+      <p class="monte">Les prix varient selon la longueur de vos cheveux. Pour les balayages et coiffures de fête, Yasmine vous fait un devis personnalisé.</p>
+    </div>
+
+    <div class="cartes">
+      <article class="carte verre monte">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g><circle cx="30" cy="32" r="1.6" fill="currentColor" stroke="none"/></svg></div>
+        <h3>Coupes</h3>
+        <p>Une coupe pensée pour votre visage, votre style et votre quotidien.</p>
+        <ul class="tarifs">
+          <li><span>Coupe courte</span><span>40 €</span></li>
+          <li><span>Coupe mi-longue</span><span>50 €</span></li>
+          <li><span>Coupe longue</span><span>60 €</span></li>
+        </ul>
+      </article>
+
+      <article class="carte verre monte" style="--d:.1s">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="22" width="30" height="16" rx="8"/><path d="M10 18v4M15 18v4M20 18v4M25 18v4M30 18v4M10 38v4M15 38v4M20 38v4M25 38v4M30 38v4"/><rect x="36" y="26" width="22" height="8" rx="4"/></svg></div>
+        <h3>Brushing</h3>
+        <p>Shampoing puis brushing : du volume, du lisse, du mouvement.</p>
+        <ul class="tarifs">
+          <li><span>Cheveux courts</span><span>26 €</span></li>
+          <li><span>Cheveux mi-longs</span><span>30 €</span></li>
+          <li><span>Cheveux longs</span><span>32 €</span></li>
+        </ul>
+      </article>
+
+      <article class="carte verre monte" style="--d:.2s">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 34h36c0 10-8 18-18 18S8 44 8 34Z"/><path d="M12 38h28" stroke="#dc6790" stroke-width="3"/><path d="M34 31 54 9"/><path d="M28 37l6-6" stroke-width="6" stroke="#dc6790"/></svg></div>
+        <h3>Coloration</h3>
+        <p>Couleur, shampoing, coupe et brushing inclus, pour une teinte lumineuse.</p>
+        <ul class="tarifs">
+          <li><span>Cheveux courts</span><span>79 €</span></li>
+          <li><span>Cheveux mi-longs</span><span>87 €</span></li>
+          <li><span>Cheveux longs</span><span>93 €</span></li>
+        </ul>
+      </article>
+
+      <article class="carte verre monte">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="16" width="30" height="7" rx="2"/><path d="M8 23v8M12 23v8M16 23v8M20 23v8M24 23v8M28 23v8M34 19.5h26"/><path d="M8 44c8-6 14 6 22 0s14 6 22 0" stroke="#dc6790"/><path d="M8 52c8-6 14 6 22 0s14 6 22 0" stroke="#c9a079"/></svg></div>
+        <h3>Balayage &amp; mèches</h3>
+        <p>Balayage avec soin, patine ou décoloration complète : des reflets sur mesure.</p>
+        <ul class="tarifs">
+          <li><span>Balayage + soin, coupe et brushing</span><span>sur devis</span></li>
+          <li><span>Patine</span><span>sur devis</span></li>
+          <li><span>Décoloration complète + coupe et brushing</span><span>sur devis</span></li>
+        </ul>
+      </article>
+
+      <article class="carte verre monte" style="--d:.1s">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="27" width="14" height="10" rx="3"/><rect x="18" y="28" width="36" height="8" rx="4"/><circle cx="56" cy="32" r="2"/><path d="M20 24h28" stroke-width="3"/><path d="M28 40c0 6 8 6 8 11s-8 6-8 10" stroke="#dc6790"/></svg></div>
+        <h3>Permanente</h3>
+        <p>Des boucles qui tiennent, avec coupe et mise en forme comprises.</p>
+        <ul class="tarifs">
+          <li><span>Cheveux courts</span><span>75 €</span></li>
+          <li><span>Cheveux mi-longs</span><span>85 €</span></li>
+          <li><span>Cheveux longs</span><span>95 €</span></li>
+          <li><span>Soin de préparation</span><span>8 €</span></li>
+        </ul>
+      </article>
+
+      <article class="carte verre monte" style="--d:.2s">
+        <div class="carte-icone"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="18" width="46" height="9" rx="4.5"/><path d="M14 27c0 10 4 16 10 21M23 27c0 10 2 17 6 23M32 27v25M41 27c0 10-2 17-6 23M50 27c0 10-4 16-10 21"/><circle cx="20" cy="22.5" r="1.6" fill="#dc6790" stroke="none"/><circle cx="32" cy="22.5" r="1.6" fill="#dc6790" stroke="none"/><circle cx="44" cy="22.5" r="1.6" fill="#dc6790" stroke="none"/></svg></div>
+        <h3>Chignons &amp; coiffures</h3>
+        <p>Pour une soirée, un baptême ou le plus beau jour de votre vie.</p>
+        <ul class="tarifs">
+          <li><span>Attaches / tresses</span><span>sur devis</span></li>
+          <li><span>Coiffure de soirée / chignon</span><span>sur devis</span></li>
+          <li><span>Chignon de mariée</span><span>sur devis</span></li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="note monte">Et pour toute la famille : coupe homme 25 €, coupe homme + barbe 37 €, coupe enfant de 10 € à 20 € selon l'âge.<br>Tarifs indiqués sur la page de réservation du salon, détail complet lors de la prise de rendez-vous.</p>
+    <p class="cta-centre monte"><a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Choisir ma prestation</a></p>
+  </section>
+
+  <!-- ============ AVANT / APRÈS ============ -->
+  <section class="bloc" id="avant-apres">
+    <div class="titre">
+      <p class="surtitre monte">Avant / après</p>
+      <h2 class="monte">La preuve <em>en couleurs</em></h2>
+      <p class="monte">Faites glisser les ciseaux pour découvrir la transformation. Des réalisations faites au salon par Yasmine.</p>
+    </div>
+    <div class="avaps">
+      <figure class="avap monte">
+        <div class="comparateur" style="--pos:50%">
+          <img class="apres" src="img/avant-apres/cuivre-apres.webp" alt="Après : cheveux cuivrés uniformes, lisses et brillants" width="900" height="1200" loading="lazy" decoding="async">
+          <img class="avant" src="img/avant-apres/cuivre-avant.webp" alt="Avant : cheveux châtains aux pointes orangées et ternes" width="900" height="1200" loading="lazy" decoding="async">
+          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
+          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
+          <span class="poignee" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
+          </span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Coloration cuivrée">
+        </div>
+        <figcaption><b>Coloration cuivrée</b>Des longueurs ternies et des pointes orangées transformées en un cuivré uniforme, lisse et brillant.</figcaption>
+      </figure>
+      <figure class="avap monte" style="--d:.12s">
+        <div class="comparateur" style="--pos:50%">
+          <img class="apres" src="img/avant-apres/meches-apres.webp" alt="Après : mèches blondes fines et lumineuses sur cheveux mi-longs" width="900" height="1200" loading="lazy" decoding="async">
+          <img class="avant" src="img/avant-apres/meches-avant.webp" alt="Avant : ancien balayage blond avec racines foncées" width="900" height="1200" loading="lazy" decoding="async">
+          <span class="etiquette etiquette-avant" aria-hidden="true">Avant</span>
+          <span class="etiquette etiquette-apres" aria-hidden="true">Après</span>
+          <span class="poignee" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g class="lame-a"><circle cx="11" cy="19" r="7"/><path d="M16.8 23 30 32 58 40"/></g><g class="lame-b"><circle cx="11" cy="45" r="7"/><path d="M16.8 41 30 32 58 24"/></g></svg>
+          </span>
+          <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Mèches blondes">
+        </div>
+        <figcaption><b>Mèches blondes</b>Un ancien balayage aux racines marquées ravivé par des mèches fines, pour un blond lumineux et naturel.</figcaption>
+      </figure>
+    </div>
+    <p class="cta-centre monte"><a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Je veux ma transformation</a></p>
+  </section>
+
+  <!-- ============ AVIS ============ -->
+  <section class="bloc avis" id="avis">
+    <div class="titre">
+      <p class="surtitre monte">Elles en parlent</p>
+      <h2 class="monte">5/5, <em>avec le sourire</em></h2>
+      <p class="monte">Note moyenne des clientes et clients ayant réservé en ligne.</p>
+    </div>
+    <div class="temoignages">
+      <figure class="temoin verre monte">
+        <div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div>
+        <blockquote>« Première fois et certainement pas la dernière fois que je viendrai. Super accueil, souriante, de très bons conseils. Ma coupe… Comment dire… J'adore ! »</blockquote>
+        <figcaption>Avis client · août 2026</figcaption>
+      </figure>
+      <figure class="temoin verre monte" style="--d:.1s">
+        <div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div>
+        <blockquote>« Personne à l'écoute et de bon conseil. Je recommande ! »</blockquote>
+        <figcaption>Avis client · septembre 2026</figcaption>
+      </figure>
+      <figure class="temoin verre monte" style="--d:.2s">
+        <div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div>
+        <blockquote>« Agréable découverte ! Je reviendrais sans hésitation ! 🫶🩷 »</blockquote>
+        <figcaption>Avis client · septembre 2026</figcaption>
+      </figure>
+      <figure class="temoin verre monte" style="--d:.3s">
+        <div class="etoiles" aria-label="5 étoiles sur 5">★★★★★</div>
+        <blockquote>« L'accueil était très agréable et la prestation à la hauteur de mes attentes. J'y retournerai ! »</blockquote>
+        <figcaption>Avis client · août 2026</figcaption>
+      </figure>
+    </div>
+    <p class="note monte">Avis publiés sur <a href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain" target="_blank" rel="noopener">la page Planity du salon</a>.</p>
+  </section>
+
+  <!-- ============ INFOS ============ -->
+  <section class="bloc" id="infos">
+    <div class="titre">
+      <p class="surtitre monte">Horaires &amp; accès</p>
+      <h2 class="monte">On vous attend <em>à Saultain</em></h2>
+    </div>
+    <div class="infos">
+      <div class="verre monte">
+        <h3><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg>Horaires</h3>
+        <table class="horaires">
+          <caption class="sr">Horaires d'ouverture du salon</caption>
+          <tbody>
+            <tr data-j="1"><th scope="row">Lundi</th><td>14 h – 18 h 30</td></tr>
+            <tr data-j="2"><th scope="row">Mardi</th><td>9 h – 18 h 30</td></tr>
+            <tr data-j="3"><th scope="row">Mercredi</th><td>9 h – 14 h</td></tr>
+            <tr data-j="4"><th scope="row">Jeudi</th><td>9 h – 18 h 30</td></tr>
+            <tr data-j="5"><th scope="row">Vendredi</th><td>9 h – 18 h 30</td></tr>
+            <tr data-j="6"><th scope="row">Samedi</th><td>8 h 30 – 18 h</td></tr>
+            <tr data-j="0"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+          </tbody>
+        </table>
+        <svg class="deco-branche" viewBox="0 0 320 110" fill="none" aria-hidden="true">
+          <defs><g id="fl2"><path id="pt2" d="M0 0C-5-3-7-10-3.6-14.5L0-12.2L3.6-14.5C7-10 5-3 0 0Z"/><use href="#pt2" transform="rotate(72)"/><use href="#pt2" transform="rotate(144)"/><use href="#pt2" transform="rotate(216)"/><use href="#pt2" transform="rotate(288)"/><circle r="2.6" fill="#fff6f8"/></g></defs>
+          <path d="M320 96C250 92 190 70 120 58S30 40 4 22" stroke="#6b3b4a" stroke-width="4" stroke-linecap="round"/>
+          <path d="M200 76c-10-16-8-30 2-42M120 58c4-14 16-24 30-28M70 46c-10-6-16-18-14-30" stroke="#6b3b4a" stroke-width="2.4" stroke-linecap="round"/>
+          <g transform="translate(202 32)"><use class="fl2" href="#fl2" fill="#f8c2d3"/></g>
+          <g transform="translate(152 28) scale(.8)"><use class="fl2" href="#fl2" fill="#fbd3df"/></g>
+          <g transform="translate(56 14) scale(.9)"><use class="fl2" href="#fl2" fill="#ee93b1"/></g>
+          <g transform="translate(8 20) scale(.7)"><use class="fl2" href="#fl2" fill="#fde4ec"/></g>
+          <g transform="translate(250 84) scale(1.1)"><use class="fl2" href="#fl2" fill="#f4a9c1"/></g>
+          <g transform="translate(100 52) scale(.75)"><use class="fl2" href="#fl2" fill="#f9cad8"/></g>
+          <circle cx="182" cy="66" r="3" fill="#e2729a"/><circle cx="36" cy="32" r="2.5" fill="#e2729a"/>
+        </svg>
+      </div>
+      <div class="verre monte" style="--d:.1s">
+        <h3><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 29s9-8.5 9-16a9 9 0 0 0-18 0c0 7.5 9 16 9 16Z"/><circle cx="16" cy="13" r="3.5"/></svg>Le salon</h3>
+        <ul class="coord">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/></svg>
+            <span>79 bis avenue Henri Barbusse<br>59990 Saultain<small>À deux pas de Valenciennes</small></span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+            <span><a data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Réservation en ligne sur Planity</a><small>24h/24, confirmation immédiate</small></span>
+          </li>
+          <li data-ligne-tel hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
+            <span><a data-tel data-tel-texte href="#"></a><small>Par téléphone</small></span>
+          </li>
+        </ul>
+        <div class="boutons-contact">
+          <a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Prendre rendez-vous</a>
+          <a class="btn btn-doux" href="https://www.google.com/maps/dir/?api=1&amp;destination=Passion+Coiffure+By+Yasmine%2C+79+bis+Av.+Henri+Barbusse%2C+59990+Saultain" target="_blank" rel="noopener">Itinéraire</a>
+        </div>
+        <div class="carte-plan">
+          <iframe title="Plan d'accès au salon Passion Coiffure by Yasmine" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Passion+Coiffure+By+Yasmine,+79+bis+Av.+Henri+Barbusse,+59990+Saultain&amp;z=16&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <a class="logo" href="#accueil" aria-label="Retour à l'accueil">
+    <img src="img/fleur.svg" alt="" width="38" height="38">
+    <span class="logo-txt"><b>Passion Coiffure</b><i>by Yasmine</i></span>
+  </a>
+  <p>79 bis avenue Henri Barbusse, 59990 Saultain</p>
+  <p>© <span data-annee>2026</span> Passion Coiffure by Yasmine · Fait avec douceur 🌸</p>
+</footer>
+
+<div class="barre-mobile">
+  <a class="btn" data-resa href="https://www.planity.com/passion-coiffure-by-yasmine-59990-saultain">Réserver</a>
+  <a class="btn btn-doux" href="#infos">Horaires</a>
+</div>
+
+<script src="js/sakura.js?v=1" defer></script>
+<script src="js/site.js?v=2" defer></script>
+</body>
+</html>
