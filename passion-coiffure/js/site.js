@@ -129,6 +129,36 @@ var SALON = {
     window.addEventListener('resize', majCoupes);
   }
 
+  // avant / après : on fait glisser les ciseaux ; une petite démonstration à la première apparition
+  document.querySelectorAll('.comparateur').forEach(function (cmp) {
+    var champ = cmp.querySelector('input'), fin;
+    var place = function (v) { cmp.style.setProperty('--pos', v + '%'); };
+    champ.addEventListener('input', function () {
+      place(champ.value);
+      cmp.classList.add('glisse');
+      clearTimeout(fin); fin = setTimeout(function () { cmp.classList.remove('glisse'); }, 250);
+    });
+    if (calme || !('IntersectionObserver' in window)) return;
+    var vu = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      vu.disconnect();
+      var t0 = null, touche = false;
+      champ.addEventListener('pointerdown', function () { touche = true; }, { once: true });
+      var demo = function (t) {
+        if (touche) return;
+        if (t0 === null) t0 = t;
+        var k = (t - t0) / 2600;
+        if (k >= 1) { place(50); champ.value = 50; cmp.classList.remove('glisse'); return; }
+        var v = 50 + Math.sin(k * Math.PI * 2) * 28 * (1 - k * .3);
+        place(v.toFixed(1)); champ.value = Math.round(v);
+        cmp.classList.add('glisse');
+        requestAnimationFrame(demo);
+      };
+      setTimeout(function () { requestAnimationFrame(demo); }, 700);
+    }, { threshold: .6 });
+    vu.observe(cmp);
+  });
+
   // le sèche-cheveux souffle sur les pétales
   var seche = document.querySelector('.cocon-seche');
   if (seche) {
