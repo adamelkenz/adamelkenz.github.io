@@ -87,9 +87,8 @@
   if (!ciel) return;
   var cc = ciel.getContext('2d'), CW = 0, CH = 0, etoiles = [], filante = null, prochaine = 0, visible = true, t = 0;
 
-  function prepare() {
-    var r = ciel.getBoundingClientRect();
-    CW = r.width; CH = r.height;
+  function prepare(w, h) {
+    CW = w; CH = h;
     ciel.width = CW * dpr; ciel.height = CH * dpr;
     cc.setTransform(dpr, 0, 0, dpr, 0, 0);
     var n = Math.min(220, Math.round(CW * CH / 5200));
@@ -121,24 +120,33 @@
     cc.globalAlpha = 1;
   }
 
+  var derniere = 0;
   function anime(now) {
-    if (!visible || document.hidden) { requestAnimationFrame(anime); return; }
+    // 30 images par seconde suffisent pour des étoiles qui scintillent
+    if (!visible || document.hidden || now - derniere < 32) { requestAnimationFrame(anime); return; }
+    derniere = now;
     t = now / 1000;
     if (!filante && now > prochaine) {
       filante = { x: CW * (.2 + Math.random() * .6), y: CH * Math.random() * .3, vx: 9 + Math.random() * 5, vy: 3 + Math.random() * 3, age: 0, vie: 50 };
       if (Math.random() < .5) filante.vx *= -1;
     }
     if (filante) {
-      filante.x += filante.vx; filante.y += filante.vy; filante.age++;
+      filante.x += filante.vx * 2; filante.y += filante.vy * 2; filante.age += 2;
       if (filante.age > filante.vie) { filante = null; prochaine = now + 3500 + Math.random() * 5000; }
     }
     dessine();
     requestAnimationFrame(anime);
   }
 
-  prepare();
+  // la taille du ciel arrive par ResizeObserver : pas de lecture forcée de la mise en page
   var attente;
-  window.addEventListener('resize', function () { clearTimeout(attente); attente = setTimeout(prepare, 150); });
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(function (es) {
+      var r = es[0].contentRect;
+      clearTimeout(attente);
+      attente = setTimeout(function () { prepare(r.width, r.height); }, CW ? 150 : 0);
+    }).observe(ciel);
+  } else prepare(ciel.offsetWidth, ciel.offsetHeight);
   if (!calme) {
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(ciel);
     prochaine = performance.now() + 1500;

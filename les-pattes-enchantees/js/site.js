@@ -112,6 +112,20 @@ var SALON = {
     window.addEventListener('resize', majPas);
   }
 
+  // plan Google Maps : chargé seulement à la demande du visiteur
+  var plan = document.querySelector('[data-plan]');
+  if (plan) {
+    plan.querySelector('[data-plan-btn]').addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.title = 'Plan d\'accès au salon Les Pattes Enchantées';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.src = 'https://www.google.com/maps?q=Les+pattes+enchant%C3%A9es,+228+Rue+Jean+Jaur%C3%A8s,+62122+Lapugnoy&z=16&output=embed';
+      plan.innerHTML = '';
+      plan.appendChild(f);
+      f.focus();
+    });
+  }
+
   /* ---------- la métamorphose : la baguette efface le pelage ébouriffé ---------- */
   var scene = document.querySelector('[data-scene]');
   if (!scene) return;
@@ -180,7 +194,9 @@ var SALON = {
     svg.classList.add('fini');
     astuce.classList.add('cache');
     tadaa.hidden = false;
+    var avaitFocus = document.activeElement === btnSort;
     btnSort.hidden = true; btnEncore.hidden = false;
+    if (avaitFocus) btnEncore.focus();
     maj();
     if (window.Magie) {
       [[200, 170], [200, 300], [120, 200], [290, 200], [200, 400]].forEach(function (p, i) {
