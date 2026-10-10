@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 <script>document.documentElement.className = 'js';</script>
 <!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON) -->
 <script type="application/ld+json">
@@ -59,36 +59,40 @@
 </script>
 </head>
 <body>
-<a class="passer" href="#contenu">Aller au contenu</a>
+<a class="passer" href="#contenu" data-i18n="t0">Aller au contenu</a>
 
 <!-- décor : halos nacrés et grain (en CSS) -->
 <div class="fond" aria-hidden="true"><i class="halo h1"></i><i class="halo h2"></i></div>
 
 <header class="entete">
-  <a class="logo" href="#accueil" aria-label="Skin By Jaya, retour en haut">
+  <a class="logo" href="#accueil" aria-label="Skin By Jaya, retour en haut" data-i18n-attr="aria-label:a0">
     <img src="img/eclat.svg" alt="" width="34" height="34">
-    <span class="logo-txt">Skin <i>by</i> Jaya</span>
+    <span class="logo-txt"><span>Skin</span> <i>by</i> <span>Jaya</span></span>
   </a>
-  <nav class="nav" aria-label="Navigation principale">
-    <a href="#histoire">Votre peau</a>
-    <a href="#fondatrice">La fondatrice</a>
-    <a href="#soins">Soins &amp; tarifs</a>
-    <a href="#diagnostic">Diagnostic</a>
-    <a href="#avis">Avis</a>
-    <a href="#infos">Accès</a>
+  <nav class="nav" aria-label="Navigation principale" data-i18n-attr="aria-label:a1">
+    <a href="#histoire" data-i18n="t1">Votre peau</a>
+    <a href="#fondatrice" data-i18n="t2">La fondatrice</a>
+    <a href="#soins" data-i18n="t3">Soins &amp; tarifs</a>
+    <a href="#diagnostic" data-i18n="t4">Diagnostic</a>
+    <a href="#avis" data-i18n="t5">Avis</a>
+    <a href="#infos" data-i18n="t6">Accès</a>
   </nav>
-  <a class="btn btn-or btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+  <div class="langues" role="group" aria-label="Langue / Language">
+    <button type="button" data-lang="fr" aria-pressed="true" lang="fr" title="Français">FR</button>
+    <button type="button" data-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+  </div>
+  <a class="btn btn-or btn-petit btn-resa-haut" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span></button>
 </header>
-<nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu">
-  <a href="#histoire">L'histoire de votre peau</a>
-  <a href="#fondatrice">La fondatrice</a>
-  <a href="#soins">Soins &amp; tarifs</a>
-  <a href="#diagnostic">Diagnostic de peau</a>
-  <a href="#avis">Avis</a>
-  <a href="#faq">Questions fréquentes</a>
-  <a href="#infos">Horaires &amp; accès</a>
-  <a class="menu-tel" data-tel href="tel:+33610133857">Appeler le <span data-tel-texte>06 10 13 38 57</span></a>
+<nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu" data-i18n-attr="aria-label:a8">
+  <a href="#histoire" data-i18n="t8">L'histoire de votre peau</a>
+  <a href="#fondatrice" data-i18n="t2">La fondatrice</a>
+  <a href="#soins" data-i18n="t3">Soins &amp; tarifs</a>
+  <a href="#diagnostic" data-i18n="t9">Diagnostic de peau</a>
+  <a href="#avis" data-i18n="t5">Avis</a>
+  <a href="#faq" data-i18n="t10">Questions fréquentes</a>
+  <a href="#infos" data-i18n="t11">Horaires &amp; accès</a>
+  <a class="menu-tel" data-tel href="tel:+33610133857" data-i18n="t12">Appeler le <span data-tel-texte>06 10 13 38 57</span></a>
 </nav>
 
 <main id="contenu">
@@ -99,12 +103,12 @@
   <canvas class="hero-fond" data-fond aria-hidden="true"></canvas>
   <div class="hero-voile" aria-hidden="true"></div>
   <div class="hero-txt">
-    <p class="surtitre">Skin Lab · Paris 17<sup>e</sup></p>
-    <h1>Révélez l'éclat<br><em>de votre peau.</em></h1>
-    <p class="hero-sous">Des soins avancés et des protocoles experts, imaginés par une infirmière diplômée spécialiste des taches pigmentaires et de la correction du teint.</p>
+    <p class="surtitre" data-i18n="t_lab">Skin Lab · Paris 17<sup>e</sup></p>
+    <h1 data-i18n="t13">Révélez l'éclat<br><em>de votre peau.</em></h1>
+    <p class="hero-sous" data-i18n="t14">Des soins avancés et des protocoles experts, imaginés par une infirmière diplômée spécialiste des taches pigmentaires et de la correction du teint.</p>
     <div class="hero-actions">
       <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">
-        Réserver un soin
+        <span data-i18n="t15">Réserver un soin</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="btn btn-ligne" data-tel href="tel:+33610133857">
@@ -114,12 +118,12 @@
     </div>
     <p class="statut" data-statut><i></i>Du lundi au samedi, 10 h – 20 h</p>
   </div>
-  <a class="hero-suite" href="#histoire"><span>L'histoire de votre peau</span><i aria-hidden="true"></i></a>
-  <ul class="bandeau" aria-label="En bref">
-    <li><b>Infirmière diplômée</b><span>plus de 9 ans d'expérience</span></li>
-    <li><b>Diagnostic avant chaque soin</b><span>protocole sur mesure</span></li>
-    <li><b>Tarifs affichés</b><span>séance ou cure de 3</span></li>
-    <li><b>Métro Ternes</b><span>à 4 minutes à pied</span></li>
+  <a class="hero-suite" href="#histoire"><span data-i18n="t8">L'histoire de votre peau</span><i aria-hidden="true"></i></a>
+  <ul class="bandeau" aria-label="En bref" data-i18n-attr="aria-label:a3">
+    <li><b data-i18n="t16">Infirmière diplômée</b><span data-i18n="t17">plus de 9 ans d'expérience</span></li>
+    <li><b data-i18n="t18">Diagnostic avant chaque soin</b><span data-i18n="t19">protocole sur mesure</span></li>
+    <li><b data-i18n="t20">Tarifs affichés</b><span data-i18n="t21">séance ou cure de 3</span></li>
+    <li><b data-i18n="t22">Métro Ternes</b><span data-i18n="t23">à 4 minutes à pied</span></li>
   </ul>
 </section>
 
@@ -127,51 +131,51 @@
 <section class="histoire" id="histoire" data-histoire>
   <div class="histoire-scene">
     <div class="peau-cadre">
-      <canvas class="peau-toile" role="img" aria-label="Une peau qui subit la pollution, le soleil et le temps, puis que l'on répare en appliquant le soin"></canvas>
+      <canvas class="peau-toile" role="img" aria-label="Une peau qui subit la pollution, le soleil et le temps, puis que l'on répare en appliquant le soin" data-i18n-attr="aria-label:a2"></canvas>
       <span class="peau-indice" data-indice>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.6 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg>
-        Appliquez le soin
+        <span data-i18n="t24">Appliquez le soin</span>
       </span>
     </div>
     <ul class="agresseurs" aria-hidden="true">
-      <li data-ag="pollution"><span>Pollution</span><i><b></b></i></li>
-      <li data-ag="soleil"><span>Soleil</span><i><b></b></i></li>
-      <li data-ag="temps"><span>Temps</span><i><b></b></i></li>
+      <li data-ag="pollution"><span data-i18n="t25">Pollution</span><i><b></b></i></li>
+      <li data-ag="soleil"><span data-i18n="t26">Soleil</span><i><b></b></i></li>
+      <li data-ag="temps"><span data-i18n="t27">Temps</span><i><b></b></i></li>
     </ul>
     <div class="soin-jauge">
       <span class="jauge" aria-hidden="true"><i data-jauge></i></span>
-      <span class="soin-pct"><b data-pct>0</b>&nbsp;% réparée</span>
-      <button class="lien-btn" type="button" data-tout>Tout révéler</button>
-      <button class="lien-btn" type="button" data-reset hidden>Recommencer</button>
+      <span class="soin-pct"><b data-pct>0</b>&nbsp;<span data-i18n="t28">% réparée</span></span>
+      <button class="lien-btn" type="button" data-tout data-i18n="t29">Tout révéler</button>
+      <button class="lien-btn" type="button" data-reset hidden data-i18n="t30">Recommencer</button>
     </div>
   </div>
 
   <div class="histoire-etapes">
     <article class="etape" data-etape="intro">
-      <p class="surtitre">L'histoire de votre peau</p>
-      <h2>Chaque jour, <em>votre peau se bat pour vous.</em></h2>
-      <p>Elle vous protège du monde extérieur, du matin au soir. Mais elle encaisse aussi tout ce qu'on lui fait subir… Faites défiler pour voir ce qui l'abîme.</p>
+      <p class="surtitre" data-i18n="t8">L'histoire de votre peau</p>
+      <h2 data-i18n="t31">Chaque jour, <em>votre peau se bat pour vous.</em></h2>
+      <p data-i18n="t32">Elle vous protège du monde extérieur, du matin au soir. Mais elle encaisse aussi tout ce qu'on lui fait subir… Faites défiler pour voir ce qui l'abîme.</p>
     </article>
     <article class="etape" data-etape="pollution">
-      <p class="etape-num"><span>01</span> La pollution</p>
-      <h3>Une ville qui se dépose sur la peau</h3>
-      <p>Particules fines, gaz d'échappement, poussières&nbsp;: elles s'accrochent à l'épiderme, l'empêchent de respirer et ternissent le teint, jour après jour.</p>
+      <p class="etape-num" data-i18n="t33"><span>01</span> La pollution</p>
+      <h3 data-i18n="t34">Une ville qui se dépose sur la peau</h3>
+      <p data-i18n="t35">Particules fines, gaz d'échappement, poussières&nbsp;: elles s'accrochent à l'épiderme, l'empêchent de respirer et ternissent le teint, jour après jour.</p>
     </article>
     <article class="etape" data-etape="soleil">
-      <p class="etape-num"><span>02</span> Le soleil</p>
-      <h3>Des UV qui laissent des traces</h3>
-      <p>Même en ville, même en hiver, les UV accélèrent le vieillissement de la peau et réveillent les taches pigmentaires. Le teint devient irrégulier.</p>
+      <p class="etape-num" data-i18n="t36"><span>02</span> Le soleil</p>
+      <h3 data-i18n="t37">Des UV qui laissent des traces</h3>
+      <p data-i18n="t38">Même en ville, même en hiver, les UV accélèrent le vieillissement de la peau et réveillent les taches pigmentaires. Le teint devient irrégulier.</p>
     </article>
     <article class="etape" data-etape="temps">
-      <p class="etape-num"><span>03</span> Le temps</p>
-      <h3>Le stress, les nuits courtes, les années</h3>
-      <p>Avec le temps, la peau se renouvelle moins vite&nbsp;: elle perd de son éclat et de sa fermeté, le grain s'épaissit et les ridules s'installent.</p>
+      <p class="etape-num" data-i18n="t39"><span>03</span> Le temps</p>
+      <h3 data-i18n="t40">Le stress, les nuits courtes, les années</h3>
+      <p data-i18n="t41">Avec le temps, la peau se renouvelle moins vite&nbsp;: elle perd de son éclat et de sa fermeté, le grain s'épaissit et les ridules s'installent.</p>
     </article>
     <article class="etape etape-finale" data-etape="soin">
-      <p class="etape-num"><span>04</span> La révélation</p>
-      <h3>Une peau abîmée n'a pas dit <em>son dernier mot.</em></h3>
-      <p>Découvrez son potentiel&nbsp;: appliquez le soin du bout du doigt (ou avec la souris) sur la peau et regardez la lumière revenir.</p>
-      <p class="bravo" data-bravo hidden aria-live="polite">Voilà tout le potentiel de votre peau&nbsp;: lisse, unifiée, lumineuse. C'est ce que chaque protocole Skin By Jaya cherche à révéler. <a href="#diagnostic">Trouver mon soin →</a></p>
+      <p class="etape-num" data-i18n="t42"><span>04</span> La révélation</p>
+      <h3 data-i18n="t43">Une peau abîmée n'a pas dit <em>son dernier mot.</em></h3>
+      <p data-i18n="t44">Découvrez son potentiel&nbsp;: appliquez le soin du bout du doigt (ou avec la souris) sur la peau et regardez la lumière revenir.</p>
+      <p class="bravo" data-bravo hidden aria-live="polite" data-i18n="t45">Voilà tout le potentiel de votre peau&nbsp;: lisse, unifiée, lumineuse. C'est ce que chaque protocole Skin By Jaya cherche à révéler. <a href="#diagnostic">Trouver mon soin →</a></p>
     </article>
   </div>
 </section>
@@ -180,133 +184,133 @@
 <section class="section fondatrice" id="fondatrice">
   <figure class="portrait monte">
     <div class="portrait-cadre">
-      <img src="img/jaya.webp" srcset="img/jaya-480.webp 480w, img/jaya.webp 800w" sizes="(min-width: 900px) 420px, 86vw" width="800" height="639" loading="lazy" decoding="async" alt="Nurse Jaya, infirmière diplômée et fondatrice de Skin By Jaya, en blouse blanche dans son institut">
+      <img src="img/jaya.webp" srcset="img/jaya-480.webp 480w, img/jaya.webp 800w" sizes="(min-width: 900px) 420px, 86vw" width="800" height="639" loading="lazy" decoding="async" alt="Nurse Jaya, infirmière diplômée et fondatrice de Skin By Jaya, en blouse blanche dans son institut" data-i18n-attr="alt:a4">
     </div>
-    <figcaption><b>Nurse Jaya</b><span>Infirmière diplômée · Fondatrice</span></figcaption>
-    <img class="sceau" src="img/sceau-paris.webp" width="360" height="360" loading="lazy" decoding="async" alt="Sceau Skin By Jaya Paris">
+    <figcaption><b>Nurse Jaya</b><span data-i18n="t46">Infirmière diplômée · Fondatrice</span></figcaption>
+    <img class="sceau" src="img/sceau-paris.webp" width="360" height="360" loading="lazy" decoding="async" alt="Sceau Skin By Jaya Paris" data-i18n-attr="alt:a5">
   </figure>
   <div class="fondatrice-txt monte">
-    <p class="surtitre">La fondatrice</p>
-    <h2>Nurse Jaya,<br><em>l'œil de l'experte</em></h2>
-    <p class="accroche">Une expertise avancée, portée par une approche humaine et scientifique.</p>
-    <p>Fondatrice de Skin By Jaya, Nurse Jaya est <b>infirmière diplômée</b> et experte en esthétique avancée, spécialisée dans le traitement des <b>taches pigmentaires</b> et la <b>correction du teint</b>. Depuis plus de neuf ans, formée en France et à l'international, elle allie expertise médicale, technologies de pointe et approche humaine, pour une prise en charge sécurisée et personnalisée.</p>
-    <p>Plus qu'un institut, Skin By Jaya est un espace de soin et d'<b>éducation cutanée</b>, où chaque cliente apprend à comprendre sa peau, ses réactions et ses besoins.</p>
-    <blockquote class="citation">«&nbsp;L'objectif&nbsp;: des résultats durables, une peau équilibrée et une confiance retrouvée.&nbsp;»</blockquote>
+    <p class="surtitre" data-i18n="t2">La fondatrice</p>
+    <h2 data-i18n="t47">Nurse Jaya,<br><em>l'œil de l'experte</em></h2>
+    <p class="accroche" data-i18n="t48">Une expertise avancée, portée par une approche humaine et scientifique.</p>
+    <p data-i18n="t49">Fondatrice de Skin By Jaya, Nurse Jaya est <b>infirmière diplômée</b> et experte en esthétique avancée, spécialisée dans le traitement des <b>taches pigmentaires</b> et la <b>correction du teint</b>. Depuis plus de neuf ans, formée en France et à l'international, elle allie expertise médicale, technologies de pointe et approche humaine, pour une prise en charge sécurisée et personnalisée.</p>
+    <p data-i18n="t50">Plus qu'un institut, Skin By Jaya est un espace de soin et d'<b>éducation cutanée</b>, où chaque cliente apprend à comprendre sa peau, ses réactions et ses besoins.</p>
+    <blockquote class="citation" data-i18n="t51">«&nbsp;L'objectif&nbsp;: des résultats durables, une peau équilibrée et une confiance retrouvée.&nbsp;»</blockquote>
     <ol class="methode">
-      <li><b>Diagnostic</b><span>Un diagnostic précis de votre peau et de vos attentes, avant chaque soin.</span></li>
-      <li><b>Technologie</b><span>Microneedling, peelings, HIFU… des technologies avancées, au bon dosage.</span></li>
-      <li><b>Actifs</b><span>Des actifs hautement performants pour restaurer l'équilibre et la luminosité de la peau.</span></li>
+      <li><b data-i18n="t4">Diagnostic</b><span data-i18n="t52">Un diagnostic précis de votre peau et de vos attentes, avant chaque soin.</span></li>
+      <li><b data-i18n="t53">Technologie</b><span data-i18n="t54">Microneedling, peelings, HIFU… des technologies avancées, au bon dosage.</span></li>
+      <li><b data-i18n="t55">Actifs</b><span data-i18n="t56">Des actifs hautement performants pour restaurer l'équilibre et la luminosité de la peau.</span></li>
     </ol>
-    <p class="academie">Nurse Jaya forme aussi les professionnelles de la beauté à ses techniques, au sein de la <a href="https://skinbyjaya.com/formation-esthetique-avancee/" target="_blank" rel="noopener">Nurse Jaya Academy</a>.</p>
+    <p class="academie" data-i18n="t57">Nurse Jaya forme aussi les professionnelles de la beauté à ses techniques, au sein de la <a href="https://skinbyjaya.com/formation-esthetique-avancee/" target="_blank" rel="noopener">Nurse Jaya Academy</a>.</p>
   </div>
 </section>
 
 <!-- ====================== SOINS & TARIFS ====================== -->
 <section class="section soins" id="soins">
   <header class="tete monte">
-    <p class="surtitre">Soins &amp; tarifs</p>
-    <h2>La carte, <em>en toute transparence</em></h2>
-    <p>Chaque soin existe à la séance ou en cure de trois séances, plus avantageuse pour des résultats durables.</p>
+    <p class="surtitre" data-i18n="t3">Soins &amp; tarifs</p>
+    <h2 data-i18n="t58">La carte, <em>en toute transparence</em></h2>
+    <p data-i18n="t59">Chaque soin existe à la séance ou en cure de trois séances, plus avantageuse pour des résultats durables.</p>
   </header>
 
-  <div class="onglets monte" role="tablist" aria-label="Familles de soins">
-    <button type="button" role="tab" id="t-ess" aria-controls="p-ess" aria-selected="true">Soins essentiels</button>
-    <button type="button" role="tab" id="t-ava" aria-controls="p-ava" aria-selected="false" tabindex="-1">Soins avancés</button>
+  <div class="onglets monte" role="tablist" aria-label="Familles de soins" data-i18n-attr="aria-label:a6">
+    <button type="button" role="tab" id="t-ess" aria-controls="p-ess" aria-selected="true" data-i18n="t60">Soins essentiels</button>
+    <button type="button" role="tab" id="t-ava" aria-controls="p-ava" aria-selected="false" tabindex="-1" data-i18n="t61">Soins avancés</button>
   </div>
 
   <div class="panneau-soins" role="tabpanel" id="p-ess" aria-labelledby="t-ess">
     <article class="carte-soin vedette">
-      <p class="etiquette">Soin signature</p>
-      <h3>Protocole Jaya Glow</h3>
-      <p class="soin-but">Éclat &amp; correction des taches</p>
-      <p>Le soin signature du Skin Lab&nbsp;: un peeling doux, du microneedling et des actifs rénovateurs pour un teint plus uniforme et lumineux.</p>
-      <dl class="prix"><div><dt>1 h 30</dt><dd>130&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>330&nbsp;€</dd></div></dl>
-      <a class="btn btn-or btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <p class="etiquette" data-i18n="t62">Soin signature</p>
+      <h3 data-i18n="t63">Protocole Jaya Glow</h3>
+      <p class="soin-but" data-i18n="t64">Éclat &amp; correction des taches</p>
+      <p data-i18n="t65">Le soin signature du Skin Lab&nbsp;: un peeling doux, du microneedling et des actifs rénovateurs pour un teint plus uniforme et lumineux.</p>
+      <dl class="prix"><div><dt>1 h 30</dt><dd>130&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>330&nbsp;€</dd></div></dl>
+      <a class="btn btn-or btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
-      <h3>Soin liftant</h3>
-      <p class="soin-but">Effet tenseur immédiat</p>
-      <p>Un soin qui tonifie et redessine l'ovale du visage, idéal avant un événement.</p>
-      <dl class="prix"><div><dt>1 h 30</dt><dd>90&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>230&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <h3 data-i18n="t67">Soin liftant</h3>
+      <p class="soin-but" data-i18n="t68">Effet tenseur immédiat</p>
+      <p data-i18n="t69">Un soin qui tonifie et redessine l'ovale du visage, idéal avant un événement.</p>
+      <dl class="prix"><div><dt>1 h 30</dt><dd>90&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>230&nbsp;€</dd></div></dl>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
-      <h3>Détox anti-pollution</h3>
-      <p class="soin-but">Hydra Skin Facial · pureté &amp; éclat</p>
-      <p>Nettoyage en profondeur, peau désincrustée et réhydratée&nbsp;: le soin idéal pour commencer.</p>
-      <dl class="prix"><div><dt>1 h</dt><dd>70&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>180&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <h3 data-i18n="t70">Détox anti-pollution</h3>
+      <p class="soin-but" data-i18n="t71">Hydra Skin Facial · pureté &amp; éclat</p>
+      <p data-i18n="t72">Nettoyage en profondeur, peau désincrustée et réhydratée&nbsp;: le soin idéal pour commencer.</p>
+      <dl class="prix"><div><dt>1 h</dt><dd>70&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>180&nbsp;€</dd></div></dl>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
   </div>
 
   <div class="panneau-soins" role="tabpanel" id="p-ava" aria-labelledby="t-ava" hidden>
     <article class="carte-soin">
-      <h3>Peeling sur mesure</h3>
-      <p class="soin-but">Taches &amp; teint irrégulier</p>
-      <p>Un peeling choisi pour votre type de peau, pour lisser le grain et estomper les taches.</p>
-      <dl class="prix"><div><dt>1 h 30</dt><dd>90&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>240&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <h3 data-i18n="t73">Peeling sur mesure</h3>
+      <p class="soin-but" data-i18n="t74">Taches &amp; teint irrégulier</p>
+      <p data-i18n="t75">Un peeling choisi pour votre type de peau, pour lisser le grain et estomper les taches.</p>
+      <dl class="prix"><div><dt>1 h 30</dt><dd>90&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>240&nbsp;€</dd></div></dl>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
-      <h3>Microneedling ciblé</h3>
-      <p class="soin-but">Régénération &amp; qualité de peau</p>
-      <p>Stimule le renouvellement de la peau&nbsp;: grain affiné, pores et marques moins visibles.</p>
+      <h3 data-i18n="t76">Microneedling ciblé</h3>
+      <p class="soin-but" data-i18n="t77">Régénération &amp; qualité de peau</p>
+      <p data-i18n="t78">Stimule le renouvellement de la peau&nbsp;: grain affiné, pores et marques moins visibles.</p>
       <dl class="prix"><div><dt>1 h 30</dt><dd>80&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
       <h3>PRX-T33</h3>
-      <p class="soin-but">Peeling biorevitalisant</p>
-      <p>Un peeling qui travaille la fermeté et l'éclat, avec des suites généralement discrètes.</p>
-      <dl class="prix"><div><dt>1 h 30</dt><dd>130&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>330&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <p class="soin-but" data-i18n="t79">Peeling biorevitalisant</p>
+      <p data-i18n="t80">Un peeling qui travaille la fermeté et l'éclat, avec des suites généralement discrètes.</p>
+      <dl class="prix"><div><dt>1 h 30</dt><dd>130&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>330&nbsp;€</dd></div></dl>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
       <h3>Exosomes</h3>
       <p class="soin-but">Regenerative Therapy</p>
-      <p>Un soin régénérant pour les peaux fatiguées, ternes ou sensibilisées.</p>
-      <dl class="prix"><div><dt>1 h 30</dt><dd>180&nbsp;€</dd></div><div><dt>Cure de 3</dt><dd>470&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <p data-i18n="t81">Un soin régénérant pour les peaux fatiguées, ternes ou sensibilisées.</p>
+      <dl class="prix"><div><dt>1 h 30</dt><dd>180&nbsp;€</dd></div><div><dt data-i18n="t66">Cure de 3</dt><dd>470&nbsp;€</dd></div></dl>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin">
       <h3>Glass Skin</h3>
-      <p class="soin-but">Hydratation profonde · effet peau de verre</p>
-      <p>Le soin premium pour une peau rebondie, lisse et lumineuse.</p>
+      <p class="soin-but" data-i18n="t82">Hydratation profonde · effet peau de verre</p>
+      <p data-i18n="t83">Le soin premium pour une peau rebondie, lisse et lumineuse.</p>
       <dl class="prix"><div><dt>30 min</dt><dd>420&nbsp;€</dd></div></dl>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
     <article class="carte-soin hifu">
       <h3>HIFU</h3>
-      <p class="soin-but">Lift haute précision, sans chirurgie</p>
-      <p>Des ultrasons focalisés qui raffermissent progressivement, zone par zone.</p>
+      <p class="soin-but" data-i18n="t84">Lift haute précision, sans chirurgie</p>
+      <p data-i18n="t85">Des ultrasons focalisés qui raffermissent progressivement, zone par zone.</p>
       <table class="zones">
-        <thead><tr><th scope="col">Zone</th><th scope="col">Séance</th><th scope="col">Cure de 3</th></tr></thead>
+        <thead><tr><th scope="col" data-i18n="t86">Zone</th><th scope="col" data-i18n="t87">Séance</th><th scope="col" data-i18n="t66">Cure de 3</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Double menton <small>1 h</small></th><td>110&nbsp;€</td><td>280&nbsp;€</td></tr>
-          <tr><th scope="row">Bas du visage <small>1 h</small></th><td>120&nbsp;€</td><td>360&nbsp;€</td></tr>
-          <tr><th scope="row">Visage complet <small>1 h 30</small></th><td>220&nbsp;€</td><td>580&nbsp;€</td></tr>
+          <tr><th scope="row" data-i18n="t88">Double menton <small>1 h</small></th><td>110&nbsp;€</td><td>280&nbsp;€</td></tr>
+          <tr><th scope="row" data-i18n="t89">Bas du visage <small>1 h</small></th><td>120&nbsp;€</td><td>360&nbsp;€</td></tr>
+          <tr><th scope="row" data-i18n="t90">Visage complet <small>1 h 30</small></th><td>220&nbsp;€</td><td>580&nbsp;€</td></tr>
         </tbody>
       </table>
-      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver</a>
+      <a class="btn btn-ligne btn-petit" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t7">Réserver</a>
     </article>
   </div>
 
   <aside class="consultation monte">
     <div>
-      <h3>Pas sûre de votre choix&nbsp;?</h3>
-      <p>La <b>consultation &amp; protocole sur mesure</b> (1 h, 100&nbsp;€) fait le point sur votre peau et construit votre programme. Existe aussi pour le cuir chevelu et la pousse capillaire.</p>
+      <h3 data-i18n="t91">Pas sûre de votre choix&nbsp;?</h3>
+      <p data-i18n="t92">La <b>consultation &amp; protocole sur mesure</b> (1 h, 100&nbsp;€) fait le point sur votre peau et construit votre programme. Existe aussi pour le cuir chevelu et la pousse capillaire.</p>
     </div>
-    <a class="btn btn-ligne" href="#diagnostic">Faire le diagnostic en ligne</a>
+    <a class="btn btn-ligne" href="#diagnostic" data-i18n="t93">Faire le diagnostic en ligne</a>
   </aside>
-  <p class="note-carte">Également à l'institut&nbsp;: épilation laser et formations professionnelles. Tarifs indicatifs, confirmés lors de la réservation.</p>
+  <p class="note-carte" data-i18n="t94">Également à l'institut&nbsp;: épilation laser et formations professionnelles. Tarifs indicatifs, confirmés lors de la réservation.</p>
 </section>
 
 <!-- ====================== DIAGNOSTIC ====================== -->
 <section class="section diagnostic" id="diagnostic">
   <header class="tete monte">
-    <p class="surtitre">Diagnostic de peau</p>
-    <h2>Quel soin pour <em>votre peau&nbsp;?</em></h2>
-    <p>Quatre questions, trente secondes, et une recommandation tirée de la carte de l'institut.</p>
+    <p class="surtitre" data-i18n="t9">Diagnostic de peau</p>
+    <h2 data-i18n="t95">Quel soin pour <em>votre peau&nbsp;?</em></h2>
+    <p data-i18n="t96">Quatre questions, trente secondes, et une recommandation tirée de la carte de l'institut.</p>
   </header>
 
   <div class="diag monte" data-diag>
@@ -314,55 +318,55 @@
     <p class="diag-etape" data-diag-etape>Question 1 sur 4</p>
 
     <fieldset class="diag-q" data-q="priorite">
-      <legend>Votre priorité, aujourd'hui&nbsp;?</legend>
+      <legend data-i18n="t97">Votre priorité, aujourd'hui&nbsp;?</legend>
       <div class="choix">
-        <label><input type="radio" name="priorite" value="taches"><span><b>Taches</b>teint irrégulier, marques</span></label>
-        <label><input type="radio" name="priorite" value="eclat"><span><b>Éclat</b>teint terne, peau déshydratée</span></label>
-        <label><input type="radio" name="priorite" value="fermete"><span><b>Fermeté</b>ovale, relâchement</span></label>
-        <label><input type="radio" name="priorite" value="texture"><span><b>Grain de peau</b>pores, cicatrices, imperfections</span></label>
+        <label><input type="radio" name="priorite" value="taches"><span data-i18n="t98"><b>Taches</b>teint irrégulier, marques</span></label>
+        <label><input type="radio" name="priorite" value="eclat"><span data-i18n="t99"><b>Éclat</b>teint terne, peau déshydratée</span></label>
+        <label><input type="radio" name="priorite" value="fermete"><span data-i18n="t100"><b>Fermeté</b>ovale, relâchement</span></label>
+        <label><input type="radio" name="priorite" value="texture"><span data-i18n="t101"><b>Grain de peau</b>pores, cicatrices, imperfections</span></label>
       </div>
     </fieldset>
     <fieldset class="diag-q" data-q="peau" hidden>
-      <legend>Votre type de peau&nbsp;?</legend>
+      <legend data-i18n="t102">Votre type de peau&nbsp;?</legend>
       <div class="choix">
-        <label><input type="radio" name="peau" value="seche"><span><b>Sèche</b>tiraillements</span></label>
-        <label><input type="radio" name="peau" value="mixte"><span><b>Mixte</b>zone T qui brille</span></label>
-        <label><input type="radio" name="peau" value="grasse"><span><b>Grasse</b>brillances, imperfections</span></label>
-        <label><input type="radio" name="peau" value="sensible"><span><b>Sensible</b>rougeurs, réactive</span></label>
+        <label><input type="radio" name="peau" value="seche"><span data-i18n="t103"><b>Sèche</b>tiraillements</span></label>
+        <label><input type="radio" name="peau" value="mixte"><span data-i18n="t104"><b>Mixte</b>zone T qui brille</span></label>
+        <label><input type="radio" name="peau" value="grasse"><span data-i18n="t105"><b>Grasse</b>brillances, imperfections</span></label>
+        <label><input type="radio" name="peau" value="sensible"><span data-i18n="t106"><b>Sensible</b>rougeurs, réactive</span></label>
       </div>
     </fieldset>
     <fieldset class="diag-q" data-q="budget" hidden>
-      <legend>Votre budget par séance&nbsp;?</legend>
+      <legend data-i18n="t107">Votre budget par séance&nbsp;?</legend>
       <div class="choix">
-        <label><input type="radio" name="budget" value="1"><span><b>Moins de 100&nbsp;€</b>l'essentiel</span></label>
-        <label><input type="radio" name="budget" value="2"><span><b>100 à 150&nbsp;€</b>l'expertise</span></label>
-        <label><input type="radio" name="budget" value="3"><span><b>Plus de 150&nbsp;€</b>le meilleur de la technologie</span></label>
+        <label><input type="radio" name="budget" value="1"><span data-i18n="t108"><b>Moins de 100&nbsp;€</b>l'essentiel</span></label>
+        <label><input type="radio" name="budget" value="2"><span data-i18n="t109"><b>100 à 150&nbsp;€</b>l'expertise</span></label>
+        <label><input type="radio" name="budget" value="3"><span data-i18n="t110"><b>Plus de 150&nbsp;€</b>le meilleur de la technologie</span></label>
       </div>
     </fieldset>
     <fieldset class="diag-q" data-q="rythme" hidden>
-      <legend>Vous cherchez plutôt…</legend>
+      <legend data-i18n="t111">Vous cherchez plutôt…</legend>
       <div class="choix">
-        <label><input type="radio" name="rythme" value="flash"><span><b>Un coup d'éclat</b>une séance, avant un événement</span></label>
-        <label><input type="radio" name="rythme" value="cure"><span><b>Un vrai changement</b>une cure de 3 séances</span></label>
+        <label><input type="radio" name="rythme" value="flash"><span data-i18n="t112"><b>Un coup d'éclat</b>une séance, avant un événement</span></label>
+        <label><input type="radio" name="rythme" value="cure"><span data-i18n="t113"><b>Un vrai changement</b>une cure de 3 séances</span></label>
       </div>
     </fieldset>
 
     <div class="diag-resultat" data-diag-resultat hidden tabindex="-1">
-      <p class="etiquette">Notre recommandation</p>
+      <p class="etiquette" data-i18n="t114">Notre recommandation</p>
       <h3 data-r-nom></h3>
       <p class="soin-but" data-r-but></p>
       <p data-r-pourquoi></p>
       <dl class="prix" data-r-prix></dl>
       <div class="diag-actions">
-        <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver ce soin</a>
-        <button class="lien-btn" type="button" data-diag-refaire>Refaire le diagnostic</button>
+        <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t115">Réserver ce soin</a>
+        <button class="lien-btn" type="button" data-diag-refaire data-i18n="t116">Refaire le diagnostic</button>
       </div>
       <p class="diag-alt" data-r-alt></p>
-      <p class="diag-mention">Orientation indicative&nbsp;: la consultation à l'institut fait foi et Jaya adapte toujours le protocole à votre peau.</p>
+      <p class="diag-mention" data-i18n="t117">Orientation indicative&nbsp;: la consultation à l'institut fait foi et Jaya adapte toujours le protocole à votre peau.</p>
     </div>
 
     <div class="diag-nav">
-      <button class="lien-btn" type="button" data-diag-retour hidden>← Question précédente</button>
+      <button class="lien-btn" type="button" data-diag-retour hidden data-i18n="t118">← Question précédente</button>
     </div>
   </div>
 </section>
@@ -370,34 +374,34 @@
 <!-- ====================== AVIS ====================== -->
 <section class="section avis" id="avis">
   <header class="tete monte">
-    <p class="surtitre">Elles en parlent</p>
-    <h2>Des peaux <em>qui ont changé</em></h2>
-    <p class="note-globale"><span class="etoiles" aria-hidden="true">★★★★<span>★</span></span> <b>4,2&nbsp;/&nbsp;5</b> sur Treatwell</p>
+    <p class="surtitre" data-i18n="t119">Elles en parlent</p>
+    <h2 data-i18n="t120">Des peaux <em>qui ont changé</em></h2>
+    <p class="note-globale" data-i18n="t121"><span class="etoiles" aria-hidden="true">★★★★<span>★</span></span> <b>4,2&nbsp;/&nbsp;5</b> sur Treatwell</p>
   </header>
   <div class="avis-grille">
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;J'ai retrouvé de l'éclat et une texture de peau que je n'avais jamais eue auparavant. L'expérience est aussi agréable que les résultats sont visibles.&nbsp;»</p>
+      <p data-i18n="t122">«&nbsp;J'ai retrouvé de l'éclat et une texture de peau que je n'avais jamais eue auparavant. L'expérience est aussi agréable que les résultats sont visibles.&nbsp;»</p>
       <footer>Sarah M.</footer>
     </blockquote>
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;Jaya prend réellement le temps d'analyser la peau et d'expliquer chaque étape. Une expérience douce et professionnelle.&nbsp;»</p>
+      <p data-i18n="t123">«&nbsp;Jaya prend réellement le temps d'analyser la peau et d'expliquer chaque étape. Une expérience douce et professionnelle.&nbsp;»</p>
       <footer>Amina L.</footer>
     </blockquote>
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;L'accueil est agréable, les locaux sont impeccables et la praticienne est à la fois professionnelle, douce et attentionnée.&nbsp;»</p>
-      <footer>Ines · microneedling</footer>
+      <p data-i18n="t124">«&nbsp;L'accueil est agréable, les locaux sont impeccables et la praticienne est à la fois professionnelle, douce et attentionnée.&nbsp;»</p>
+      <footer data-i18n="t128">Ines · microneedling</footer>
     </blockquote>
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;Le soin était tout simplement génial et ma peau n'a jamais été aussi douce et éclatante.&nbsp;»</p>
+      <p data-i18n="t125">«&nbsp;Le soin était tout simplement génial et ma peau n'a jamais été aussi douce et éclatante.&nbsp;»</p>
       <footer>Ines</footer>
     </blockquote>
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;L'endroit est propre et l'accueil est agréable. La praticienne est très professionnelle. Je recommande&nbsp;!&nbsp;»</p>
+      <p data-i18n="t126">«&nbsp;L'endroit est propre et l'accueil est agréable. La praticienne est très professionnelle. Je recommande&nbsp;!&nbsp;»</p>
       <footer>Amel</footer>
     </blockquote>
     <blockquote class="avis-carte monte">
-      <p>«&nbsp;Accueillante et très douce, je reviens bientôt 😊&nbsp;»</p>
-      <footer>Lynda · soin du visage</footer>
+      <p data-i18n="t127">«&nbsp;Accueillante et très douce, je reviens bientôt 😊&nbsp;»</p>
+      <footer data-i18n="t129">Lynda · soin du visage</footer>
     </blockquote>
   </div>
 </section>
@@ -405,33 +409,33 @@
 <!-- ====================== FAQ ====================== -->
 <section class="section faq" id="faq">
   <header class="tete monte">
-    <p class="surtitre">Questions fréquentes</p>
-    <h2>Avant <em>votre rendez-vous</em></h2>
+    <p class="surtitre" data-i18n="t10">Questions fréquentes</p>
+    <h2 data-i18n="t130">Avant <em>votre rendez-vous</em></h2>
   </header>
   <div class="faq-liste monte">
     <details>
-      <summary>Comment se passe une première séance&nbsp;?</summary>
-      <p>Elle commence toujours par un échange et l'observation de votre peau&nbsp;: vos attentes, vos habitudes, vos antécédents. Jaya vous explique ensuite le soin choisi, étape par étape, et vous repartez avec des conseils pour la suite.</p>
+      <summary data-i18n="t131">Comment se passe une première séance&nbsp;?</summary>
+      <p data-i18n="t132">Elle commence toujours par un échange et l'observation de votre peau&nbsp;: vos attentes, vos habitudes, vos antécédents. Jaya vous explique ensuite le soin choisi, étape par étape, et vous repartez avec des conseils pour la suite.</p>
     </details>
     <details>
-      <summary>Combien de séances faut-il prévoir&nbsp;?</summary>
-      <p>Un soin d'éclat se voit souvent dès la première séance. Pour les taches, le grain de peau ou la fermeté, une cure de trois séances espacées donne des résultats plus nets et plus durables, d'où les tarifs « cure de 3 ».</p>
+      <summary data-i18n="t133">Combien de séances faut-il prévoir&nbsp;?</summary>
+      <p data-i18n="t134">Un soin d'éclat se voit souvent dès la première séance. Pour les taches, le grain de peau ou la fermeté, une cure de trois séances espacées donne des résultats plus nets et plus durables, d'où les tarifs « cure de 3 ».</p>
     </details>
     <details>
-      <summary>Que faire après un peeling ou un microneedling&nbsp;?</summary>
-      <p>On évite le soleil, le maquillage les premières heures, le sport intense et le hammam quelques jours, et on applique une protection solaire haute chaque matin. Les consignes précises vous sont remises après le soin.</p>
+      <summary data-i18n="t135">Que faire après un peeling ou un microneedling&nbsp;?</summary>
+      <p data-i18n="t136">On évite le soleil, le maquillage les premières heures, le sport intense et le hammam quelques jours, et on applique une protection solaire haute chaque matin. Les consignes précises vous sont remises après le soin.</p>
     </details>
     <details>
-      <summary>Y a-t-il des contre-indications&nbsp;?</summary>
-      <p>Certains soins sont déconseillés pendant la grossesse ou l'allaitement, sur une peau lésée, après un traitement contre l'acné récent ou en cas de bronzage. Signalez vos traitements en cours&nbsp;: le protocole sera adapté ou reporté si besoin.</p>
+      <summary data-i18n="t137">Y a-t-il des contre-indications&nbsp;?</summary>
+      <p data-i18n="t138">Certains soins sont déconseillés pendant la grossesse ou l'allaitement, sur une peau lésée, après un traitement contre l'acné récent ou en cas de bronzage. Signalez vos traitements en cours&nbsp;: le protocole sera adapté ou reporté si besoin.</p>
     </details>
     <details>
-      <summary>Ma peau est sensible, puis-je venir&nbsp;?</summary>
-      <p>Oui. Le diagnostic sert justement à choisir des soins et des dosages adaptés&nbsp;; les peaux réactives sont orientées vers des protocoles doux et progressifs.</p>
+      <summary data-i18n="t139">Ma peau est sensible, puis-je venir&nbsp;?</summary>
+      <p data-i18n="t140">Oui. Le diagnostic sert justement à choisir des soins et des dosages adaptés&nbsp;; les peaux réactives sont orientées vers des protocoles doux et progressifs.</p>
     </details>
     <details>
-      <summary>Comment réserver et payer&nbsp;?</summary>
-      <p>En ligne 24 h/24 via Treatwell, ou par téléphone au <a data-tel href="tel:+33610133857"><span data-tel-texte>06 10 13 38 57</span></a>. Le règlement se fait sur place, en carte bancaire ou en espèces.</p>
+      <summary data-i18n="t141">Comment réserver et payer&nbsp;?</summary>
+      <p data-i18n="t142">En ligne 24 h/24 via Treatwell, ou par téléphone au <a data-tel href="tel:+33610133857"><span data-tel-texte>06 10 13 38 57</span></a>. Le règlement se fait sur place, en carte bancaire ou en espèces.</p>
     </details>
   </div>
 </section>
@@ -439,28 +443,28 @@
 <!-- ====================== INFOS ====================== -->
 <section class="section infos" id="infos">
   <header class="tete monte">
-    <p class="surtitre">Horaires &amp; accès</p>
-    <h2>Au cœur <em>du 17<sup>e</sup></em></h2>
+    <p class="surtitre" data-i18n="t11">Horaires &amp; accès</p>
+    <h2 data-i18n="t143">Au cœur <em>du 17<sup>e</sup></em></h2>
   </header>
   <div class="infos-grille">
     <div class="infos-carte monte">
       <h3>Skin By Jaya Paris</h3>
       <p class="adresse">3 passage Doisy<br>75017 Paris</p>
-      <p class="acces"><span class="metro" aria-label="Métro ligne 2">M 2</span> Ternes, à 4 minutes à pied</p>
+      <p class="acces" data-i18n="t144"><span class="metro" aria-label="Métro ligne 2">M 2</span> Ternes, à 4 minutes à pied</p>
       <table class="horaires">
-        <caption class="sr">Horaires d'ouverture</caption>
+        <caption class="sr" data-i18n="t145">Horaires d'ouverture</caption>
         <tbody>
-          <tr data-j="1"><th scope="row">Lundi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="2"><th scope="row">Mardi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="3"><th scope="row">Mercredi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="4"><th scope="row">Jeudi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="5"><th scope="row">Vendredi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="6"><th scope="row">Samedi</th><td>10 h – 20 h</td></tr>
-          <tr data-j="0"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+          <tr data-j="1"><th scope="row" data-i18n="t146">Lundi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="2"><th scope="row" data-i18n="t147">Mardi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="3"><th scope="row" data-i18n="t148">Mercredi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="4"><th scope="row" data-i18n="t149">Jeudi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="5"><th scope="row" data-i18n="t150">Vendredi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="6"><th scope="row" data-i18n="t151">Samedi</th><td data-i18n="t153">10 h – 20 h</td></tr>
+          <tr data-j="0"><th scope="row" data-i18n="t152">Dimanche</th><td data-i18n="t154">Fermé</td></tr>
         </tbody>
       </table>
       <div class="infos-actions">
-        <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver en ligne</a>
+        <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t155">Réserver en ligne</a>
         <a class="btn btn-ligne" data-tel href="tel:+33610133857"><span data-tel-texte>06 10 13 38 57</span></a>
       </div>
       <p class="insta"><a href="https://www.instagram.com/skin_byjaya/" target="_blank" rel="noopener">
@@ -470,13 +474,13 @@
     <div class="plan monte" data-plan>
       <div class="plan-repos">
         <svg class="plan-pin" viewBox="0 0 48 64" aria-hidden="true"><path d="M24 2C12 2 3 11 3 23c0 16 21 38 21 38s21-22 21-38C45 11 36 2 24 2Z" fill="#c8a97e"/><circle cx="24" cy="23" r="8" fill="#fbf7f3"/></svg>
-        <p>3 passage Doisy, Paris 17<sup>e</sup></p>
-        <button class="btn btn-ligne btn-petit" type="button" data-plan-btn>Afficher le plan</button>
-        <a class="lien-discret" href="https://maps.app.goo.gl/Pqc8ZK7xJjKjhjU57" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        <p data-i18n="t156">3 passage Doisy, Paris 17<sup>e</sup></p>
+        <button class="btn btn-ligne btn-petit" type="button" data-plan-btn data-i18n="t157">Afficher le plan</button>
+        <a class="lien-discret" href="https://maps.app.goo.gl/Pqc8ZK7xJjKjhjU57" target="_blank" rel="noopener" data-i18n="t158">Ouvrir dans Google Maps</a>
       </div>
     </div>
   </div>
-  <p class="marrakech monte">Skin By Jaya, c'est aussi <b>Marrakech</b>&nbsp;: Immeuble Rachid, avenue Khalid Ibn El Oualid, Guéliz · <a href="tel:+212688676326">+212 6 88 67 63 26</a></p>
+  <p class="marrakech monte" data-i18n="t159">Skin By Jaya, c'est aussi <b>Marrakech</b>&nbsp;: Immeuble Rachid, avenue Khalid Ibn El Oualid, Guéliz · <a href="tel:+212688676326">+212 6 88 67 63 26</a></p>
 </section>
 
 </main>
@@ -487,20 +491,21 @@
     <span class="logo-txt">Skin <i>by</i> Jaya</span>
   </a>
   <p>Skin Lab · 3 passage Doisy, 75017 Paris · <a data-tel href="tel:+33610133857"><span data-tel-texte>06 10 13 38 57</span></a></p>
-  <p class="pied-liens"><a href="mentions-legales/">Mentions légales</a> · <a href="https://www.instagram.com/skin_byjaya/" target="_blank" rel="noopener">Instagram</a> · © <span data-annee>2026</span> Skin By Jaya</p>
+  <p class="pied-liens"><a href="mentions-legales/" data-i18n="t160">Mentions légales</a> · <a href="https://www.instagram.com/skin_byjaya/" target="_blank" rel="noopener">Instagram</a> · © <span data-annee>2026</span> Skin By Jaya</p>
 </footer>
 
 <div class="barre-mobile">
-  <a class="btn btn-ligne" data-tel href="tel:+33610133857" aria-label="Appeler l'institut">
+  <a class="btn btn-ligne" data-tel href="tel:+33610133857" aria-label="Appeler l'institut" data-i18n-attr="aria-label:a7">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
-    Appeler
+    <span data-i18n="t161">Appeler</span>
   </a>
-  <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver un soin</a>
+  <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener" data-i18n="t15">Réserver un soin</a>
 </div>
 
-<script src="js/site.js?v=3" defer></script>
+<script src="js/i18n.js?v=1" defer></script>
+<script src="js/site.js?v=4" defer></script>
 <script src="js/fond.js?v=1" defer></script>
-<script src="js/histoire.js?v=1" defer></script>
-<script src="js/diagnostic.js?v=2" defer></script>
+<script src="js/histoire.js?v=2" defer></script>
+<script src="js/diagnostic.js?v=3" defer></script>
 </body>
 </html>

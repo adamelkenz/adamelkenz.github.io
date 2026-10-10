@@ -33,30 +33,47 @@ var SALON = {
     f.formatToParts(new Date()).forEach(function (x) { o[x.type] = x.value; });
     return { j: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'].indexOf(o.weekday), h: +o.hour + o.minute / 60 };
   }
+  var trad = window.trad || function (fr) { return fr; };
   function hfr(h) {
     var m = Math.round((h % 1) * 60);
+    if (window.LANGUE === 'en') {           // 20 -> 8 pm
+      var hh = Math.floor(h), suf = hh < 12 ? ' am' : ' pm';
+      hh = hh % 12 || 12;
+      return hh + (m ? ':' + (m < 10 ? '0' : '') + m : '') + suf;
+    }
     return Math.floor(h) + ' h' + (m ? (m < 10 ? ' 0' : ' ') + m : '');
   }
   var n = maintenant();
   var statut = document.querySelector('[data-statut]');
-  if (statut && n.j >= 0) {
+  function majStatut() {
+    if (!statut || n.j < 0) return;
     var cr = SALON.horaires[n.j] || [], txt, cls;
     var ouvert = cr.filter(function (c) { return n.h >= c[0] && n.h < c[1]; })[0];
-    if (ouvert) { cls = 'ouvert'; txt = 'Ouvert aujourd\'hui jusqu\'à ' + hfr(ouvert[1]); }
+    if (ouvert) { cls = 'ouvert'; txt = trad('Ouvert aujourd\'hui jusqu\'à ', 'Open today until ') + hfr(ouvert[1]); }
     else {
       cls = 'ferme';
       var plusTard = cr.filter(function (c) { return c[0] > n.h; })[0];
-      if (plusTard) txt = 'Fermé pour le moment · ouvre à ' + hfr(plusTard[0]);
+      if (plusTard) txt = trad('Fermé pour le moment · ouvre à ', 'Closed right now · opens at ') + hfr(plusTard[0]);
       else {
-        var noms = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        var noms = trad(['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+          ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
         for (var k = 1; k <= 7; k++) {
           var j = (n.j + k) % 7, c = SALON.horaires[j] || [];
-          if (c.length) { txt = 'Fermé · réouverture ' + (k === 1 ? 'demain' : noms[j]) + ' à ' + hfr(c[0][0]); break; }
+          if (c.length) {
+            txt = trad('Fermé · réouverture ' + (k === 1 ? 'demain' : noms[j]) + ' à ',
+              'Closed · reopens ' + (k === 1 ? 'tomorrow' : 'on ' + noms[j]) + ' at ') + hfr(c[0][0]);
+            break;
+          }
         }
       }
     }
-    if (txt) { statut.classList.add(cls); statut.innerHTML = '<i></i><span>' + txt + '<span class="statut-plus"> · réservation en ligne 24 h/24</span></span>'; }
+    if (txt) {
+      statut.classList.remove('ouvert', 'ferme'); statut.classList.add(cls);
+      statut.innerHTML = '<i></i><span>' + txt + '<span class="statut-plus">' + trad(' · réservation en ligne 24 h/24', ' · online booking 24/7') + '</span></span>';
+    }
   }
+  majStatut();
+  document.addEventListener('langue', majStatut);
   var ligne = document.querySelector('.horaires tr[data-j="' + n.j + '"]');
   if (ligne) ligne.className = 'auj';
 
@@ -68,13 +85,16 @@ var SALON = {
   // menu téléphone
   var bouton = document.querySelector('.menu-btn'), menu = document.getElementById('menu-mobile');
   if (bouton && menu) {
-    var ferme = function () { menu.hidden = true; bouton.setAttribute('aria-expanded', 'false'); bouton.setAttribute('aria-label', 'Ouvrir le menu'); };
+    var ferme = function () { menu.hidden = true; bouton.setAttribute('aria-expanded', 'false'); bouton.setAttribute('aria-label', trad('Ouvrir le menu', 'Open the menu')); };
     bouton.addEventListener('click', function () {
       var ouvre = menu.hidden;
       menu.hidden = !ouvre;
       bouton.setAttribute('aria-expanded', String(ouvre));
-      bouton.setAttribute('aria-label', ouvre ? 'Fermer le menu' : 'Ouvrir le menu');
+      bouton.setAttribute('aria-label', ouvre ? trad('Fermer le menu', 'Close the menu') : trad('Ouvrir le menu', 'Open the menu'));
     });
+    var etiquetteMenu = function () { bouton.setAttribute('aria-label', menu.hidden ? trad('Ouvrir le menu', 'Open the menu') : trad('Fermer le menu', 'Close the menu')); };
+    etiquetteMenu();
+    document.addEventListener('langue', etiquetteMenu);
     menu.addEventListener('click', function (e) { if (e.target.closest('a')) ferme(); });
     document.addEventListener('click', function (e) {
       if (!menu.hidden && !menu.contains(e.target) && !bouton.contains(e.target)) ferme();
@@ -140,7 +160,7 @@ var SALON = {
   if (plan) {
     plan.querySelector('[data-plan-btn]').addEventListener('click', function () {
       var f = document.createElement('iframe');
-      f.title = 'Plan d\'accès à l\'institut Skin By Jaya';
+      f.title = trad('Plan d\'accès à l\'institut Skin By Jaya', 'Map to the Skin By Jaya institute');
       f.referrerPolicy = 'no-referrer-when-downgrade';
       f.src = 'https://www.google.com/maps?q=Skin+By+Jaya,+3+Passage+Doisy,+75017+Paris&z=16&output=embed';
       plan.innerHTML = '';
