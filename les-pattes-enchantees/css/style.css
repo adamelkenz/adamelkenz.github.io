@@ -198,6 +198,84 @@ h2 em { font-family: var(--script); font-weight: 400; font-style: normal; color:
 .pas span.pose:nth-child(odd) { opacity: .85; transform: translateY(-11px) rotate(90deg) scale(1); }
 .pas span.pose:nth-child(even) { opacity: .85; transform: translateY(11px) rotate(90deg) scale(1); }
 
+/* animations mises en pause quand leur section est hors de l'écran */
+.en-pause, .en-pause * { animation-play-state: paused !important; }
+
+/* ---------- les petits sorciers (galerie) ---------- */
+.sorciers { position: relative; overflow: hidden; isolation: isolate; width: min(1280px, calc(100% - 24px)); margin: 34px auto 0; border-radius: 48px; color: var(--peche);
+  background: radial-gradient(70% 60% at 50% 0%, #3a2b47 0%, transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(240, 124, 27, .18), transparent 70%), radial-gradient(50% 50% at 100% 100%, rgba(240, 124, 27, .14), transparent 70%), var(--nuit); }
+.sorciers .bloc { padding-top: 150px; }
+.sorciers .surtitre { color: var(--orange); }
+.sorciers h2 { color: var(--blanc); }
+.sorciers .titre p:last-child { color: #e3d6c7; }
+.sorciers-decor { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.guirlande { position: absolute; top: 0; left: 0; width: 100%; height: 150px; }
+.breloque { transform-box: fill-box; transform-origin: 50% 0; animation: breloque 2.6s ease-in-out var(--b, 0s) infinite alternate; }
+@keyframes breloque { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+.chauve-souris { position: absolute; width: 58px; fill: #0b0910; will-change: transform; }
+.chauve-souris .aile-g { transform-origin: 27px 15px; animation: battre .22s ease-in-out infinite alternate; }
+.chauve-souris .aile-d { transform-origin: 33px 15px; animation: battre .22s ease-in-out infinite alternate; }
+@keyframes battre { to { transform: scaleY(.25); } }
+.cs1 { top: 22%; animation: vol-a 17s linear infinite; }
+.cs2 { top: 48%; width: 40px; animation: vol-b 23s linear -8s infinite; opacity: .8; }
+.cs3 { top: 70%; width: 34px; animation: vol-a 29s linear -19s infinite; opacity: .6; }
+@keyframes vol-a { 0% { transform: translate(-80px, 0); } 25% { transform: translate(25vw, -40px); } 50% { transform: translate(50vw, 10px); } 75% { transform: translate(75vw, -30px); } 100% { transform: translate(calc(100vw + 80px), 0); } }
+@keyframes vol-b { 0% { transform: translate(calc(100vw + 80px), 0) scaleX(-1); } 33% { transform: translate(66vw, 30px) scaleX(-1); } 66% { transform: translate(33vw, -20px) scaleX(-1); } 100% { transform: translate(-80px, 10px) scaleX(-1); } }
+.citrouille { position: absolute; bottom: -10px; width: 110px; }
+.cit1 { left: 2%; transform: rotate(-8deg); }
+.cit2 { right: 3%; width: 84px; transform: rotate(10deg); }
+.citrouille .visage { animation: bougie 2.2s steps(1) infinite; }
+.cit2 .visage { animation-delay: -1.1s; }
+@keyframes bougie { 0%, 100% { opacity: 1; } 12% { opacity: .55; } 16% { opacity: .95; } 48% { opacity: .7; } 52% { opacity: 1; } 80% { opacity: .8; } }
+.paillette { position: absolute; width: 10px; height: 10px; background: var(--miel); bottom: -20px;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); animation: monte-paillette 9s linear infinite; }
+.p1 { left: 8%; } .p2 { left: 23%; animation-delay: -3s; width: 7px; height: 7px; } .p3 { left: 41%; animation-delay: -6s; background: var(--orange); }
+.p4 { left: 60%; animation-delay: -1.5s; width: 8px; height: 8px; } .p5 { left: 77%; animation-delay: -4.5s; background: var(--orange); } .p6 { left: 92%; animation-delay: -7.5s; width: 6px; height: 6px; }
+@keyframes monte-paillette { 0% { transform: translateY(0) rotate(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(-900px) rotate(360deg); opacity: 0; } }
+
+.sorciers-intro { display: flex; flex-direction: column; align-items: center; }
+.sorciers-intro .titre { margin-bottom: 24px; }
+.sorciers-etapes { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0; margin: 0 0 54px; }
+.sorciers-etapes li { display: flex; align-items: center; gap: 10px; padding: 8px 16px 8px 8px; border-radius: 999px; border: 1.5px dashed rgba(255, 225, 191, .35); font-weight: 700; font-size: .95rem; }
+.sorciers-etapes b { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--orange); color: var(--nuit); font: 700 .9rem/1 var(--titre); }
+
+.polaroids { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; perspective: 900px; }
+.polaroid:nth-child(odd) { --r: -3deg; } .polaroid:nth-child(even) { --r: 2.5deg; margin-top: 46px; }
+.polaroid:nth-child(3) { --r: 1.5deg; } .polaroid:nth-child(4) { --r: -2deg; }
+.polaroid-btn { display: block; width: 100%; padding: 12px 12px 16px; border: 0; border-radius: 10px; background: #fffaf3; color: var(--encre); text-align: left; font: inherit; cursor: zoom-in;
+  box-shadow: 0 22px 40px -18px rgba(0, 0, 0, .7), 6px 6px 0 var(--orange);
+  transform: rotate(var(--r)) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)); transition: transform .5s cubic-bezier(.3, 1.4, .5, 1), box-shadow .4s; }
+.polaroid-btn:hover, .polaroid-btn:focus-visible { transform: rotate(0) rotateX(var(--tx, 0deg)) rotateY(var(--ty, 0deg)) translateY(-8px) scale(1.03); box-shadow: 0 30px 50px -18px rgba(0, 0, 0, .8), 9px 10px 0 var(--miel); }
+.polaroid-btn.suit { transition: transform .12s linear, box-shadow .4s; }
+.polaroid-cadre { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 4px; background: #2c2536; }
+.polaroid-cadre img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.polaroid-btn:hover img { transform: scale(1.06); }
+.polaroid-brille { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .35) 45%, transparent 60%); transform: translateX(-120%); transition: transform .9s ease; }
+.polaroid-btn:hover .polaroid-brille { transform: translateX(120%); }
+.polaroid-legende { display: block; padding: 12px 4px 0; }
+.polaroid-legende b { display: block; font: 400 1.55rem/1.1 var(--script); color: var(--orange-texte); }
+.polaroid-legende span { display: block; font-size: .85rem; line-height: 1.4; color: var(--encre-doux); margin-top: 4px; }
+.polaroid-btn::before { content: ""; position: absolute; top: -10px; left: 50%; width: 70px; height: 22px; margin-left: -35px; background: rgba(255, 210, 122, .75); transform: rotate(-4deg); box-shadow: 0 2px 4px rgba(0, 0, 0, .2); }
+.polaroid-btn { position: relative; }
+.sorciers-suite { text-align: center; margin: 54px 0 0; font-weight: 600; }
+.sorciers-suite a { color: var(--miel); font-weight: 800; }
+
+/* visionneuse */
+.visionneuse { padding: 0; border: 0; background: transparent; max-width: none; width: min(88vw, calc(72vh * .75 + 28px)); overflow: visible; color: var(--peche); }
+.visionneuse::backdrop { background: rgba(10, 8, 14, .88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.visionneuse[open] { animation: ouvre .35s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes ouvre { from { opacity: 0; transform: scale(.9) rotate(-2deg); } }
+.visionneuse figure { margin: 0; padding: 14px 14px 18px; background: #fffaf3; border-radius: 12px; box-shadow: 8px 8px 0 var(--orange); }
+.visionneuse img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; background: #2c2536; aspect-ratio: 3 / 4; }
+.visionneuse figcaption { padding: 12px 4px 0; color: var(--encre); }
+.visionneuse figcaption b { display: block; font: 400 1.8rem/1.1 var(--script); color: var(--orange-texte); }
+.v-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--nuit); background: var(--orange); color: var(--nuit); display: grid; place-items: center; cursor: pointer; box-shadow: 3px 3px 0 var(--nuit); }
+.v-btn svg { width: 22px; height: 22px; }
+.v-btn:hover { background: var(--orange-vif); }
+.v-fermer { top: -18px; right: -18px; }
+.v-prec { top: 45%; left: -24px; }
+.v-suiv { top: 45%; right: -24px; }
+
 /* ---------- le salon ---------- */
 .salon-grille { display: grid; grid-template-columns: 1fr 1.05fr; gap: 70px; align-items: center; }
 .photos { position: relative; padding: 0 10% 18% 0; }
@@ -225,31 +303,78 @@ h2 em { font-family: var(--script); font-weight: 400; font-style: normal; color:
 .magie .surtitre { color: var(--orange); }
 .magie .titre p:last-child { color: #d9ccbd; }
 .atelier { display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; align-items: center; }
-.scene-chien { position: relative; border-radius: 36px; padding: 20px 20px 10px; background: radial-gradient(70% 60% at 50% 55%, #3a2f45, var(--nuit-2)); border: 1.5px solid rgba(255, 225, 191, .14); }
-.chien { width: 100%; max-width: 470px; margin: 0 auto; touch-action: none; cursor: url("../img/baguette.svg") 9 8, crosshair; overflow: visible; user-select: none; -webkit-user-select: none; }
-.chien .queue-propre { opacity: 0; transition: opacity .6s ease .3s; }
-.chien.fini .queue-propre { opacity: 1; }
-.chien .hirsute { transition: opacity .9s ease, transform .9s ease; transform-origin: 200px 300px; }
-.chien.fini .hirsute { opacity: 0; transform: scale(1.06); }
+.scene-chien { position: relative; border-radius: 36px; padding: 20px 20px 10px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(70% 60% at 50% 55%, #3a2f45, var(--nuit-2)); border: 1.5px solid rgba(255, 225, 191, .14); }
+.scene-chien::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .8s;
+  background: radial-gradient(45% 45% at 50% 55%, rgba(255, 210, 122, .35), transparent 70%); }
+.scene-chien.fini::before { opacity: 1; animation: aura 3s ease-in-out infinite; }
+@keyframes aura { 50% { transform: scale(1.12); opacity: .7; } }
+.chien { position: relative; width: 100%; max-width: 470px; margin: 0 auto; touch-action: none; cursor: url("../img/baguette.svg") 9 8, crosshair; overflow: visible; user-select: none; -webkit-user-select: none; }
+.scene-chien.baguette-active .chien { cursor: none; }
+.scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+/* la baguette qui suit la souris ou le doigt (son bout est le coin haut gauche) */
+.baguette { position: absolute; left: 0; top: 0; width: 92px; height: 92px; margin: -11px 0 0 -11px; z-index: 3; pointer-events: none; opacity: 0;
+  transform-origin: 11px 11px; transition: opacity .3s; will-change: transform; }
+.baguette svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, .35)); }
+.scene-chien.baguette-visible .baguette { opacity: 1; }
+.baguette-halo { transform-box: fill-box; transform-origin: center; animation: halo-bout 1.2s ease-in-out infinite; }
+@keyframes halo-bout { 50% { transform: scale(1.5); opacity: .6; } }
+
+/* le chien : corps qui gigote (piloté en JS), oreilles et queue */
+.corps-chien { transform-origin: 200px 410px; }
+.chien .queue-hirsute { transform-origin: 290px 330px; animation: queue-h calc(1.4s - var(--entrain, 0) * 1s) ease-in-out infinite alternate; }
+@keyframes queue-h { from { transform: rotate(-6deg); } to { transform: rotate(10deg); } }
+.chien .queue-propre { opacity: 0; transform-origin: 288px 336px; transition: opacity .6s ease .3s; }
+.chien.fini .queue-propre { opacity: 1; animation: queue-p .28s ease-in-out infinite alternate; }
+@keyframes queue-p { from { transform: rotate(-10deg); } to { transform: rotate(14deg); } }
+.chien .hirsute { transition: opacity .25s ease; }
+.chien.fini .hirsute { opacity: 0; }
+.chien.fini .oreille-g { transform-origin: 140px 120px; animation: oreille 1.6s ease-in-out .8s 2; }
+.chien.fini .oreille-d { transform-origin: 260px 120px; animation: oreille 1.6s ease-in-out .9s 2 reverse; }
+@keyframes oreille { 50% { transform: rotate(-7deg); } }
 .chien .eclats path { opacity: 0; transform-box: fill-box; transform-origin: center; }
 .chien.fini .eclats path { animation: scintille-on 1.6s ease-in-out infinite; }
 .chien.fini .eclats path:nth-child(2) { animation-delay: -.4s; }
 .chien.fini .eclats path:nth-child(3) { animation-delay: -.8s; }
 .chien.fini .eclats path:nth-child(4) { animation-delay: -1.2s; }
 @keyframes scintille-on { 0%, 100% { opacity: .2; transform: scale(.5) rotate(0); } 50% { opacity: 1; transform: scale(1.15) rotate(45deg); } }
-.chien.fini .propre { animation: content .7s cubic-bezier(.3, 1.6, .5, 1) .2s; transform-origin: 200px 400px; }
-@keyframes content { 40% { transform: scale(1.04, .96); } 70% { transform: scale(.98, 1.03) translateY(-6px); } }
+.chien.fini .propre { animation: content .8s cubic-bezier(.3, 1.6, .5, 1) .15s; transform-origin: 200px 410px; }
+@keyframes content { 30% { transform: scale(1.08, .9); } 60% { transform: scale(.96, 1.06) translateY(-14px); } }
+
+/* il s'ébroue avant la transformation */
+.chien.ebroue .corps-chien { animation: ebroue .7s linear; }
+@keyframes ebroue { 10% { transform: rotate(-7deg); } 20% { transform: rotate(7deg); } 30% { transform: rotate(-8deg); } 40% { transform: rotate(8deg); } 50% { transform: rotate(-7deg); } 60% { transform: rotate(6deg); } 70% { transform: rotate(-5deg); } 80% { transform: rotate(3deg); } 90% { transform: rotate(-1deg); } }
+
+/* fumée et éclair */
+.fumee-magique circle { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.2); }
+.chien.pouf .fumee-magique circle { animation: pouf 1.1s cubic-bezier(.2, .7, .3, 1) forwards; }
+.chien.pouf .fumee-magique circle:nth-child(2n) { animation-delay: .06s; }
+.chien.pouf .fumee-magique circle:nth-child(3n) { animation-delay: .12s; }
+@keyframes pouf { 0% { opacity: 0; transform: scale(.2); } 25% { opacity: .95; transform: scale(1.05); } 100% { opacity: 0; transform: scale(1.5) translateY(-30px); } }
+.eclair { opacity: 0; transform-origin: 200px 250px; pointer-events: none; }
+.chien.pouf .eclair { animation: eclair .7s ease-out; }
+@keyframes eclair { 0% { opacity: 0; transform: scale(.3); } 20% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.3); } }
+
+/* le chapeau tombe sur sa tête */
+.chapeau-chien { opacity: 0; transform: translateY(-260px) rotate(-30deg); }
+.chien.chapeau .chapeau-chien { opacity: 1; transform: none; animation: chapeau-tombe 1s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes chapeau-tombe { 0% { opacity: 1; transform: translateY(-260px) rotate(-30deg); } 60% { transform: translateY(6px) rotate(6deg); } 80% { transform: translateY(-4px) rotate(-3deg); } 100% { opacity: 1; transform: none; } }
+.breloque-chapeau { transform-box: view-box; transform-origin: 36px -80px; }
+.chien.chapeau .breloque-chapeau { animation: breloque 1.8s ease-in-out 1s infinite alternate; }
+
 .mouche { transition: opacity .5s; }
 .mouche .aile { animation: aile .06s linear infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
 @keyframes aile { to { transform: scaleY(.4); } }
 .chien.fini .mouche { opacity: 0; }
-.bulle-astuce, .bulle-tadaa { position: absolute; top: 18px; left: 18px; margin: 0; padding: 9px 16px; border-radius: 18px 18px 18px 4px; background: var(--peche); color: var(--nuit); font-weight: 700; font-size: .95rem; box-shadow: 4px 4px 0 var(--orange); pointer-events: none; transition: opacity .4s, transform .4s; }
+.bulle-astuce, .bulle-tadaa { position: absolute; z-index: 4; top: 18px; left: 18px; margin: 0; padding: 9px 16px; border-radius: 18px 18px 18px 4px; background: var(--peche); color: var(--nuit); font-weight: 700; font-size: .95rem; box-shadow: 4px 4px 0 var(--orange); pointer-events: none; transition: opacity .4s, transform .4s; }
 .bulle-astuce { animation: hoche 2.4s ease-in-out infinite; }
 @keyframes hoche { 50% { transform: translateY(-4px); } }
 .bulle-astuce.cache { opacity: 0; transform: translateY(-8px); }
 .bulle-tadaa { background: var(--orange); box-shadow: 4px 4px 0 var(--peche); animation: tadaa .6s cubic-bezier(.3, 1.8, .5, 1); }
 .bulle-tadaa b { display: block; font: 400 1.8rem/1 var(--script); }
 @keyframes tadaa { from { transform: scale(.4) rotate(-8deg); opacity: 0; } }
+.etat-phase { display: inline-block; }
 
 .jauge { position: relative; height: 54px; border-radius: 999px; border: 2px solid var(--peche); overflow: hidden; background: rgba(255, 255, 255, .05); }
 .jauge-remplie { position: absolute; inset: 0; transform-origin: left; transform: scaleX(var(--v, 0)); transition: transform .25s ease;
@@ -367,7 +492,13 @@ h2 em { font-family: var(--script); font-weight: 400; font-style: normal; color:
 .barre-mobile { display: none; }
 
 /* ---------- écrans moyens ---------- */
+@media (max-width: 1240px) {
+  .nav { display: none; }
+  .menu-btn { display: block; }
+}
 @media (max-width: 1080px) {
+  .polaroids { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 22px; max-width: 640px; margin: 0 auto; }
+  .polaroid:nth-child(even) { margin-top: 0; }
   .nav { display: none; }
   .menu-btn { display: block; }
   .cartes { grid-template-columns: repeat(2, 1fr); }
@@ -390,6 +521,15 @@ h2 em { font-family: var(--script); font-weight: 400; font-style: normal; color:
   .hero { padding: 106px 16px 80px; border-radius: 0 0 32px 32px; }
   .hero-actions .btn { flex: 1 1 100%; }
   .valeurs { grid-template-columns: 1fr; gap: 12px; }
+  .sorciers { width: calc(100% - 16px); border-radius: 32px; margin-top: 20px; }
+  .sorciers .bloc { padding-top: 150px; }
+  .polaroids { gap: 22px 14px; }
+  .polaroid-btn { padding: 8px 8px 12px; box-shadow: 0 16px 30px -16px rgba(0, 0, 0, .7), 4px 4px 0 var(--orange); }
+  .polaroid-legende b { font-size: 1.25rem; }
+  .polaroid-legende span { display: none; }
+  .polaroid-btn::before { width: 50px; margin-left: -25px; height: 18px; }
+  .citrouille { width: 70px; } .cit2 { width: 56px; }
+  .v-prec { left: -8px; } .v-suiv { right: -8px; } .v-fermer { right: -6px; }
   .valeur { display: grid; grid-template-columns: 34px 1fr; column-gap: 14px; row-gap: 0; align-items: center; padding: 14px 16px; }
   .valeur svg { grid-row: span 2; margin: 0; }
   .question summary { font-size: 1.05rem; padding: 16px 18px; }
@@ -398,6 +538,7 @@ h2 em { font-family: var(--script); font-weight: 400; font-style: normal; color:
   .magie, .deroule { border-radius: 32px; width: calc(100% - 16px); }
   .scene-chien { padding: 12px 6px 4px; border-radius: 26px; }
   .bulle-astuce, .bulle-tadaa { top: 10px; left: 10px; font-size: .85rem; }
+  .bulle-tadaa { top: auto; bottom: 10px; }
   .panneau { padding: 22px 18px; }
   .pas span { width: 20px; height: 20px; }
   .pied { padding-bottom: 100px; border-radius: 32px 32px 0 0; }

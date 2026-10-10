@@ -115,6 +115,16 @@ var SALON = {
     window.addEventListener('resize', majPas);
   }
 
+  // les animations décoratives ne tournent que lorsque leur section est à l'écran
+  if ('IntersectionObserver' in window && !calme) {
+    var veille = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle('en-pause', !e.isIntersecting); });
+    }, { rootMargin: '100px 0px' });
+    document.querySelectorAll('.hero-scene, .sorciers, .magie, .deroule, .plan-epingle').forEach(function (el) {
+      el.classList.add('en-pause'); veille.observe(el);
+    });
+  }
+
   // plan Google Maps : chargé seulement à la demande du visiteur
   var plan = document.querySelector('[data-plan]');
   if (plan) {
@@ -129,155 +139,52 @@ var SALON = {
     });
   }
 
-  /* ---------- la métamorphose : la baguette efface le pelage ébouriffé ---------- */
-  var scene = document.querySelector('[data-scene]');
-  if (!scene) return;
-  var svg = scene.querySelector('svg.chien'), traces = svg.querySelector('[data-traces]');
-  var astuce = scene.querySelector('[data-astuce]'), tadaa = scene.querySelector('[data-tadaa]');
-  var jauge = document.querySelector('[data-jauge]'), jaugeTxt = document.querySelector('[data-jauge-texte]');
-  var etats = [].slice.call(document.querySelectorAll('[data-etats] li'));
-  var btnSort = document.querySelector('[data-sort]'), btnEncore = document.querySelector('[data-encore]');
-  var NS = 'http://www.w3.org/2000/svg', RAYON = 30, PAS = 12, SEUIL = .6;
-  tadaa.setAttribute('role', 'status');
-
-  // la grille des zones de pelage à brosser (centres de cases qui tombent dans le chien ébouriffé)
-  var formes = [].slice.call(svg.querySelectorAll('.hirsute > path')).filter(function (p) {
-    var f = p.getAttribute('fill'); return f && f !== 'none';
-  });
-  var cases = [];
-  for (var y = 60; y < 430; y += PAS) {
-    for (var x = 70; x < 380; x += PAS) {
-      var dedans = formes.some(function (p) {
-        try { return p.isPointInFill(new DOMPoint(x, y)); }
-        catch (e) { var pt = svg.createSVGPoint(); pt.x = x; pt.y = y; return p.isPointInFill(pt); }
+  /* ---------- les petits sorciers : polaroïds qui s'inclinent, visionneuse ---------- */
+  var polas = [].slice.call(document.querySelectorAll('[data-photo]'));
+  if (polas.length && !calme && window.matchMedia('(pointer: fine)').matches) {
+    polas.forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - .5, py = (e.clientY - r.top) / r.height - .5;
+        b.classList.add('suit');
+        b.style.setProperty('--ty', (px * 14).toFixed(2) + 'deg');
+        b.style.setProperty('--tx', (-py * 14).toFixed(2) + 'deg');
       });
-      if (dedans) cases.push({ x: x, y: y, ok: false });
-    }
-  }
-  var brossees = 0, fini = false, dernier = null, auto = null;
-
-  function versSvg(cx, cy) {
-    var pt = svg.createSVGPoint(); pt.x = cx; pt.y = cy;
-    return pt.matrixTransform(svg.getScreenCTM().inverse());
-  }
-  function versEcran(x, y) {
-    var pt = svg.createSVGPoint(); pt.x = x; pt.y = y;
-    return pt.matrixTransform(svg.getScreenCTM());
-  }
-
-  function maj() {
-    var p = cases.length ? brossees / cases.length : 1;
-    var pct = Math.min(100, Math.round(p / SEUIL * 100));
-    if (fini) pct = 100;
-    jauge.style.setProperty('--v', pct / 100);
-    jauge.setAttribute('aria-valuenow', pct);
-    jaugeTxt.textContent = pct;
-    etats.forEach(function (li) { li.classList.toggle('fait', pct >= +li.getAttribute('data-seuil')); });
-    if (!fini && p >= SEUIL) termine();
-  }
-
-  function brosse(x, y) {
-    if (fini) return;
-    if (dernier && Math.hypot(x - dernier.x, y - dernier.y) < 9) return;
-    dernier = { x: x, y: y };
-    var c = document.createElementNS(NS, 'circle');
-    c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', RAYON);
-    traces.appendChild(c);
-    for (var i = 0; i < cases.length; i++) {
-      var k = cases[i];
-      if (!k.ok && (k.x - x) * (k.x - x) + (k.y - y) * (k.y - y) <= RAYON * RAYON) { k.ok = true; brossees++; }
-    }
-    if (astuce) astuce.classList.add('cache');
-    maj();
-  }
-
-  function termine() {
-    fini = true;
-    if (auto) { cancelAnimationFrame(auto); auto = null; }
-    svg.classList.add('fini');
-    astuce.classList.add('cache');
-    tadaa.hidden = false;
-    var avaitFocus = document.activeElement === btnSort;
-    btnSort.hidden = true; btnEncore.hidden = false;
-    if (avaitFocus) btnEncore.focus();
-    maj();
-    if (window.Magie) {
-      [[200, 170], [200, 300], [120, 200], [290, 200], [200, 400]].forEach(function (p, i) {
-        setTimeout(function () { var e = versEcran(p[0], p[1]); window.Magie.eclat(e.x, e.y, 18); }, i * 90);
+      b.addEventListener('pointerleave', function () {
+        b.classList.remove('suit'); b.style.removeProperty('--tx'); b.style.removeProperty('--ty');
       });
-    }
+    });
   }
-
-  function recommence() {
-    fini = false; brossees = 0; dernier = null;
-    cases.forEach(function (k) { k.ok = false; });
-    while (traces.firstChild) traces.removeChild(traces.firstChild);
-    svg.classList.remove('fini');
-    tadaa.hidden = true; astuce.classList.remove('cache');
-    btnSort.hidden = false; btnEncore.hidden = true;
-    maj();
-    btnSort.focus();
-  }
-
-  // à la souris on brosse en survolant ; au doigt ou au stylet, en glissant
-  var appuye = false;
-  svg.addEventListener('pointerdown', function (e) {
-    appuye = true;
-    if (svg.setPointerCapture) svg.setPointerCapture(e.pointerId);
-    var p = versSvg(e.clientX, e.clientY); brosse(p.x, p.y);
-  });
-  svg.addEventListener('pointermove', function (e) {
-    if (fini || (e.pointerType !== 'mouse' && !appuye)) return;
-    var p = versSvg(e.clientX, e.clientY);
-    brosse(p.x, p.y);
-    if (window.Magie && e.pointerType !== 'mouse') window.Magie.trainee(e.clientX, e.clientY);
-    if (window.Magie && Math.random() < .5) window.Magie.trainee(e.clientX, e.clientY);
-  });
-  ['pointerup', 'pointercancel'].forEach(function (t) { svg.addEventListener(t, function () { appuye = false; dernier = null; }); });
-  svg.addEventListener('pointerleave', function () { dernier = null; });
-
-  // le bouton : la baguette fait le tour du chien toute seule
-  btnSort.addEventListener('click', function () {
-    if (fini || auto) return;
-    if (calme) { termine(); return; }
-    var points = [], ligneY = 0;
-    for (var yy = 80; yy <= 420; yy += 40, ligneY++) {
-      for (var s = 0; s <= 10; s++) {
-        var xx = 80 + (ligneY % 2 ? 10 - s : s) * 28;
-        points.push([xx, yy]);
-      }
-    }
-    var i = 0;
-    var pas = function () {
-      for (var r = 0; r < 3 && i < points.length; r++, i++) {
-        brosse(points[i][0], points[i][1]);
-        if (window.Magie && i % 2) { var e = versEcran(points[i][0], points[i][1]); window.Magie.trainee(e.x, e.y); }
-      }
-      if (!fini && i < points.length) auto = requestAnimationFrame(pas);
-      else { auto = null; if (!fini) termine(); }
+  var vis = document.querySelector('[data-visionneuse]');
+  if (vis && polas.length) {
+    var vImg = vis.querySelector('[data-v-img]'), vLeg = vis.querySelector('[data-v-legende]'), courant = 0;
+    var montre = function (i) {
+      courant = (i + polas.length) % polas.length;
+      var b = polas[courant], img = b.querySelector('img'), leg = b.querySelector('.polaroid-legende');
+      vImg.src = img.getAttribute('data-grand'); vImg.alt = img.alt;
+      vLeg.innerHTML = leg.innerHTML;
     };
-    dernier = null;
-    auto = requestAnimationFrame(pas);
-  });
-  btnEncore.addEventListener('click', recommence);
-  maj();
-
-  // la mouche tourne autour de la tête tant qu'il n'est pas toiletté
-  var mouche = svg.querySelector('[data-mouche]'), voit = true;
-  if (mouche) {
-    mouche.setAttribute('transform', 'translate(290 110)');
-    if (!calme) {
-      if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { voit = es[0].isIntersecting; }).observe(svg);
-      var vole = function (t) {
-        if (voit && !fini) {
-          var s = t / 1000;
-          var x = 200 + Math.sin(s * 1.3) * 120 + Math.sin(s * 3.1) * 14;
-          var y = 120 + Math.sin(s * 2.1) * 40 + Math.cos(s * 4.3) * 10;
-          mouche.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (Math.cos(s * 1.3) > 0 ? 0 : 180) + ') scale(1 ' + (Math.cos(s * 1.3) > 0 ? 1 : -1) + ')');
-        }
-        requestAnimationFrame(vole);
-      };
-      requestAnimationFrame(vole);
-    }
+    polas.forEach(function (b, i) {
+      b.addEventListener('click', function () {
+        montre(i);
+        if (vis.showModal) vis.showModal(); else vis.setAttribute('open', '');
+      });
+    });
+    var fermeVis = function () { if (vis.close) vis.close(); else vis.removeAttribute('open'); };
+    vis.querySelector('[data-v-fermer]').addEventListener('click', fermeVis);
+    vis.querySelector('[data-v-prec]').addEventListener('click', function () { montre(courant - 1); });
+    vis.querySelector('[data-v-suiv]').addEventListener('click', function () { montre(courant + 1); });
+    vis.addEventListener('click', function (e) { if (e.target === vis) fermeVis(); });
+    vis.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') montre(courant - 1);
+      if (e.key === 'ArrowRight') montre(courant + 1);
+    });
+    var x0 = null;
+    vis.addEventListener('pointerdown', function (e) { x0 = e.clientX; });
+    vis.addEventListener('pointerup', function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) montre(courant + (dx < 0 ? 1 : -1));
+    });
   }
 })();

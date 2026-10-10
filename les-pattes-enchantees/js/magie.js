@@ -89,15 +89,16 @@
 
   function prepare(w, h) {
     CW = w; CH = h;
-    ciel.width = CW * dpr; ciel.height = CH * dpr;
-    cc.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var dc = Math.min(dpr, 1.5);
+    ciel.width = CW * dc; ciel.height = CH * dc;
+    cc.setTransform(dc, 0, 0, dc, 0, 0);
     var n = Math.min(220, Math.round(CW * CH / 5200));
     etoiles = [];
     for (var i = 0; i < n; i++) {
       etoiles.push({ x: Math.random() * CW, y: Math.random() * CH * .85, r: Math.random() < .12 ? 1.6 + Math.random() : .5 + Math.random() * .9,
         p: Math.random() * 6.3, v: .01 + Math.random() * .03, chaud: Math.random() < .25 });
     }
-    if (calme) dessine();
+    dessine();
   }
 
   function dessine() {
@@ -149,8 +150,11 @@
   } else prepare(ciel.offsetWidth, ciel.offsetHeight);
   if (!calme) {
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(ciel);
-    prochaine = performance.now() + 1500;
-    requestAnimationFrame(anime);
+    // une première image fixe tout de suite, l'animation une fois la page chargée
+    var demarre = function () {
+      setTimeout(function () { prochaine = performance.now() + 1500; requestAnimationFrame(anime); }, 1800);
+    };
+    if (document.readyState === 'complete') demarre(); else window.addEventListener('load', demarre);
     // un clic dans le ciel fait jaillir des étoiles
     ciel.parentNode.addEventListener('click', function (e) {
       if (e.target.closest('a, button')) return;
