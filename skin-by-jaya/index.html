@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=2">
+<link rel="stylesheet" href="css/style.css?v=3">
 <script>document.documentElement.className = 'js';</script>
 <!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON) -->
 <script type="application/ld+json">
@@ -53,6 +53,7 @@
  ],
  "sameAs": ["https://www.instagram.com/skin_byjaya/", "https://skinbyjaya.com/"],
  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.2", "reviewCount": "7", "bestRating": "5" },
+ "founder": { "@type": "Person", "name": "Nurse Jaya", "jobTitle": "Infirmière diplômée", "image": "https://adamelkenz.github.io/skin-by-jaya/img/jaya.webp" },
  "potentialAction": { "@type": "ReserveAction", "target": "https://www.treatwell.fr/salon/skin-by-jaya/" }
 }
 </script>
@@ -177,36 +178,26 @@
 
 <!-- ====================== FONDATRICE ====================== -->
 <section class="section fondatrice" id="fondatrice">
-  <div class="arche monte" aria-hidden="true">
-    <div class="arche-fond"></div>
-    <svg class="arche-flacon" viewBox="0 0 120 220">
-      <defs>
-        <linearGradient id="verre" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".5" stop-color="#f6e7dd" stop-opacity=".55"/><stop offset="1" stop-color="#e5c9b9" stop-opacity=".9"/></linearGradient>
-        <linearGradient id="serum" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9c48f"/><stop offset="1" stop-color="#c79a5f"/></linearGradient>
-        <linearGradient id="bouchon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b48c58"/><stop offset=".45" stop-color="#ecd3a6"/><stop offset="1" stop-color="#a07a46"/></linearGradient>
-      </defs>
-      <rect x="44" y="8" width="32" height="46" rx="10" fill="url(#bouchon)"/>
-      <rect x="50" y="52" width="20" height="14" fill="#d9bd92"/>
-      <path d="M22 98c0-18 14-32 38-32s38 14 38 32v96c0 10-8 18-18 18H40c-10 0-18-8-18-18Z" fill="url(#verre)" stroke="#d9bd92" stroke-width="1.5"/>
-      <path d="M25 128h70v66c0 8-6 15-15 15H40c-9 0-15-7-15-15Z" fill="url(#serum)" opacity=".85"/>
-      <path d="M34 94c4-10 12-16 22-18" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".8"/>
-      <rect x="32" y="146" width="56" height="34" rx="4" fill="#fbf7f3" opacity=".9"/>
-      <text x="60" y="161" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11" fill="#8a6a3f" letter-spacing="1">SKIN</text>
-      <text x="60" y="174" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="10" fill="#8a6a3f">by Jaya</text>
-    </svg>
-    <span class="goutte g1"></span><span class="goutte g2"></span><span class="goutte g3"></span>
-    <span class="etincelle e1">✦</span><span class="etincelle e2">✦</span>
-  </div>
+  <figure class="portrait monte">
+    <div class="portrait-cadre">
+      <img src="img/jaya.webp" srcset="img/jaya-480.webp 480w, img/jaya.webp 800w" sizes="(min-width: 900px) 420px, 86vw" width="800" height="639" loading="lazy" decoding="async" alt="Nurse Jaya, infirmière diplômée et fondatrice de Skin By Jaya, en blouse blanche dans son institut">
+    </div>
+    <figcaption><b>Nurse Jaya</b><span>Infirmière diplômée · Fondatrice</span></figcaption>
+    <img class="sceau" src="img/sceau-paris.webp" width="360" height="360" loading="lazy" decoding="async" alt="Sceau Skin By Jaya Paris">
+  </figure>
   <div class="fondatrice-txt monte">
     <p class="surtitre">La fondatrice</p>
     <h2>Nurse Jaya,<br><em>l'œil de l'experte</em></h2>
-    <p>Fondatrice de Skin By Jaya, Nurse Jaya est <b>infirmière diplômée</b> et experte en esthétique avancée, spécialisée dans le traitement des <b>taches pigmentaires</b> et la <b>correction du teint</b>.</p>
-    <p>Depuis plus de neuf ans, formée en France et à l'international, elle développe une approche à la croisée de la science et du bien-être&nbsp;: elle analyse votre peau, vous explique chaque étape, puis associe technologies et actifs dans un protocole fait pour vous.</p>
+    <p class="accroche">Une expertise avancée, portée par une approche humaine et scientifique.</p>
+    <p>Fondatrice de Skin By Jaya, Nurse Jaya est <b>infirmière diplômée</b> et experte en esthétique avancée, spécialisée dans le traitement des <b>taches pigmentaires</b> et la <b>correction du teint</b>. Depuis plus de neuf ans, formée en France et à l'international, elle allie expertise médicale, technologies de pointe et approche humaine, pour une prise en charge sécurisée et personnalisée.</p>
+    <p>Plus qu'un institut, Skin By Jaya est un espace de soin et d'<b>éducation cutanée</b>, où chaque cliente apprend à comprendre sa peau, ses réactions et ses besoins.</p>
+    <blockquote class="citation">«&nbsp;L'objectif&nbsp;: des résultats durables, une peau équilibrée et une confiance retrouvée.&nbsp;»</blockquote>
     <ol class="methode">
-      <li><b>Diagnostic</b><span>On regarde votre peau, on parle de vos attentes.</span></li>
-      <li><b>Technologie</b><span>Microneedling, peelings, HIFU… le bon outil, au bon dosage.</span></li>
-      <li><b>Actifs</b><span>Des soins rénovateurs et une routine pour prolonger le résultat.</span></li>
+      <li><b>Diagnostic</b><span>Un diagnostic précis de votre peau et de vos attentes, avant chaque soin.</span></li>
+      <li><b>Technologie</b><span>Microneedling, peelings, HIFU… des technologies avancées, au bon dosage.</span></li>
+      <li><b>Actifs</b><span>Des actifs hautement performants pour restaurer l'équilibre et la luminosité de la peau.</span></li>
     </ol>
+    <p class="academie">Nurse Jaya forme aussi les professionnelles de la beauté à ses techniques, au sein de la <a href="https://skinbyjaya.com/formation-esthetique-avancee/" target="_blank" rel="noopener">Nurse Jaya Academy</a>.</p>
   </div>
 </section>
 
@@ -507,7 +498,7 @@
   <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver un soin</a>
 </div>
 
-<script src="js/site.js?v=2" defer></script>
+<script src="js/site.js?v=3" defer></script>
 <script src="js/fond.js?v=1" defer></script>
 <script src="js/histoire.js?v=1" defer></script>
 <script src="js/diagnostic.js?v=2" defer></script>
