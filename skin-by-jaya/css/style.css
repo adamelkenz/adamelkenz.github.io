@@ -76,7 +76,7 @@ main { overflow-x: clip; }
 .btn-ligne:hover { border-color: var(--ambre); color: var(--ambre-vif); transform: translateY(-2px); }
 .btn-petit { padding: 11px 20px; font-size: .78rem; }
 .lien-btn {
-  background: none; border: 0; padding: 4px 2px; cursor: pointer;
+  background: none; border: 0; padding: 10px 4px; cursor: pointer; min-height: 40px;
   font: 400 .9rem/1.3 var(--sans); color: var(--ambre);
   text-decoration: underline; text-decoration-color: rgba(224, 176, 122, .4); text-underline-offset: 4px;
 }
@@ -122,7 +122,33 @@ main { overflow-x: clip; }
 .menu-mobile a { padding: 13px 14px; text-decoration: none; font: 500 1.35rem/1.2 var(--titre); border-bottom: 1px solid rgba(224, 176, 122, .12); }
 .menu-mobile a:last-child { border-bottom: 0; }
 .menu-tel { font-family: var(--sans) !important; font-size: 1rem !important; color: var(--ambre); }
-@media (max-width: 420px) { .entete .btn-petit { padding: 10px 14px; } .logo-txt { font-size: 1.15rem; } }
+
+/* sélecteur de langue FR / EN, à côté de « Réserver » */
+.langues { display: inline-flex; flex: none; padding: 3px; border-radius: 999px; border: 1px solid var(--ligne); background: rgba(255, 255, 255, .04); }
+.langues button {
+  min-width: 36px; height: 34px; padding: 0 8px; border: 0; border-radius: 999px; cursor: pointer;
+  background: none; color: var(--ivoire-doux); font: 500 .74rem/1 var(--sans); letter-spacing: .1em;
+  transition: background .25s, color .25s;
+}
+.langues button[aria-pressed="true"] { background: rgba(224, 176, 122, .2); color: var(--ambre-vif); box-shadow: inset 0 0 0 1px var(--ligne-forte); }
+.langues button:hover { color: var(--ivoire); }
+html[lang="en"] .horaires tr.auj th::after { content: " · today"; }
+
+/* téléphones : logo sur deux lignes pour laisser la place à FR/EN, Réserver et le menu */
+@media (max-width: 520px) {
+  .entete { gap: 8px; padding: 6px 6px 6px 10px; }
+  .entete .logo { gap: 8px; }
+  .entete .logo img { width: 30px; height: 30px; }
+  .entete .logo-txt { display: grid; grid-template-columns: auto auto; column-gap: 4px; font-size: 1.02rem; letter-spacing: .1em; line-height: 1; }
+  .entete .logo-txt > span:first-child { grid-column: 1 / -1; }
+  .entete .logo-txt i { font-size: .85rem; }
+  .entete .logo-txt span:last-child { font-size: .78rem; letter-spacing: .14em; align-self: end; }
+  .entete .btn-petit { padding: 10px 13px; font-size: .72rem; letter-spacing: .06em; }
+  .langues button { min-width: 34px; padding: 0 6px; }
+  .menu-btn { width: 40px; height: 40px; }
+  .menu-mobile { top: 70px; }
+}
+@media (max-width: 340px) { .entete .logo-txt { display: none; } }
 @media (min-width: 1040px) {
   .nav { display: flex; }
   .menu-btn, .menu-mobile { display: none !important; }
@@ -189,18 +215,18 @@ main { overflow-x: clip; }
 }
 
 /* ---------- l'histoire de votre peau (mode histoire) ---------- */
-.histoire { position: relative; width: var(--large); margin: 0 auto; display: grid; padding-top: 40px; }
+.histoire { position: relative; width: var(--large); margin: 0 auto; display: grid; padding-top: 64px; }
 .histoire-scene {
   position: sticky; top: 64px; z-index: 2; align-self: start;
   display: flex; flex-direction: column; align-items: center; gap: 14px;
   padding: 14px 0 18px;
   background: var(--nuit);
   box-shadow: 0 0 0 100vmax var(--nuit);
-  clip-path: inset(-100vh -100vmax 0 -100vmax);
+  clip-path: inset(-64px -100vmax 0 -100vmax);
 }
 .histoire-scene::after { content: ""; position: absolute; left: -16px; right: -16px; top: 100%; height: 48px; background: linear-gradient(var(--nuit), rgba(21, 17, 14, 0)); pointer-events: none; }
 .peau-cadre {
-  position: relative; width: min(64vw, 42svh, 520px); aspect-ratio: 1; border-radius: 50%; padding: 8px;
+  position: relative; width: min(62vw, 37svh, 520px); aspect-ratio: 1; border-radius: 50%; padding: 8px;
   background: conic-gradient(from 210deg, #6b4a2b, #e7c08a, #8a6338, #f3d3a3, #6b4a2b);
   box-shadow: 0 0 80px -10px rgba(224, 176, 122, .25), 0 40px 80px -40px rgba(0, 0, 0, .9);
 }
@@ -444,6 +470,8 @@ main { overflow-x: clip; }
 .pied .logo { margin: 0 0 8px; }
 .pied p { margin: 0; }
 .pied a { color: inherit; text-underline-offset: 3px; }
+[data-tel], [data-tel-texte] { white-space: nowrap; }
+.pied-liens a { display: inline-block; padding: 8px 2px; }
 @media (min-width: 1040px) { .pied { padding-bottom: 50px; } }
 
 /* barre du bas sur téléphone */
