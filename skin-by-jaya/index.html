@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Skin By Jaya – Soins du visage à Paris 17e | Taches, éclat, HIFU, microneedling</title>
 <meta name="description" content="Skin By Jaya, Skin Lab à Paris 17e (3 passage Doisy, métro Ternes) : soins du visage experts par une infirmière diplômée. Taches pigmentaires, éclat, peeling, microneedling, HIFU. Tarifs affichés, réservation en ligne.">
-<meta name="theme-color" content="#fbf7f3">
+<meta name="theme-color" content="#15110e">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://adamelkenz.github.io/skin-by-jaya/">
 <meta property="og:type" content="website">
@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;display=swap">
-<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/style.css?v=2">
 <script>document.documentElement.className = 'js';</script>
 <!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON) -->
 <script type="application/ld+json">
@@ -61,7 +61,7 @@
 <a class="passer" href="#contenu">Aller au contenu</a>
 
 <!-- décor : halos nacrés et grain (en CSS) -->
-<div class="fond" aria-hidden="true"><i class="halo h1"></i><i class="halo h2"></i><i class="halo h3"></i></div>
+<div class="fond" aria-hidden="true"><i class="halo h1"></i><i class="halo h2"></i></div>
 
 <header class="entete">
   <a class="logo" href="#accueil" aria-label="Skin By Jaya, retour en haut">
@@ -69,6 +69,7 @@
     <span class="logo-txt">Skin <i>by</i> Jaya</span>
   </a>
   <nav class="nav" aria-label="Navigation principale">
+    <a href="#histoire">Votre peau</a>
     <a href="#fondatrice">La fondatrice</a>
     <a href="#soins">Soins &amp; tarifs</a>
     <a href="#diagnostic">Diagnostic</a>
@@ -79,6 +80,7 @@
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span></button>
 </header>
 <nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu">
+  <a href="#histoire">L'histoire de votre peau</a>
   <a href="#fondatrice">La fondatrice</a>
   <a href="#soins">Soins &amp; tarifs</a>
   <a href="#diagnostic">Diagnostic de peau</a>
@@ -92,10 +94,13 @@
 
 <!-- ====================== ACCUEIL ====================== -->
 <section class="hero" id="accueil">
+  <!-- fond : vagues de sérum et gouttes qui flottent (js/fond.js), dégradé de secours en CSS -->
+  <canvas class="hero-fond" data-fond aria-hidden="true"></canvas>
+  <div class="hero-voile" aria-hidden="true"></div>
   <div class="hero-txt">
     <p class="surtitre">Skin Lab · Paris 17<sup>e</sup></p>
-    <h1>La peau,<br><em>en pleine lumière.</em></h1>
-    <p class="hero-sous">Des protocoles experts imaginés par une infirmière diplômée, spécialiste des taches pigmentaires et de la correction du teint. Diagnostic, technologie, actifs&nbsp;: chaque soin est pensé pour <b>votre</b> peau.</p>
+    <h1>Révélez l'éclat<br><em>de votre peau.</em></h1>
+    <p class="hero-sous">Des soins avancés et des protocoles experts, imaginés par une infirmière diplômée spécialiste des taches pigmentaires et de la correction du teint.</p>
     <div class="hero-actions">
       <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">
         Réserver un soin
@@ -108,32 +113,67 @@
     </div>
     <p class="statut" data-statut><i></i>Du lundi au samedi, 10 h – 20 h</p>
   </div>
-
-  <figure class="glass" data-glass>
-    <div class="glass-cadre">
-      <canvas class="glass-toile" aria-label="Surface de peau interactive : passez le doigt ou la souris pour révéler l'éclat" role="img"></canvas>
-      <span class="glass-indice" data-glass-indice>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.6 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg>
-        Passez le doigt pour révéler l'éclat
-      </span>
-    </div>
-    <figcaption class="glass-legende">
-      <span class="jauge" aria-hidden="true"><i data-glass-jauge></i></span>
-      <span class="glass-pct"><b data-glass-pct>0</b>&nbsp;% d'éclat</span>
-      <button class="lien-btn" type="button" data-glass-tout>Tout révéler</button>
-      <button class="lien-btn" type="button" data-glass-reset hidden>Recommencer</button>
-    </figcaption>
-    <p class="glass-bravo" data-glass-bravo hidden aria-live="polite">Voilà l'effet <em>glass skin</em>&nbsp;: une peau lisse qui accroche la lumière. <a href="#diagnostic">Trouver mon soin →</a></p>
-  </figure>
+  <a class="hero-suite" href="#histoire"><span>L'histoire de votre peau</span><i aria-hidden="true"></i></a>
+  <ul class="bandeau" aria-label="En bref">
+    <li><b>Infirmière diplômée</b><span>plus de 9 ans d'expérience</span></li>
+    <li><b>Diagnostic avant chaque soin</b><span>protocole sur mesure</span></li>
+    <li><b>Tarifs affichés</b><span>séance ou cure de 3</span></li>
+    <li><b>Métro Ternes</b><span>à 4 minutes à pied</span></li>
+  </ul>
 </section>
 
-<!-- bandeau des promesses -->
-<ul class="bandeau" aria-label="En bref">
-  <li><b>Infirmière diplômée</b><span>plus de 9 ans d'expérience</span></li>
-  <li><b>Diagnostic avant chaque soin</b><span>protocole sur mesure</span></li>
-  <li><b>Tarifs affichés</b><span>séance ou cure de 3</span></li>
-  <li><b>Métro Ternes</b><span>à 4 minutes à pied</span></li>
-</ul>
+<!-- ====================== L'HISTOIRE DE VOTRE PEAU (mode histoire, js/histoire.js) ====================== -->
+<section class="histoire" id="histoire" data-histoire>
+  <div class="histoire-scene">
+    <div class="peau-cadre">
+      <canvas class="peau-toile" role="img" aria-label="Une peau qui subit la pollution, le soleil et le temps, puis que l'on répare en appliquant le soin"></canvas>
+      <span class="peau-indice" data-indice>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.6 14a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg>
+        Appliquez le soin
+      </span>
+    </div>
+    <ul class="agresseurs" aria-hidden="true">
+      <li data-ag="pollution"><span>Pollution</span><i><b></b></i></li>
+      <li data-ag="soleil"><span>Soleil</span><i><b></b></i></li>
+      <li data-ag="temps"><span>Temps</span><i><b></b></i></li>
+    </ul>
+    <div class="soin-jauge">
+      <span class="jauge" aria-hidden="true"><i data-jauge></i></span>
+      <span class="soin-pct"><b data-pct>0</b>&nbsp;% réparée</span>
+      <button class="lien-btn" type="button" data-tout>Tout révéler</button>
+      <button class="lien-btn" type="button" data-reset hidden>Recommencer</button>
+    </div>
+  </div>
+
+  <div class="histoire-etapes">
+    <article class="etape" data-etape="intro">
+      <p class="surtitre">L'histoire de votre peau</p>
+      <h2>Chaque jour, <em>votre peau se bat pour vous.</em></h2>
+      <p>Elle vous protège du monde extérieur, du matin au soir. Mais elle encaisse aussi tout ce qu'on lui fait subir… Faites défiler pour voir ce qui l'abîme.</p>
+    </article>
+    <article class="etape" data-etape="pollution">
+      <p class="etape-num"><span>01</span> La pollution</p>
+      <h3>Une ville qui se dépose sur la peau</h3>
+      <p>Particules fines, gaz d'échappement, poussières&nbsp;: elles s'accrochent à l'épiderme, l'empêchent de respirer et ternissent le teint, jour après jour.</p>
+    </article>
+    <article class="etape" data-etape="soleil">
+      <p class="etape-num"><span>02</span> Le soleil</p>
+      <h3>Des UV qui laissent des traces</h3>
+      <p>Même en ville, même en hiver, les UV accélèrent le vieillissement de la peau et réveillent les taches pigmentaires. Le teint devient irrégulier.</p>
+    </article>
+    <article class="etape" data-etape="temps">
+      <p class="etape-num"><span>03</span> Le temps</p>
+      <h3>Le stress, les nuits courtes, les années</h3>
+      <p>Avec le temps, la peau se renouvelle moins vite&nbsp;: elle perd de son éclat et de sa fermeté, le grain s'épaissit et les ridules s'installent.</p>
+    </article>
+    <article class="etape etape-finale" data-etape="soin">
+      <p class="etape-num"><span>04</span> La révélation</p>
+      <h3>Une peau abîmée n'a pas dit <em>son dernier mot.</em></h3>
+      <p>Découvrez son potentiel&nbsp;: appliquez le soin du bout du doigt (ou avec la souris) sur la peau et regardez la lumière revenir.</p>
+      <p class="bravo" data-bravo hidden aria-live="polite">Voilà tout le potentiel de votre peau&nbsp;: lisse, unifiée, lumineuse. C'est ce que chaque protocole Skin By Jaya cherche à révéler. <a href="#diagnostic">Trouver mon soin →</a></p>
+    </article>
+  </div>
+</section>
 
 <!-- ====================== FONDATRICE ====================== -->
 <section class="section fondatrice" id="fondatrice">
@@ -467,8 +507,9 @@
   <a class="btn btn-or" data-resa href="https://www.treatwell.fr/salon/skin-by-jaya/" target="_blank" rel="noopener">Réserver un soin</a>
 </div>
 
-<script src="js/site.js?v=1" defer></script>
-<script src="js/glass.js?v=1" defer></script>
-<script src="js/diagnostic.js?v=1" defer></script>
+<script src="js/site.js?v=2" defer></script>
+<script src="js/fond.js?v=1" defer></script>
+<script src="js/histoire.js?v=1" defer></script>
+<script src="js/diagnostic.js?v=2" defer></script>
 </body>
 </html>

@@ -31,10 +31,10 @@
       cibles: { eclat: 3 }, doux: true, flash: true, hydrate: true,
       pourquoi: 'Le soin premium pour une peau rebondie, lisse et lumineuse, celle qui accroche la lumière.' },
     { id: 'hifu-bas', nom: 'HIFU bas du visage', but: 'Lift haute précision, sans chirurgie', duree: '1 h', prix: 120, cure: 360,
-      cibles: { fermete: 3 }, doux: true, flash: true,
+      cibles: { fermete: 3 }, doux: true, flash: false,
       pourquoi: 'Des ultrasons focalisés qui raffermissent l\'ovale et le bas du visage, progressivement.' },
     { id: 'hifu', nom: 'HIFU visage complet', but: 'Lift haute précision, sans chirurgie', duree: '1 h 30', prix: 220, cure: 580,
-      cibles: { fermete: 3, texture: 1 }, doux: true, flash: true,
+      cibles: { fermete: 3, texture: 1 }, doux: true, flash: false,
       pourquoi: 'Des ultrasons focalisés sur tout le visage pour un effet lift qui s\'installe au fil des semaines.' }
   ];
   var ORDRE = ['priorite', 'peau', 'budget', 'rythme'];
