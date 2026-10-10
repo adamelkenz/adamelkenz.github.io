@@ -103,7 +103,7 @@ var SALON = {
     var veille = new IntersectionObserver(function (es) {
       es.forEach(function (e) { e.target.classList.toggle('en-pause', !e.isIntersecting); });
     }, { rootMargin: '100px 0px' });
-    document.querySelectorAll('.arche, .plan').forEach(function (el) { el.classList.add('en-pause'); veille.observe(el); });
+    document.querySelectorAll('.portrait, .plan').forEach(function (el) { el.classList.add('en-pause'); veille.observe(el); });
   }
 
   // onglets de la carte des soins (flèches gauche / droite au clavier)
