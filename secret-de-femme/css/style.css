@@ -105,10 +105,26 @@ p { margin: 0 0 1em; }
 .hero-veines { position: absolute; z-index: -1; top: 0; left: 50%; width: 100vw; height: 100%; transform: translateX(-50%); overflow: visible; pointer-events: none; }
 .hero-veines path { fill: none; stroke-linecap: round; }
 .hero-veines g { transition: none; will-change: transform; }
-.js .hero-veines path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: trace 3.2s cubic-bezier(.45, .1, .2, 1) .2s forwards; }
+.js .hero-veines path:not(.seve) { stroke-dasharray: 1; stroke-dashoffset: 1; animation: trace 3.2s cubic-bezier(.45, .1, .2, 1) .2s forwards; }
 .js .hero-veines .veines-pres path { animation-delay: .7s; }
 .js .hero-veines path:nth-child(2) { animation-duration: 4s; }
 @keyframes trace { to { stroke-dashoffset: 0; } }
+
+/* lianes vivantes (js/lianes.js) : derrière les sections, dans les filets, et la sève qui y circule */
+.fond-vivant > .lianes { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.lianes path, .veine path { fill: none; stroke-linecap: round; }
+.a-lianes.bloc-turquoise::before, .a-lianes.infos-bloc::before { display: none; }
+.bloc-perle > .lianes { opacity: .75; }
+.bloc-turquoise > .lianes { opacity: .9; }
+.infos-bloc > .lianes { opacity: .85; }
+.simulateur-bloc > .lianes { opacity: .7; }
+.veine.a-lianes { background: none; }
+.veine svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.veine path { vector-effect: non-scaling-stroke; }
+.seve { fill: none; stroke: #c48a3c; stroke-width: 3; stroke-linecap: round; stroke-dasharray: .1 1.15; stroke-dashoffset: 0; opacity: .9; }
+.hero-veines .seve { stroke-width: 3.4; }
+.veine .seve { stroke: #c48a3c; stroke-width: 2.6; }
+.infos-bloc .seve { stroke: #ffe2a6; opacity: 1; stroke-width: 3.4; }
 
 /* fonds vivants : lueur qui suit le pointeur, paillettes */
 .fond-vivant { position: relative; isolation: isolate; --lueur: rgba(233, 184, 180, .42); }
@@ -371,6 +387,7 @@ p { margin: 0 0 1em; }
   .lotus .petale { transition: none; }
   .bloc-turquoise::before, .infos-bloc::before { animation: none; }
   .hero-veines path { animation: none !important; stroke-dashoffset: 0 !important; }
+  .seve { display: none; }
   .paillettes { display: none; }
 }
 
