@@ -30,7 +30,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Italiana&amp;family=Jost:wght@400;500;600&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;family=Italiana&amp;family=Jost:wght@400;500;600&amp;display=swap"></noscript>
 <link rel="preload" as="image" href="img/accueil-960.webp" imagesrcset="img/accueil-480.webp 480w, img/accueil-960.webp 960w, img/accueil.webp 1600w" imagesizes="(max-width: 900px) 92vw, 44vw">
-<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/style.css?v=2">
 <script>document.documentElement.className = 'js';</script>
 <!-- Coordonnées et horaires : ici et dans js/site.js (objet SALON). Tarifs laser : js/simulateur.js -->
 <script type="application/ld+json">
@@ -177,7 +177,19 @@
 
 <main>
   <!-- ============ ACCUEIL ============ -->
-  <section class="hero" id="accueil">
+  <section class="hero fond-vivant" id="accueil">
+    <svg class="hero-veines" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="veines-loin" data-profondeur="10">
+        <path pathLength="1" d="M-40 190C140 230 260 140 430 205s300 190 520 120 340-90 530-10" stroke="#c99a57" stroke-opacity=".38" stroke-width="1.5"/>
+        <path pathLength="1" d="M1010 -30c-30 120 60 170 30 290s-120 150-70 300" stroke="#c99a57" stroke-opacity=".22" stroke-width="1"/>
+      </g>
+      <g class="veines-pres" data-profondeur="22">
+        <path pathLength="1" d="M-40 640c200-70 340 50 530-20s260-200 450-150 290 150 520 110" stroke="#d79ca8" stroke-opacity=".45" stroke-width="2.4"/>
+        <path pathLength="1" d="M160 940c60-140 200-160 250-280s-10-210 100-300" stroke="#d79ca8" stroke-opacity=".28" stroke-width="1.3"/>
+        <path pathLength="1" d="M430 205c50 70 30 150 120 205s210 20 280 100" stroke="#c99a57" stroke-opacity=".26" stroke-width="1"/>
+      </g>
+    </svg>
+    <canvas class="paillettes" data-paillettes="22" aria-hidden="true"></canvas>
     <div class="hero-texte">
       <svg class="lotus" data-lotus viewBox="0 0 120 84" aria-hidden="true">
         <defs>
@@ -267,7 +279,7 @@
   </section>
 
   <!-- ============ SOINS & TARIFS ============ -->
-  <section class="bloc bloc-perle" id="soins">
+  <section class="bloc bloc-perle fond-vivant" id="soins">
     <div class="titre">
       <p class="surtitre monte">Soins &amp; tarifs</p>
       <h2 class="monte">La carte <em>des soins</em></h2>
@@ -424,7 +436,7 @@
   </section>
 
   <!-- ============ SIMULATEUR LASER ============ -->
-  <section class="bloc simulateur-bloc" id="laser" aria-labelledby="laser-titre">
+  <section class="bloc simulateur-bloc fond-vivant" id="laser" aria-labelledby="laser-titre">
     <div class="titre">
       <p class="surtitre monte">Épilation définitive au laser</p>
       <h2 class="monte" id="laser-titre">Composez vos zones, <em>on fait les comptes</em></h2>
@@ -464,7 +476,7 @@
   </section>
 
   <!-- ============ TECHNOLOGIES ============ -->
-  <section class="bloc bloc-turquoise" id="technologies">
+  <section class="bloc bloc-turquoise fond-vivant" id="technologies">
     <div class="titre">
       <p class="surtitre monte">Les technologies</p>
       <h2 class="monte">Des appareils <em>nouvelle génération</em></h2>
@@ -525,7 +537,7 @@
   </section>
 
   <!-- ============ QUESTIONS ============ -->
-  <section class="bloc bloc-perle" id="questions">
+  <section class="bloc bloc-perle fond-vivant" id="questions">
     <div class="titre">
       <p class="surtitre monte">Questions fréquentes</p>
       <h2 class="monte">Avant de <em>venir</em></h2>
@@ -561,7 +573,8 @@
   <div class="veine" aria-hidden="true"></div>
 
   <!-- ============ HORAIRES & ACCÈS ============ -->
-  <section class="bloc infos-bloc" id="infos">
+  <section class="bloc infos-bloc fond-vivant fond-nuit" id="infos">
+    <canvas class="paillettes" data-paillettes="26" aria-hidden="true"></canvas>
     <div class="titre">
       <p class="surtitre monte">Horaires &amp; accès</p>
       <h2 class="monte">On vous attend <em>rue Belle Fontaine</em></h2>
@@ -645,7 +658,8 @@
   <a class="btn" href="https://www.planity.com/secret-de-femme-57780-rosselange" target="_blank" rel="noopener">Réserver</a>
   <a class="btn btn-clair" data-tel href="tel:+33676480478">Appeler</a>
 </div>
-<script src="js/site.js?v=1" defer></script>
-<script src="js/simulateur.js?v=1" defer></script>
+<script src="js/site.js?v=2" defer></script>
+<script src="js/simulateur.js?v=2" defer></script>
+<script src="js/fond.js?v=1" defer></script>
 </body>
 </html>
