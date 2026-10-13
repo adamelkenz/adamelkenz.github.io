@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adamelkenz.github.io/les-fleurs-de-florencia/sitemap.xml
