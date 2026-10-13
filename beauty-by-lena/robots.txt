@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adamelkenz.github.io/beauty-by-lena/sitemap.xml
