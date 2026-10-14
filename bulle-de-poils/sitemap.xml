@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://adamelkenz.github.io/bulle-de-poils/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/apres.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/avant.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/galerie/maltais-900.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/galerie/cocker-900.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/galerie/caniche-900.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/bulle-de-poils/img/galerie/malamute-900.webp</image:loc></image:image>
+  </url>
+</urlset>
