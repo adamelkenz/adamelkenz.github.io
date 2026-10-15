@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://adamelkenz.github.io/barbechiens/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/partage.jpg</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/heros/h020.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/salon-pauline.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/salon-boutique.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/soin-bain.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/carnet-noel.webp</image:loc></image:image>
+    <image:image><image:loc>https://adamelkenz.github.io/barbechiens/img/bain-apres-1.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://adamelkenz.github.io/barbechiens/mentions-legales/</loc>
+    <lastmod>2026-10-15</lastmod>
+  </url>
+</urlset>
