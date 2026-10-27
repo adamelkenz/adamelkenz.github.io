@@ -1,0 +1,967 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Micro, EURL, SASU, SARL, SAS… Lequel est fait pour toi ?",
+			"voice": "statuts/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 157,
+			"voiceFrames": 152,
+			"words": [
+				{
+					"text": "Micro,",
+					"frame": 0
+				},
+				{
+					"text": "EURL,",
+					"frame": 18
+				},
+				{
+					"text": "SASU,",
+					"frame": 38
+				},
+				{
+					"text": "SARL,",
+					"frame": 57
+				},
+				{
+					"text": "SAS…",
+					"frame": 83
+				},
+				{
+					"text": "Lequel",
+					"frame": 115
+				},
+				{
+					"text": "est",
+					"frame": 123
+				},
+				{
+					"text": "fait",
+					"frame": 130
+				},
+				{
+					"text": "pour",
+					"frame": 134
+				},
+				{
+					"text": "toi ?",
+					"frame": 138
+				}
+			]
+		},
+		{
+			"text": "Choisis mal, et tu le paies pendant des années.",
+			"voice": "statuts/voice/line-01.wav",
+			"from": 157,
+			"durationInFrames": 72,
+			"voiceFrames": 69,
+			"words": [
+				{
+					"text": "Choisis",
+					"frame": 0
+				},
+				{
+					"text": "mal,",
+					"frame": 13
+				},
+				{
+					"text": "et",
+					"frame": 20
+				},
+				{
+					"text": "tu",
+					"frame": 22
+				},
+				{
+					"text": "le",
+					"frame": 26
+				},
+				{
+					"text": "paies",
+					"frame": 30
+				},
+				{
+					"text": "pendant",
+					"frame": 36
+				},
+				{
+					"text": "des",
+					"frame": 44
+				},
+				{
+					"text": "années.",
+					"frame": 49
+				}
+			]
+		},
+		{
+			"text": "Tu veux tester une idée, seul, sans gros frais ? La micro-entreprise.",
+			"voice": "statuts/voice/line-02.wav",
+			"from": 229,
+			"durationInFrames": 138,
+			"voiceFrames": 133,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "veux",
+					"frame": 6
+				},
+				{
+					"text": "tester",
+					"frame": 11
+				},
+				{
+					"text": "une",
+					"frame": 22
+				},
+				{
+					"text": "idée,",
+					"frame": 25
+				},
+				{
+					"text": "seul,",
+					"frame": 42
+				},
+				{
+					"text": "sans",
+					"frame": 53
+				},
+				{
+					"text": "gros",
+					"frame": 57
+				},
+				{
+					"text": "frais ?",
+					"frame": 62
+				},
+				{
+					"text": "La",
+					"frame": 87
+				},
+				{
+					"text": "micro-entreprise.",
+					"frame": 92
+				}
+			]
+		},
+		{
+			"text": "Création en dix minutes. Tu paies tes cotisations sur ce que tu encaisses, c'est tout.",
+			"voice": "statuts/voice/line-03.wav",
+			"from": 367,
+			"durationInFrames": 143,
+			"voiceFrames": 138,
+			"words": [
+				{
+					"text": "Création",
+					"frame": 0
+				},
+				{
+					"text": "en",
+					"frame": 17
+				},
+				{
+					"text": "dix",
+					"frame": 20
+				},
+				{
+					"text": "minutes.",
+					"frame": 23
+				},
+				{
+					"text": "Tu",
+					"frame": 48
+				},
+				{
+					"text": "paies",
+					"frame": 55
+				},
+				{
+					"text": "tes",
+					"frame": 60
+				},
+				{
+					"text": "cotisations",
+					"frame": 63
+				},
+				{
+					"text": "sur",
+					"frame": 80
+				},
+				{
+					"text": "ce",
+					"frame": 84
+				},
+				{
+					"text": "que",
+					"frame": 86
+				},
+				{
+					"text": "tu",
+					"frame": 89
+				},
+				{
+					"text": "encaisses,",
+					"frame": 93
+				},
+				{
+					"text": "c'est",
+					"frame": 110
+				},
+				{
+					"text": "tout.",
+					"frame": 115
+				}
+			]
+		},
+		{
+			"text": "Mais au-delà de quatre-vingt-trois mille six cents euros en services, tu en sors. Et tes frais ne sont pas déductibles.",
+			"voice": "statuts/voice/line-04.wav",
+			"from": 510,
+			"durationInFrames": 186,
+			"voiceFrames": 181,
+			"words": [
+				{
+					"text": "Mais",
+					"frame": 0
+				},
+				{
+					"text": "au-delà",
+					"frame": 6
+				},
+				{
+					"text": "de",
+					"frame": 16
+				},
+				{
+					"text": "quatre-vingt-trois",
+					"frame": 20
+				},
+				{
+					"text": "mille",
+					"frame": 41
+				},
+				{
+					"text": "six",
+					"frame": 47
+				},
+				{
+					"text": "cents",
+					"frame": 53
+				},
+				{
+					"text": "euros",
+					"frame": 60
+				},
+				{
+					"text": "en",
+					"frame": 68
+				},
+				{
+					"text": "services,",
+					"frame": 72
+				},
+				{
+					"text": "tu",
+					"frame": 96
+				},
+				{
+					"text": "en",
+					"frame": 101
+				},
+				{
+					"text": "sors.",
+					"frame": 105
+				},
+				{
+					"text": "Et",
+					"frame": 124
+				},
+				{
+					"text": "tes",
+					"frame": 128
+				},
+				{
+					"text": "frais",
+					"frame": 131
+				},
+				{
+					"text": "ne",
+					"frame": 136
+				},
+				{
+					"text": "sont",
+					"frame": 139
+				},
+				{
+					"text": "pas",
+					"frame": 144
+				},
+				{
+					"text": "déductibles.",
+					"frame": 148
+				}
+			]
+		},
+		{
+			"text": "Seul, avec des frais, et tu veux te verser un revenu ? L'EURL. Environ quarante-cinq pour cent de cotisations sur ce que tu te verses.",
+			"voice": "statuts/voice/line-05.wav",
+			"from": 696,
+			"durationInFrames": 263,
+			"voiceFrames": 258,
+			"words": [
+				{
+					"text": "Seul,",
+					"frame": 0
+				},
+				{
+					"text": "avec",
+					"frame": 14
+				},
+				{
+					"text": "des",
+					"frame": 23
+				},
+				{
+					"text": "frais,",
+					"frame": 27
+				},
+				{
+					"text": "et",
+					"frame": 45
+				},
+				{
+					"text": "tu",
+					"frame": 51
+				},
+				{
+					"text": "veux",
+					"frame": 54
+				},
+				{
+					"text": "te",
+					"frame": 59
+				},
+				{
+					"text": "verser",
+					"frame": 62
+				},
+				{
+					"text": "un",
+					"frame": 71
+				},
+				{
+					"text": "revenu ?",
+					"frame": 74
+				},
+				{
+					"text": "L'EURL.",
+					"frame": 104
+				},
+				{
+					"text": "Environ",
+					"frame": 140
+				},
+				{
+					"text": "quarante-cinq",
+					"frame": 156
+				},
+				{
+					"text": "pour",
+					"frame": 171
+				},
+				{
+					"text": "cent",
+					"frame": 178
+				},
+				{
+					"text": "de",
+					"frame": 183
+				},
+				{
+					"text": "cotisations",
+					"frame": 186
+				},
+				{
+					"text": "sur",
+					"frame": 211
+				},
+				{
+					"text": "ce",
+					"frame": 217
+				},
+				{
+					"text": "que",
+					"frame": 221
+				},
+				{
+					"text": "tu",
+					"frame": 224
+				},
+				{
+					"text": "te",
+					"frame": 228
+				},
+				{
+					"text": "verses.",
+					"frame": 231
+				}
+			]
+		},
+		{
+			"text": "Seul, avec beaucoup de marge ? La SASU. Ton salaire coûte cher : environ quatre-vingts pour cent de charges.",
+			"voice": "statuts/voice/line-06.wav",
+			"from": 959,
+			"durationInFrames": 218,
+			"voiceFrames": 213,
+			"words": [
+				{
+					"text": "Seul,",
+					"frame": 0
+				},
+				{
+					"text": "avec",
+					"frame": 14
+				},
+				{
+					"text": "beaucoup",
+					"frame": 23
+				},
+				{
+					"text": "de",
+					"frame": 32
+				},
+				{
+					"text": "marge ?",
+					"frame": 35
+				},
+				{
+					"text": "La",
+					"frame": 59
+				},
+				{
+					"text": "SASU.",
+					"frame": 64
+				},
+				{
+					"text": "Ton",
+					"frame": 94
+				},
+				{
+					"text": "salaire",
+					"frame": 100
+				},
+				{
+					"text": "coûte",
+					"frame": 110
+				},
+				{
+					"text": "cher :",
+					"frame": 116
+				},
+				{
+					"text": "environ",
+					"frame": 139
+				},
+				{
+					"text": "quatre-vingts",
+					"frame": 154
+				},
+				{
+					"text": "pour",
+					"frame": 170
+				},
+				{
+					"text": "cent",
+					"frame": 177
+				},
+				{
+					"text": "de",
+					"frame": 182
+				},
+				{
+					"text": "charges.",
+					"frame": 186
+				}
+			]
+		},
+		{
+			"text": "Mais tes dividendes ne paient aucune cotisation sociale. Juste la flat tax : trente et un virgule quatre pour cent.",
+			"voice": "statuts/voice/line-07.wav",
+			"from": 1177,
+			"durationInFrames": 229,
+			"voiceFrames": 224,
+			"words": [
+				{
+					"text": "Mais",
+					"frame": 0
+				},
+				{
+					"text": "tes",
+					"frame": 6
+				},
+				{
+					"text": "dividendes",
+					"frame": 9
+				},
+				{
+					"text": "ne",
+					"frame": 32
+				},
+				{
+					"text": "paient",
+					"frame": 37
+				},
+				{
+					"text": "aucune",
+					"frame": 43
+				},
+				{
+					"text": "cotisation",
+					"frame": 55
+				},
+				{
+					"text": "sociale.",
+					"frame": 73
+				},
+				{
+					"text": "Juste",
+					"frame": 104
+				},
+				{
+					"text": "la",
+					"frame": 116
+				},
+				{
+					"text": "flat",
+					"frame": 119
+				},
+				{
+					"text": "tax :",
+					"frame": 127
+				},
+				{
+					"text": "trente",
+					"frame": 157
+				},
+				{
+					"text": "et",
+					"frame": 168
+				},
+				{
+					"text": "un",
+					"frame": 171
+				},
+				{
+					"text": "virgule",
+					"frame": 174
+				},
+				{
+					"text": "quatre",
+					"frame": 189
+				},
+				{
+					"text": "pour",
+					"frame": 197
+				},
+				{
+					"text": "cent.",
+					"frame": 202
+				}
+			]
+		},
+		{
+			"text": "À plusieurs, en famille ou entre associés ? La SARL. Un cadre fixé par la loi : moins de liberté, mais moins de mauvaises surprises.",
+			"voice": "statuts/voice/line-08.wav",
+			"from": 1406,
+			"durationInFrames": 263,
+			"voiceFrames": 258,
+			"words": [
+				{
+					"text": "À",
+					"frame": 0
+				},
+				{
+					"text": "plusieurs,",
+					"frame": 6
+				},
+				{
+					"text": "en",
+					"frame": 23
+				},
+				{
+					"text": "famille",
+					"frame": 29
+				},
+				{
+					"text": "ou",
+					"frame": 43
+				},
+				{
+					"text": "entre",
+					"frame": 47
+				},
+				{
+					"text": "associés ?",
+					"frame": 53
+				},
+				{
+					"text": "La",
+					"frame": 79
+				},
+				{
+					"text": "SARL.",
+					"frame": 84
+				},
+				{
+					"text": "Un",
+					"frame": 114
+				},
+				{
+					"text": "cadre",
+					"frame": 119
+				},
+				{
+					"text": "fixé",
+					"frame": 129
+				},
+				{
+					"text": "par",
+					"frame": 140
+				},
+				{
+					"text": "la",
+					"frame": 144
+				},
+				{
+					"text": "loi :",
+					"frame": 147
+				},
+				{
+					"text": "moins",
+					"frame": 169
+				},
+				{
+					"text": "de",
+					"frame": 176
+				},
+				{
+					"text": "liberté,",
+					"frame": 179
+				},
+				{
+					"text": "mais",
+					"frame": 204
+				},
+				{
+					"text": "moins",
+					"frame": 209
+				},
+				{
+					"text": "de",
+					"frame": 215
+				},
+				{
+					"text": "mauvaises",
+					"frame": 218
+				},
+				{
+					"text": "surprises.",
+					"frame": 228
+				}
+			]
+		},
+		{
+			"text": "Tu veux des investisseurs et grandir vite ? La SAS. Des statuts sur mesure. C'est le format des startups.",
+			"voice": "statuts/voice/line-09.wav",
+			"from": 1669,
+			"durationInFrames": 231,
+			"voiceFrames": 222,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "veux",
+					"frame": 6
+				},
+				{
+					"text": "des",
+					"frame": 10
+				},
+				{
+					"text": "investisseurs",
+					"frame": 15
+				},
+				{
+					"text": "et",
+					"frame": 37
+				},
+				{
+					"text": "grandir",
+					"frame": 41
+				},
+				{
+					"text": "vite ?",
+					"frame": 51
+				},
+				{
+					"text": "La",
+					"frame": 76
+				},
+				{
+					"text": "SAS.",
+					"frame": 85
+				},
+				{
+					"text": "Des",
+					"frame": 120
+				},
+				{
+					"text": "statuts",
+					"frame": 126
+				},
+				{
+					"text": "sur",
+					"frame": 139
+				},
+				{
+					"text": "mesure.",
+					"frame": 144
+				},
+				{
+					"text": "C'est",
+					"frame": 168
+				},
+				{
+					"text": "le",
+					"frame": 174
+				},
+				{
+					"text": "format",
+					"frame": 179
+				},
+				{
+					"text": "des",
+					"frame": 190
+				},
+				{
+					"text": "startups.",
+					"frame": 193
+				}
+			]
+		},
+		{
+			"text": "Retiens ça. Tu testes : micro. Seul avec des frais : EURL. Seul avec de la marge : SASU. À plusieurs : SARL ou SAS.",
+			"voice": "statuts/voice/line-10.wav",
+			"from": 1900,
+			"durationInFrames": 331,
+			"voiceFrames": 319,
+			"words": [
+				{
+					"text": "Retiens",
+					"frame": 0
+				},
+				{
+					"text": "ça.",
+					"frame": 12
+				},
+				{
+					"text": "Tu",
+					"frame": 33
+				},
+				{
+					"text": "testes :",
+					"frame": 39
+				},
+				{
+					"text": "micro.",
+					"frame": 58
+				},
+				{
+					"text": "Seul",
+					"frame": 88
+				},
+				{
+					"text": "avec",
+					"frame": 96
+				},
+				{
+					"text": "des",
+					"frame": 102
+				},
+				{
+					"text": "frais :",
+					"frame": 106
+				},
+				{
+					"text": "EURL.",
+					"frame": 123
+				},
+				{
+					"text": "Seul",
+					"frame": 156
+				},
+				{
+					"text": "avec",
+					"frame": 165
+				},
+				{
+					"text": "de",
+					"frame": 170
+				},
+				{
+					"text": "la",
+					"frame": 173
+				},
+				{
+					"text": "marge :",
+					"frame": 177
+				},
+				{
+					"text": "SASU.",
+					"frame": 196
+				},
+				{
+					"text": "À",
+					"frame": 223
+				},
+				{
+					"text": "plusieurs :",
+					"frame": 227
+				},
+				{
+					"text": "SARL",
+					"frame": 252
+				},
+				{
+					"text": "ou",
+					"frame": 275
+				},
+				{
+					"text": "SAS.",
+					"frame": 284
+				}
+			]
+		},
+		{
+			"text": "Le bon statut n'est pas le moins cher. C'est celui de l'entreprise que tu vas devenir.",
+			"voice": "statuts/voice/line-11.wav",
+			"from": 2231,
+			"durationInFrames": 131,
+			"voiceFrames": 122,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "bon",
+					"frame": 5
+				},
+				{
+					"text": "statut",
+					"frame": 10
+				},
+				{
+					"text": "n'est",
+					"frame": 21
+				},
+				{
+					"text": "pas",
+					"frame": 26
+				},
+				{
+					"text": "le",
+					"frame": 29
+				},
+				{
+					"text": "moins",
+					"frame": 33
+				},
+				{
+					"text": "cher.",
+					"frame": 37
+				},
+				{
+					"text": "C'est",
+					"frame": 54
+				},
+				{
+					"text": "celui",
+					"frame": 61
+				},
+				{
+					"text": "de",
+					"frame": 68
+				},
+				{
+					"text": "l'entreprise",
+					"frame": 72
+				},
+				{
+					"text": "que",
+					"frame": 87
+				},
+				{
+					"text": "tu",
+					"frame": 91
+				},
+				{
+					"text": "vas",
+					"frame": 94
+				},
+				{
+					"text": "devenir.",
+					"frame": 98
+				}
+			]
+		},
+		{
+			"text": "Et toi, tu lances quoi ? Dis-le en commentaire.",
+			"voice": "statuts/voice/line-12.wav",
+			"from": 2362,
+			"durationInFrames": 74,
+			"voiceFrames": 69,
+			"words": [
+				{
+					"text": "Et",
+					"frame": 0
+				},
+				{
+					"text": "toi,",
+					"frame": 6
+				},
+				{
+					"text": "tu",
+					"frame": 11
+				},
+				{
+					"text": "lances",
+					"frame": 15
+				},
+				{
+					"text": "quoi ?",
+					"frame": 22
+				},
+				{
+					"text": "Dis-le",
+					"frame": 36
+				},
+				{
+					"text": "en",
+					"frame": 44
+				},
+				{
+					"text": "commentaire.",
+					"frame": 47
+				}
+			]
+		}
+	],
+	"durationInFrames": 2490
+}

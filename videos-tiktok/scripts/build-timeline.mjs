@@ -2,13 +2,15 @@
 // Each line gets its start frame, length, and an estimated start frame per word,
 // so scenes and captions can be keyed to what is being said.
 //
-// Word timing: pauses in the clip (silencedetect) are matched to the punctuation
-// in the line, then words are spread inside each spoken chunk by length.
+// Word timing: exact when the TTS provided a character alignment (line-XX.json,
+// scaled by the tempo in src/<video>/voice.json). Otherwise pauses in the clip
+// (silencedetect) are matched to the punctuation in the line, then words are
+// spread inside each spoken chunk by length.
 //
 // Usage: node scripts/build-timeline.mjs halloween
 
 import {execFileSync, spawnSync} from 'node:child_process';
-import {readFileSync, writeFileSync} from 'node:fs';
+import {existsSync, readFileSync, writeFileSync} from 'node:fs';
 
 const FPS = 30;
 const video = process.argv[2];
@@ -103,13 +105,35 @@ const wordTimes = (text, duration, silences) => {
 	return {words, times, speechStart, speechEnd};
 };
 
+/** Word start times from a per-character alignment (ElevenLabs `with-timestamps`). */
+const alignedWordTimes = (text, alignment, tempo) => {
+	const {words} = wordTimes(text, 1, []);
+	const chars = alignment.characters.join('');
+	const times = [];
+	let pos = 0;
+	for (const w of words) {
+		const first = w.replace(/\u00a0.*/, '');
+		const at = chars.indexOf(first, pos);
+		const idx = at >= 0 ? at : pos;
+		times.push(alignment.character_start_times_seconds[Math.min(idx, chars.length - 1)] / tempo);
+		pos = idx + first.length;
+	}
+	return {words, times};
+};
+
+const voiceConfigFile = `src/${video}/voice.json`;
+const tempo = existsSync(voiceConfigFile) ? JSON.parse(readFileSync(voiceConfigFile, 'utf8')).tempo ?? 1 : 1;
+
 let cursor = config.leadIn ?? 0;
 const out = {fps: FPS, lines: []};
 lines.forEach((text, i) => {
 	const n = String(i).padStart(2, '0');
 	const file = `public/${video}/voice/line-${n}.wav`;
 	const duration = probeDuration(file);
-	const {words, times} = wordTimes(text, duration, silencesOf(file));
+	const alignmentFile = `public/${video}/voice/line-${n}.json`;
+	const {words, times} = existsSync(alignmentFile)
+		? alignedWordTimes(text, JSON.parse(readFileSync(alignmentFile, 'utf8')), tempo)
+		: wordTimes(text, duration, silencesOf(file));
 	const gap = config.gapAfter?.[i] ?? config.gap ?? 0.25;
 	const voiceFrames = Math.ceil(duration * FPS);
 	const durationInFrames = voiceFrames + Math.round(gap * FPS);

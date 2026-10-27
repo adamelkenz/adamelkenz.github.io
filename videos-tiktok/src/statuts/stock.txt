@@ -1,0 +1,20 @@
+# name pixabayId start duration — recreate with:
+# grep -v '^#' src/statuts/stock.txt | while read n id s d; do scripts/prep-stock.sh statuts $n $id $s $d; done
+hook-freelance 130646 2 6
+hook-artisan 343063 0 6
+hook-office 95126 2 6
+hook-handshake 318026 0 6
+hook-startup 95121 3 6
+stress 215751 2 8
+micro 349792 0 10
+micro-desk 265513 0 8
+eurl 343063 1 7
+eurl-wood 166808 0 8
+sasu 24136 2 10
+sasu-office 137265 0 10
+sarl 63066 3 10
+sarl-hands 318027 2 10
+sas 268230 1 10
+sas-rocket 23882 6 10
+recap 303794 0 14
+road 147898 3 12

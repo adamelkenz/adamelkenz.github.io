@@ -131,7 +131,7 @@ export const Captions = ({lines, hide = [], top = 1330, accent = '#FFC94D'}: {li
 							paintOrder: 'stroke fill',
 							textShadow: '0 6px 0 rgba(0,0,0,0.9)',
 							display: 'inline-block',
-							margin: '0 16px',
+							margin: '0 24px',
 							letterSpacing: -1,
 						}}
 					>
