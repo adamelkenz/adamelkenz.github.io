@@ -1,0 +1,21 @@
+# name pixabayId start duration — recreate with:
+# grep -v '^#' src/marches/stock.txt | while read n id s d; do scripts/prep-stock.sh marches $n $id $s $d; done
+hook-office 268230 0 6
+hook-town 132981 4 6
+billions 91679 2 10
+construction 206694 2 8
+town 132981 12 6
+hospital 142528 0 6
+flag 140354 0 6
+workers 42923 2 10
+typing 10822 0 10
+archive 349087 0 10
+contract 198890 0 10
+laptop 172529 2 10
+notebook 41121 0 10
+judge 198901 0 10
+team 318026 0 6
+meeting 2340 4 10
+calendar 197974 0 10
+coins 4853 0 10
+reading 113483 0 9

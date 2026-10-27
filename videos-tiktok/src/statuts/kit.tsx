@@ -30,6 +30,7 @@ export const STATUTS: {key: Statut; label: string}[] = [
 /** Stock footage background: slow push-in, darkened for legibility, optional colour grade. */
 export const Footage = ({
 	src,
+	folder = 'statuts',
 	trim = 0,
 	tint,
 	dim = 0.5,
@@ -38,6 +39,7 @@ export const Footage = ({
 	grey = false,
 }: {
 	src: string;
+	folder?: string;
 	trim?: number;
 	tint?: string;
 	dim?: number;
@@ -50,7 +52,7 @@ export const Footage = ({
 		<AbsoluteFill style={{overflow: 'hidden', background: COLORS.ink}}>
 			<AbsoluteFill style={{transform: `scale(${1.04 + (zoom * Math.min(f, len)) / len})`}}>
 				<OffthreadVideo
-					src={staticFile(`statuts/stock/${src}.mp4`)}
+					src={staticFile(`${folder}/stock/${src}.mp4`)}
 					trimBefore={trim}
 					muted
 					style={{width: '100%', height: '100%', objectFit: 'cover', filter: grey ? 'grayscale(1) contrast(1.1)' : 'saturate(1.1) contrast(1.05)'}}

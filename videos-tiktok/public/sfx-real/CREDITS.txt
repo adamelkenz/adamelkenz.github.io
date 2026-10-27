@@ -14,3 +14,8 @@ buzzer.mp3 — "Incorrect Buzzer" by Producing_RayLite (http://creativecommons.o
 shutter.mp3 — "Camera Manual Click.wav" by D.jones (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/D.jones/sounds/521854/
 paper.mp3 — "fh_Paper_Swipe_Surface2_Short_01.wav" by Frank1100 (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/Frank1100/sounds/147285/
 music-lofi.mp3 — "Lofi Beat Song Thing" by Seth_Makes_Sounds (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/Seth_Makes_Sounds/sounds/668377/
+clock.mp3 — "Clock Ticking" by CAT-FOX_ALEX (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/CAT-FOX_ALEX/sounds/817323/
+gavel.mp3 — "Gavel" by flubberjam (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/flubberjam/sounds/703748/
+alert.mp3 — "Percussive Alert 1_2" by Joao_Janz (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/Joao_Janz/sounds/504779/
+page.mp3 — "Turned page" by MBPL (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/MBPL/sounds/667180/
+coins.mp3 — "coin clatter 3.wav" by FenrirFangs (http://creativecommons.org/publicdomain/zero/1.0/) https://freesound.org/people/FenrirFangs/sounds/213979/

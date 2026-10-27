@@ -1,0 +1,1022 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Comment une petite entreprise peut-elle travailler pour l'État… et être payée à temps ?",
+			"voice": "marches/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 154,
+			"voiceFrames": 151,
+			"words": [
+				{
+					"text": "Comment",
+					"frame": 0
+				},
+				{
+					"text": "une",
+					"frame": 11
+				},
+				{
+					"text": "petite",
+					"frame": 15
+				},
+				{
+					"text": "entreprise",
+					"frame": 25
+				},
+				{
+					"text": "peut-elle",
+					"frame": 43
+				},
+				{
+					"text": "travailler",
+					"frame": 53
+				},
+				{
+					"text": "pour",
+					"frame": 68
+				},
+				{
+					"text": "l'État…",
+					"frame": 74
+				},
+				{
+					"text": "et",
+					"frame": 100
+				},
+				{
+					"text": "être",
+					"frame": 105
+				},
+				{
+					"text": "payée",
+					"frame": 113
+				},
+				{
+					"text": "à",
+					"frame": 124
+				},
+				{
+					"text": "temps ?",
+					"frame": 127
+				}
+			]
+		},
+		{
+			"text": "En 2024, les acheteurs publics ont signé pour deux cent trente-trois milliards d'euros de marchés. Et six sur dix sont allés à des PME.",
+			"voice": "marches/voice/line-01.wav",
+			"from": 154,
+			"durationInFrames": 278,
+			"voiceFrames": 273,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "2024,",
+					"frame": 7
+				},
+				{
+					"text": "les",
+					"frame": 39
+				},
+				{
+					"text": "acheteurs",
+					"frame": 45
+				},
+				{
+					"text": "publics",
+					"frame": 55
+				},
+				{
+					"text": "ont",
+					"frame": 68
+				},
+				{
+					"text": "signé",
+					"frame": 71
+				},
+				{
+					"text": "pour",
+					"frame": 83
+				},
+				{
+					"text": "deux",
+					"frame": 91
+				},
+				{
+					"text": "cent",
+					"frame": 99
+				},
+				{
+					"text": "trente-trois",
+					"frame": 105
+				},
+				{
+					"text": "milliards",
+					"frame": 122
+				},
+				{
+					"text": "d'euros",
+					"frame": 134
+				},
+				{
+					"text": "de",
+					"frame": 143
+				},
+				{
+					"text": "marchés.",
+					"frame": 146
+				},
+				{
+					"text": "Et",
+					"frame": 180
+				},
+				{
+					"text": "six",
+					"frame": 187
+				},
+				{
+					"text": "sur",
+					"frame": 195
+				},
+				{
+					"text": "dix",
+					"frame": 202
+				},
+				{
+					"text": "sont",
+					"frame": 214
+				},
+				{
+					"text": "allés",
+					"frame": 222
+				},
+				{
+					"text": "à",
+					"frame": 229
+				},
+				{
+					"text": "des",
+					"frame": 233
+				},
+				{
+					"text": "PME.",
+					"frame": 237
+				}
+			]
+		},
+		{
+			"text": "Une mairie, un hôpital ou un ministère a un besoin ? Il doit mettre les entreprises en concurrence.",
+			"voice": "marches/voice/line-02.wav",
+			"from": 432,
+			"durationInFrames": 181,
+			"voiceFrames": 176,
+			"words": [
+				{
+					"text": "Une",
+					"frame": 0
+				},
+				{
+					"text": "mairie,",
+					"frame": 8
+				},
+				{
+					"text": "un",
+					"frame": 22
+				},
+				{
+					"text": "hôpital",
+					"frame": 27
+				},
+				{
+					"text": "ou",
+					"frame": 44
+				},
+				{
+					"text": "un",
+					"frame": 48
+				},
+				{
+					"text": "ministère",
+					"frame": 50
+				},
+				{
+					"text": "a",
+					"frame": 70
+				},
+				{
+					"text": "un",
+					"frame": 74
+				},
+				{
+					"text": "besoin ?",
+					"frame": 77
+				},
+				{
+					"text": "Il",
+					"frame": 104
+				},
+				{
+					"text": "doit",
+					"frame": 109
+				},
+				{
+					"text": "mettre",
+					"frame": 114
+				},
+				{
+					"text": "les",
+					"frame": 122
+				},
+				{
+					"text": "entreprises",
+					"frame": 127
+				},
+				{
+					"text": "en",
+					"frame": 142
+				},
+				{
+					"text": "concurrence.",
+					"frame": 145
+				}
+			]
+		},
+		{
+			"text": "Tout dépend du montant. Sous soixante mille euros en services, ou cent mille en travaux, l'acheteur peut te choisir directement.",
+			"voice": "marches/voice/line-03.wav",
+			"from": 613,
+			"durationInFrames": 257,
+			"voiceFrames": 252,
+			"words": [
+				{
+					"text": "Tout",
+					"frame": 0
+				},
+				{
+					"text": "dépend",
+					"frame": 7
+				},
+				{
+					"text": "du",
+					"frame": 16
+				},
+				{
+					"text": "montant.",
+					"frame": 19
+				},
+				{
+					"text": "Sous",
+					"frame": 51
+				},
+				{
+					"text": "soixante",
+					"frame": 60
+				},
+				{
+					"text": "mille",
+					"frame": 75
+				},
+				{
+					"text": "euros",
+					"frame": 81
+				},
+				{
+					"text": "en",
+					"frame": 90
+				},
+				{
+					"text": "services,",
+					"frame": 94
+				},
+				{
+					"text": "ou",
+					"frame": 121
+				},
+				{
+					"text": "cent",
+					"frame": 131
+				},
+				{
+					"text": "mille",
+					"frame": 138
+				},
+				{
+					"text": "en",
+					"frame": 145
+				},
+				{
+					"text": "travaux,",
+					"frame": 148
+				},
+				{
+					"text": "l'acheteur",
+					"frame": 173
+				},
+				{
+					"text": "peut",
+					"frame": 190
+				},
+				{
+					"text": "te",
+					"frame": 195
+				},
+				{
+					"text": "choisir",
+					"frame": 198
+				},
+				{
+					"text": "directement.",
+					"frame": 212
+				}
+			]
+		},
+		{
+			"text": "Au-dessus, il publie un avis. Et pour une collectivité, au-delà de deux cent seize mille euros, la procédure devient très encadrée.",
+			"voice": "marches/voice/line-04.wav",
+			"from": 870,
+			"durationInFrames": 275,
+			"voiceFrames": 270,
+			"words": [
+				{
+					"text": "Au-dessus,",
+					"frame": 0
+				},
+				{
+					"text": "il",
+					"frame": 24
+				},
+				{
+					"text": "publie",
+					"frame": 31
+				},
+				{
+					"text": "un",
+					"frame": 40
+				},
+				{
+					"text": "avis.",
+					"frame": 44
+				},
+				{
+					"text": "Et",
+					"frame": 68
+				},
+				{
+					"text": "pour",
+					"frame": 73
+				},
+				{
+					"text": "une",
+					"frame": 79
+				},
+				{
+					"text": "collectivité,",
+					"frame": 83
+				},
+				{
+					"text": "au-delà",
+					"frame": 115
+				},
+				{
+					"text": "de",
+					"frame": 132
+				},
+				{
+					"text": "deux",
+					"frame": 138
+				},
+				{
+					"text": "cent",
+					"frame": 145
+				},
+				{
+					"text": "seize",
+					"frame": 151
+				},
+				{
+					"text": "mille",
+					"frame": 160
+				},
+				{
+					"text": "euros,",
+					"frame": 168
+				},
+				{
+					"text": "la",
+					"frame": 190
+				},
+				{
+					"text": "procédure",
+					"frame": 195
+				},
+				{
+					"text": "devient",
+					"frame": 211
+				},
+				{
+					"text": "très",
+					"frame": 221
+				},
+				{
+					"text": "encadrée.",
+					"frame": 234
+				}
+			]
+		},
+		{
+			"text": "Ces avis sont publics : sur le BOAMP et les plateformes des acheteurs. Et tu peux créer des alertes gratuites.",
+			"voice": "marches/voice/line-05.wav",
+			"from": 1145,
+			"durationInFrames": 217,
+			"voiceFrames": 212,
+			"words": [
+				{
+					"text": "Ces",
+					"frame": 0
+				},
+				{
+					"text": "avis",
+					"frame": 10
+				},
+				{
+					"text": "sont",
+					"frame": 17
+				},
+				{
+					"text": "publics :",
+					"frame": 23
+				},
+				{
+					"text": "sur",
+					"frame": 47
+				},
+				{
+					"text": "le",
+					"frame": 57
+				},
+				{
+					"text": "BOAMP",
+					"frame": 61
+				},
+				{
+					"text": "et",
+					"frame": 81
+				},
+				{
+					"text": "les",
+					"frame": 86
+				},
+				{
+					"text": "plateformes",
+					"frame": 89
+				},
+				{
+					"text": "des",
+					"frame": 105
+				},
+				{
+					"text": "acheteurs.",
+					"frame": 110
+				},
+				{
+					"text": "Et",
+					"frame": 139
+				},
+				{
+					"text": "tu",
+					"frame": 144
+				},
+				{
+					"text": "peux",
+					"frame": 149
+				},
+				{
+					"text": "créer",
+					"frame": 154
+				},
+				{
+					"text": "des",
+					"frame": 163
+				},
+				{
+					"text": "alertes",
+					"frame": 169
+				},
+				{
+					"text": "gratuites.",
+					"frame": 181
+				}
+			]
+		},
+		{
+			"text": "Pour répondre, il te faut un dossier administratif… et surtout un mémoire technique, qui prouve comment tu vas faire le travail.",
+			"voice": "marches/voice/line-06.wav",
+			"from": 1362,
+			"durationInFrames": 241,
+			"voiceFrames": 236,
+			"words": [
+				{
+					"text": "Pour",
+					"frame": 0
+				},
+				{
+					"text": "répondre,",
+					"frame": 7
+				},
+				{
+					"text": "il",
+					"frame": 30
+				},
+				{
+					"text": "te",
+					"frame": 35
+				},
+				{
+					"text": "faut",
+					"frame": 39
+				},
+				{
+					"text": "un",
+					"frame": 46
+				},
+				{
+					"text": "dossier",
+					"frame": 49
+				},
+				{
+					"text": "administratif…",
+					"frame": 60
+				},
+				{
+					"text": "et",
+					"frame": 107
+				},
+				{
+					"text": "surtout",
+					"frame": 112
+				},
+				{
+					"text": "un",
+					"frame": 126
+				},
+				{
+					"text": "mémoire",
+					"frame": 131
+				},
+				{
+					"text": "technique,",
+					"frame": 142
+				},
+				{
+					"text": "qui",
+					"frame": 166
+				},
+				{
+					"text": "prouve",
+					"frame": 172
+				},
+				{
+					"text": "comment",
+					"frame": 182
+				},
+				{
+					"text": "tu",
+					"frame": 193
+				},
+				{
+					"text": "vas",
+					"frame": 196
+				},
+				{
+					"text": "faire",
+					"frame": 200
+				},
+				{
+					"text": "le",
+					"frame": 206
+				},
+				{
+					"text": "travail.",
+					"frame": 209
+				}
+			]
+		},
+		{
+			"text": "Parce que le moins cher ne gagne pas toujours. Ton offre est notée sur le prix, mais aussi sur la qualité.",
+			"voice": "marches/voice/line-07.wav",
+			"from": 1603,
+			"durationInFrames": 208,
+			"voiceFrames": 203,
+			"words": [
+				{
+					"text": "Parce",
+					"frame": 0
+				},
+				{
+					"text": "que",
+					"frame": 7
+				},
+				{
+					"text": "le",
+					"frame": 11
+				},
+				{
+					"text": "moins",
+					"frame": 15
+				},
+				{
+					"text": "cher",
+					"frame": 22
+				},
+				{
+					"text": "ne",
+					"frame": 34
+				},
+				{
+					"text": "gagne",
+					"frame": 38
+				},
+				{
+					"text": "pas",
+					"frame": 47
+				},
+				{
+					"text": "toujours.",
+					"frame": 53
+				},
+				{
+					"text": "Ton",
+					"frame": 86
+				},
+				{
+					"text": "offre",
+					"frame": 94
+				},
+				{
+					"text": "est",
+					"frame": 102
+				},
+				{
+					"text": "notée",
+					"frame": 105
+				},
+				{
+					"text": "sur",
+					"frame": 117
+				},
+				{
+					"text": "le",
+					"frame": 124
+				},
+				{
+					"text": "prix,",
+					"frame": 128
+				},
+				{
+					"text": "mais",
+					"frame": 149
+				},
+				{
+					"text": "aussi",
+					"frame": 155
+				},
+				{
+					"text": "sur",
+					"frame": 164
+				},
+				{
+					"text": "la",
+					"frame": 170
+				},
+				{
+					"text": "qualité.",
+					"frame": 173
+				}
+			]
+		},
+		{
+			"text": "Le marché est trop gros pour toi seul ? Réponds en groupement, avec d'autres entreprises.",
+			"voice": "marches/voice/line-08.wav",
+			"from": 1811,
+			"durationInFrames": 178,
+			"voiceFrames": 173,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "marché",
+					"frame": 6
+				},
+				{
+					"text": "est",
+					"frame": 19
+				},
+				{
+					"text": "trop",
+					"frame": 22
+				},
+				{
+					"text": "gros",
+					"frame": 28
+				},
+				{
+					"text": "pour",
+					"frame": 35
+				},
+				{
+					"text": "toi",
+					"frame": 39
+				},
+				{
+					"text": "seul ?",
+					"frame": 45
+				},
+				{
+					"text": "Réponds",
+					"frame": 73
+				},
+				{
+					"text": "en",
+					"frame": 86
+				},
+				{
+					"text": "groupement,",
+					"frame": 91
+				},
+				{
+					"text": "avec",
+					"frame": 114
+				},
+				{
+					"text": "d'autres",
+					"frame": 123
+				},
+				{
+					"text": "entreprises.",
+					"frame": 132
+				}
+			]
+		},
+		{
+			"text": "Et une fois le marché gagné, l'acheteur doit te payer en trente jours. Au-delà, il te doit des intérêts.",
+			"voice": "marches/voice/line-09.wav",
+			"from": 1989,
+			"durationInFrames": 221,
+			"voiceFrames": 210,
+			"words": [
+				{
+					"text": "Et",
+					"frame": 0
+				},
+				{
+					"text": "une",
+					"frame": 7
+				},
+				{
+					"text": "fois",
+					"frame": 14
+				},
+				{
+					"text": "le",
+					"frame": 20
+				},
+				{
+					"text": "marché",
+					"frame": 23
+				},
+				{
+					"text": "gagné,",
+					"frame": 34
+				},
+				{
+					"text": "l'acheteur",
+					"frame": 56
+				},
+				{
+					"text": "doit",
+					"frame": 70
+				},
+				{
+					"text": "te",
+					"frame": 77
+				},
+				{
+					"text": "payer",
+					"frame": 81
+				},
+				{
+					"text": "en",
+					"frame": 92
+				},
+				{
+					"text": "trente",
+					"frame": 98
+				},
+				{
+					"text": "jours.",
+					"frame": 105
+				},
+				{
+					"text": "Au-delà,",
+					"frame": 130
+				},
+				{
+					"text": "il",
+					"frame": 156
+				},
+				{
+					"text": "te",
+					"frame": 162
+				},
+				{
+					"text": "doit",
+					"frame": 165
+				},
+				{
+					"text": "des",
+					"frame": 172
+				},
+				{
+					"text": "intérêts.",
+					"frame": 177
+				}
+			]
+		},
+		{
+			"text": "Les marchés publics ne sont pas réservés aux grands groupes. Ils sont réservés à ceux qui prennent le temps de lire le cahier des charges.",
+			"voice": "marches/voice/line-10.wav",
+			"from": 2210,
+			"durationInFrames": 230,
+			"voiceFrames": 219,
+			"words": [
+				{
+					"text": "Les",
+					"frame": 0
+				},
+				{
+					"text": "marchés",
+					"frame": 6
+				},
+				{
+					"text": "publics",
+					"frame": 16
+				},
+				{
+					"text": "ne",
+					"frame": 32
+				},
+				{
+					"text": "sont",
+					"frame": 37
+				},
+				{
+					"text": "pas",
+					"frame": 42
+				},
+				{
+					"text": "réservés",
+					"frame": 46
+				},
+				{
+					"text": "aux",
+					"frame": 60
+				},
+				{
+					"text": "grands",
+					"frame": 63
+				},
+				{
+					"text": "groupes.",
+					"frame": 70
+				},
+				{
+					"text": "Ils",
+					"frame": 95
+				},
+				{
+					"text": "sont",
+					"frame": 102
+				},
+				{
+					"text": "réservés",
+					"frame": 107
+				},
+				{
+					"text": "à",
+					"frame": 124
+				},
+				{
+					"text": "ceux",
+					"frame": 127
+				},
+				{
+					"text": "qui",
+					"frame": 132
+				},
+				{
+					"text": "prennent",
+					"frame": 137
+				},
+				{
+					"text": "le",
+					"frame": 146
+				},
+				{
+					"text": "temps",
+					"frame": 150
+				},
+				{
+					"text": "de",
+					"frame": 156
+				},
+				{
+					"text": "lire",
+					"frame": 159
+				},
+				{
+					"text": "le",
+					"frame": 167
+				},
+				{
+					"text": "cahier",
+					"frame": 170
+				},
+				{
+					"text": "des",
+					"frame": 179
+				},
+				{
+					"text": "charges.",
+					"frame": 183
+				}
+			]
+		},
+		{
+			"text": "Tu veux savoir comment écrire un mémoire technique qui gagne ? Dis-le en commentaire.",
+			"voice": "marches/voice/line-11.wav",
+			"from": 2440,
+			"durationInFrames": 144,
+			"voiceFrames": 139,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "veux",
+					"frame": 6
+				},
+				{
+					"text": "savoir",
+					"frame": 10
+				},
+				{
+					"text": "comment",
+					"frame": 20
+				},
+				{
+					"text": "écrire",
+					"frame": 29
+				},
+				{
+					"text": "un",
+					"frame": 39
+				},
+				{
+					"text": "mémoire",
+					"frame": 41
+				},
+				{
+					"text": "technique",
+					"frame": 51
+				},
+				{
+					"text": "qui",
+					"frame": 65
+				},
+				{
+					"text": "gagne ?",
+					"frame": 71
+				},
+				{
+					"text": "Dis-le",
+					"frame": 99
+				},
+				{
+					"text": "en",
+					"frame": 109
+				},
+				{
+					"text": "commentaire.",
+					"frame": 112
+				}
+			]
+		}
+	],
+	"durationInFrames": 2644
+}
