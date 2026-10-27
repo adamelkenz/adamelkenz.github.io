@@ -11,3 +11,4 @@ public/*/photos/
 public/statuts/voice/*.wav
 public/marches/voice/*.wav
 public/datacenters/voice/*.wav
+public/whitelabel/voice/*.wav

@@ -1,0 +1,832 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Comment des marques vendent des produits… qu'elles n'ont jamais fabriqués ?",
+			"voice": "whitelabel/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 120,
+			"voiceFrames": 117,
+			"words": [
+				{
+					"text": "Comment",
+					"frame": 0
+				},
+				{
+					"text": "des",
+					"frame": 10
+				},
+				{
+					"text": "marques",
+					"frame": 13
+				},
+				{
+					"text": "vendent",
+					"frame": 24
+				},
+				{
+					"text": "des",
+					"frame": 34
+				},
+				{
+					"text": "produits…",
+					"frame": 38
+				},
+				{
+					"text": "qu'elles",
+					"frame": 63
+				},
+				{
+					"text": "n'ont",
+					"frame": 71
+				},
+				{
+					"text": "jamais",
+					"frame": 76
+				},
+				{
+					"text": "fabriqués ?",
+					"frame": 85
+				}
+			]
+		},
+		{
+			"text": "Ça s'appelle le white label. Une entreprise fabrique. Une autre met son nom dessus, et vend.",
+			"voice": "whitelabel/voice/line-01.wav",
+			"from": 120,
+			"durationInFrames": 175,
+			"voiceFrames": 170,
+			"words": [
+				{
+					"text": "Ça",
+					"frame": 0
+				},
+				{
+					"text": "s'appelle",
+					"frame": 6
+				},
+				{
+					"text": "le",
+					"frame": 20
+				},
+				{
+					"text": "white",
+					"frame": 26
+				},
+				{
+					"text": "label.",
+					"frame": 34
+				},
+				{
+					"text": "Une",
+					"frame": 60
+				},
+				{
+					"text": "entreprise",
+					"frame": 65
+				},
+				{
+					"text": "fabrique.",
+					"frame": 79
+				},
+				{
+					"text": "Une",
+					"frame": 103
+				},
+				{
+					"text": "autre",
+					"frame": 108
+				},
+				{
+					"text": "met",
+					"frame": 115
+				},
+				{
+					"text": "son",
+					"frame": 120
+				},
+				{
+					"text": "nom",
+					"frame": 124
+				},
+				{
+					"text": "dessus,",
+					"frame": 129
+				},
+				{
+					"text": "et",
+					"frame": 145
+				},
+				{
+					"text": "vend.",
+					"frame": 151
+				}
+			]
+		},
+		{
+			"text": "Ta crème préférée, ton application, ton site internet… sortent peut-être de la même usine que ceux du concurrent.",
+			"voice": "whitelabel/voice/line-02.wav",
+			"from": 295,
+			"durationInFrames": 219,
+			"voiceFrames": 214,
+			"words": [
+				{
+					"text": "Ta",
+					"frame": 0
+				},
+				{
+					"text": "crème",
+					"frame": 7
+				},
+				{
+					"text": "préférée,",
+					"frame": 15
+				},
+				{
+					"text": "ton",
+					"frame": 40
+				},
+				{
+					"text": "application,",
+					"frame": 46
+				},
+				{
+					"text": "ton",
+					"frame": 78
+				},
+				{
+					"text": "site",
+					"frame": 84
+				},
+				{
+					"text": "internet…",
+					"frame": 90
+				},
+				{
+					"text": "sortent",
+					"frame": 120
+				},
+				{
+					"text": "peut-être",
+					"frame": 133
+				},
+				{
+					"text": "de",
+					"frame": 147
+				},
+				{
+					"text": "la",
+					"frame": 151
+				},
+				{
+					"text": "même",
+					"frame": 154
+				},
+				{
+					"text": "usine",
+					"frame": 160
+				},
+				{
+					"text": "que",
+					"frame": 171
+				},
+				{
+					"text": "ceux",
+					"frame": 176
+				},
+				{
+					"text": "du",
+					"frame": 181
+				},
+				{
+					"text": "concurrent.",
+					"frame": 185
+				}
+			]
+		},
+		{
+			"text": "Pourquoi ça marche ? Parce que le fabricant veut du volume. Et toi, tu gardes ce qui rapporte le plus : la marque et le client.",
+			"voice": "whitelabel/voice/line-03.wav",
+			"from": 514,
+			"durationInFrames": 253,
+			"voiceFrames": 248,
+			"words": [
+				{
+					"text": "Pourquoi",
+					"frame": 0
+				},
+				{
+					"text": "ça",
+					"frame": 11
+				},
+				{
+					"text": "marche ?",
+					"frame": 15
+				},
+				{
+					"text": "Parce",
+					"frame": 38
+				},
+				{
+					"text": "que",
+					"frame": 45
+				},
+				{
+					"text": "le",
+					"frame": 50
+				},
+				{
+					"text": "fabricant",
+					"frame": 53
+				},
+				{
+					"text": "veut",
+					"frame": 67
+				},
+				{
+					"text": "du",
+					"frame": 71
+				},
+				{
+					"text": "volume.",
+					"frame": 74
+				},
+				{
+					"text": "Et",
+					"frame": 100
+				},
+				{
+					"text": "toi,",
+					"frame": 106
+				},
+				{
+					"text": "tu",
+					"frame": 123
+				},
+				{
+					"text": "gardes",
+					"frame": 128
+				},
+				{
+					"text": "ce",
+					"frame": 140
+				},
+				{
+					"text": "qui",
+					"frame": 144
+				},
+				{
+					"text": "rapporte",
+					"frame": 148
+				},
+				{
+					"text": "le",
+					"frame": 161
+				},
+				{
+					"text": "plus :",
+					"frame": 164
+				},
+				{
+					"text": "la",
+					"frame": 187
+				},
+				{
+					"text": "marque",
+					"frame": 192
+				},
+				{
+					"text": "et",
+					"frame": 209
+				},
+				{
+					"text": "le",
+					"frame": 214
+				},
+				{
+					"text": "client.",
+					"frame": 217
+				}
+			]
+		},
+		{
+			"text": "Exemple : un logiciel en marque blanche à cent euros par mois. Tu le revends trois cents, avec ton nom et ton accompagnement.",
+			"voice": "whitelabel/voice/line-04.wav",
+			"from": 767,
+			"durationInFrames": 224,
+			"voiceFrames": 219,
+			"words": [
+				{
+					"text": "Exemple :",
+					"frame": 0
+				},
+				{
+					"text": "un",
+					"frame": 31
+				},
+				{
+					"text": "logiciel",
+					"frame": 35
+				},
+				{
+					"text": "en",
+					"frame": 49
+				},
+				{
+					"text": "marque",
+					"frame": 51
+				},
+				{
+					"text": "blanche",
+					"frame": 60
+				},
+				{
+					"text": "à",
+					"frame": 73
+				},
+				{
+					"text": "cent",
+					"frame": 78
+				},
+				{
+					"text": "euros",
+					"frame": 86
+				},
+				{
+					"text": "par",
+					"frame": 91
+				},
+				{
+					"text": "mois.",
+					"frame": 97
+				},
+				{
+					"text": "Tu",
+					"frame": 117
+				},
+				{
+					"text": "le",
+					"frame": 122
+				},
+				{
+					"text": "revends",
+					"frame": 126
+				},
+				{
+					"text": "trois",
+					"frame": 138
+				},
+				{
+					"text": "cents,",
+					"frame": 147
+				},
+				{
+					"text": "avec",
+					"frame": 163
+				},
+				{
+					"text": "ton",
+					"frame": 171
+				},
+				{
+					"text": "nom",
+					"frame": 176
+				},
+				{
+					"text": "et",
+					"frame": 182
+				},
+				{
+					"text": "ton",
+					"frame": 184
+				},
+				{
+					"text": "accompagnement.",
+					"frame": 190
+				}
+			]
+		},
+		{
+			"text": "Pas d'usine, pas de développeurs, pas d'années de recherche. Tu peux lancer en quelques semaines.",
+			"voice": "whitelabel/voice/line-05.wav",
+			"from": 991,
+			"durationInFrames": 177,
+			"voiceFrames": 172,
+			"words": [
+				{
+					"text": "Pas",
+					"frame": 0
+				},
+				{
+					"text": "d'usine,",
+					"frame": 6
+				},
+				{
+					"text": "pas",
+					"frame": 31
+				},
+				{
+					"text": "de",
+					"frame": 36
+				},
+				{
+					"text": "développeurs,",
+					"frame": 39
+				},
+				{
+					"text": "pas",
+					"frame": 68
+				},
+				{
+					"text": "d'années",
+					"frame": 75
+				},
+				{
+					"text": "de",
+					"frame": 83
+				},
+				{
+					"text": "recherche.",
+					"frame": 86
+				},
+				{
+					"text": "Tu",
+					"frame": 110
+				},
+				{
+					"text": "peux",
+					"frame": 116
+				},
+				{
+					"text": "lancer",
+					"frame": 120
+				},
+				{
+					"text": "en",
+					"frame": 129
+				},
+				{
+					"text": "quelques",
+					"frame": 132
+				},
+				{
+					"text": "semaines.",
+					"frame": 141
+				}
+			]
+		},
+		{
+			"text": "Mais attention. Si ton fournisseur tombe, ton business tombe avec. Et un client mécontent ne se plaindra pas de l'usine. Il se plaindra de toi.",
+			"voice": "whitelabel/voice/line-06.wav",
+			"from": 1168,
+			"durationInFrames": 287,
+			"voiceFrames": 282,
+			"words": [
+				{
+					"text": "Mais",
+					"frame": 0
+				},
+				{
+					"text": "attention.",
+					"frame": 6
+				},
+				{
+					"text": "Si",
+					"frame": 36
+				},
+				{
+					"text": "ton",
+					"frame": 43
+				},
+				{
+					"text": "fournisseur",
+					"frame": 48
+				},
+				{
+					"text": "tombe,",
+					"frame": 65
+				},
+				{
+					"text": "ton",
+					"frame": 88
+				},
+				{
+					"text": "business",
+					"frame": 93
+				},
+				{
+					"text": "tombe",
+					"frame": 107
+				},
+				{
+					"text": "avec.",
+					"frame": 116
+				},
+				{
+					"text": "Et",
+					"frame": 145
+				},
+				{
+					"text": "un",
+					"frame": 151
+				},
+				{
+					"text": "client",
+					"frame": 154
+				},
+				{
+					"text": "mécontent",
+					"frame": 163
+				},
+				{
+					"text": "ne",
+					"frame": 178
+				},
+				{
+					"text": "se",
+					"frame": 182
+				},
+				{
+					"text": "plaindra",
+					"frame": 186
+				},
+				{
+					"text": "pas",
+					"frame": 197
+				},
+				{
+					"text": "de",
+					"frame": 202
+				},
+				{
+					"text": "l'usine.",
+					"frame": 205
+				},
+				{
+					"text": "Il",
+					"frame": 232
+				},
+				{
+					"text": "se",
+					"frame": 239
+				},
+				{
+					"text": "plaindra",
+					"frame": 243
+				},
+				{
+					"text": "de",
+					"frame": 253
+				},
+				{
+					"text": "toi.",
+					"frame": 256
+				}
+			]
+		},
+		{
+			"text": "Le secret, ce n'est donc pas le produit. C'est tout ce que tu construis autour : la marque, le service, la relation.",
+			"voice": "whitelabel/voice/line-07.wav",
+			"from": 1455,
+			"durationInFrames": 243,
+			"voiceFrames": 232,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "secret,",
+					"frame": 7
+				},
+				{
+					"text": "ce",
+					"frame": 34
+				},
+				{
+					"text": "n'est",
+					"frame": 39
+				},
+				{
+					"text": "donc",
+					"frame": 43
+				},
+				{
+					"text": "pas",
+					"frame": 50
+				},
+				{
+					"text": "le",
+					"frame": 55
+				},
+				{
+					"text": "produit.",
+					"frame": 58
+				},
+				{
+					"text": "C'est",
+					"frame": 83
+				},
+				{
+					"text": "tout",
+					"frame": 90
+				},
+				{
+					"text": "ce",
+					"frame": 94
+				},
+				{
+					"text": "que",
+					"frame": 98
+				},
+				{
+					"text": "tu",
+					"frame": 102
+				},
+				{
+					"text": "construis",
+					"frame": 105
+				},
+				{
+					"text": "autour :",
+					"frame": 118
+				},
+				{
+					"text": "la",
+					"frame": 144
+				},
+				{
+					"text": "marque,",
+					"frame": 149
+				},
+				{
+					"text": "le",
+					"frame": 166
+				},
+				{
+					"text": "service,",
+					"frame": 169
+				},
+				{
+					"text": "la",
+					"frame": 194
+				},
+				{
+					"text": "relation.",
+					"frame": 198
+				}
+			]
+		},
+		{
+			"text": "On peut acheter un produit. On ne peut pas acheter la confiance de ses clients.",
+			"voice": "whitelabel/voice/line-08.wav",
+			"from": 1698,
+			"durationInFrames": 139,
+			"voiceFrames": 127,
+			"words": [
+				{
+					"text": "On",
+					"frame": 0
+				},
+				{
+					"text": "peut",
+					"frame": 6
+				},
+				{
+					"text": "acheter",
+					"frame": 12
+				},
+				{
+					"text": "un",
+					"frame": 22
+				},
+				{
+					"text": "produit.",
+					"frame": 25
+				},
+				{
+					"text": "On",
+					"frame": 51
+				},
+				{
+					"text": "ne",
+					"frame": 55
+				},
+				{
+					"text": "peut",
+					"frame": 58
+				},
+				{
+					"text": "pas",
+					"frame": 62
+				},
+				{
+					"text": "acheter",
+					"frame": 70
+				},
+				{
+					"text": "la",
+					"frame": 78
+				},
+				{
+					"text": "confiance",
+					"frame": 81
+				},
+				{
+					"text": "de",
+					"frame": 94
+				},
+				{
+					"text": "ses",
+					"frame": 97
+				},
+				{
+					"text": "clients.",
+					"frame": 101
+				}
+			]
+		},
+		{
+			"text": "Tu veux savoir quels produits lancer en marque blanche ? Écris WHITE en commentaire, et je t'envoie la liste.",
+			"voice": "whitelabel/voice/line-09.wav",
+			"from": 1837,
+			"durationInFrames": 190,
+			"voiceFrames": 185,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "veux",
+					"frame": 7
+				},
+				{
+					"text": "savoir",
+					"frame": 10
+				},
+				{
+					"text": "quels",
+					"frame": 20
+				},
+				{
+					"text": "produits",
+					"frame": 25
+				},
+				{
+					"text": "lancer",
+					"frame": 36
+				},
+				{
+					"text": "en",
+					"frame": 48
+				},
+				{
+					"text": "marque",
+					"frame": 50
+				},
+				{
+					"text": "blanche ?",
+					"frame": 58
+				},
+				{
+					"text": "Écris",
+					"frame": 89
+				},
+				{
+					"text": "WHITE",
+					"frame": 105
+				},
+				{
+					"text": "en",
+					"frame": 117
+				},
+				{
+					"text": "commentaire,",
+					"frame": 122
+				},
+				{
+					"text": "et",
+					"frame": 147
+				},
+				{
+					"text": "je",
+					"frame": 151
+				},
+				{
+					"text": "t'envoie",
+					"frame": 155
+				},
+				{
+					"text": "la",
+					"frame": 163
+				},
+				{
+					"text": "liste.",
+					"frame": 166
+				}
+			]
+		}
+	],
+	"durationInFrames": 2093
+}

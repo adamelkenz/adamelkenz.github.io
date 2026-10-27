@@ -6,6 +6,8 @@ import halloweenTimeline from './halloween/timeline.json';
 import {Marches} from './marches/Marches';
 import marchesTimeline from './marches/timeline.json';
 import {Statuts} from './statuts/Statuts';
+import {WhiteLabel} from './whitelabel/WhiteLabel';
+import whitelabelTimeline from './whitelabel/timeline.json';
 import statutsTimeline from './statuts/timeline.json';
 
 export const Root = () => (
@@ -39,6 +41,14 @@ export const Root = () => (
 			component={DataCenters}
 			durationInFrames={datacentersTimeline.durationInFrames}
 			fps={datacentersTimeline.fps}
+			width={1080}
+			height={1920}
+		/>
+		<Composition
+			id="WhiteLabel"
+			component={WhiteLabel}
+			durationInFrames={whitelabelTimeline.durationInFrames}
+			fps={whitelabelTimeline.fps}
 			width={1080}
 			height={1920}
 		/>

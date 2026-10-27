@@ -1,0 +1,6 @@
+# photos: name pixabayId focusX — scripts/prep-photo.sh whitelabel …
+cream 1327847 0.5
+app 5537230 0.5
+website 593673 0.45
+angry 2191104 0.5
+trust 1979261 0.5

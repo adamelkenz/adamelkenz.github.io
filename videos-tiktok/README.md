@@ -7,6 +7,7 @@ Mini-docs verticaux 1080×1920 : hook en question, motion design, vrais plans vi
 - `Halloween` — « Qu'est-ce qui se passe si tu organises une soirée d'Halloween pour te faire 3 000 € en une nuit ? »
 - `Statuts` — « Micro, EURL, SASU, SARL, SAS… Lequel est fait pour toi ? »
 - `Marches` — « Comment une petite entreprise peut-elle travailler pour l'État… et être payée à temps ? » (voix : Bill)
+- `WhiteLabel` — « Comment des marques vendent des produits… qu'elles n'ont jamais fabriqués ? » + appel à commenter « WHITE » (message et suivi dans `crm/`)
 - `DataCenters` — « Pourquoi l'Irlande donne près d'un quart de son électricité… à des bâtiments sans fenêtres ? » (voix : Bill, cartes en motion design)
 
 ## Clés (variables d'environnement, jamais dans le repo)
