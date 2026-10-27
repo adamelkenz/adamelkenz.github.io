@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
 import {CLAMP, ease, lerp, pop, rand, shake} from '../components/anim';
-import {ANTON, SANS, SERIF} from '../components/fonts';
+import {ANTON, SANS} from '../components/fonts';
 import {Fx} from '../components/Fx';
 import {Line, Shot, wordAt} from '../components/layers';
 import {Chip, Footage as BaseFootage, Head, Icon, Stack} from '../statuts/kit';
@@ -21,9 +21,10 @@ export const R = {
 
 /* Building blocks --------------------------------------------------------------- */
 
-const Clip = (props: React.ComponentProps<typeof BaseFootage>) => <BaseFootage folder="serbie" {...props} />;
+// Slow, cinematic footage: half-speed playback and a gentle push-in.
+const Clip = (props: React.ComponentProps<typeof BaseFootage>) => <BaseFootage folder="serbie" rate={0.55} zoom={0.08} len={360} {...props} />;
 
-const Photo = ({src, len = 200, from = [1.05, 0, 0], to = [1.18, 0, -40], dim = 0.45, grey = false}: {src: string; len?: number; from?: [number, number, number]; to?: [number, number, number]; dim?: number; grey?: boolean}) => {
+const Photo = ({src, len = 300, from = [1.04, 0, 0], to = [1.12, 0, -30], dim = 0.45, grey = false}: {src: string; len?: number; from?: [number, number, number]; to?: [number, number, number]; dim?: number; grey?: boolean}) => {
 	const f = useCurrentFrame();
 	const p = interpolate(f, [0, len], [0, 1], CLAMP);
 	return (
@@ -46,7 +47,7 @@ const NewsBg = ({tint = R.blue}: {tint?: string}) => {
 	);
 };
 
-const Cut = ({at, until, children, transition = 'punch'}: {at: number; until?: number; children: React.ReactNode; transition?: 'punch' | 'whip' | 'flash' | 'none'}) => (
+const Cut = ({at, until, children, transition = 'fade'}: {at: number; until?: number; children: React.ReactNode; transition?: 'punch' | 'whip' | 'flash' | 'none'}) => (
 	<Sequence from={Math.max(0, at)} durationInFrames={until !== undefined ? until - Math.max(0, at) : undefined}>
 		<Shot transition={transition} push={0}>
 			{children}
@@ -89,7 +90,7 @@ export const S0Hook = ({line}: SceneProps) => {
 	const canopy = ease(f, tFall, tFall + 10, (x) => x * x);
 	const power = ease(f, tPower, tPower + 12, (x) => x * x);
 	return (
-		<Shot transition="flash" push={0.05}>
+		<Shot transition="fade" push={0.05}>
 			<NewsBg tint={R.red} />
 			<Head at={0} top={180} size={92}>
 				UN TOIT DE GARE
@@ -137,7 +138,7 @@ export const S1NoviSad = ({line}: SceneProps) => {
 	return (
 		<AbsoluteFill>
 			<Sequence durationInFrames={tToll}>
-				<Shot transition="whip" push={0.06}>
+				<Shot transition="fade" push={0.06}>
 					<Photo src="novisad" len={tToll + 20} from={[1.05, 0, 0]} to={[1.16, 0, -40]} dim={0.4} />
 					<Tag at={W('novembre') - 6}>1ER NOVEMBRE 2024</Tag>
 					<Tag at={W('novi') - 4} top={340} color={R.blue}>
@@ -182,7 +183,7 @@ export const S2Corruption = ({line}: SceneProps) => {
 	const tStrike = W('accident') + 2;
 	const tStamp = W('corruption') - 3;
 	return (
-		<Shot transition="punch" push={0.05}>
+		<Shot transition="fade" push={0.05}>
 			<Photo src="storm" len={line.durationInFrames} from={[1.1, 0, 0]} to={[1.22, -30, 0]} dim={0.5} />
 			<Head at={W('beaucoup') - 4} top={300} size={80} color={R.grey}>
 				POUR BEAUCOUP DE SERBES
@@ -220,7 +221,7 @@ export const S3Students = ({line}: SceneProps) => {
 	return (
 		<AbsoluteFill>
 			<Sequence durationInFrames={tSilence}>
-				<Shot transition="whip" push={0.05}>
+				<Shot transition="fade" push={0.05}>
 					<NewsBg tint={R.gold} />
 					<Head at={W('etudiants') - 4} top={200} size={130} color={R.gold}>
 						LES ÉTUDIANTS
@@ -285,7 +286,7 @@ export const S4March = ({line}: SceneProps) => {
 	return (
 		<AbsoluteFill>
 			<Sequence durationInFrames={tPm}>
-				<Shot transition="punch" push={0.06}>
+				<Shot transition="fade" push={0.06}>
 					<Clip src="belgrade-river" dim={0.45} />
 					<Tag at={W('quinze') - 4}>15 MARS 2025</Tag>
 					<Tag at={W('belgrade') - 4} top={340} color={R.blue}>
@@ -342,7 +343,7 @@ export const S5Refusal = ({line}: SceneProps) => {
 	const tCount = W('pendant') - 4;
 	const months = Math.min(16, Math.floor(ease(f, tCount, W('mois') + 4, (x) => x) * 16));
 	return (
-		<Shot transition="whip" push={0.04}>
+		<Shot transition="fade" push={0.04}>
 			<NewsBg tint={R.slate} />
 			<Head at={0} top={240} size={86} color={R.grey}>
 				LES ÉTUDIANTS RÉCLAMENT
@@ -382,7 +383,7 @@ export const S6Run = ({line}: SceneProps) => {
 	const tSwap = W('quitte') - 4;
 	const move = ease(f, tSwap, tSwap + 16);
 	return (
-		<Shot transition="punch" push={0.05}>
+		<Shot transition="fade" push={0.05}>
 			<Photo src="fortress" len={line.durationInFrames} dim={0.62} />
 			<Tag at={W('septembre') - 4}>SEPTEMBRE 2026</Tag>
 			<Head at={W('cede') - 4} top={360} size={130} color={R.gold}>
@@ -420,7 +421,7 @@ export const S7List = ({line}: SceneProps) => {
 		{at: W('figures') - 4, icon: 'users', label: 'SOCIÉTÉ CIVILE'},
 	];
 	return (
-		<Shot transition="punch" push={0.04} flashColor={R.gold}>
+		<Shot transition="fade" push={0.04} flashColor={R.gold}>
 			<NewsBg tint={R.gold} />
 			<Head at={0} top={190} size={70} color={R.grey}>
 				FACE À LUI
@@ -474,7 +475,7 @@ export const S8Results = ({line}: SceneProps) => {
 	return (
 		<AbsoluteFill>
 			<Sequence durationInFrames={tRes}>
-				<Shot transition="whip" push={0.05}>
+				<Shot transition="fade" push={0.05}>
 					<Clip src="belgrade-tower" dim={0.5} />
 					<Tag at={W('25') - 4}>25 OCTOBRE 2026</Tag>
 					<Head at={W('participation') - 4} top={700} size={96}>
@@ -533,7 +534,7 @@ export const S9Majority = ({line}: SceneProps) => {
 	const tEra = W('quatorze') - 4;
 	const years = Math.round(lerp(ease(f, tEra, tEra + 20), 0, 14));
 	return (
-		<Shot transition="punch" push={0.03}>
+		<Shot transition="fade" push={0.03}>
 			<NewsBg tint={R.gold} />
 			<Head at={0} top={180} size={70} color={R.grey}>
 				PARLEMENT · 250 SIÈGES
@@ -582,7 +583,7 @@ export const S10Next = ({line}: SceneProps) => {
 		{at: W('corruption') - 6, text: 'LUTTER CONTRE LA CORRUPTION'},
 	];
 	return (
-		<Shot transition="whip" push={0.05}>
+		<Shot transition="fade" push={0.05}>
 			<Clip src="belgrade-bridge" dim={0.6} />
 			<Head at={0} top={250} size={110}>
 				MAINTENANT
@@ -603,39 +604,13 @@ export const S10Next = ({line}: SceneProps) => {
 	);
 };
 
-/* 11 — The lesson ------------------------------------------------------------------- */
-export const S11Lesson = ({line}: SceneProps) => {
-	const f = useCurrentFrame();
-	const split = line.words.findIndex((w) => w.text.endsWith('.')) + 1;
-	const gold = ['silence.', 'entendre.'];
-	const words = (ws: typeof line.words) =>
-		ws.map((w, i) => {
-			const p = ease(f, w.frame - 3, w.frame + 6);
-			return (
-				<span key={i} style={{display: 'inline-block', marginRight: 20, opacity: p, transform: `translateY(${(1 - p) * 14}px)`, color: gold.includes(w.text) ? R.gold : R.white}}>
-					{w.text}
-				</span>
-			);
-		});
-	return (
-		<Shot transition="none" push={0.06} len={line.durationInFrames}>
-			<Clip src="candle" trim={150} dim={0.5} />
-			<AbsoluteFill style={{background: '#000', opacity: 1 - ease(f, 0, 14)}} />
-			<div style={{position: 'absolute', top: 420, left: 80, right: 80, textAlign: 'center', fontFamily: SERIF, fontStyle: 'italic', fontWeight: 600, fontSize: 88, lineHeight: 1.2, textShadow: '0 8px 30px rgba(0,0,0,0.9)'}}>
-				<div>{words(line.words.slice(0, split))}</div>
-				<div style={{marginTop: 46}}>{words(line.words.slice(split))}</div>
-			</div>
-		</Shot>
-	);
-};
-
 /* 12 — Call to action ----------------------------------------------------------------- */
 export const S12Outro = ({line}: SceneProps) => {
 	const f = useCurrentFrame();
 	const W = wordAt(line);
 	const after = W('dis') - 2;
 	return (
-		<Shot transition="punch" push={0.03}>
+		<Shot transition="fade" push={0.03}>
 			<Photo src="danube" len={line.durationInFrames + 60} dim={0.55} />
 			<Head at={0} top={420} size={120}>
 				TU VEUX
@@ -660,4 +635,4 @@ export const S12Outro = ({line}: SceneProps) => {
 	);
 };
 
-export const SCENES = [S0Hook, S1NoviSad, S2Corruption, S3Students, S4March, S5Refusal, S6Run, S7List, S8Results, S9Majority, S10Next, S11Lesson, S12Outro];
+export const SCENES = [S0Hook, S1NoviSad, S2Corruption, S3Students, S4March, S5Refusal, S6Run, S7List, S8Results, S9Majority, S10Next, S12Outro];

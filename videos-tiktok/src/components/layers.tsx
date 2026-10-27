@@ -46,7 +46,7 @@ export const Fog = ({color = '120, 80, 170', alpha = 0.2, count = 5}: {color?: s
 	);
 };
 
-type Transition = 'punch' | 'whip' | 'drop' | 'flash' | 'none';
+type Transition = 'punch' | 'whip' | 'drop' | 'flash' | 'fade' | 'none';
 
 /** Wraps a scene: entrance transition + slow push-in so nothing ever sits still. */
 export const Shot = ({children, transition = 'punch', push = 0.05, len = 400, flashColor = '#fff'}: {children: React.ReactNode; transition?: Transition; push?: number; len?: number; flashColor?: string}) => {
@@ -63,11 +63,14 @@ export const Shot = ({children, transition = 'punch', push = 0.05, len = 400, fl
 	} else if (transition === 'drop') {
 		transform = `translateY(${(1 - p) * -1920}px)`;
 	}
+	// Slow, cinematic entrance: soft cross-fade from black with a gentle settle.
+	const fade = transition === 'fade' ? ease(f, 0, 18) : 1;
+	if (transition === 'fade') transform = `scale(${1.04 - 0.04 * fade})`;
 	const scale = 1 + push * Math.min(1, f / len);
 	const flash = transition === 'flash' || transition === 'punch' ? 1 - ease(f, 0, 6) : 0;
 	return (
 		<AbsoluteFill>
-			<AbsoluteFill style={{transform: `${transform} scale(${scale})`, filter}}>{children}</AbsoluteFill>
+			<AbsoluteFill style={{transform: `${transform} scale(${scale})`, filter, opacity: fade}}>{children}</AbsoluteFill>
 			{flash > 0 && <AbsoluteFill style={{background: flashColor, opacity: flash * (transition === 'flash' ? 0.9 : 0.35)}} />}
 		</AbsoluteFill>
 	);

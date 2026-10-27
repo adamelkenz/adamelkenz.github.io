@@ -2,13 +2,14 @@ import {AbsoluteFill, Html5Audio, Sequence, interpolate, staticFile, useVideoCon
 import {LightLeak} from '@remotion/light-leaks';
 import '../components/fonts';
 import {Captions, Grain, Line} from '../components/layers';
+import {Motes, TimelineBar} from './overlays';
 import {R, SCENES} from './scenes';
 import timeline from './timeline.json';
 
 const lines = timeline.lines as Line[];
 
 // Scenes whose on-screen text already carries the words.
-const NO_CAPTIONS = [0, 11, 12];
+const NO_CAPTIONS = [0, 11];
 // A light leak washes over the turning points.
 const LEAKS = [4, 7, 9];
 
@@ -27,8 +28,10 @@ export const Serbie = () => {
 				);
 			})}
 			{LEAKS.map((i, k) => (
-				<LightLeak key={i} from={Math.max(0, lines[i].from - 8)} durationInFrames={24} seed={k + 41} style={{opacity: 0.5}} />
+				<LightLeak key={i} from={Math.max(0, lines[i].from - 14)} durationInFrames={30} seed={k + 41} style={{opacity: 0.25}} />
 			))}
+			<Motes />
+			<TimelineBar lines={lines} />
 			<Captions lines={lines} hide={NO_CAPTIONS} top={1440} accent={R.gold} />
 			<Grain opacity={0.05} />
 			<Html5Audio

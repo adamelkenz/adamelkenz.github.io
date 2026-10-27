@@ -37,6 +37,7 @@ export const Footage = ({
 	zoom = 0.1,
 	len = 240,
 	grey = false,
+	rate = 1,
 }: {
 	src: string;
 	folder?: string;
@@ -46,6 +47,8 @@ export const Footage = ({
 	zoom?: number;
 	len?: number;
 	grey?: boolean;
+	/** Playback speed; below 1 for slow motion. */
+	rate?: number;
 }) => {
 	const f = useCurrentFrame();
 	return (
@@ -54,6 +57,7 @@ export const Footage = ({
 				<OffthreadVideo
 					src={staticFile(`${folder}/stock/${src}.mp4`)}
 					trimBefore={trim}
+					playbackRate={rate}
 					muted
 					style={{width: '100%', height: '100%', objectFit: 'cover', filter: grey ? 'grayscale(1) contrast(1.1)' : 'saturate(1.1) contrast(1.05)'}}
 				/>
