@@ -1,0 +1,8 @@
+# photos: name pixabayId focusX — scripts/prep-photo.sh datacenters …
+building 1880261 0.5
+dublin 2315013 0.45
+nuclear 4529392 0.5
+nuclear2 4892197 0.55
+chimneys 6619511 0.5
+smoke 258786 0.5
+serverroom 2476782 0.5

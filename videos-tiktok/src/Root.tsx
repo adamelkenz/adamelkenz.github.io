@@ -1,4 +1,6 @@
 import {Composition} from 'remotion';
+import {DataCenters} from './datacenters/DataCenters';
+import datacentersTimeline from './datacenters/timeline.json';
 import {Halloween} from './halloween/Halloween';
 import halloweenTimeline from './halloween/timeline.json';
 import {Marches} from './marches/Marches';
@@ -29,6 +31,14 @@ export const Root = () => (
 			component={Marches}
 			durationInFrames={marchesTimeline.durationInFrames}
 			fps={marchesTimeline.fps}
+			width={1080}
+			height={1920}
+		/>
+		<Composition
+			id="DataCenters"
+			component={DataCenters}
+			durationInFrames={datacentersTimeline.durationInFrames}
+			fps={datacentersTimeline.fps}
 			width={1080}
 			height={1920}
 		/>

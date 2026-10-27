@@ -8,11 +8,11 @@ import {Sfx} from './Sfx';
 export const FX_LEVELS = {
 	whoosh: 0.25,
 	swish: 0.3,
-	'whoosh-hit': 0.22,
+	'whoosh-hit': 0.15,
 	impact: 0.32,
 	'riser-hit': 0.25,
 	riser: 0.14,
-	pop: 0.3,
+	pop: 0.25,
 	click: 0.35,
 	cash: 0.22,
 	stamp: 0.28,

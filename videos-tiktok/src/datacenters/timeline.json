@@ -1,0 +1,1065 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Pourquoi l'Irlande donne près d'un quart de son électricité… à des bâtiments sans fenêtres ?",
+			"voice": "datacenters/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 153,
+			"voiceFrames": 150,
+			"words": [
+				{
+					"text": "Pourquoi",
+					"frame": 0
+				},
+				{
+					"text": "l'Irlande",
+					"frame": 12
+				},
+				{
+					"text": "donne",
+					"frame": 26
+				},
+				{
+					"text": "près",
+					"frame": 33
+				},
+				{
+					"text": "d'un",
+					"frame": 39
+				},
+				{
+					"text": "quart",
+					"frame": 45
+				},
+				{
+					"text": "de",
+					"frame": 52
+				},
+				{
+					"text": "son",
+					"frame": 55
+				},
+				{
+					"text": "électricité…",
+					"frame": 60
+				},
+				{
+					"text": "à",
+					"frame": 98
+				},
+				{
+					"text": "des",
+					"frame": 102
+				},
+				{
+					"text": "bâtiments",
+					"frame": 106
+				},
+				{
+					"text": "sans",
+					"frame": 119
+				},
+				{
+					"text": "fenêtres ?",
+					"frame": 124
+				}
+			]
+		},
+		{
+			"text": "Ces bâtiments, ce sont des data centers. Chaque vidéo, chaque message, chaque question posée à une IA passe par eux.",
+			"voice": "datacenters/voice/line-01.wav",
+			"from": 153,
+			"durationInFrames": 263,
+			"voiceFrames": 258,
+			"words": [
+				{
+					"text": "Ces",
+					"frame": 0
+				},
+				{
+					"text": "bâtiments,",
+					"frame": 7
+				},
+				{
+					"text": "ce",
+					"frame": 33
+				},
+				{
+					"text": "sont",
+					"frame": 37
+				},
+				{
+					"text": "des",
+					"frame": 42
+				},
+				{
+					"text": "data",
+					"frame": 45
+				},
+				{
+					"text": "centers.",
+					"frame": 53
+				},
+				{
+					"text": "Chaque",
+					"frame": 88
+				},
+				{
+					"text": "vidéo,",
+					"frame": 97
+				},
+				{
+					"text": "chaque",
+					"frame": 122
+				},
+				{
+					"text": "message,",
+					"frame": 130
+				},
+				{
+					"text": "chaque",
+					"frame": 156
+				},
+				{
+					"text": "question",
+					"frame": 164
+				},
+				{
+					"text": "posée",
+					"frame": 177
+				},
+				{
+					"text": "à",
+					"frame": 187
+				},
+				{
+					"text": "une",
+					"frame": 191
+				},
+				{
+					"text": "IA",
+					"frame": 195
+				},
+				{
+					"text": "passe",
+					"frame": 213
+				},
+				{
+					"text": "par",
+					"frame": 224
+				},
+				{
+					"text": "eux.",
+					"frame": 230
+				}
+			]
+		},
+		{
+			"text": "En Europe, il y en a plus de dix mille. Et plus de la moitié de la capacité se concentre autour de cinq villes : Francfort, Londres, Amsterdam, Paris et Dublin.",
+			"voice": "datacenters/voice/line-02.wav",
+			"from": 416,
+			"durationInFrames": 315,
+			"voiceFrames": 310,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "Europe,",
+					"frame": 7
+				},
+				{
+					"text": "il",
+					"frame": 24
+				},
+				{
+					"text": "y",
+					"frame": 29
+				},
+				{
+					"text": "en",
+					"frame": 31
+				},
+				{
+					"text": "a",
+					"frame": 34
+				},
+				{
+					"text": "plus",
+					"frame": 37
+				},
+				{
+					"text": "de",
+					"frame": 43
+				},
+				{
+					"text": "dix",
+					"frame": 47
+				},
+				{
+					"text": "mille.",
+					"frame": 52
+				},
+				{
+					"text": "Et",
+					"frame": 75
+				},
+				{
+					"text": "plus",
+					"frame": 80
+				},
+				{
+					"text": "de",
+					"frame": 85
+				},
+				{
+					"text": "la",
+					"frame": 88
+				},
+				{
+					"text": "moitié",
+					"frame": 91
+				},
+				{
+					"text": "de",
+					"frame": 101
+				},
+				{
+					"text": "la",
+					"frame": 104
+				},
+				{
+					"text": "capacité",
+					"frame": 107
+				},
+				{
+					"text": "se",
+					"frame": 132
+				},
+				{
+					"text": "concentre",
+					"frame": 138
+				},
+				{
+					"text": "autour",
+					"frame": 150
+				},
+				{
+					"text": "de",
+					"frame": 163
+				},
+				{
+					"text": "cinq",
+					"frame": 167
+				},
+				{
+					"text": "villes :",
+					"frame": 174
+				},
+				{
+					"text": "Francfort,",
+					"frame": 189
+				},
+				{
+					"text": "Londres,",
+					"frame": 213
+				},
+				{
+					"text": "Amsterdam,",
+					"frame": 230
+				},
+				{
+					"text": "Paris",
+					"frame": 257
+				},
+				{
+					"text": "et",
+					"frame": 275
+				},
+				{
+					"text": "Dublin.",
+					"frame": 280
+				}
+			]
+		},
+		{
+			"text": "À Dublin, ils consomment près de quatre-vingts pour cent de l'électricité de la ville.",
+			"voice": "datacenters/voice/line-03.wav",
+			"from": 731,
+			"durationInFrames": 156,
+			"voiceFrames": 151,
+			"words": [
+				{
+					"text": "À",
+					"frame": 0
+				},
+				{
+					"text": "Dublin,",
+					"frame": 6
+				},
+				{
+					"text": "ils",
+					"frame": 27
+				},
+				{
+					"text": "consomment",
+					"frame": 32
+				},
+				{
+					"text": "près",
+					"frame": 48
+				},
+				{
+					"text": "de",
+					"frame": 55
+				},
+				{
+					"text": "quatre-vingts",
+					"frame": 60
+				},
+				{
+					"text": "pour",
+					"frame": 75
+				},
+				{
+					"text": "cent",
+					"frame": 82
+				},
+				{
+					"text": "de",
+					"frame": 88
+				},
+				{
+					"text": "l'électricité",
+					"frame": 92
+				},
+				{
+					"text": "de",
+					"frame": 113
+				},
+				{
+					"text": "la",
+					"frame": 116
+				},
+				{
+					"text": "ville.",
+					"frame": 119
+				}
+			]
+		},
+		{
+			"text": "Résultat : le réseau ne suit plus. Dublin et Amsterdam ont dû mettre en pause de nouveaux projets. Et dans certains pays, un raccordement peut prendre plus de dix ans.",
+			"voice": "datacenters/voice/line-04.wav",
+			"from": 887,
+			"durationInFrames": 304,
+			"voiceFrames": 299,
+			"words": [
+				{
+					"text": "Résultat :",
+					"frame": 0
+				},
+				{
+					"text": "le",
+					"frame": 35
+				},
+				{
+					"text": "réseau",
+					"frame": 39
+				},
+				{
+					"text": "ne",
+					"frame": 49
+				},
+				{
+					"text": "suit",
+					"frame": 53
+				},
+				{
+					"text": "plus.",
+					"frame": 59
+				},
+				{
+					"text": "Dublin",
+					"frame": 88
+				},
+				{
+					"text": "et",
+					"frame": 101
+				},
+				{
+					"text": "Amsterdam",
+					"frame": 105
+				},
+				{
+					"text": "ont",
+					"frame": 122
+				},
+				{
+					"text": "dû",
+					"frame": 124
+				},
+				{
+					"text": "mettre",
+					"frame": 128
+				},
+				{
+					"text": "en",
+					"frame": 135
+				},
+				{
+					"text": "pause",
+					"frame": 138
+				},
+				{
+					"text": "de",
+					"frame": 147
+				},
+				{
+					"text": "nouveaux",
+					"frame": 151
+				},
+				{
+					"text": "projets.",
+					"frame": 159
+				},
+				{
+					"text": "Et",
+					"frame": 186
+				},
+				{
+					"text": "dans",
+					"frame": 190
+				},
+				{
+					"text": "certains",
+					"frame": 194
+				},
+				{
+					"text": "pays,",
+					"frame": 204
+				},
+				{
+					"text": "un",
+					"frame": 227
+				},
+				{
+					"text": "raccordement",
+					"frame": 230
+				},
+				{
+					"text": "peut",
+					"frame": 246
+				},
+				{
+					"text": "prendre",
+					"frame": 250
+				},
+				{
+					"text": "plus",
+					"frame": 262
+				},
+				{
+					"text": "de",
+					"frame": 268
+				},
+				{
+					"text": "dix",
+					"frame": 271
+				},
+				{
+					"text": "ans.",
+					"frame": 278
+				}
+			]
+		},
+		{
+			"text": "Et l'IA accélère tout. La consommation des data centers européens pourrait passer d'environ quatre-vingt-dix térawattheures… à plus de cent trente d'ici 2030.",
+			"voice": "datacenters/voice/line-05.wav",
+			"from": 1191,
+			"durationInFrames": 304,
+			"voiceFrames": 299,
+			"words": [
+				{
+					"text": "Et",
+					"frame": 0
+				},
+				{
+					"text": "l'IA",
+					"frame": 6
+				},
+				{
+					"text": "accélère",
+					"frame": 20
+				},
+				{
+					"text": "tout.",
+					"frame": 36
+				},
+				{
+					"text": "La",
+					"frame": 64
+				},
+				{
+					"text": "consommation",
+					"frame": 68
+				},
+				{
+					"text": "des",
+					"frame": 86
+				},
+				{
+					"text": "data",
+					"frame": 89
+				},
+				{
+					"text": "centers",
+					"frame": 97
+				},
+				{
+					"text": "européens",
+					"frame": 110
+				},
+				{
+					"text": "pourrait",
+					"frame": 136
+				},
+				{
+					"text": "passer",
+					"frame": 144
+				},
+				{
+					"text": "d'environ",
+					"frame": 154
+				},
+				{
+					"text": "quatre-vingt-dix",
+					"frame": 167
+				},
+				{
+					"text": "térawattheures…",
+					"frame": 191
+				},
+				{
+					"text": "à",
+					"frame": 228
+				},
+				{
+					"text": "plus",
+					"frame": 232
+				},
+				{
+					"text": "de",
+					"frame": 237
+				},
+				{
+					"text": "cent",
+					"frame": 240
+				},
+				{
+					"text": "trente",
+					"frame": 246
+				},
+				{
+					"text": "d'ici",
+					"frame": 256
+				},
+				{
+					"text": "2030.",
+					"frame": 266
+				}
+			]
+		},
+		{
+			"text": "Alors l'Europe change de carte. La France mise sur son électricité nucléaire, bas carbone. Au sommet Choose France 2026, quatre-vingt-treize milliards d'euros d'investissements ont été annoncés. Près de la moitié pour des data centers d'IA.",
+			"voice": "datacenters/voice/line-06.wav",
+			"from": 1495,
+			"durationInFrames": 470,
+			"voiceFrames": 465,
+			"words": [
+				{
+					"text": "Alors",
+					"frame": 0
+				},
+				{
+					"text": "l'Europe",
+					"frame": 10
+				},
+				{
+					"text": "change",
+					"frame": 22
+				},
+				{
+					"text": "de",
+					"frame": 32
+				},
+				{
+					"text": "carte.",
+					"frame": 35
+				},
+				{
+					"text": "La",
+					"frame": 61
+				},
+				{
+					"text": "France",
+					"frame": 66
+				},
+				{
+					"text": "mise",
+					"frame": 78
+				},
+				{
+					"text": "sur",
+					"frame": 88
+				},
+				{
+					"text": "son",
+					"frame": 94
+				},
+				{
+					"text": "électricité",
+					"frame": 100
+				},
+				{
+					"text": "nucléaire,",
+					"frame": 118
+				},
+				{
+					"text": "bas",
+					"frame": 145
+				},
+				{
+					"text": "carbone.",
+					"frame": 151
+				},
+				{
+					"text": "Au",
+					"frame": 177
+				},
+				{
+					"text": "sommet",
+					"frame": 182
+				},
+				{
+					"text": "Choose",
+					"frame": 196
+				},
+				{
+					"text": "France",
+					"frame": 207
+				},
+				{
+					"text": "2026,",
+					"frame": 221
+				},
+				{
+					"text": "quatre-vingt-treize",
+					"frame": 257
+				},
+				{
+					"text": "milliards",
+					"frame": 287
+				},
+				{
+					"text": "d'euros",
+					"frame": 302
+				},
+				{
+					"text": "d'investissements",
+					"frame": 311
+				},
+				{
+					"text": "ont",
+					"frame": 338
+				},
+				{
+					"text": "été",
+					"frame": 346
+				},
+				{
+					"text": "annoncés.",
+					"frame": 352
+				},
+				{
+					"text": "Près",
+					"frame": 383
+				},
+				{
+					"text": "de",
+					"frame": 389
+				},
+				{
+					"text": "la",
+					"frame": 392
+				},
+				{
+					"text": "moitié",
+					"frame": 395
+				},
+				{
+					"text": "pour",
+					"frame": 413
+				},
+				{
+					"text": "des",
+					"frame": 419
+				},
+				{
+					"text": "data",
+					"frame": 422
+				},
+				{
+					"text": "centers",
+					"frame": 430
+				},
+				{
+					"text": "d'IA.",
+					"frame": 444
+				}
+			]
+		},
+		{
+			"text": "Les pays nordiques attirent aussi, grâce au froid et aux énergies renouvelables. Et Bruxelles lance des gigafactories d'IA, pour moins dépendre des géants américains.",
+			"voice": "datacenters/voice/line-07.wav",
+			"from": 1965,
+			"durationInFrames": 330,
+			"voiceFrames": 325,
+			"words": [
+				{
+					"text": "Les",
+					"frame": 0
+				},
+				{
+					"text": "pays",
+					"frame": 6
+				},
+				{
+					"text": "nordiques",
+					"frame": 15
+				},
+				{
+					"text": "attirent",
+					"frame": 29
+				},
+				{
+					"text": "aussi,",
+					"frame": 42
+				},
+				{
+					"text": "grâce",
+					"frame": 64
+				},
+				{
+					"text": "au",
+					"frame": 76
+				},
+				{
+					"text": "froid",
+					"frame": 82
+				},
+				{
+					"text": "et",
+					"frame": 99
+				},
+				{
+					"text": "aux",
+					"frame": 105
+				},
+				{
+					"text": "énergies",
+					"frame": 110
+				},
+				{
+					"text": "renouvelables.",
+					"frame": 126
+				},
+				{
+					"text": "Et",
+					"frame": 160
+				},
+				{
+					"text": "Bruxelles",
+					"frame": 165
+				},
+				{
+					"text": "lance",
+					"frame": 187
+				},
+				{
+					"text": "des",
+					"frame": 199
+				},
+				{
+					"text": "gigafactories",
+					"frame": 204
+				},
+				{
+					"text": "d'IA,",
+					"frame": 227
+				},
+				{
+					"text": "pour",
+					"frame": 249
+				},
+				{
+					"text": "moins",
+					"frame": 255
+				},
+				{
+					"text": "dépendre",
+					"frame": 260
+				},
+				{
+					"text": "des",
+					"frame": 276
+				},
+				{
+					"text": "géants",
+					"frame": 280
+				},
+				{
+					"text": "américains.",
+					"frame": 290
+				}
+			]
+		},
+		{
+			"text": "Le vrai défi n'est donc plus de construire des serveurs. C'est de trouver l'électricité, l'eau et la place pour les faire tourner.",
+			"voice": "datacenters/voice/line-08.wav",
+			"from": 2295,
+			"durationInFrames": 254,
+			"voiceFrames": 243,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "vrai",
+					"frame": 6
+				},
+				{
+					"text": "défi",
+					"frame": 11
+				},
+				{
+					"text": "n'est",
+					"frame": 25
+				},
+				{
+					"text": "donc",
+					"frame": 29
+				},
+				{
+					"text": "plus",
+					"frame": 35
+				},
+				{
+					"text": "de",
+					"frame": 42
+				},
+				{
+					"text": "construire",
+					"frame": 46
+				},
+				{
+					"text": "des",
+					"frame": 61
+				},
+				{
+					"text": "serveurs.",
+					"frame": 65
+				},
+				{
+					"text": "C'est",
+					"frame": 93
+				},
+				{
+					"text": "de",
+					"frame": 99
+				},
+				{
+					"text": "trouver",
+					"frame": 101
+				},
+				{
+					"text": "l'électricité,",
+					"frame": 110
+				},
+				{
+					"text": "l'eau",
+					"frame": 143
+				},
+				{
+					"text": "et",
+					"frame": 157
+				},
+				{
+					"text": "la",
+					"frame": 163
+				},
+				{
+					"text": "place",
+					"frame": 167
+				},
+				{
+					"text": "pour",
+					"frame": 183
+				},
+				{
+					"text": "les",
+					"frame": 189
+				},
+				{
+					"text": "faire",
+					"frame": 193
+				},
+				{
+					"text": "tourner.",
+					"frame": 198
+				}
+			]
+		},
+		{
+			"text": "Au dix-neuvième siècle, les usines s'installaient près du charbon. Aujourd'hui, l'intelligence s'installe près de l'électricité.",
+			"voice": "datacenters/voice/line-09.wav",
+			"from": 2549,
+			"durationInFrames": 239,
+			"voiceFrames": 227,
+			"words": [
+				{
+					"text": "Au",
+					"frame": 0
+				},
+				{
+					"text": "dix-neuvième",
+					"frame": 5
+				},
+				{
+					"text": "siècle,",
+					"frame": 21
+				},
+				{
+					"text": "les",
+					"frame": 42
+				},
+				{
+					"text": "usines",
+					"frame": 47
+				},
+				{
+					"text": "s'installaient",
+					"frame": 58
+				},
+				{
+					"text": "près",
+					"frame": 73
+				},
+				{
+					"text": "du",
+					"frame": 78
+				},
+				{
+					"text": "charbon.",
+					"frame": 81
+				},
+				{
+					"text": "Aujourd'hui,",
+					"frame": 112
+				},
+				{
+					"text": "l'intelligence",
+					"frame": 141
+				},
+				{
+					"text": "s'installe",
+					"frame": 164
+				},
+				{
+					"text": "près",
+					"frame": 178
+				},
+				{
+					"text": "de",
+					"frame": 184
+				},
+				{
+					"text": "l'électricité.",
+					"frame": 187
+				}
+			]
+		},
+		{
+			"text": "Et toi, tu accepterais un data center à côté de chez toi ? Dis-le en commentaire.",
+			"voice": "datacenters/voice/line-10.wav",
+			"from": 2788,
+			"durationInFrames": 145,
+			"voiceFrames": 140,
+			"words": [
+				{
+					"text": "Et",
+					"frame": 0
+				},
+				{
+					"text": "toi,",
+					"frame": 5
+				},
+				{
+					"text": "tu",
+					"frame": 19
+				},
+				{
+					"text": "accepterais",
+					"frame": 23
+				},
+				{
+					"text": "un",
+					"frame": 39
+				},
+				{
+					"text": "data",
+					"frame": 42
+				},
+				{
+					"text": "center",
+					"frame": 50
+				},
+				{
+					"text": "à",
+					"frame": 63
+				},
+				{
+					"text": "côté",
+					"frame": 65
+				},
+				{
+					"text": "de",
+					"frame": 72
+				},
+				{
+					"text": "chez",
+					"frame": 75
+				},
+				{
+					"text": "toi ?",
+					"frame": 80
+				},
+				{
+					"text": "Dis-le",
+					"frame": 102
+				},
+				{
+					"text": "en",
+					"frame": 111
+				},
+				{
+					"text": "commentaire.",
+					"frame": 114
+				}
+			]
+		}
+	],
+	"durationInFrames": 2993
+}

@@ -1,0 +1,8 @@
+# videos: name pixabayId start duration — scripts/prep-stock.sh datacenters …
+servers-v 345428 0 10
+servers 380334 0 8
+datacenter 286689 0 9
+pylons 23470 2 12
+pylons2 324019 2 12
+fjord 295500 0 12
+ice 350972 2 12

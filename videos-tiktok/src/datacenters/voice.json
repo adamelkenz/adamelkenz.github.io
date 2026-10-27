@@ -1,0 +1,6 @@
+{
+	"voiceId": "pqHfZKP75CvOlQylNhV4",
+	"voiceName": "Bill (ElevenLabs) - wise, mature",
+	"settings": {"stability": 0.6, "similarity_boost": 0.8, "style": 0.15, "speed": 1.0},
+	"tempo": 1.15
+}

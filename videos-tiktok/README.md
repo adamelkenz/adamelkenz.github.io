@@ -7,6 +7,7 @@ Mini-docs verticaux 1080×1920 : hook en question, motion design, vrais plans vi
 - `Halloween` — « Qu'est-ce qui se passe si tu organises une soirée d'Halloween pour te faire 3 000 € en une nuit ? »
 - `Statuts` — « Micro, EURL, SASU, SARL, SAS… Lequel est fait pour toi ? »
 - `Marches` — « Comment une petite entreprise peut-elle travailler pour l'État… et être payée à temps ? » (voix : Bill)
+- `DataCenters` — « Pourquoi l'Irlande donne près d'un quart de son électricité… à des bâtiments sans fenêtres ? » (voix : Bill, cartes en motion design)
 
 ## Clés (variables d'environnement, jamais dans le repo)
 
@@ -23,10 +24,12 @@ node scripts/eleven-voice.mjs statuts              # voix ElevenLabs + minutage 
 scripts/process-voice.sh statuts                   # accélération éventuelle (tempo) + traitement → .wav
 node scripts/build-timeline.mjs statuts            # calage voix ↔ animations (src/statuts/timeline.json)
 scripts/prep-stock.sh statuts micro 349792 0 10    # plan Pixabay recadré en 1080×1920
+scripts/prep-photo.sh datacenters dublin 2315013   # photo Pixabay recadrée pour un zoom lent
 node scripts/freesound.mjs search "whoosh"         # chercher / récupérer des bruitages (public/sfx-real)
 scripts/normalize-sfx.sh public/sfx-real public/sfx-norm   # même niveau perçu pour tous les bruitages
 node scripts/render.mjs Statuts out/statuts.mp4    # rendu + son normalisé à -14 LUFS
-python3 scripts/mix-check.py out/statuts.mp4       # repère les bruitages qui dépassent la voix
+python3 scripts/voice-track.py statuts out/statuts-voice.wav          # piste voix seule
+python3 scripts/mix-check.py out/statuts.mp4 out/statuts-voice.wav    # bruitages qui dépassent la voix
 npm run studio                                     # aperçu interactif
 ```
 

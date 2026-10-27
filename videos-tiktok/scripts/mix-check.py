@@ -1,34 +1,44 @@
-"""Flags moments where the mix sticks out above the voice level (sound effects too loud).
+"""Flags moments where sound effects rise above the voice.
 
-Usage: python3 scripts/mix-check.py out/marches-audio.wav [threshold_lu]
-Prints integrated loudness, the typical (median) short-term level, and every 0.1 s window
-whose momentary loudness exceeds the median by more than the threshold (default 4 LU).
+Usage: python3 scripts/mix-check.py <final.mp4> <voice-only.wav> [threshold_lu]
+Compares momentary loudness (400 ms windows) of the final mix with the voice-only track
+(scripts/voice-track.py) while the voice is speaking, and lists the moments where the mix
+exceeds its usual level above the voice by more than the threshold (default 3 LU).
 """
 import re
 import statistics
 import subprocess
 import sys
 
-path = sys.argv[1]
-threshold = float(sys.argv[2]) if len(sys.argv) > 2 else 4.0
-err = subprocess.run(
-    ['ffmpeg', '-nostdin', '-i', path, '-af', 'ebur128=metadata=1,ametadata=print:key=lavfi.r128.M', '-f', 'null', '-'],
-    capture_output=True, text=True,
-).stderr
-times = [float(x) for x in re.findall(r'pts_time:([\d.]+)', err)]
-values = [float(x) for x in re.findall(r'lavfi\.r128\.M=(-?[\d.]+)', err)]
-integrated = re.findall(r'I:\s+(-?[\d.]+) LUFS', err)[-1]
-speech = [v for v in values if v > -40]
-median = statistics.median(speech)
-print(f'integrated {integrated} LUFS, median momentary {median:.1f} LUFS')
-spikes = [(t, v) for t, v in zip(times, values) if v > median + threshold]
+
+def momentary(path):
+    err = subprocess.run(
+        ['ffmpeg', '-nostdin', '-i', path, '-af', 'ebur128=metadata=1,ametadata=print:key=lavfi.r128.M', '-f', 'null', '-'],
+        capture_output=True, text=True,
+    ).stderr
+    times = [round(float(x), 1) for x in re.findall(r'pts_time:([\d.]+)', err)]
+    values = [float(x) for x in re.findall(r'lavfi\.r128\.M=(-?[\d.]+)', err)]
+    integrated = re.findall(r'I:\s+(-?[\d.]+) LUFS', err)[-1]
+    return dict(zip(times, values)), integrated
+
+
+mix_path, voice_path = sys.argv[1], sys.argv[2]
+threshold = float(sys.argv[3]) if len(sys.argv) > 3 else 3.0
+mix, integrated = momentary(mix_path)
+voice, _ = momentary(voice_path)
+diffs = [(t, mix[t] - voice[t]) for t in mix if t in voice and voice[t] > -35]
+base = statistics.median(d for _, d in diffs)
+print(f'integrated {integrated} LUFS')
 groups = []
-for t, v in spikes:
+for t, d in diffs:
+    over = d - base
+    if over <= threshold:
+        continue
     if groups and t - groups[-1][1] < 0.35:
         groups[-1][1] = t
-        groups[-1][2] = max(groups[-1][2], v)
+        groups[-1][2] = max(groups[-1][2], over)
     else:
-        groups.append([t, t, v])
+        groups.append([t, t, over])
 for start, end, peak in groups:
-    print(f'  {start:6.1f}s–{end:5.1f}s  peak {peak:.1f} (+{peak - median:.1f} LU)')
-print(f'{len(groups)} spike(s)')
+    print(f'  {start:6.1f}s–{end:5.1f}s  +{peak:.1f} LU above the voice')
+print(f'{len(groups)} moment(s) above +{threshold} LU')
