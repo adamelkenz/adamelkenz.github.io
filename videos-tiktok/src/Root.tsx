@@ -5,6 +5,8 @@ import {Halloween} from './halloween/Halloween';
 import halloweenTimeline from './halloween/timeline.json';
 import {Marches} from './marches/Marches';
 import marchesTimeline from './marches/timeline.json';
+import {Serbie} from './serbie/Serbie';
+import serbieTimeline from './serbie/timeline.json';
 import {Statuts} from './statuts/Statuts';
 import {WhiteLabel} from './whitelabel/WhiteLabel';
 import whitelabelTimeline from './whitelabel/timeline.json';
@@ -49,6 +51,14 @@ export const Root = () => (
 			component={WhiteLabel}
 			durationInFrames={whitelabelTimeline.durationInFrames}
 			fps={whitelabelTimeline.fps}
+			width={1080}
+			height={1920}
+		/>
+		<Composition
+			id="Serbie"
+			component={Serbie}
+			durationInFrames={serbieTimeline.durationInFrames}
+			fps={serbieTimeline.fps}
 			width={1080}
 			height={1920}
 		/>

@@ -1,0 +1,1015 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Comment un toit de gare qui s'effondre… a fini par faire tomber le pouvoir en Serbie ?",
+			"voice": "serbie/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 165,
+			"voiceFrames": 162,
+			"words": [
+				{
+					"text": "Comment",
+					"frame": 0
+				},
+				{
+					"text": "un",
+					"frame": 14
+				},
+				{
+					"text": "toit",
+					"frame": 18
+				},
+				{
+					"text": "de",
+					"frame": 25
+				},
+				{
+					"text": "gare",
+					"frame": 28
+				},
+				{
+					"text": "qui",
+					"frame": 36
+				},
+				{
+					"text": "s'effondre…",
+					"frame": 42
+				},
+				{
+					"text": "a",
+					"frame": 71
+				},
+				{
+					"text": "fini",
+					"frame": 75
+				},
+				{
+					"text": "par",
+					"frame": 84
+				},
+				{
+					"text": "faire",
+					"frame": 90
+				},
+				{
+					"text": "tomber",
+					"frame": 96
+				},
+				{
+					"text": "le",
+					"frame": 105
+				},
+				{
+					"text": "pouvoir",
+					"frame": 108
+				},
+				{
+					"text": "en",
+					"frame": 122
+				},
+				{
+					"text": "Serbie ?",
+					"frame": 128
+				}
+			]
+		},
+		{
+			"text": "Premier novembre 2024, à Novi Sad. L'auvent de la gare, tout juste rénovée, s'écroule. Seize personnes meurent.",
+			"voice": "serbie/voice/line-01.wav",
+			"from": 165,
+			"durationInFrames": 270,
+			"voiceFrames": 265,
+			"words": [
+				{
+					"text": "Premier",
+					"frame": 0
+				},
+				{
+					"text": "novembre",
+					"frame": 11
+				},
+				{
+					"text": "2024,",
+					"frame": 26
+				},
+				{
+					"text": "à",
+					"frame": 61
+				},
+				{
+					"text": "Novi",
+					"frame": 66
+				},
+				{
+					"text": "Sad.",
+					"frame": 75
+				},
+				{
+					"text": "L'auvent",
+					"frame": 107
+				},
+				{
+					"text": "de",
+					"frame": 116
+				},
+				{
+					"text": "la",
+					"frame": 118
+				},
+				{
+					"text": "gare,",
+					"frame": 122
+				},
+				{
+					"text": "tout",
+					"frame": 139
+				},
+				{
+					"text": "juste",
+					"frame": 146
+				},
+				{
+					"text": "rénovée,",
+					"frame": 156
+				},
+				{
+					"text": "s'écroule.",
+					"frame": 179
+				},
+				{
+					"text": "Seize",
+					"frame": 209
+				},
+				{
+					"text": "personnes",
+					"frame": 220
+				},
+				{
+					"text": "meurent.",
+					"frame": 235
+				}
+			]
+		},
+		{
+			"text": "Pour beaucoup de Serbes, ce n'est pas un accident. C'est le symbole de la corruption.",
+			"voice": "serbie/voice/line-02.wav",
+			"from": 435,
+			"durationInFrames": 165,
+			"voiceFrames": 160,
+			"words": [
+				{
+					"text": "Pour",
+					"frame": 0
+				},
+				{
+					"text": "beaucoup",
+					"frame": 7
+				},
+				{
+					"text": "de",
+					"frame": 15
+				},
+				{
+					"text": "Serbes,",
+					"frame": 19
+				},
+				{
+					"text": "ce",
+					"frame": 44
+				},
+				{
+					"text": "n'est",
+					"frame": 49
+				},
+				{
+					"text": "pas",
+					"frame": 53
+				},
+				{
+					"text": "un",
+					"frame": 60
+				},
+				{
+					"text": "accident.",
+					"frame": 63
+				},
+				{
+					"text": "C'est",
+					"frame": 93
+				},
+				{
+					"text": "le",
+					"frame": 99
+				},
+				{
+					"text": "symbole",
+					"frame": 104
+				},
+				{
+					"text": "de",
+					"frame": 118
+				},
+				{
+					"text": "la",
+					"frame": 121
+				},
+				{
+					"text": "corruption.",
+					"frame": 124
+				}
+			]
+		},
+		{
+			"text": "Les étudiants se lèvent. Ils bloquent les universités, puis les routes. En silence : une minute par victime.",
+			"voice": "serbie/voice/line-03.wav",
+			"from": 600,
+			"durationInFrames": 241,
+			"voiceFrames": 236,
+			"words": [
+				{
+					"text": "Les",
+					"frame": 0
+				},
+				{
+					"text": "étudiants",
+					"frame": 8
+				},
+				{
+					"text": "se",
+					"frame": 21
+				},
+				{
+					"text": "lèvent.",
+					"frame": 25
+				},
+				{
+					"text": "Ils",
+					"frame": 52
+				},
+				{
+					"text": "bloquent",
+					"frame": 59
+				},
+				{
+					"text": "les",
+					"frame": 69
+				},
+				{
+					"text": "universités,",
+					"frame": 74
+				},
+				{
+					"text": "puis",
+					"frame": 103
+				},
+				{
+					"text": "les",
+					"frame": 111
+				},
+				{
+					"text": "routes.",
+					"frame": 115
+				},
+				{
+					"text": "En",
+					"frame": 142
+				},
+				{
+					"text": "silence :",
+					"frame": 148
+				},
+				{
+					"text": "une",
+					"frame": 181
+				},
+				{
+					"text": "minute",
+					"frame": 187
+				},
+				{
+					"text": "par",
+					"frame": 198
+				},
+				{
+					"text": "victime.",
+					"frame": 203
+				}
+			]
+		},
+		{
+			"text": "Le quinze mars 2025, Belgrade vit l'une des plus grandes manifestations de son histoire. Le Premier ministre est déjà tombé. Le président, Aleksandar Vučić, lui, tient bon.",
+			"voice": "serbie/voice/line-04.wav",
+			"from": 841,
+			"durationInFrames": 339,
+			"voiceFrames": 334,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "quinze",
+					"frame": 6
+				},
+				{
+					"text": "mars",
+					"frame": 14
+				},
+				{
+					"text": "2025,",
+					"frame": 25
+				},
+				{
+					"text": "Belgrade",
+					"frame": 56
+				},
+				{
+					"text": "vit",
+					"frame": 72
+				},
+				{
+					"text": "l'une",
+					"frame": 77
+				},
+				{
+					"text": "des",
+					"frame": 84
+				},
+				{
+					"text": "plus",
+					"frame": 88
+				},
+				{
+					"text": "grandes",
+					"frame": 93
+				},
+				{
+					"text": "manifestations",
+					"frame": 102
+				},
+				{
+					"text": "de",
+					"frame": 123
+				},
+				{
+					"text": "son",
+					"frame": 126
+				},
+				{
+					"text": "histoire.",
+					"frame": 130
+				},
+				{
+					"text": "Le",
+					"frame": 163
+				},
+				{
+					"text": "Premier",
+					"frame": 168
+				},
+				{
+					"text": "ministre",
+					"frame": 176
+				},
+				{
+					"text": "est",
+					"frame": 190
+				},
+				{
+					"text": "déjà",
+					"frame": 194
+				},
+				{
+					"text": "tombé.",
+					"frame": 201
+				},
+				{
+					"text": "Le",
+					"frame": 226
+				},
+				{
+					"text": "président,",
+					"frame": 231
+				},
+				{
+					"text": "Aleksandar",
+					"frame": 252
+				},
+				{
+					"text": "Vučić,",
+					"frame": 270
+				},
+				{
+					"text": "lui,",
+					"frame": 286
+				},
+				{
+					"text": "tient",
+					"frame": 302
+				},
+				{
+					"text": "bon.",
+					"frame": 310
+				}
+			]
+		},
+		{
+			"text": "Les étudiants réclament des élections anticipées. Vučić refuse… pendant seize mois.",
+			"voice": "serbie/voice/line-05.wav",
+			"from": 1180,
+			"durationInFrames": 207,
+			"voiceFrames": 202,
+			"words": [
+				{
+					"text": "Les",
+					"frame": 0
+				},
+				{
+					"text": "étudiants",
+					"frame": 8
+				},
+				{
+					"text": "réclament",
+					"frame": 28
+				},
+				{
+					"text": "des",
+					"frame": 43
+				},
+				{
+					"text": "élections",
+					"frame": 49
+				},
+				{
+					"text": "anticipées.",
+					"frame": 63
+				},
+				{
+					"text": "Vučić",
+					"frame": 101
+				},
+				{
+					"text": "refuse…",
+					"frame": 122
+				},
+				{
+					"text": "pendant",
+					"frame": 156
+				},
+				{
+					"text": "seize",
+					"frame": 169
+				},
+				{
+					"text": "mois.",
+					"frame": 178
+				}
+			]
+		},
+		{
+			"text": "En septembre 2026, il cède. Il quitte la présidence pour se présenter comme Premier ministre.",
+			"voice": "serbie/voice/line-06.wav",
+			"from": 1387,
+			"durationInFrames": 172,
+			"voiceFrames": 167,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "septembre",
+					"frame": 7
+				},
+				{
+					"text": "2026,",
+					"frame": 22
+				},
+				{
+					"text": "il",
+					"frame": 48
+				},
+				{
+					"text": "cède.",
+					"frame": 54
+				},
+				{
+					"text": "Il",
+					"frame": 75
+				},
+				{
+					"text": "quitte",
+					"frame": 82
+				},
+				{
+					"text": "la",
+					"frame": 89
+				},
+				{
+					"text": "présidence",
+					"frame": 92
+				},
+				{
+					"text": "pour",
+					"frame": 107
+				},
+				{
+					"text": "se",
+					"frame": 112
+				},
+				{
+					"text": "présenter",
+					"frame": 116
+				},
+				{
+					"text": "comme",
+					"frame": 129
+				},
+				{
+					"text": "Premier",
+					"frame": 134
+				},
+				{
+					"text": "ministre.",
+					"frame": 143
+				}
+			]
+		},
+		{
+			"text": "Face à lui : la Liste étudiante. Des professeurs, des médecins, des figures de la société civile… choisis par les étudiants.",
+			"voice": "serbie/voice/line-07.wav",
+			"from": 1559,
+			"durationInFrames": 259,
+			"voiceFrames": 254,
+			"words": [
+				{
+					"text": "Face",
+					"frame": 0
+				},
+				{
+					"text": "à",
+					"frame": 9
+				},
+				{
+					"text": "lui :",
+					"frame": 10
+				},
+				{
+					"text": "la",
+					"frame": 30
+				},
+				{
+					"text": "Liste",
+					"frame": 34
+				},
+				{
+					"text": "étudiante.",
+					"frame": 43
+				},
+				{
+					"text": "Des",
+					"frame": 74
+				},
+				{
+					"text": "professeurs,",
+					"frame": 78
+				},
+				{
+					"text": "des",
+					"frame": 108
+				},
+				{
+					"text": "médecins,",
+					"frame": 112
+				},
+				{
+					"text": "des",
+					"frame": 138
+				},
+				{
+					"text": "figures",
+					"frame": 142
+				},
+				{
+					"text": "de",
+					"frame": 153
+				},
+				{
+					"text": "la",
+					"frame": 156
+				},
+				{
+					"text": "société",
+					"frame": 159
+				},
+				{
+					"text": "civile…",
+					"frame": 171
+				},
+				{
+					"text": "choisis",
+					"frame": 201
+				},
+				{
+					"text": "par",
+					"frame": 214
+				},
+				{
+					"text": "les",
+					"frame": 219
+				},
+				{
+					"text": "étudiants.",
+					"frame": 224
+				}
+			]
+		},
+		{
+			"text": "Le 25 octobre, la participation est la plus forte depuis trente ans. La Liste étudiante obtient environ cinquante-trois pour cent. Vučić, autour de quarante.",
+			"voice": "serbie/voice/line-08.wav",
+			"from": 1818,
+			"durationInFrames": 287,
+			"voiceFrames": 282,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "25",
+					"frame": 5
+				},
+				{
+					"text": "octobre,",
+					"frame": 18
+				},
+				{
+					"text": "la",
+					"frame": 38
+				},
+				{
+					"text": "participation",
+					"frame": 43
+				},
+				{
+					"text": "est",
+					"frame": 65
+				},
+				{
+					"text": "la",
+					"frame": 67
+				},
+				{
+					"text": "plus",
+					"frame": 71
+				},
+				{
+					"text": "forte",
+					"frame": 77
+				},
+				{
+					"text": "depuis",
+					"frame": 87
+				},
+				{
+					"text": "trente",
+					"frame": 95
+				},
+				{
+					"text": "ans.",
+					"frame": 105
+				},
+				{
+					"text": "La",
+					"frame": 127
+				},
+				{
+					"text": "Liste",
+					"frame": 132
+				},
+				{
+					"text": "étudiante",
+					"frame": 139
+				},
+				{
+					"text": "obtient",
+					"frame": 153
+				},
+				{
+					"text": "environ",
+					"frame": 164
+				},
+				{
+					"text": "cinquante-trois",
+					"frame": 175
+				},
+				{
+					"text": "pour",
+					"frame": 191
+				},
+				{
+					"text": "cent.",
+					"frame": 197
+				},
+				{
+					"text": "Vučić,",
+					"frame": 223
+				},
+				{
+					"text": "autour",
+					"frame": 243
+				},
+				{
+					"text": "de",
+					"frame": 253
+				},
+				{
+					"text": "quarante.",
+					"frame": 256
+				}
+			]
+		},
+		{
+			"text": "Elle obtiendrait la majorité absolue. Le soir même, Vučić reconnaît sa défaite. Quatorze ans de pouvoir s'achèvent.",
+			"voice": "serbie/voice/line-09.wav",
+			"from": 2105,
+			"durationInFrames": 247,
+			"voiceFrames": 242,
+			"words": [
+				{
+					"text": "Elle",
+					"frame": 0
+				},
+				{
+					"text": "obtiendrait",
+					"frame": 7
+				},
+				{
+					"text": "la",
+					"frame": 21
+				},
+				{
+					"text": "majorité",
+					"frame": 25
+				},
+				{
+					"text": "absolue.",
+					"frame": 41
+				},
+				{
+					"text": "Le",
+					"frame": 74
+				},
+				{
+					"text": "soir",
+					"frame": 78
+				},
+				{
+					"text": "même,",
+					"frame": 86
+				},
+				{
+					"text": "Vučić",
+					"frame": 107
+				},
+				{
+					"text": "reconnaît",
+					"frame": 124
+				},
+				{
+					"text": "sa",
+					"frame": 136
+				},
+				{
+					"text": "défaite.",
+					"frame": 140
+				},
+				{
+					"text": "Quatorze",
+					"frame": 166
+				},
+				{
+					"text": "ans",
+					"frame": 181
+				},
+				{
+					"text": "de",
+					"frame": 185
+				},
+				{
+					"text": "pouvoir",
+					"frame": 188
+				},
+				{
+					"text": "s'achèvent.",
+					"frame": 203
+				}
+			]
+		},
+		{
+			"text": "Maintenant, tout reste à faire : un gouvernement, un nouveau président… et la promesse de lutter contre la corruption.",
+			"voice": "serbie/voice/line-10.wav",
+			"from": 2352,
+			"durationInFrames": 248,
+			"voiceFrames": 237,
+			"words": [
+				{
+					"text": "Maintenant,",
+					"frame": 0
+				},
+				{
+					"text": "tout",
+					"frame": 25
+				},
+				{
+					"text": "reste",
+					"frame": 31
+				},
+				{
+					"text": "à",
+					"frame": 40
+				},
+				{
+					"text": "faire :",
+					"frame": 43
+				},
+				{
+					"text": "un",
+					"frame": 71
+				},
+				{
+					"text": "gouvernement,",
+					"frame": 75
+				},
+				{
+					"text": "un",
+					"frame": 109
+				},
+				{
+					"text": "nouveau",
+					"frame": 112
+				},
+				{
+					"text": "président…",
+					"frame": 121
+				},
+				{
+					"text": "et",
+					"frame": 156
+				},
+				{
+					"text": "la",
+					"frame": 160
+				},
+				{
+					"text": "promesse",
+					"frame": 164
+				},
+				{
+					"text": "de",
+					"frame": 175
+				},
+				{
+					"text": "lutter",
+					"frame": 179
+				},
+				{
+					"text": "contre",
+					"frame": 190
+				},
+				{
+					"text": "la",
+					"frame": 198
+				},
+				{
+					"text": "corruption.",
+					"frame": 201
+				}
+			]
+		},
+		{
+			"text": "En Serbie, tout a commencé par des minutes de silence. Et ce silence a fini par se faire entendre.",
+			"voice": "serbie/voice/line-11.wav",
+			"from": 2600,
+			"durationInFrames": 197,
+			"voiceFrames": 183,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "Serbie,",
+					"frame": 7
+				},
+				{
+					"text": "tout",
+					"frame": 27
+				},
+				{
+					"text": "a",
+					"frame": 33
+				},
+				{
+					"text": "commencé",
+					"frame": 35
+				},
+				{
+					"text": "par",
+					"frame": 49
+				},
+				{
+					"text": "des",
+					"frame": 54
+				},
+				{
+					"text": "minutes",
+					"frame": 58
+				},
+				{
+					"text": "de",
+					"frame": 66
+				},
+				{
+					"text": "silence.",
+					"frame": 70
+				},
+				{
+					"text": "Et",
+					"frame": 100
+				},
+				{
+					"text": "ce",
+					"frame": 104
+				},
+				{
+					"text": "silence",
+					"frame": 109
+				},
+				{
+					"text": "a",
+					"frame": 125
+				},
+				{
+					"text": "fini",
+					"frame": 129
+				},
+				{
+					"text": "par",
+					"frame": 137
+				},
+				{
+					"text": "se",
+					"frame": 142
+				},
+				{
+					"text": "faire",
+					"frame": 146
+				},
+				{
+					"text": "entendre.",
+					"frame": 151
+				}
+			]
+		},
+		{
+			"text": "Tu veux la suite ? Dis-le en commentaire.",
+			"voice": "serbie/voice/line-12.wav",
+			"from": 2797,
+			"durationInFrames": 70,
+			"voiceFrames": 65,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "veux",
+					"frame": 5
+				},
+				{
+					"text": "la",
+					"frame": 9
+				},
+				{
+					"text": "suite ?",
+					"frame": 12
+				},
+				{
+					"text": "Dis-le",
+					"frame": 32
+				},
+				{
+					"text": "en",
+					"frame": 41
+				},
+				{
+					"text": "commentaire.",
+					"frame": 44
+				}
+			]
+		}
+	],
+	"durationInFrames": 2927
+}

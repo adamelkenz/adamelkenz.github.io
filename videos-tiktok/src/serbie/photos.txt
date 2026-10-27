@@ -1,0 +1,7 @@
+# photos: name pixabayId focusX — scripts/prep-photo.sh serbie …
+novisad 5002959 0.5
+danube 6922559 0.5
+storm 4651872 0.5
+fortress 4799863 0.5
+ballot 4933481 0.5
+students 6027028 0.5
