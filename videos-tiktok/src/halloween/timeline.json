@@ -1,0 +1,847 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Qu'est-ce qui se passe… si tu organises une soirée d'Halloween pour te faire trois mille euros en une nuit ?",
+			"voice": "halloween/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 176,
+			"voiceFrames": 171,
+			"words": [
+				{
+					"text": "Qu'est-ce",
+					"frame": 12
+				},
+				{
+					"text": "qui",
+					"frame": 22
+				},
+				{
+					"text": "se",
+					"frame": 28
+				},
+				{
+					"text": "passe…",
+					"frame": 32
+				},
+				{
+					"text": "si",
+					"frame": 46
+				},
+				{
+					"text": "tu",
+					"frame": 51
+				},
+				{
+					"text": "organises",
+					"frame": 55
+				},
+				{
+					"text": "une",
+					"frame": 68
+				},
+				{
+					"text": "soirée",
+					"frame": 74
+				},
+				{
+					"text": "d'Halloween",
+					"frame": 83
+				},
+				{
+					"text": "pour",
+					"frame": 97
+				},
+				{
+					"text": "te",
+					"frame": 104
+				},
+				{
+					"text": "faire",
+					"frame": 108
+				},
+				{
+					"text": "trois",
+					"frame": 117
+				},
+				{
+					"text": "mille",
+					"frame": 125
+				},
+				{
+					"text": "euros",
+					"frame": 133
+				},
+				{
+					"text": "en",
+					"frame": 141
+				},
+				{
+					"text": "une",
+					"frame": 145
+				},
+				{
+					"text": "nuit ?",
+					"frame": 151
+				}
+			]
+		},
+		{
+			"text": "Spoiler : rien ne va se passer comme prévu.",
+			"voice": "halloween/voice/line-01.wav",
+			"from": 176,
+			"durationInFrames": 109,
+			"voiceFrames": 103,
+			"words": [
+				{
+					"text": "Spoiler :",
+					"frame": 5
+				},
+				{
+					"text": "rien",
+					"frame": 29
+				},
+				{
+					"text": "ne",
+					"frame": 38
+				},
+				{
+					"text": "va",
+					"frame": 44
+				},
+				{
+					"text": "se",
+					"frame": 50
+				},
+				{
+					"text": "passer",
+					"frame": 55
+				},
+				{
+					"text": "comme",
+					"frame": 68
+				},
+				{
+					"text": "prévu.",
+					"frame": 78
+				}
+			]
+		},
+		{
+			"text": "Le calcul a l'air simple. Deux cents personnes, quinze euros l'entrée… trois mille euros.",
+			"voice": "halloween/voice/line-02.wav",
+			"from": 285,
+			"durationInFrames": 184,
+			"voiceFrames": 178,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "calcul",
+					"frame": 7
+				},
+				{
+					"text": "a",
+					"frame": 23
+				},
+				{
+					"text": "l'air",
+					"frame": 28
+				},
+				{
+					"text": "simple.",
+					"frame": 39
+				},
+				{
+					"text": "Deux",
+					"frame": 65
+				},
+				{
+					"text": "cents",
+					"frame": 69
+				},
+				{
+					"text": "personnes,",
+					"frame": 74
+				},
+				{
+					"text": "quinze",
+					"frame": 82
+				},
+				{
+					"text": "euros",
+					"frame": 88
+				},
+				{
+					"text": "l'entrée…",
+					"frame": 93
+				},
+				{
+					"text": "trois",
+					"frame": 111
+				},
+				{
+					"text": "mille",
+					"frame": 131
+				},
+				{
+					"text": "euros.",
+					"frame": 151
+				}
+			]
+		},
+		{
+			"text": "Sauf qu'il faut d'abord payer. La salle, le DJ, la déco, la sécurité, l'assurance.",
+			"voice": "halloween/voice/line-03.wav",
+			"from": 469,
+			"durationInFrames": 211,
+			"voiceFrames": 205,
+			"words": [
+				{
+					"text": "Sauf",
+					"frame": 0
+				},
+				{
+					"text": "qu'il",
+					"frame": 11
+				},
+				{
+					"text": "faut",
+					"frame": 23
+				},
+				{
+					"text": "d'abord",
+					"frame": 34
+				},
+				{
+					"text": "payer.",
+					"frame": 50
+				},
+				{
+					"text": "La",
+					"frame": 73
+				},
+				{
+					"text": "salle,",
+					"frame": 81
+				},
+				{
+					"text": "le",
+					"frame": 98
+				},
+				{
+					"text": "DJ,",
+					"frame": 105
+				},
+				{
+					"text": "la",
+					"frame": 117
+				},
+				{
+					"text": "déco,",
+					"frame": 124
+				},
+				{
+					"text": "la",
+					"frame": 139
+				},
+				{
+					"text": "sécurité,",
+					"frame": 147
+				},
+				{
+					"text": "l'assurance.",
+					"frame": 170
+				}
+			]
+		},
+		{
+			"text": "Deux mille cent cinquante euros. Avant d'avoir vendu un seul billet.",
+			"voice": "halloween/voice/line-04.wav",
+			"from": 680,
+			"durationInFrames": 158,
+			"voiceFrames": 152,
+			"words": [
+				{
+					"text": "Deux",
+					"frame": 4
+				},
+				{
+					"text": "mille",
+					"frame": 13
+				},
+				{
+					"text": "cent",
+					"frame": 23
+				},
+				{
+					"text": "cinquante",
+					"frame": 32
+				},
+				{
+					"text": "euros.",
+					"frame": 48
+				},
+				{
+					"text": "Avant",
+					"frame": 80
+				},
+				{
+					"text": "d'avoir",
+					"frame": 91
+				},
+				{
+					"text": "vendu",
+					"frame": 103
+				},
+				{
+					"text": "un",
+					"frame": 114
+				},
+				{
+					"text": "seul",
+					"frame": 120
+				},
+				{
+					"text": "billet.",
+					"frame": 129
+				}
+			]
+		},
+		{
+			"text": "Tu postes ton affiche. Une semaine plus tard… douze billets vendus.",
+			"voice": "halloween/voice/line-05.wav",
+			"from": 838,
+			"durationInFrames": 136,
+			"voiceFrames": 130,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "postes",
+					"frame": 5
+				},
+				{
+					"text": "ton",
+					"frame": 15
+				},
+				{
+					"text": "affiche.",
+					"frame": 22
+				},
+				{
+					"text": "Une",
+					"frame": 40
+				},
+				{
+					"text": "semaine",
+					"frame": 47
+				},
+				{
+					"text": "plus",
+					"frame": 59
+				},
+				{
+					"text": "tard…",
+					"frame": 66
+				},
+				{
+					"text": "douze",
+					"frame": 81
+				},
+				{
+					"text": "billets",
+					"frame": 90
+				},
+				{
+					"text": "vendus.",
+					"frame": 102
+				}
+			]
+		},
+		{
+			"text": "Le problème ? Ce soir-là, ta ville compte des dizaines de soirées. Toutes avec la même citrouille.",
+			"voice": "halloween/voice/line-06.wav",
+			"from": 974,
+			"durationInFrames": 211,
+			"voiceFrames": 205,
+			"words": [
+				{
+					"text": "Le",
+					"frame": 0
+				},
+				{
+					"text": "problème ?",
+					"frame": 7
+				},
+				{
+					"text": "Ce",
+					"frame": 48
+				},
+				{
+					"text": "soir-là,",
+					"frame": 56
+				},
+				{
+					"text": "ta",
+					"frame": 82
+				},
+				{
+					"text": "ville",
+					"frame": 87
+				},
+				{
+					"text": "compte",
+					"frame": 95
+				},
+				{
+					"text": "des",
+					"frame": 106
+				},
+				{
+					"text": "dizaines",
+					"frame": 112
+				},
+				{
+					"text": "de",
+					"frame": 124
+				},
+				{
+					"text": "soirées.",
+					"frame": 129
+				},
+				{
+					"text": "Toutes",
+					"frame": 151
+				},
+				{
+					"text": "avec",
+					"frame": 162
+				},
+				{
+					"text": "la",
+					"frame": 170
+				},
+				{
+					"text": "même",
+					"frame": 175
+				},
+				{
+					"text": "citrouille.",
+					"frame": 182
+				}
+			]
+		},
+		{
+			"text": "Alors tu changes une seule chose. Tu ne vends plus une soirée. Tu vends une histoire.",
+			"voice": "halloween/voice/line-07.wav",
+			"from": 1185,
+			"durationInFrames": 196,
+			"voiceFrames": 185,
+			"words": [
+				{
+					"text": "Alors",
+					"frame": 10
+				},
+				{
+					"text": "tu",
+					"frame": 20
+				},
+				{
+					"text": "changes",
+					"frame": 26
+				},
+				{
+					"text": "une",
+					"frame": 39
+				},
+				{
+					"text": "seule",
+					"frame": 46
+				},
+				{
+					"text": "chose.",
+					"frame": 57
+				},
+				{
+					"text": "Tu",
+					"frame": 75
+				},
+				{
+					"text": "ne",
+					"frame": 81
+				},
+				{
+					"text": "vends",
+					"frame": 86
+				},
+				{
+					"text": "plus",
+					"frame": 97
+				},
+				{
+					"text": "une",
+					"frame": 106
+				},
+				{
+					"text": "soirée.",
+					"frame": 113
+				},
+				{
+					"text": "Tu",
+					"frame": 133
+				},
+				{
+					"text": "vends",
+					"frame": 138
+				},
+				{
+					"text": "une",
+					"frame": 149
+				},
+				{
+					"text": "histoire.",
+					"frame": 156
+				}
+			]
+		},
+		{
+			"text": "Un manoir. Un meurtre à minuit. Chaque invité reçoit un rôle, un secret… et un coupable à démasquer.",
+			"voice": "halloween/voice/line-08.wav",
+			"from": 1381,
+			"durationInFrames": 237,
+			"voiceFrames": 231,
+			"words": [
+				{
+					"text": "Un",
+					"frame": 0
+				},
+				{
+					"text": "manoir.",
+					"frame": 10
+				},
+				{
+					"text": "Un",
+					"frame": 39
+				},
+				{
+					"text": "meurtre",
+					"frame": 44
+				},
+				{
+					"text": "à",
+					"frame": 58
+				},
+				{
+					"text": "minuit.",
+					"frame": 62
+				},
+				{
+					"text": "Chaque",
+					"frame": 86
+				},
+				{
+					"text": "invité",
+					"frame": 97
+				},
+				{
+					"text": "reçoit",
+					"frame": 109
+				},
+				{
+					"text": "un",
+					"frame": 120
+				},
+				{
+					"text": "rôle,",
+					"frame": 125
+				},
+				{
+					"text": "un",
+					"frame": 134
+				},
+				{
+					"text": "secret…",
+					"frame": 139
+				},
+				{
+					"text": "et",
+					"frame": 160
+				},
+				{
+					"text": "un",
+					"frame": 167
+				},
+				{
+					"text": "coupable",
+					"frame": 174
+				},
+				{
+					"text": "à",
+					"frame": 194
+				},
+				{
+					"text": "démasquer.",
+					"frame": 199
+				}
+			]
+		},
+		{
+			"text": "En dix jours, c'est complet. Même à vingt-cinq euros. Avec soixante personnes en liste d'attente.",
+			"voice": "halloween/voice/line-09.wav",
+			"from": 1618,
+			"durationInFrames": 206,
+			"voiceFrames": 200,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "dix",
+					"frame": 6
+				},
+				{
+					"text": "jours,",
+					"frame": 14
+				},
+				{
+					"text": "c'est",
+					"frame": 28
+				},
+				{
+					"text": "complet.",
+					"frame": 37
+				},
+				{
+					"text": "Même",
+					"frame": 60
+				},
+				{
+					"text": "à",
+					"frame": 70
+				},
+				{
+					"text": "vingt-cinq",
+					"frame": 74
+				},
+				{
+					"text": "euros.",
+					"frame": 92
+				},
+				{
+					"text": "Avec",
+					"frame": 111
+				},
+				{
+					"text": "soixante",
+					"frame": 121
+				},
+				{
+					"text": "personnes",
+					"frame": 137
+				},
+				{
+					"text": "en",
+					"frame": 155
+				},
+				{
+					"text": "liste",
+					"frame": 160
+				},
+				{
+					"text": "d'attente.",
+					"frame": 172
+				}
+			]
+		},
+		{
+			"text": "Résultat : deux mille cinq cents euros de bénéfice. Pas trois mille. Mais une liste d'attente pour l'an prochain.",
+			"voice": "halloween/voice/line-10.wav",
+			"from": 1824,
+			"durationInFrames": 248,
+			"voiceFrames": 234,
+			"words": [
+				{
+					"text": "Résultat :",
+					"frame": 0
+				},
+				{
+					"text": "deux",
+					"frame": 43
+				},
+				{
+					"text": "mille",
+					"frame": 52
+				},
+				{
+					"text": "cinq",
+					"frame": 63
+				},
+				{
+					"text": "cents",
+					"frame": 72
+				},
+				{
+					"text": "euros",
+					"frame": 83
+				},
+				{
+					"text": "de",
+					"frame": 94
+				},
+				{
+					"text": "bénéfice.",
+					"frame": 99
+				},
+				{
+					"text": "Pas",
+					"frame": 122
+				},
+				{
+					"text": "trois",
+					"frame": 129
+				},
+				{
+					"text": "mille.",
+					"frame": 137
+				},
+				{
+					"text": "Mais",
+					"frame": 157
+				},
+				{
+					"text": "une",
+					"frame": 165
+				},
+				{
+					"text": "liste",
+					"frame": 172
+				},
+				{
+					"text": "d'attente",
+					"frame": 182
+				},
+				{
+					"text": "pour",
+					"frame": 196
+				},
+				{
+					"text": "l'an",
+					"frame": 204
+				},
+				{
+					"text": "prochain.",
+					"frame": 211
+				}
+			]
+		},
+		{
+			"text": "Parce que les gens n'achètent jamais une soirée. Ils achètent l'histoire qu'ils raconteront le lendemain.",
+			"voice": "halloween/voice/line-11.wav",
+			"from": 2072,
+			"durationInFrames": 196,
+			"voiceFrames": 185,
+			"words": [
+				{
+					"text": "Parce",
+					"frame": 0
+				},
+				{
+					"text": "que",
+					"frame": 9
+				},
+				{
+					"text": "les",
+					"frame": 15
+				},
+				{
+					"text": "gens",
+					"frame": 21
+				},
+				{
+					"text": "n'achètent",
+					"frame": 28
+				},
+				{
+					"text": "jamais",
+					"frame": 43
+				},
+				{
+					"text": "une",
+					"frame": 53
+				},
+				{
+					"text": "soirée.",
+					"frame": 59
+				},
+				{
+					"text": "Ils",
+					"frame": 87
+				},
+				{
+					"text": "achètent",
+					"frame": 94
+				},
+				{
+					"text": "l'histoire",
+					"frame": 108
+				},
+				{
+					"text": "qu'ils",
+					"frame": 124
+				},
+				{
+					"text": "raconteront",
+					"frame": 134
+				},
+				{
+					"text": "le",
+					"frame": 153
+				},
+				{
+					"text": "lendemain.",
+					"frame": 158
+				}
+			]
+		},
+		{
+			"text": "Et toi… tu vendrais quelle histoire ?",
+			"voice": "halloween/voice/line-12.wav",
+			"from": 2268,
+			"durationInFrames": 71,
+			"voiceFrames": 65,
+			"words": [
+				{
+					"text": "Et",
+					"frame": 6
+				},
+				{
+					"text": "toi…",
+					"frame": 10
+				},
+				{
+					"text": "tu",
+					"frame": 21
+				},
+				{
+					"text": "vendrais",
+					"frame": 25
+				},
+				{
+					"text": "quelle",
+					"frame": 36
+				},
+				{
+					"text": "histoire ?",
+					"frame": 44
+				}
+			]
+		}
+	],
+	"durationInFrames": 2387
+}

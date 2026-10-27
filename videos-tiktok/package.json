@@ -1,0 +1,16 @@
+{
+  "name": "videos-tiktok",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "sfx": "python3 scripts/make-sfx.py public/sfx",
+    "timeline": "node scripts/build-timeline.mjs halloween",
+    "render:halloween": "node scripts/render.mjs Halloween out/halloween.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539"
+  }
+}
