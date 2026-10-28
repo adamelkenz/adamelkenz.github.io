@@ -252,6 +252,57 @@ def swell(dur=4.0):
     return reverb((x + shimmer) * shape, 2.0, 0.3)
 
 
+def jet(dur=6.0):
+    """Steady jet engine roar: rumble + whine."""
+    n = int(SR * dur)
+    tt = t(dur)
+    roar = lowpass(rng.standard_normal(n), 900) * 0.8 + bandpass(rng.standard_normal(n), 1500, 4000) * 0.25
+    whine = np.sin(2 * np.pi * 2350 * tt) * 0.04 + np.sin(2 * np.pi * 4700 * tt) * 0.02
+    fade = np.minimum(1, np.minimum(tt / 0.4, (dur - tt) / 0.4))
+    return (norm(roar) + whine) * fade
+
+
+def spooldown(dur=3.5):
+    """Engines winding down: roar and whine falling in pitch and level."""
+    n = int(SR * dur)
+    tt = t(dur)
+    fall = np.exp(-1.4 * tt)
+    whine = np.sin(2 * np.pi * np.cumsum(2400 * (0.25 + 0.75 * fall)) / SR) * 0.12
+    roar = sweep_filter(rng.standard_normal(n), 900, 120, q=1.6, steps=80)
+    return (norm(roar) * 0.9 + whine) * fall
+
+
+def warning():
+    """Cockpit master warning: three quick two-tone chimes."""
+    out = np.zeros(int(SR * 1.6))
+    for k in range(3):
+        s = int(SR * k * 0.5)
+        for f0, off in [(1046, 0), (784, 0.16)]:
+            m = int(SR * 0.15)
+            a = s + int(SR * off)
+            tone = np.sin(2 * np.pi * f0 * t(0.15)) + 0.4 * np.sin(2 * np.pi * f0 * 2 * t(0.15))
+            out[a: a + m] += tone[: len(out[a: a + m])] * env(m, 0.005, True, 3)
+    return out
+
+
+def wind(dur=5.0):
+    n = int(SR * dur)
+    tt = t(dur)
+    w = sweep_filter(rng.standard_normal(n), 300, 1200, q=1.3, steps=120)
+    gust = 0.6 + 0.4 * np.sin(2 * np.pi * 0.35 * tt) * np.sin(2 * np.pi * 0.13 * tt + 1)
+    fade = np.minimum(1, np.minimum(tt / 0.6, (dur - tt) / 0.8))
+    return w * gust * fade
+
+
+def splash():
+    dur = 2.2
+    n = int(SR * dur)
+    burst = lowpass(rng.standard_normal(n), 2500) * env(n, 0.003, True, 5)
+    spray = bandpass(rng.standard_normal(n), 2500, 9000) * env(n, 0.01, True, 3) * 0.5
+    thud = sine_glide(90, 40, dur) * env(n, 0.002, True, 8)
+    return reverb(burst + spray + thud * 0.8, 1.2, 0.2)
+
+
 EFFECTS = {
     "whoosh": whoosh,
     "impact": impact,
@@ -270,6 +321,11 @@ EFFECTS = {
     "heartbeat": heartbeat,
     "drone": drone,
     "swell": swell,
+    "jet": jet,
+    "spooldown": spooldown,
+    "warning": warning,
+    "wind": wind,
+    "splash": splash,
 }
 
 if __name__ == "__main__":

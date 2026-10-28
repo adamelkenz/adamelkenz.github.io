@@ -1,0 +1,747 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Un avion de ligne. Onze mille mètres d'altitude. Et soudain… ses deux moteurs s'arrêtent. Que se passe-t-il ?",
+			"voice": "avion/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 212,
+			"voiceFrames": 210,
+			"words": [
+				{
+					"text": "Un",
+					"frame": 0
+				},
+				{
+					"text": "avion",
+					"frame": 6
+				},
+				{
+					"text": "de",
+					"frame": 13
+				},
+				{
+					"text": "ligne.",
+					"frame": 16
+				},
+				{
+					"text": "Onze",
+					"frame": 39
+				},
+				{
+					"text": "mille",
+					"frame": 48
+				},
+				{
+					"text": "mètres",
+					"frame": 53
+				},
+				{
+					"text": "d'altitude.",
+					"frame": 60
+				},
+				{
+					"text": "Et",
+					"frame": 89
+				},
+				{
+					"text": "soudain…",
+					"frame": 94
+				},
+				{
+					"text": "ses",
+					"frame": 122
+				},
+				{
+					"text": "deux",
+					"frame": 129
+				},
+				{
+					"text": "moteurs",
+					"frame": 133
+				},
+				{
+					"text": "s'arrêtent.",
+					"frame": 143
+				},
+				{
+					"text": "Que",
+					"frame": 171
+				},
+				{
+					"text": "se",
+					"frame": 176
+				},
+				{
+					"text": "passe-t-il ?",
+					"frame": 179
+				}
+			]
+		},
+		{
+			"text": "D'abord : il ne tombe pas. Un avion, ça plane.",
+			"voice": "avion/voice/line-01.wav",
+			"from": 212,
+			"durationInFrames": 98,
+			"voiceFrames": 94,
+			"words": [
+				{
+					"text": "D'abord :",
+					"frame": 0
+				},
+				{
+					"text": "il",
+					"frame": 22
+				},
+				{
+					"text": "ne",
+					"frame": 26
+				},
+				{
+					"text": "tombe",
+					"frame": 29
+				},
+				{
+					"text": "pas.",
+					"frame": 35
+				},
+				{
+					"text": "Un",
+					"frame": 51
+				},
+				{
+					"text": "avion,",
+					"frame": 56
+				},
+				{
+					"text": "ça",
+					"frame": 71
+				},
+				{
+					"text": "plane.",
+					"frame": 74
+				}
+			]
+		},
+		{
+			"text": "Pour chaque kilomètre de descente, il avance d'environ quinze kilomètres.",
+			"voice": "avion/voice/line-02.wav",
+			"from": 310,
+			"durationInFrames": 105,
+			"voiceFrames": 101,
+			"words": [
+				{
+					"text": "Pour",
+					"frame": 0
+				},
+				{
+					"text": "chaque",
+					"frame": 5
+				},
+				{
+					"text": "kilomètre",
+					"frame": 12
+				},
+				{
+					"text": "de",
+					"frame": 25
+				},
+				{
+					"text": "descente,",
+					"frame": 28
+				},
+				{
+					"text": "il",
+					"frame": 45
+				},
+				{
+					"text": "avance",
+					"frame": 50
+				},
+				{
+					"text": "d'environ",
+					"frame": 58
+				},
+				{
+					"text": "quinze",
+					"frame": 68
+				},
+				{
+					"text": "kilomètres.",
+					"frame": 74
+				}
+			]
+		},
+		{
+			"text": "Depuis son altitude de croisière, il peut parcourir plus de cent cinquante kilomètres… sans aucun moteur.",
+			"voice": "avion/voice/line-03.wav",
+			"from": 415,
+			"durationInFrames": 188,
+			"voiceFrames": 184,
+			"words": [
+				{
+					"text": "Depuis",
+					"frame": 0
+				},
+				{
+					"text": "son",
+					"frame": 9
+				},
+				{
+					"text": "altitude",
+					"frame": 15
+				},
+				{
+					"text": "de",
+					"frame": 28
+				},
+				{
+					"text": "croisière,",
+					"frame": 31
+				},
+				{
+					"text": "il",
+					"frame": 58
+				},
+				{
+					"text": "peut",
+					"frame": 62
+				},
+				{
+					"text": "parcourir",
+					"frame": 66
+				},
+				{
+					"text": "plus",
+					"frame": 80
+				},
+				{
+					"text": "de",
+					"frame": 85
+				},
+				{
+					"text": "cent",
+					"frame": 89
+				},
+				{
+					"text": "cinquante",
+					"frame": 97
+				},
+				{
+					"text": "kilomètres…",
+					"frame": 108
+				},
+				{
+					"text": "sans",
+					"frame": 137
+				},
+				{
+					"text": "aucun",
+					"frame": 146
+				},
+				{
+					"text": "moteur.",
+					"frame": 153
+				}
+			]
+		},
+		{
+			"text": "Une petite hélice sort sous l'avion. Elle tourne avec le vent, et redonne du courant aux commandes.",
+			"voice": "avion/voice/line-04.wav",
+			"from": 603,
+			"durationInFrames": 152,
+			"voiceFrames": 148,
+			"words": [
+				{
+					"text": "Une",
+					"frame": 0
+				},
+				{
+					"text": "petite",
+					"frame": 7
+				},
+				{
+					"text": "hélice",
+					"frame": 16
+				},
+				{
+					"text": "sort",
+					"frame": 27
+				},
+				{
+					"text": "sous",
+					"frame": 35
+				},
+				{
+					"text": "l'avion.",
+					"frame": 40
+				},
+				{
+					"text": "Elle",
+					"frame": 60
+				},
+				{
+					"text": "tourne",
+					"frame": 65
+				},
+				{
+					"text": "avec",
+					"frame": 72
+				},
+				{
+					"text": "le",
+					"frame": 78
+				},
+				{
+					"text": "vent,",
+					"frame": 81
+				},
+				{
+					"text": "et",
+					"frame": 93
+				},
+				{
+					"text": "redonne",
+					"frame": 97
+				},
+				{
+					"text": "du",
+					"frame": 105
+				},
+				{
+					"text": "courant",
+					"frame": 109
+				},
+				{
+					"text": "aux",
+					"frame": 118
+				},
+				{
+					"text": "commandes.",
+					"frame": 122
+				}
+			]
+		},
+		{
+			"text": "Les pilotes tentent de redémarrer les moteurs… et visent la piste la plus proche.",
+			"voice": "avion/voice/line-05.wav",
+			"from": 755,
+			"durationInFrames": 119,
+			"voiceFrames": 115,
+			"words": [
+				{
+					"text": "Les",
+					"frame": 0
+				},
+				{
+					"text": "pilotes",
+					"frame": 5
+				},
+				{
+					"text": "tentent",
+					"frame": 15
+				},
+				{
+					"text": "de",
+					"frame": 24
+				},
+				{
+					"text": "redémarrer",
+					"frame": 27
+				},
+				{
+					"text": "les",
+					"frame": 40
+				},
+				{
+					"text": "moteurs…",
+					"frame": 43
+				},
+				{
+					"text": "et",
+					"frame": 63
+				},
+				{
+					"text": "visent",
+					"frame": 67
+				},
+				{
+					"text": "la",
+					"frame": 74
+				},
+				{
+					"text": "piste",
+					"frame": 77
+				},
+				{
+					"text": "la",
+					"frame": 85
+				},
+				{
+					"text": "plus",
+					"frame": 88
+				},
+				{
+					"text": "proche.",
+					"frame": 92
+				}
+			]
+		},
+		{
+			"text": "En 2001, un Airbus d'Air Transat tombe en panne de carburant au-dessus de l'Atlantique. Il plane dix-neuf minutes, sur cent vingt kilomètres… et se pose aux Açores. Trois cent six personnes à bord. Aucun mort.",
+			"voice": "avion/voice/line-06.wav",
+			"from": 874,
+			"durationInFrames": 363,
+			"voiceFrames": 354,
+			"words": [
+				{
+					"text": "En",
+					"frame": 0
+				},
+				{
+					"text": "2001,",
+					"frame": 5
+				},
+				{
+					"text": "un",
+					"frame": 27
+				},
+				{
+					"text": "Airbus",
+					"frame": 31
+				},
+				{
+					"text": "d'Air",
+					"frame": 42
+				},
+				{
+					"text": "Transat",
+					"frame": 48
+				},
+				{
+					"text": "tombe",
+					"frame": 64
+				},
+				{
+					"text": "en",
+					"frame": 72
+				},
+				{
+					"text": "panne",
+					"frame": 75
+				},
+				{
+					"text": "de",
+					"frame": 82
+				},
+				{
+					"text": "carburant",
+					"frame": 86
+				},
+				{
+					"text": "au-dessus",
+					"frame": 99
+				},
+				{
+					"text": "de",
+					"frame": 111
+				},
+				{
+					"text": "l'Atlantique.",
+					"frame": 113
+				},
+				{
+					"text": "Il",
+					"frame": 138
+				},
+				{
+					"text": "plane",
+					"frame": 143
+				},
+				{
+					"text": "dix-neuf",
+					"frame": 151
+				},
+				{
+					"text": "minutes,",
+					"frame": 161
+				},
+				{
+					"text": "sur",
+					"frame": 177
+				},
+				{
+					"text": "cent",
+					"frame": 183
+				},
+				{
+					"text": "vingt",
+					"frame": 188
+				},
+				{
+					"text": "kilomètres…",
+					"frame": 194
+				},
+				{
+					"text": "et",
+					"frame": 215
+				},
+				{
+					"text": "se",
+					"frame": 219
+				},
+				{
+					"text": "pose",
+					"frame": 223
+				},
+				{
+					"text": "aux",
+					"frame": 233
+				},
+				{
+					"text": "Açores.",
+					"frame": 240
+				},
+				{
+					"text": "Trois",
+					"frame": 267
+				},
+				{
+					"text": "cent",
+					"frame": 274
+				},
+				{
+					"text": "six",
+					"frame": 280
+				},
+				{
+					"text": "personnes",
+					"frame": 283
+				},
+				{
+					"text": "à",
+					"frame": 297
+				},
+				{
+					"text": "bord.",
+					"frame": 300
+				},
+				{
+					"text": "Aucun",
+					"frame": 320
+				},
+				{
+					"text": "mort.",
+					"frame": 329
+				}
+			]
+		},
+		{
+			"text": "Mais si ça arrive juste après le décollage, tout se joue en trois minutes. En 2009, à New York, des oies détruisent les deux moteurs d'un A320. Le pilote se pose… sur le fleuve Hudson. Cent cinquante-cinq survivants.",
+			"voice": "avion/voice/line-07.wav",
+			"from": 1237,
+			"durationInFrames": 392,
+			"voiceFrames": 381,
+			"words": [
+				{
+					"text": "Mais",
+					"frame": 0
+				},
+				{
+					"text": "si",
+					"frame": 5
+				},
+				{
+					"text": "ça",
+					"frame": 9
+				},
+				{
+					"text": "arrive",
+					"frame": 13
+				},
+				{
+					"text": "juste",
+					"frame": 22
+				},
+				{
+					"text": "après",
+					"frame": 30
+				},
+				{
+					"text": "le",
+					"frame": 35
+				},
+				{
+					"text": "décollage,",
+					"frame": 38
+				},
+				{
+					"text": "tout",
+					"frame": 60
+				},
+				{
+					"text": "se",
+					"frame": 66
+				},
+				{
+					"text": "joue",
+					"frame": 71
+				},
+				{
+					"text": "en",
+					"frame": 78
+				},
+				{
+					"text": "trois",
+					"frame": 82
+				},
+				{
+					"text": "minutes.",
+					"frame": 88
+				},
+				{
+					"text": "En",
+					"frame": 108
+				},
+				{
+					"text": "2009,",
+					"frame": 115
+				},
+				{
+					"text": "à",
+					"frame": 134
+				},
+				{
+					"text": "New",
+					"frame": 138
+				},
+				{
+					"text": "York,",
+					"frame": 142
+				},
+				{
+					"text": "des",
+					"frame": 157
+				},
+				{
+					"text": "oies",
+					"frame": 163
+				},
+				{
+					"text": "détruisent",
+					"frame": 168
+				},
+				{
+					"text": "les",
+					"frame": 183
+				},
+				{
+					"text": "deux",
+					"frame": 188
+				},
+				{
+					"text": "moteurs",
+					"frame": 191
+				},
+				{
+					"text": "d'un",
+					"frame": 202
+				},
+				{
+					"text": "A320.",
+					"frame": 207
+				},
+				{
+					"text": "Le",
+					"frame": 238
+				},
+				{
+					"text": "pilote",
+					"frame": 242
+				},
+				{
+					"text": "se",
+					"frame": 250
+				},
+				{
+					"text": "pose…",
+					"frame": 254
+				},
+				{
+					"text": "sur",
+					"frame": 276
+				},
+				{
+					"text": "le",
+					"frame": 282
+				},
+				{
+					"text": "fleuve",
+					"frame": 285
+				},
+				{
+					"text": "Hudson.",
+					"frame": 293
+				},
+				{
+					"text": "Cent",
+					"frame": 323
+				},
+				{
+					"text": "cinquante-cinq",
+					"frame": 332
+				},
+				{
+					"text": "survivants.",
+					"frame": 352
+				}
+			]
+		},
+		{
+			"text": "Alors… tu reprendrais l'avion après ça ? Dis-le en commentaire.",
+			"voice": "avion/voice/line-08.wav",
+			"from": 1629,
+			"durationInFrames": 112,
+			"voiceFrames": 108,
+			"words": [
+				{
+					"text": "Alors…",
+					"frame": 0
+				},
+				{
+					"text": "tu",
+					"frame": 21
+				},
+				{
+					"text": "reprendrais",
+					"frame": 26
+				},
+				{
+					"text": "l'avion",
+					"frame": 37
+				},
+				{
+					"text": "après",
+					"frame": 46
+				},
+				{
+					"text": "ça ?",
+					"frame": 53
+				},
+				{
+					"text": "Dis-le",
+					"frame": 75
+				},
+				{
+					"text": "en",
+					"frame": 83
+				},
+				{
+					"text": "commentaire.",
+					"frame": 86
+				}
+			]
+		}
+	],
+	"durationInFrames": 1801
+}

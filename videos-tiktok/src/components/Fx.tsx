@@ -26,6 +26,11 @@ export const FX_LEVELS = {
 	alert: 0.3,
 	page: 0.3,
 	coins: 0.2,
+	'synth-jet': 0.14,
+	'synth-spooldown': 0.4,
+	'synth-warning': 0.3,
+	'synth-wind': 0.2,
+	'synth-splash': 0.4,
 } as const;
 
 export type FxName = keyof typeof FX_LEVELS;

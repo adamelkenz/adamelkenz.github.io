@@ -1,4 +1,6 @@
 import {Composition} from 'remotion';
+import {Avion} from './avion/Avion';
+import avionTimeline from './avion/timeline.json';
 import {DataCenters} from './datacenters/DataCenters';
 import datacentersTimeline from './datacenters/timeline.json';
 import {Halloween} from './halloween/Halloween';
@@ -69,6 +71,14 @@ export const Root = () => (
 			component={TrainVideo}
 			durationInFrames={trainTimeline.durationInFrames}
 			fps={trainTimeline.fps}
+			width={1080}
+			height={1920}
+		/>
+		<Composition
+			id="Avion"
+			component={Avion}
+			durationInFrames={avionTimeline.durationInFrames}
+			fps={avionTimeline.fps}
 			width={1080}
 			height={1920}
 		/>
