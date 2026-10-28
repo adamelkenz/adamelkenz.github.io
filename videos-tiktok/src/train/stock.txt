@@ -1,0 +1,8 @@
+# videos: name pixabayId start duration — scripts/prep-stock.sh train …
+regional 330884 4.5 4.5
+rails 3639 0 6
+cab 121981 0 12
+tracks 142723 0 14
+night 132508 2 14
+signal 365063 4 14
+mountain 209494 2 14

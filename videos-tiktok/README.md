@@ -8,6 +8,7 @@ Mini-docs verticaux 1080×1920 : hook en question, motion design, vrais plans vi
 - `Statuts` — « Micro, EURL, SASU, SARL, SAS… Lequel est fait pour toi ? »
 - `Marches` — « Comment une petite entreprise peut-elle travailler pour l'État… et être payée à temps ? » (voix : Bill)
 - `WhiteLabel` — « Comment des marques vendent des produits… qu'elles n'ont jamais fabriqués ? » + appel à commenter « WHITE » (message et suivi dans `crm/`)
+- `Train` — « Un TGV à 300 km/h… et plus personne ne le contrôle. Que se passe-t-il ? » (TGV générique animé, VACMA, KVB/TVM, ETCS)
 - `Serbie` — « Comment un toit de gare qui s'effondre… a fini par faire tomber le pouvoir en Serbie ? » (voix : Bill abaissé de 2 demi-tons, `pitch` dans voice.json)
 - `DataCenters` — « Pourquoi l'Irlande donne près d'un quart de son électricité… à des bâtiments sans fenêtres ? » (voix : Bill, cartes en motion design)
 

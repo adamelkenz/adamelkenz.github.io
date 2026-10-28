@@ -1,0 +1,916 @@
+{
+	"fps": 30,
+	"lines": [
+		{
+			"text": "Un TGV lancé à trois cents kilomètres-heure. Et soudain… plus personne ne le contrôle. Que se passe-t-il ?",
+			"voice": "train/voice/line-00.wav",
+			"from": 0,
+			"durationInFrames": 238,
+			"voiceFrames": 235,
+			"words": [
+				{
+					"text": "Un",
+					"frame": 0
+				},
+				{
+					"text": "TGV",
+					"frame": 5
+				},
+				{
+					"text": "lancé",
+					"frame": 22
+				},
+				{
+					"text": "à",
+					"frame": 34
+				},
+				{
+					"text": "trois",
+					"frame": 36
+				},
+				{
+					"text": "cents",
+					"frame": 43
+				},
+				{
+					"text": "kilomètres-heure.",
+					"frame": 48
+				},
+				{
+					"text": "Et",
+					"frame": 91
+				},
+				{
+					"text": "soudain…",
+					"frame": 96
+				},
+				{
+					"text": "plus",
+					"frame": 130
+				},
+				{
+					"text": "personne",
+					"frame": 136
+				},
+				{
+					"text": "ne",
+					"frame": 150
+				},
+				{
+					"text": "le",
+					"frame": 153
+				},
+				{
+					"text": "contrôle.",
+					"frame": 156
+				},
+				{
+					"text": "Que",
+					"frame": 194
+				},
+				{
+					"text": "se",
+					"frame": 198
+				},
+				{
+					"text": "passe-t-il ?",
+					"frame": 202
+				}
+			]
+		},
+		{
+			"text": "D'abord, le train surveille son conducteur. Régulièrement, il doit relâcher puis réappuyer sur une pédale. Ça s'appelle la VACMA.",
+			"voice": "train/voice/line-01.wav",
+			"from": 238,
+			"durationInFrames": 289,
+			"voiceFrames": 283,
+			"words": [
+				{
+					"text": "D'abord,",
+					"frame": 0
+				},
+				{
+					"text": "le",
+					"frame": 25
+				},
+				{
+					"text": "train",
+					"frame": 29
+				},
+				{
+					"text": "surveille",
+					"frame": 35
+				},
+				{
+					"text": "son",
+					"frame": 48
+				},
+				{
+					"text": "conducteur.",
+					"frame": 53
+				},
+				{
+					"text": "Régulièrement,",
+					"frame": 86
+				},
+				{
+					"text": "il",
+					"frame": 115
+				},
+				{
+					"text": "doit",
+					"frame": 121
+				},
+				{
+					"text": "relâcher",
+					"frame": 128
+				},
+				{
+					"text": "puis",
+					"frame": 148
+				},
+				{
+					"text": "réappuyer",
+					"frame": 157
+				},
+				{
+					"text": "sur",
+					"frame": 174
+				},
+				{
+					"text": "une",
+					"frame": 179
+				},
+				{
+					"text": "pédale.",
+					"frame": 182
+				},
+				{
+					"text": "Ça",
+					"frame": 213
+				},
+				{
+					"text": "s'appelle",
+					"frame": 218
+				},
+				{
+					"text": "la",
+					"frame": 243
+				},
+				{
+					"text": "VACMA.",
+					"frame": 248
+				}
+			]
+		},
+		{
+			"text": "S'il ne répond plus, une alarme retentit. Quelques secondes sans réaction… et le train coupe ses moteurs et freine tout seul.",
+			"voice": "train/voice/line-02.wav",
+			"from": 527,
+			"durationInFrames": 253,
+			"voiceFrames": 247,
+			"words": [
+				{
+					"text": "S'il",
+					"frame": 0
+				},
+				{
+					"text": "ne",
+					"frame": 9
+				},
+				{
+					"text": "répond",
+					"frame": 12
+				},
+				{
+					"text": "plus,",
+					"frame": 21
+				},
+				{
+					"text": "une",
+					"frame": 37
+				},
+				{
+					"text": "alarme",
+					"frame": 42
+				},
+				{
+					"text": "retentit.",
+					"frame": 55
+				},
+				{
+					"text": "Quelques",
+					"frame": 89
+				},
+				{
+					"text": "secondes",
+					"frame": 100
+				},
+				{
+					"text": "sans",
+					"frame": 115
+				},
+				{
+					"text": "réaction…",
+					"frame": 122
+				},
+				{
+					"text": "et",
+					"frame": 157
+				},
+				{
+					"text": "le",
+					"frame": 161
+				},
+				{
+					"text": "train",
+					"frame": 165
+				},
+				{
+					"text": "coupe",
+					"frame": 173
+				},
+				{
+					"text": "ses",
+					"frame": 181
+				},
+				{
+					"text": "moteurs",
+					"frame": 185
+				},
+				{
+					"text": "et",
+					"frame": 204
+				},
+				{
+					"text": "freine",
+					"frame": 209
+				},
+				{
+					"text": "tout",
+					"frame": 217
+				},
+				{
+					"text": "seul.",
+					"frame": 222
+				}
+			]
+		},
+		{
+			"text": "Ensuite, le train surveille sa vitesse. Sur les lignes classiques, des balises au sol lui envoient les limites à respecter. Sur les lignes à grande vitesse, les informations arrivent en continu dans la cabine.",
+			"voice": "train/voice/line-03.wav",
+			"from": 780,
+			"durationInFrames": 379,
+			"voiceFrames": 373,
+			"words": [
+				{
+					"text": "Ensuite,",
+					"frame": 0
+				},
+				{
+					"text": "le",
+					"frame": 23
+				},
+				{
+					"text": "train",
+					"frame": 27
+				},
+				{
+					"text": "surveille",
+					"frame": 33
+				},
+				{
+					"text": "sa",
+					"frame": 45
+				},
+				{
+					"text": "vitesse.",
+					"frame": 50
+				},
+				{
+					"text": "Sur",
+					"frame": 83
+				},
+				{
+					"text": "les",
+					"frame": 89
+				},
+				{
+					"text": "lignes",
+					"frame": 92
+				},
+				{
+					"text": "classiques,",
+					"frame": 101
+				},
+				{
+					"text": "des",
+					"frame": 128
+				},
+				{
+					"text": "balises",
+					"frame": 132
+				},
+				{
+					"text": "au",
+					"frame": 142
+				},
+				{
+					"text": "sol",
+					"frame": 148
+				},
+				{
+					"text": "lui",
+					"frame": 158
+				},
+				{
+					"text": "envoient",
+					"frame": 164
+				},
+				{
+					"text": "les",
+					"frame": 174
+				},
+				{
+					"text": "limites",
+					"frame": 177
+				},
+				{
+					"text": "à",
+					"frame": 190
+				},
+				{
+					"text": "respecter.",
+					"frame": 193
+				},
+				{
+					"text": "Sur",
+					"frame": 230
+				},
+				{
+					"text": "les",
+					"frame": 237
+				},
+				{
+					"text": "lignes",
+					"frame": 240
+				},
+				{
+					"text": "à",
+					"frame": 249
+				},
+				{
+					"text": "grande",
+					"frame": 253
+				},
+				{
+					"text": "vitesse,",
+					"frame": 259
+				},
+				{
+					"text": "les",
+					"frame": 281
+				},
+				{
+					"text": "informations",
+					"frame": 287
+				},
+				{
+					"text": "arrivent",
+					"frame": 305
+				},
+				{
+					"text": "en",
+					"frame": 317
+				},
+				{
+					"text": "continu",
+					"frame": 320
+				},
+				{
+					"text": "dans",
+					"frame": 332
+				},
+				{
+					"text": "la",
+					"frame": 336
+				},
+				{
+					"text": "cabine.",
+					"frame": 339
+				}
+			]
+		},
+		{
+			"text": "Trop vite ? Un signal fermé droit devant ? Le système déclenche lui-même le freinage d'urgence.",
+			"voice": "train/voice/line-04.wav",
+			"from": 1159,
+			"durationInFrames": 191,
+			"voiceFrames": 185,
+			"words": [
+				{
+					"text": "Trop",
+					"frame": 0
+				},
+				{
+					"text": "vite ?",
+					"frame": 8
+				},
+				{
+					"text": "Un",
+					"frame": 31
+				},
+				{
+					"text": "signal",
+					"frame": 35
+				},
+				{
+					"text": "fermé",
+					"frame": 46
+				},
+				{
+					"text": "droit",
+					"frame": 56
+				},
+				{
+					"text": "devant ?",
+					"frame": 63
+				},
+				{
+					"text": "Le",
+					"frame": 95
+				},
+				{
+					"text": "système",
+					"frame": 99
+				},
+				{
+					"text": "déclenche",
+					"frame": 111
+				},
+				{
+					"text": "lui-même",
+					"frame": 125
+				},
+				{
+					"text": "le",
+					"frame": 137
+				},
+				{
+					"text": "freinage",
+					"frame": 140
+				},
+				{
+					"text": "d'urgence.",
+					"frame": 151
+				}
+			]
+		},
+		{
+			"text": "Mais un train lancé ne s'arrête pas comme une voiture. À trois cents kilomètres-heure, il lui faut environ trois kilomètres et demi.",
+			"voice": "train/voice/line-05.wav",
+			"from": 1350,
+			"durationInFrames": 232,
+			"voiceFrames": 229,
+			"words": [
+				{
+					"text": "Mais",
+					"frame": 0
+				},
+				{
+					"text": "un",
+					"frame": 6
+				},
+				{
+					"text": "train",
+					"frame": 11
+				},
+				{
+					"text": "lancé",
+					"frame": 18
+				},
+				{
+					"text": "ne",
+					"frame": 37
+				},
+				{
+					"text": "s'arrête",
+					"frame": 42
+				},
+				{
+					"text": "pas",
+					"frame": 54
+				},
+				{
+					"text": "comme",
+					"frame": 60
+				},
+				{
+					"text": "une",
+					"frame": 66
+				},
+				{
+					"text": "voiture.",
+					"frame": 69
+				},
+				{
+					"text": "À",
+					"frame": 102
+				},
+				{
+					"text": "trois",
+					"frame": 107
+				},
+				{
+					"text": "cents",
+					"frame": 114
+				},
+				{
+					"text": "kilomètres-heure,",
+					"frame": 119
+				},
+				{
+					"text": "il",
+					"frame": 153
+				},
+				{
+					"text": "lui",
+					"frame": 157
+				},
+				{
+					"text": "faut",
+					"frame": 162
+				},
+				{
+					"text": "environ",
+					"frame": 169
+				},
+				{
+					"text": "trois",
+					"frame": 182
+				},
+				{
+					"text": "kilomètres",
+					"frame": 188
+				},
+				{
+					"text": "et",
+					"frame": 202
+				},
+				{
+					"text": "demi.",
+					"frame": 206
+				}
+			]
+		},
+		{
+			"text": "Trois kilomètres et demi. Plus de trente terrains de foot.",
+			"voice": "train/voice/line-06.wav",
+			"from": 1582,
+			"durationInFrames": 122,
+			"voiceFrames": 108,
+			"words": [
+				{
+					"text": "Trois",
+					"frame": 0
+				},
+				{
+					"text": "kilomètres",
+					"frame": 8
+				},
+				{
+					"text": "et",
+					"frame": 23
+				},
+				{
+					"text": "demi.",
+					"frame": 25
+				},
+				{
+					"text": "Plus",
+					"frame": 49
+				},
+				{
+					"text": "de",
+					"frame": 55
+				},
+				{
+					"text": "trente",
+					"frame": 59
+				},
+				{
+					"text": "terrains",
+					"frame": 68
+				},
+				{
+					"text": "de",
+					"frame": 77
+				},
+				{
+					"text": "foot.",
+					"frame": 81
+				}
+			]
+		},
+		{
+			"text": "C'est pour ça que tout se joue avant. En 2015, à Eckwersheim, en Alsace, un TGV d'essai aborde une courbe à deux cent soixante-cinq kilomètres-heure. Le freinage a commencé trop tard. Onze morts.",
+			"voice": "train/voice/line-07.wav",
+			"from": 1704,
+			"durationInFrames": 410,
+			"voiceFrames": 395,
+			"words": [
+				{
+					"text": "C'est",
+					"frame": 0
+				},
+				{
+					"text": "pour",
+					"frame": 6
+				},
+				{
+					"text": "ça",
+					"frame": 11
+				},
+				{
+					"text": "que",
+					"frame": 17
+				},
+				{
+					"text": "tout",
+					"frame": 21
+				},
+				{
+					"text": "se",
+					"frame": 27
+				},
+				{
+					"text": "joue",
+					"frame": 32
+				},
+				{
+					"text": "avant.",
+					"frame": 38
+				},
+				{
+					"text": "En",
+					"frame": 66
+				},
+				{
+					"text": "2015,",
+					"frame": 72
+				},
+				{
+					"text": "à",
+					"frame": 98
+				},
+				{
+					"text": "Eckwersheim,",
+					"frame": 103
+				},
+				{
+					"text": "en",
+					"frame": 128
+				},
+				{
+					"text": "Alsace,",
+					"frame": 134
+				},
+				{
+					"text": "un",
+					"frame": 160
+				},
+				{
+					"text": "TGV",
+					"frame": 164
+				},
+				{
+					"text": "d'essai",
+					"frame": 179
+				},
+				{
+					"text": "aborde",
+					"frame": 192
+				},
+				{
+					"text": "une",
+					"frame": 204
+				},
+				{
+					"text": "courbe",
+					"frame": 209
+				},
+				{
+					"text": "à",
+					"frame": 220
+				},
+				{
+					"text": "deux",
+					"frame": 224
+				},
+				{
+					"text": "cent",
+					"frame": 229
+				},
+				{
+					"text": "soixante-cinq",
+					"frame": 235
+				},
+				{
+					"text": "kilomètres-heure.",
+					"frame": 253
+				},
+				{
+					"text": "Le",
+					"frame": 293
+				},
+				{
+					"text": "freinage",
+					"frame": 298
+				},
+				{
+					"text": "a",
+					"frame": 310
+				},
+				{
+					"text": "commencé",
+					"frame": 313
+				},
+				{
+					"text": "trop",
+					"frame": 327
+				},
+				{
+					"text": "tard.",
+					"frame": 333
+				},
+				{
+					"text": "Onze",
+					"frame": 361
+				},
+				{
+					"text": "morts.",
+					"frame": 373
+				}
+			]
+		},
+		{
+			"text": "Aujourd'hui, l'Europe déploie un système commun, l'ETCS. Il calcule en permanence la vitesse sûre… et peut arrêter le train à la place du conducteur.",
+			"voice": "train/voice/line-08.wav",
+			"from": 2114,
+			"durationInFrames": 285,
+			"voiceFrames": 274,
+			"words": [
+				{
+					"text": "Aujourd'hui,",
+					"frame": 0
+				},
+				{
+					"text": "l'Europe",
+					"frame": 26
+				},
+				{
+					"text": "déploie",
+					"frame": 37
+				},
+				{
+					"text": "un",
+					"frame": 49
+				},
+				{
+					"text": "système",
+					"frame": 54
+				},
+				{
+					"text": "commun,",
+					"frame": 66
+				},
+				{
+					"text": "l'ETCS.",
+					"frame": 85
+				},
+				{
+					"text": "Il",
+					"frame": 121
+				},
+				{
+					"text": "calcule",
+					"frame": 127
+				},
+				{
+					"text": "en",
+					"frame": 138
+				},
+				{
+					"text": "permanence",
+					"frame": 141
+				},
+				{
+					"text": "la",
+					"frame": 158
+				},
+				{
+					"text": "vitesse",
+					"frame": 161
+				},
+				{
+					"text": "sûre…",
+					"frame": 174
+				},
+				{
+					"text": "et",
+					"frame": 195
+				},
+				{
+					"text": "peut",
+					"frame": 200
+				},
+				{
+					"text": "arrêter",
+					"frame": 205
+				},
+				{
+					"text": "le",
+					"frame": 214
+				},
+				{
+					"text": "train",
+					"frame": 218
+				},
+				{
+					"text": "à",
+					"frame": 226
+				},
+				{
+					"text": "la",
+					"frame": 229
+				},
+				{
+					"text": "place",
+					"frame": 232
+				},
+				{
+					"text": "du",
+					"frame": 239
+				},
+				{
+					"text": "conducteur.",
+					"frame": 242
+				}
+			]
+		},
+		{
+			"text": "Tu savais que ton train te surveillait autant ? Dis-le en commentaire.",
+			"voice": "train/voice/line-09.wav",
+			"from": 2399,
+			"durationInFrames": 120,
+			"voiceFrames": 114,
+			"words": [
+				{
+					"text": "Tu",
+					"frame": 0
+				},
+				{
+					"text": "savais",
+					"frame": 7
+				},
+				{
+					"text": "que",
+					"frame": 15
+				},
+				{
+					"text": "ton",
+					"frame": 20
+				},
+				{
+					"text": "train",
+					"frame": 25
+				},
+				{
+					"text": "te",
+					"frame": 33
+				},
+				{
+					"text": "surveillait",
+					"frame": 37
+				},
+				{
+					"text": "autant ?",
+					"frame": 51
+				},
+				{
+					"text": "Dis-le",
+					"frame": 80
+				},
+				{
+					"text": "en",
+					"frame": 88
+				},
+				{
+					"text": "commentaire.",
+					"frame": 91
+				}
+			]
+		}
+	],
+	"durationInFrames": 2579
+}

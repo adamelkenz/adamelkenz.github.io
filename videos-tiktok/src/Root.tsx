@@ -8,6 +8,8 @@ import marchesTimeline from './marches/timeline.json';
 import {Serbie} from './serbie/Serbie';
 import serbieTimeline from './serbie/timeline.json';
 import {Statuts} from './statuts/Statuts';
+import {TrainVideo} from './train/TrainVideo';
+import trainTimeline from './train/timeline.json';
 import {WhiteLabel} from './whitelabel/WhiteLabel';
 import whitelabelTimeline from './whitelabel/timeline.json';
 import statutsTimeline from './statuts/timeline.json';
@@ -59,6 +61,14 @@ export const Root = () => (
 			component={Serbie}
 			durationInFrames={serbieTimeline.durationInFrames}
 			fps={serbieTimeline.fps}
+			width={1080}
+			height={1920}
+		/>
+		<Composition
+			id="Train"
+			component={TrainVideo}
+			durationInFrames={trainTimeline.durationInFrames}
+			fps={trainTimeline.fps}
 			width={1080}
 			height={1920}
 		/>
