@@ -101,11 +101,11 @@ export const S0Hook = ({line}: SceneProps) => {
 				</Big>
 			</Beat>
 			<Fx at={0} name="synth-jet" />
-			<Fx at={tAlt} name="whoosh" />
+			<Fx at={tAlt} name="whoosh" gain={0.55} />
 			<Fx at={tSoudain + 10} name="synth-warning" />
-			<Fx at={tStop} name="synth-spooldown" />
-			<Fx at={tStop} name="impact" gain={0.8} />
-			<Fx at={tQ} name="synth-wind" />
+			<Fx at={tStop} name="synth-spooldown" gain={0.6} />
+			<Fx at={tStop} name="impact" gain={0.5} />
+			<Fx at={tQ} name="synth-wind" gain={0.65} />
 		</AbsoluteFill>
 	);
 };
@@ -400,10 +400,10 @@ export const S6Transat = ({line}: SceneProps) => {
 				<Big at={W('aucun') - tToll - 3} top={960} size={150} color={A.green}>
 					0 MORT
 				</Big>
-				<Fx at={W('aucun') - tToll - 3} name="ding" />
+				<Fx at={W('aucun') - tToll - 3} name="ding" gain={0.7} />
 			</Beat>
-			<Fx at={W('panne') - 4} name="synth-spooldown" />
-			<Fx at={tMap} name="whoosh" />
+			<Fx at={W('panne') - 4} name="synth-spooldown" gain={0.5} />
+			<Fx at={tMap} name="whoosh" gain={0.55} />
 			<Fx at={tMap + 6} name="clock" gain={0.6} />
 		</AbsoluteFill>
 	);
@@ -474,10 +474,10 @@ export const S7Hudson = ({line}: SceneProps) => {
 				<Stamp at={tLand - tCity + 8} top={1200} color={A.cyan} rotate={0}>
 					AMERRISSAGE SUR L'HUDSON
 				</Stamp>
-				<Fx at={tBirds - tCity} name="impact" />
-				<Fx at={tBirds - tCity + 2} name="synth-spooldown" />
+				<Fx at={tBirds - tCity} name="impact" gain={0.6} />
+				<Fx at={tBirds - tCity + 2} name="synth-spooldown" gain={0.5} />
 				<Fx at={tBirds - tCity + 8} name="synth-warning" gain={0.8} />
-				<Fx at={tLand - tCity + 6} name="synth-splash" />
+				<Fx at={tLand - tCity + 6} name="synth-splash" gain={0.4} />
 			</Beat>
 			<Beat at={tToll} transition="flash">
 				<AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 40%, #0E3A26 0%, ${A.ink} 70%)`}} />
@@ -496,7 +496,7 @@ export const S7Hudson = ({line}: SceneProps) => {
 			</Beat>
 			<Fx at={0} name="synth-jet" gain={0.8} />
 			<Fx at={W('trois') - 4} name="clock" />
-			<Fx at={tCity} name="whoosh" />
+			<Fx at={tCity} name="whoosh" gain={0.55} />
 		</AbsoluteFill>
 	);
 };
