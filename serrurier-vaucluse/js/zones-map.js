@@ -14,11 +14,16 @@
     'Orange': 'serrurier-orange', 'Bollène': 'serrurier-bollene', 'Vaison-la-Romaine': 'serrurier-vaison-la-romaine',
     'Valréas': 'serrurier-valreas', 'Cavaillon': 'serrurier-cavaillon', "L'Isle-sur-la-Sorgue": 'serrurier-l-isle-sur-la-sorgue',
     'Apt': 'serrurier-apt', 'Pertuis': 'serrurier-pertuis',
+    'Villeneuve-lès-Avignon': 'serrurier-villeneuve-les-avignon', 'Les Angles': 'serrurier-les-angles',
+    'Vedène': 'serrurier-vedene', 'Morières-lès-Avignon': 'serrurier-morieres-les-avignon',
+    'Entraigues-sur-la-Sorgue': 'serrurier-entraigues-sur-la-sorgue', 'Le Thor': 'serrurier-le-thor',
   };
   // [nom, lat, lng, type, description, page] — « city » = Grand Avignon, « near » = reste du département
   const POINTS = [
     ['Avignon', 43.9493, 4.8055, 'city', 'La cité des Papes, notre point de départ.'],
     ['Le Pontet', 43.9617, 4.8606, 'city', 'Commune voisine à l’est d’Avignon.'],
+    ['Villeneuve-lès-Avignon', 43.9664, 4.7967, 'city', 'Face à Avignon, de l’autre côté du Rhône.'],
+    ['Les Angles', 43.9547, 4.7631, 'city', 'Sur le plateau qui domine Avignon, rive droite du Rhône.'],
     ['Sorgues', 44.0083, 4.8728, 'city', 'Au nord d’Avignon, entre Rhône et Ouvèze.'],
     ['Morières-lès-Avignon', 43.9406, 4.9050, 'city', 'À l’est d’Avignon, sur la route de Cavaillon.'],
     ['Vedène', 43.9775, 4.9036, 'city', 'Commune du Grand Avignon, au nord-est.'],
