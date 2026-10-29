@@ -231,9 +231,10 @@ section { padding: 80px 0; scroll-margin-top: 68px; }
 .card .icon svg { width: 28px; height: 28px; }
 .card h3 { margin: 0 0 8px; font-size: 1.12rem; color: var(--halo); }
 .card p { margin: 0; font-size: .95rem; }
-.card ul.ticks { list-style: none; margin: 0; padding: 0; font-size: .95rem; }
-.card ul.ticks li { position: relative; padding-left: 20px; margin: 6px 0; }
-.card ul.ticks li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--cyan)); box-shadow: 0 0 8px var(--c, var(--cyan)); }
+.card ul.ticks, .prose ul.ticks { list-style: none; margin: 0; padding: 0; font-size: .95rem; }
+.prose ul.ticks { margin: 0 0 14px; font-size: 1rem; }
+.card ul.ticks li, .prose ul.ticks li { position: relative; padding-left: 20px; margin: 6px 0; }
+.card ul.ticks li::before, .prose ul.ticks li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--cyan)); box-shadow: 0 0 8px var(--c, var(--cyan)); }
 
 /* ---------- Couleurs + animations « Nos prestations » ---------- */
 #services {
@@ -764,6 +765,9 @@ footer a:hover { color: var(--cyan); }
 .local .prose h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); margin: 8px 0 14px; letter-spacing: -.01em; }
 .local .prose h3 { margin: 26px 0 8px; font-size: 1.1rem; color: var(--cyan); }
 .local .prose p { margin: 0 0 14px; }
+.local .prose a, .local aside .chips a { color: var(--cyan); }
+.card-more { display: block; margin-top: 12px; font-size: .9rem; font-weight: 600; color: var(--cyan); text-decoration: none; }
+.card-more:hover { text-decoration: underline; }
 .local aside .card h3 { margin-bottom: 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; padding: 0; list-style: none; }
 .chips li { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: .85rem; background: var(--bg); }
