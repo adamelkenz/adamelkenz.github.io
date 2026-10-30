@@ -130,7 +130,7 @@
       `<p>${p.desc}</p><span class="pp-km">≈ ${p.km.toFixed(1).replace('.', ',')} km d'Avignon (à vol d'oiseau)</span><br>` +
       (p.page ? `<a class="pp-link" href="${ROOT}${p.page}/">Serrurier à ${p.name} →</a><br>` : '') +
       `<a class="pp-link" href="#contact">Demander une intervention →</a>`);
-    const dot = L.circleMarker(pts[0], { radius: 3.5, color, fillColor: '#FFFFFF', weight: 2, opacity: 0, fillOpacity: 0, interactive: false }).addTo(map);
+    const dot = L.circleMarker(pts[0], { radius: 3.5, color, fillColor: '#EAF3FE', weight: 2, opacity: 0, fillOpacity: 0, interactive: false }).addTo(map);
 
     const li = document.createElement('li');
     li.innerHTML = `<button type="button"><span class="zl-dot ${p.type}"></span><span class="zl-name">${p.name}</span><span class="zl-km">${p.km.toFixed(1).replace('.', ',')} km</span></button>`;
