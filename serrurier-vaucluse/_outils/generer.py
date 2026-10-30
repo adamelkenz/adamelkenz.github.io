@@ -1206,7 +1206,7 @@ def realisations_html(root, lieu):
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <rect x="10" y="22" width="80" height="58" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <rect x="10" y="22" width="80" height="58" rx="10" fill="#EAF3FE" stroke="#00B4E6" stroke-width="4"/>
           <rect x="36" y="12" width="28" height="12" rx="4" fill="#C7D5F0" stroke="#00B4E6" stroke-width="3"/>
           <circle cx="50" cy="51" r="17" fill="#EAF4FF" stroke="#7B66F5" stroke-width="4"/>
           <circle class="q-dot" cx="50" cy="51" r="7" fill="#00B4E6"/>
