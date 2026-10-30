@@ -23,7 +23,6 @@
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="../css/style.css">
@@ -134,6 +133,14 @@
     },
     {
      "@type": "Question",
+     "name": "Intervenez-vous à Malaucène et Entrechaux ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui, comme dans tous les villages autour de Vaison-la-Romaine, aux mêmes tarifs que dans le reste du Vaucluse, déplacement inclus."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Combien coûte une ouverture de porte à Vaison-la-Romaine ?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -231,9 +238,10 @@
     </a>
     <nav class="main" aria-label="Navigation principale">
       <a href="#services">Services</a>
-      <a href="#tarifs">Tarifs</a>
+      <a href="../tarifs-serrurier/">Tarifs</a>
       <a href="#realisations">Réalisations</a>
       <a href="#zones">Zones</a>
+      <a href="../conseils/">Conseils</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -249,6 +257,7 @@
         <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="../">Serrurier Vaucluse</a></li><li aria-current="page">Serrurier Vaison-la-Romaine</li></ol></nav>
         <span class="badge"><span class="dot"></span>Serrurier disponible à Vaison-la-Romaine (84110)</span>
         <h1>Serrurier à Vaison-la-Romaine<br><span>24h/24 – 7j/7</span></h1>
+        <p class="hero-rot" aria-hidden="true">Un serrurier pour <span class="rot" data-words="une porte claquée|une clé perdue|une serrure bloquée|une clé cassée|une effraction|un volet coincé">une porte claquée</span></p>
         <p class="lead">Porte claquée dans la haute ville, clé perdue ou serrure ancienne bloquée à Vaison-la-Romaine ? Au pied du Ventoux, notre serrurier intervient chez vous 7j/7.</p>
         <div class="hero-actions">
           <a href="tel:+33668885151" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
@@ -259,10 +268,17 @@
           <li>Devis gratuit</li>
           <li>7j/7, jours fériés inclus</li>
         </ul>
+        <ul class="hero-stats">
+          <li><strong><span data-count="90">90</span> €</strong><span>ouverture dès, TTC</span></li>
+          <li><strong><span data-count="24">24</span>h/24</strong><span>7 jours sur 7</span></li>
+          <li><strong><span data-count="26">26</span></strong><span>villes desservies</span></li>
+          <li><strong><span data-count="0">0</span> €</strong><span>frais de déplacement</span></li>
+        </ul>
       </div>
 
       <!-- Porte en 3D : forcée, réparée puis verrouillée (js/door3d.js) -->
       <div class="hero-3d" id="door3d">
+        <div class="door-ghost" aria-hidden="true"><i></i></div>
         <div class="price-badge">
           <small>Ouverture de porte dès</small>
           <strong>90 €<em>TTC</em></strong>
@@ -290,10 +306,14 @@
           <p>Beaucoup de résidences secondaires et de gîtes entourent Vaison : nous changeons les cylindres entre deux saisons et sécurisons les portes des maisons inoccupées une partie de l'année.</p>
           <h3>Résidences secondaires autour de Vaison : préparer la fermeture</h3>
           <p>Avant de fermer une maison pour l'hiver, vérifiez que toutes les portes verrouillent correctement, que les volets roulants descendent jusqu'en bas et qu'aucun double de clé n'est resté chez un ancien locataire. Nous pouvons faire ce contrôle, remplacer les cylindres et renforcer la porte principale avant votre départ, puis intervenir à votre retour si une serrure s'est grippée.</p>
+          <h3>Villages du Ventoux et des Dentelles</h3>
+          <p>Autour de Vaison-la-Romaine, nous intervenons dans les villages au pied du Ventoux et des Dentelles de Montmirail : Séguret, Roaix, Entrechaux, Malaucène, Puymeras et leurs hameaux. Les routes y sont plus longues : pour une urgence, l'heure d'arrivée estimée vous est donnée au téléphone.</p>
+          <p>Beaucoup de maisons de village ont des portes épaisses et des serrures anciennes, qu'il vaut mieux réparer que remplacer. Pour les maisons louées en saison, nous conseillons des cylindres faciles à changer entre deux locations.</p>
           <h3>Serrurier en urgence à Vaison-la-Romaine : nuit, dimanche et jours fériés</h3>
           <p>Porte claquée dans la haute ville, serrure grippée dans une maison de vacances un dimanche : nous intervenons à Vaison-la-Romaine et dans les villages du Ventoux 7j/7, au tarif annoncé avant le départ.</p>
           <h3>Nos interventions à Vaison-la-Romaine</h3>
-          <p><a href="../ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="../changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="../blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="../reparation-apres-effraction/">réparation après effraction</a> et <a href="../depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="#tarifs">Voir nos tarifs</a> ou <a href="tel:+33668885151">appeler le 06 68 88 51 51</a>.</p>
+          <p><a href="../ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="../changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="../blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="../reparation-apres-effraction/">réparation après effraction</a> et <a href="../depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="../tarifs-serrurier/">Voir tous nos tarifs</a> ou <a href="tel:+33668885151">appeler le 06 68 88 51 51</a>.</p>
+          <p>Besoin d'un conseil avant d'appeler ? Lisez nos guides : <a href="../conseils/porte-claquee-que-faire/">porte claquée, que faire ?</a>, <a href="../conseils/cle-perdue-que-faire/">clés perdues ou volées</a> et <a href="../conseils/eviter-arnaque-serrurier/">comment éviter les arnaques au serrurier</a>.</p>
       </div>
       <aside>
         <div class="card">
@@ -334,15 +354,15 @@
     <div class="container">
       <div class="section-head">
         <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
-          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <rect x="14" y="14" width="52" height="60" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <circle cx="40" cy="38" r="7" fill="#070B18" stroke="#8F7BFF" stroke-width="3"/>
-          <path d="M37 42h6l2 16h-10z" fill="#070B18" stroke="#8F7BFF" stroke-width="3" stroke-linejoin="round"/>
+          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <rect x="14" y="14" width="52" height="60" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <circle cx="40" cy="38" r="7" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3"/>
+          <path d="M37 42h6l2 16h-10z" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3" stroke-linejoin="round"/>
           <g class="k-move"><g class="k-turn">
-            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#D6F4FF"/>
-            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#D6F4FF"/>
-            <circle cx="104" cy="38.5" r="13" fill="#8F7BFF" stroke="#D6F4FF" stroke-width="3"/>
-            <circle cx="108" cy="38.5" r="4" fill="#070B18"/>
+            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#1B2550"/>
+            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#1B2550"/>
+            <circle cx="104" cy="38.5" r="13" fill="#7B66F5" stroke="#1B2550" stroke-width="3"/>
+            <circle cx="108" cy="38.5" r="4" fill="#EAF4FF"/>
           </g></g>
         </svg></div>
         <span class="eyebrow">Nos prestations</span>
@@ -406,10 +426,10 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="coin"><circle cx="50" cy="50" r="36" fill="#121A33" stroke="#00D1FF" stroke-width="5"/>
-          <circle cx="50" cy="50" r="27" fill="none" stroke="#2B3A67" stroke-width="3"/>
+          <g class="coin"><circle cx="50" cy="50" r="36" fill="#FFFFFF" stroke="#00B4E6" stroke-width="5"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#C7D5F0" stroke-width="3"/>
           <g style="color:#8F7BFF"><use href="#i-euro" x="32" y="32" width="36" height="36"/></g></g>
-          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#D6F4FF"/></g>
+          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#1B2550"/></g>
         </svg></div>
         <span class="eyebrow">Grille tarifaire</span>
         <h2>Nos tarifs à Vaison-la-Romaine, annoncés avant l'intervention</h2>
@@ -458,11 +478,11 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <rect x="10" y="22" width="80" height="58" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <rect x="36" y="12" width="28" height="12" rx="4" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
-          <circle cx="50" cy="51" r="17" fill="#070B18" stroke="#8F7BFF" stroke-width="4"/>
-          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00D1FF"/>
-          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#D6F4FF"/>
+          <rect x="10" y="22" width="80" height="58" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <rect x="36" y="12" width="28" height="12" rx="4" fill="#C7D5F0" stroke="#00B4E6" stroke-width="3"/>
+          <circle cx="50" cy="51" r="17" fill="#EAF4FF" stroke="#7B66F5" stroke-width="4"/>
+          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00B4E6"/>
+          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#1B2550"/>
         </svg></div>
         <span class="eyebrow">Nos réalisations</span>
         <h2>Nos dernières interventions dans le Vaucluse</h2>
@@ -497,9 +517,9 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
-          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#8F7BFF"/><path d="M47.5 32h5l1.5 10h-8z" fill="#8F7BFF"/></g>
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#7B66F5" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#7B66F5"/><path d="M47.5 32h5l1.5 10h-8z" fill="#7B66F5"/></g>
         </svg></div>
         <span class="eyebrow">Zones d'intervention</span>
         <h2>Vaison-la-Romaine et tout le Vaucluse</h2>
@@ -535,10 +555,10 @@
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="q-bubble">
-            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#121A33" stroke="#00D1FF" stroke-width="4" stroke-linejoin="round"/>
-            <circle class="q-dot" cx="34" cy="40" r="5" fill="#8F7BFF"/>
-            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00D1FF"/>
-            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#D6F4FF"/>
+            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4" stroke-linejoin="round"/>
+            <circle class="q-dot" cx="34" cy="40" r="5" fill="#7B66F5"/>
+            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00B4E6"/>
+            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#1B2550"/>
           </g>
         </svg></div>
         <span class="eyebrow">Questions fréquentes</span>
@@ -548,6 +568,10 @@
         <details>
           <summary>J'ai une résidence secondaire près de Vaison : pouvez-vous intervenir en mon absence ?</summary>
           <p>Oui, si une personne de confiance peut nous ouvrir l'accès ou nous remettre les clés. Nous vous communiquons le tarif au téléphone, puis vous recevez la facture détaillée et des photos de l'intervention.</p>
+        </details>
+        <details>
+          <summary>Intervenez-vous à Malaucène et Entrechaux ?</summary>
+          <p>Oui, comme dans tous les villages autour de Vaison-la-Romaine, aux mêmes tarifs que dans le reste du Vaucluse, déplacement inclus.</p>
         </details>
         <details>
           <summary>Combien coûte une ouverture de porte à Vaison-la-Romaine ?</summary>
@@ -581,7 +605,7 @@
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Serrurier dans le Vaucluse (84)</span>
-        <h2>Nous intervenons aussi dans ces villes du Vaucluse</h2>
+        <h2>Nous intervenons aussi dans ces villes</h2>
         <p>Avignon, le Comtat Venaissin, le Haut-Vaucluse, l'Enclave des Papes et le Luberon : choisissez votre ville pour découvrir nos interventions près de chez vous.</p>
       </div>
       <div class="cities">
@@ -592,6 +616,12 @@
         <a class="city-card" href="../serrurier-morieres-les-avignon/"><strong>Serrurier Morières-lès-Avignon<em>84310</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
         <a class="city-card" href="../serrurier-entraigues-sur-la-sorgue/"><strong>Serrurier Entraigues-sur-la-Sorgue<em>84320</em></strong><span>Centre ancien, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="../serrurier-le-thor/"><strong>Serrurier Le Thor<em>84250</em></strong><span>Centre du village, Bords de Sorgue, Thouzon</span></a>
+        <a class="city-card" href="../serrurier-saint-saturnin-les-avignon/"><strong>Serrurier Saint-Saturnin-lès-Avignon<em>84450</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
+        <a class="city-card" href="../serrurier-chateauneuf-de-gadagne/"><strong>Serrurier Châteauneuf-de-Gadagne<em>84470</em></strong><span>Village perché, Quartiers résidentiels, Lotissements</span></a>
+        <a class="city-card" href="../serrurier-caumont-sur-durance/"><strong>Serrurier Caumont-sur-Durance<em>84510</em></strong><span>Vieux village, Plaine de la Durance, Quartiers résidentiels</span></a>
+        <a class="city-card" href="../serrurier-bedarrides/"><strong>Serrurier Bédarrides<em>84370</em></strong><span>Centre ancien, Lotissements, Bords de l'Ouvèze</span></a>
+        <a class="city-card" href="../serrurier-chateauneuf-du-pape/"><strong>Serrurier Châteauneuf-du-Pape<em>84230</em></strong><span>Village, Château des papes, Domaines viticoles</span></a>
+        <a class="city-card" href="../serrurier-courthezon/"><strong>Serrurier Courthézon<em>84350</em></strong><span>Centre ancien, Remparts, Quartiers résidentiels</span></a>
         <a class="city-card" href="../serrurier-le-pontet/"><strong>Serrurier Le Pontet<em>84130</em></strong><span>Centre-ville, Quartiers pavillonnaires, Résidences</span></a>
         <a class="city-card" href="../serrurier-sorgues/"><strong>Serrurier Sorgues<em>84700</em></strong><span>Centre-ville, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="../serrurier-carpentras/"><strong>Serrurier Carpentras<em>84200</em></strong><span>Centre ancien, Boulevards, Quartiers résidentiels</span></a>
@@ -614,8 +644,8 @@
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
-          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
-          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
         </svg></div>
         <span class="eyebrow">Contact</span>
         <h2>Demandez un serrurier à Vaison-la-Romaine</h2>
@@ -724,11 +754,35 @@
           <li><a href="../reparation-apres-effraction/">Réparation après effraction</a></li>
           <li><a href="../depannage-volet-roulant/">Volets roulants</a></li>
           <li><a href="../serrurier-urgence-avignon/">Urgence 24h/24 Avignon</a></li>
+          <li><a href="../ouverture-boite-aux-lettres/">Boîte aux lettres</a></li>
+          <li><a href="../serrurier-professionnels/">Professionnels et syndics</a></li>
+          <li><a href="../tarifs-serrurier/">Nos tarifs</a></li>
         </ul>
       </div>
       <div>
-        <h4>Villes</h4>
+        <h4>Conseils</h4>
         <ul>
+          <li><a href="../conseils/porte-claquee-que-faire/">Porte claquée : que faire ?</a></li>
+          <li><a href="../conseils/cle-perdue-que-faire/">Clés perdues ou volées : que faire ?</a></li>
+          <li><a href="../conseils/eviter-arnaque-serrurier/">Arnaque au serrurier : comment l’éviter</a></li>
+          <li><a href="../conseils/choisir-serrure-a2p/">Serrure A2P : comment choisir le bon niveau de sécurité</a></li>
+          <li><a href="../conseils/serrure-bloquee-cle-qui-force/">Serrure bloquée ou clé qui force : que faire ?</a></li>
+          <li><a href="../conseils/proteger-maison-cambriolage/">Protéger sa maison des cambriolages : 12 conseils de serrurier</a></li>
+          <li><a href="../conseils/serrurier-locataire-ou-proprietaire/">Serrurier : qui paie, le locataire ou le propriétaire ?</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
+          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
+          <li><a href="../">Serrurier Vaucluse (84)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-villes">
+      <h4>Nos villes d'intervention</h4>
+      <ul>
           <li><a href="../serrurier-avignon/">Serrurier Avignon</a></li>
           <li><a href="../serrurier-villeneuve-les-avignon/">Serrurier Villeneuve-lès-Avignon</a></li>
           <li><a href="../serrurier-les-angles/">Serrurier Les Angles</a></li>
@@ -736,6 +790,12 @@
           <li><a href="../serrurier-morieres-les-avignon/">Serrurier Morières-lès-Avignon</a></li>
           <li><a href="../serrurier-entraigues-sur-la-sorgue/">Serrurier Entraigues-sur-la-Sorgue</a></li>
           <li><a href="../serrurier-le-thor/">Serrurier Le Thor</a></li>
+          <li><a href="../serrurier-saint-saturnin-les-avignon/">Serrurier Saint-Saturnin-lès-Avignon</a></li>
+          <li><a href="../serrurier-chateauneuf-de-gadagne/">Serrurier Châteauneuf-de-Gadagne</a></li>
+          <li><a href="../serrurier-caumont-sur-durance/">Serrurier Caumont-sur-Durance</a></li>
+          <li><a href="../serrurier-bedarrides/">Serrurier Bédarrides</a></li>
+          <li><a href="../serrurier-chateauneuf-du-pape/">Serrurier Châteauneuf-du-Pape</a></li>
+          <li><a href="../serrurier-courthezon/">Serrurier Courthézon</a></li>
           <li><a href="../serrurier-le-pontet/">Serrurier Le Pontet</a></li>
           <li><a href="../serrurier-sorgues/">Serrurier Sorgues</a></li>
           <li><a href="../serrurier-carpentras/">Serrurier Carpentras</a></li>
@@ -749,16 +809,7 @@
           <li><a href="../serrurier-l-isle-sur-la-sorgue/">Serrurier L'Isle-sur-la-Sorgue</a></li>
           <li><a href="../serrurier-apt/">Serrurier Apt</a></li>
           <li><a href="../serrurier-pertuis/">Serrurier Pertuis</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
-          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
-          <li><a href="../">Serrurier Vaucluse (84)</a></li>
-        </ul>
-      </div>
+      </ul>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Serrurier Vaucluse – serrurier-vaucluse.fr</span>
@@ -769,11 +820,7 @@
 
 <a href="tel:+33668885151" class="btn btn-light float-call"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script defer src="../js/door3d.js"></script>
 <script defer src="../js/booking.js"></script>
 <script defer src="../js/site.js"></script>
-<script defer src="../js/zones-map.js"></script>
 </body>
 </html>

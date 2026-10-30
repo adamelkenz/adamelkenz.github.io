@@ -24,7 +24,6 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="css/style.css">
@@ -103,6 +102,30 @@
     {
      "@type": "City",
      "name": "Le Thor"
+    },
+    {
+     "@type": "City",
+     "name": "Saint-Saturnin-lès-Avignon"
+    },
+    {
+     "@type": "City",
+     "name": "Châteauneuf-de-Gadagne"
+    },
+    {
+     "@type": "City",
+     "name": "Caumont-sur-Durance"
+    },
+    {
+     "@type": "City",
+     "name": "Bédarrides"
+    },
+    {
+     "@type": "City",
+     "name": "Châteauneuf-du-Pape"
+    },
+    {
+     "@type": "City",
+     "name": "Courthézon"
     },
     {
      "@type": "City",
@@ -312,9 +335,10 @@
     </a>
     <nav class="main" aria-label="Navigation principale">
       <a href="#services">Services</a>
-      <a href="#tarifs">Tarifs</a>
+      <a href="tarifs-serrurier/">Tarifs</a>
       <a href="#realisations">Réalisations</a>
       <a href="#zones">Zones</a>
+      <a href="conseils/">Conseils</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -329,6 +353,7 @@
       <div>
         <span class="badge"><span class="dot"></span>Serrurier disponible maintenant</span>
         <h1>Votre serrurier dans tout le Vaucluse<br><span>24h/24 – 7j/7</span></h1>
+        <p class="hero-rot" aria-hidden="true">Un serrurier pour <span class="rot" data-words="une porte claquée|une clé perdue|une serrure bloquée|une clé cassée|une effraction|un volet coincé">une porte claquée</span></p>
         <p class="lead">Porte claquée, clé perdue, serrure bloquée ou effraction ? Un serrurier se déplace rapidement chez vous à Avignon, Carpentras, Orange, Cavaillon et dans tout le 84.</p>
         <div class="hero-actions">
           <a href="tel:+33668885151" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
@@ -339,10 +364,17 @@
           <li>Devis gratuit</li>
           <li>7j/7, jours fériés inclus</li>
         </ul>
+        <ul class="hero-stats">
+          <li><strong><span data-count="90">90</span> €</strong><span>ouverture dès, TTC</span></li>
+          <li><strong><span data-count="24">24</span>h/24</strong><span>7 jours sur 7</span></li>
+          <li><strong><span data-count="26">26</span></strong><span>villes desservies</span></li>
+          <li><strong><span data-count="0">0</span> €</strong><span>frais de déplacement</span></li>
+        </ul>
       </div>
 
       <!-- Porte en 3D : forcée, réparée puis verrouillée (js/door3d.js) -->
       <div class="hero-3d" id="door3d">
+        <div class="door-ghost" aria-hidden="true"><i></i></div>
         <div class="price-badge">
           <small>Ouverture de porte dès</small>
           <strong>90 €<em>TTC</em></strong>
@@ -361,15 +393,15 @@
     <div class="container">
       <div class="section-head">
         <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
-          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <rect x="14" y="14" width="52" height="60" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <circle cx="40" cy="38" r="7" fill="#070B18" stroke="#8F7BFF" stroke-width="3"/>
-          <path d="M37 42h6l2 16h-10z" fill="#070B18" stroke="#8F7BFF" stroke-width="3" stroke-linejoin="round"/>
+          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <rect x="14" y="14" width="52" height="60" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <circle cx="40" cy="38" r="7" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3"/>
+          <path d="M37 42h6l2 16h-10z" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3" stroke-linejoin="round"/>
           <g class="k-move"><g class="k-turn">
-            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#D6F4FF"/>
-            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#D6F4FF"/>
-            <circle cx="104" cy="38.5" r="13" fill="#8F7BFF" stroke="#D6F4FF" stroke-width="3"/>
-            <circle cx="108" cy="38.5" r="4" fill="#070B18"/>
+            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#1B2550"/>
+            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#1B2550"/>
+            <circle cx="104" cy="38.5" r="13" fill="#7B66F5" stroke="#1B2550" stroke-width="3"/>
+            <circle cx="108" cy="38.5" r="4" fill="#EAF4FF"/>
           </g></g>
         </svg></div>
         <span class="eyebrow">Nos prestations</span>
@@ -433,10 +465,10 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="coin"><circle cx="50" cy="50" r="36" fill="#121A33" stroke="#00D1FF" stroke-width="5"/>
-          <circle cx="50" cy="50" r="27" fill="none" stroke="#2B3A67" stroke-width="3"/>
+          <g class="coin"><circle cx="50" cy="50" r="36" fill="#FFFFFF" stroke="#00B4E6" stroke-width="5"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#C7D5F0" stroke-width="3"/>
           <g style="color:#8F7BFF"><use href="#i-euro" x="32" y="32" width="36" height="36"/></g></g>
-          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#D6F4FF"/></g>
+          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#1B2550"/></g>
         </svg></div>
         <span class="eyebrow">Grille tarifaire</span>
         <h2>Des tarifs clairs, annoncés avant l'intervention</h2>
@@ -485,11 +517,11 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <rect x="10" y="22" width="80" height="58" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <rect x="36" y="12" width="28" height="12" rx="4" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
-          <circle cx="50" cy="51" r="17" fill="#070B18" stroke="#8F7BFF" stroke-width="4"/>
-          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00D1FF"/>
-          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#D6F4FF"/>
+          <rect x="10" y="22" width="80" height="58" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <rect x="36" y="12" width="28" height="12" rx="4" fill="#C7D5F0" stroke="#00B4E6" stroke-width="3"/>
+          <circle cx="50" cy="51" r="17" fill="#EAF4FF" stroke="#7B66F5" stroke-width="4"/>
+          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00B4E6"/>
+          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#1B2550"/>
         </svg></div>
         <span class="eyebrow">Nos réalisations</span>
         <h2>Nos dernières interventions dans le Vaucluse</h2>
@@ -519,13 +551,74 @@
       </div>
     </div>
   </section>
+  <!-- ========== PRÉSENTATION ========== -->
+  <section id="presentation" class="alt">
+    <div class="container local">
+      <div class="prose">
+        <div class="section-head" style="text-align:left;margin:0">
+          <span class="eyebrow">Votre serrurier local</span>
+          <h2>Un serrurier à Avignon pour tout le Vaucluse</h2>
+        </div>
+          <p>Serrurier Vaucluse est un service de dépannage en serrurerie installé à Avignon, qui intervient dans tout le département, 24h/24 et 7j/7. Notre métier : ouvrir les portes claquées ou fermées à clé, changer les serrures et les cylindres, renforcer les portes, sécuriser un logement après une effraction et dépanner les volets roulants, pour les particuliers comme pour les professionnels.</p>
+          <p>Notre engagement tient en trois points. Le prix est annoncé au téléphone avant le déplacement, puis confirmé sur place avant de commencer. Le déplacement est inclus dans nos tarifs, qui sont les mêmes à Avignon, à Orange, à Apt ou à Valréas. Et chaque intervention donne lieu à une facture détaillée, utile pour votre assurance, votre propriétaire ou votre syndic.</p>
+          <p>Sur le terrain, nous privilégions toujours les techniques d'ouverture fine, qui laissent la porte et la serrure en état de marche. Le Vaucluse compte beaucoup de portes anciennes, dans les centres historiques d'Avignon, de Carpentras, de Pernes-les-Fontaines ou de Vaison-la-Romaine : elles méritent d'être ouvertes et réparées avec soin plutôt que percées ou remplacées par réflexe.</p>
+          <p>Du Grand Avignon au Luberon, du Comtat Venaissin au Haut-Vaucluse et jusqu'à l'Enclave des Papes, chaque ville a ses particularités : copropriétés et immeubles anciens en ville, villas et lotissements en périphérie, mas isolés et résidences secondaires à la campagne, domaines viticoles autour de Châteauneuf-du-Pape. Nos pages locales détaillent ces situations et les interventions les plus fréquentes près de chez vous.</p>
+          <p><a href="tarifs-serrurier/">Consulter tous nos tarifs</a> · <a href="conseils/">Lire nos conseils de serrurier</a></p>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>Avignon et le Grand Avignon</h3>
+          <ul class="chips">
+            <li><a href="serrurier-avignon/">Avignon</a></li>
+            <li><a href="serrurier-le-pontet/">Le Pontet</a></li>
+            <li><a href="serrurier-vedene/">Vedène</a></li>
+            <li><a href="serrurier-morieres-les-avignon/">Morières-lès-Avignon</a></li>
+            <li><a href="serrurier-saint-saturnin-les-avignon/">Saint-Saturnin-lès-Avignon</a></li>
+            <li><a href="serrurier-entraigues-sur-la-sorgue/">Entraigues-sur-la-Sorgue</a></li>
+            <li><a href="serrurier-sorgues/">Sorgues</a></li>
+          </ul>
+          <h3>De l'autre côté du Rhône</h3>
+          <ul class="chips">
+            <li><a href="serrurier-villeneuve-les-avignon/">Villeneuve-lès-Avignon</a></li>
+            <li><a href="serrurier-les-angles/">Les Angles</a></li>
+          </ul>
+          <h3>Le Comtat Venaissin</h3>
+          <ul class="chips">
+            <li><a href="serrurier-carpentras/">Carpentras</a></li>
+            <li><a href="serrurier-monteux/">Monteux</a></li>
+            <li><a href="serrurier-pernes-les-fontaines/">Pernes-les-Fontaines</a></li>
+            <li><a href="serrurier-l-isle-sur-la-sorgue/">L'Isle-sur-la-Sorgue</a></li>
+            <li><a href="serrurier-le-thor/">Le Thor</a></li>
+            <li><a href="serrurier-chateauneuf-de-gadagne/">Châteauneuf-de-Gadagne</a></li>
+          </ul>
+          <h3>Le Haut-Vaucluse</h3>
+          <ul class="chips">
+            <li><a href="serrurier-orange/">Orange</a></li>
+            <li><a href="serrurier-courthezon/">Courthézon</a></li>
+            <li><a href="serrurier-chateauneuf-du-pape/">Châteauneuf-du-Pape</a></li>
+            <li><a href="serrurier-bedarrides/">Bédarrides</a></li>
+            <li><a href="serrurier-bollene/">Bollène</a></li>
+            <li><a href="serrurier-vaison-la-romaine/">Vaison-la-Romaine</a></li>
+            <li><a href="serrurier-valreas/">Valréas</a></li>
+          </ul>
+          <h3>Le Luberon et la Durance</h3>
+          <ul class="chips">
+            <li><a href="serrurier-cavaillon/">Cavaillon</a></li>
+            <li><a href="serrurier-caumont-sur-durance/">Caumont-sur-Durance</a></li>
+            <li><a href="serrurier-apt/">Apt</a></li>
+            <li><a href="serrurier-pertuis/">Pertuis</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
   <!-- ========== POURQUOI NOUS ========== -->
   <section id="pourquoi">
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="gear-a" style="color:#00D1FF"><use href="#i-gear" x="10" y="30" width="56" height="56"/></g>
-          <g class="gear-b" style="color:#8F7BFF"><use href="#i-gear" x="56" y="10" width="36" height="36"/></g>
+          <g class="gear-a" style="color:#00B4E6"><use href="#i-gear" x="10" y="30" width="56" height="56"/></g>
+          <g class="gear-b" style="color:#7B66F5"><use href="#i-gear" x="56" y="10" width="36" height="36"/></g>
         </svg></div>
         <span class="eyebrow">Pourquoi nous choisir</span>
         <h2>Un serrurier local, réactif et transparent</h2>
@@ -570,17 +663,17 @@
     <div class="container">
       <div class="section-head">
         <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
-          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#8F7BFF" stroke-width="3" stroke-linecap="round"/>
-          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#8F7BFF" stroke-width="3" stroke-dasharray="10 10"/>
+          <line class="van-speed" x1="2" y1="40" x2="16" y2="40" stroke="#7B66F5" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="0" y1="50" x2="12" y2="50" stroke="#7B66F5" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-speed" x1="4" y1="60" x2="14" y2="60" stroke="#7B66F5" stroke-width="3" stroke-linecap="round"/>
+          <line class="van-road" x1="0" y1="82" x2="132" y2="82" stroke="#7B66F5" stroke-width="3" stroke-dasharray="10 10"/>
           <g class="van-body">
-            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#121A33" stroke="#00D1FF" stroke-width="3" stroke-linejoin="round"/>
-            <path d="M86 33l13 12H86z" fill="#2B3A67"/>
+            <path d="M22 66V34a6 6 0 0 1 6-6h56l18 16h12a6 6 0 0 1 6 6v16z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M86 33l13 12H86z" fill="#C7D5F0"/>
             <g style="color:#00D1FF"><use href="#i-key" x="42" y="35" width="22" height="22"/></g>
           </g>
-          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
-          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#2B3A67" stroke="#D6F4FF" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#D6F4FF" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#D6F4FF" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="44" cy="68" r="9" fill="#C7D5F0" stroke="#1B2550" stroke-width="3"/><line x1="38" y1="68" x2="50" y2="68" stroke="#1B2550" stroke-width="2"/><line x1="44" y1="62" x2="44" y2="74" stroke="#1B2550" stroke-width="2"/></g>
+          <g class="van-wheel"><circle cx="100" cy="68" r="9" fill="#C7D5F0" stroke="#1B2550" stroke-width="3"/><line x1="94" y1="68" x2="106" y2="68" stroke="#1B2550" stroke-width="2"/><line x1="100" y1="62" x2="100" y2="74" stroke="#1B2550" stroke-width="2"/></g>
         </svg></div>
         <span class="eyebrow">Comment ça marche</span>
         <h2>Une intervention en 3 étapes</h2>
@@ -606,9 +699,9 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
-          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#8F7BFF"/><path d="M47.5 32h5l1.5 10h-8z" fill="#8F7BFF"/></g>
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#7B66F5" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#7B66F5"/><path d="M47.5 32h5l1.5 10h-8z" fill="#7B66F5"/></g>
         </svg></div>
         <span class="eyebrow">Zones d'intervention</span>
         <h2>Nous intervenons dans tout le Vaucluse</h2>
@@ -644,6 +737,12 @@
         <a class="city-card" href="serrurier-morieres-les-avignon/"><strong>Serrurier Morières-lès-Avignon<em>84310</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
         <a class="city-card" href="serrurier-entraigues-sur-la-sorgue/"><strong>Serrurier Entraigues-sur-la-Sorgue<em>84320</em></strong><span>Centre ancien, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="serrurier-le-thor/"><strong>Serrurier Le Thor<em>84250</em></strong><span>Centre du village, Bords de Sorgue, Thouzon</span></a>
+        <a class="city-card" href="serrurier-saint-saturnin-les-avignon/"><strong>Serrurier Saint-Saturnin-lès-Avignon<em>84450</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
+        <a class="city-card" href="serrurier-chateauneuf-de-gadagne/"><strong>Serrurier Châteauneuf-de-Gadagne<em>84470</em></strong><span>Village perché, Quartiers résidentiels, Lotissements</span></a>
+        <a class="city-card" href="serrurier-caumont-sur-durance/"><strong>Serrurier Caumont-sur-Durance<em>84510</em></strong><span>Vieux village, Plaine de la Durance, Quartiers résidentiels</span></a>
+        <a class="city-card" href="serrurier-bedarrides/"><strong>Serrurier Bédarrides<em>84370</em></strong><span>Centre ancien, Lotissements, Bords de l'Ouvèze</span></a>
+        <a class="city-card" href="serrurier-chateauneuf-du-pape/"><strong>Serrurier Châteauneuf-du-Pape<em>84230</em></strong><span>Village, Château des papes, Domaines viticoles</span></a>
+        <a class="city-card" href="serrurier-courthezon/"><strong>Serrurier Courthézon<em>84350</em></strong><span>Centre ancien, Remparts, Quartiers résidentiels</span></a>
         <a class="city-card" href="serrurier-le-pontet/"><strong>Serrurier Le Pontet<em>84130</em></strong><span>Centre-ville, Quartiers pavillonnaires, Résidences</span></a>
         <a class="city-card" href="serrurier-sorgues/"><strong>Serrurier Sorgues<em>84700</em></strong><span>Centre-ville, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="serrurier-carpentras/"><strong>Serrurier Carpentras<em>84200</em></strong><span>Centre ancien, Boulevards, Quartiers résidentiels</span></a>
@@ -670,16 +769,64 @@
       <a href="tel:+33668885151" class="btn btn-light"><svg><use href="#i-phone"/></svg>06 68 88 51 51</a>
     </div>
   </div>
+  <!-- ========== CONSEILS ========== -->
+  <section id="conseils">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Conseils</span>
+        <h2>Nos conseils de serrurier</h2>
+        <p>Des guides pratiques pour réagir en cas d'urgence, éviter les arnaques et mieux protéger votre logement.</p>
+      </div>
+      <div class="grid grid-3 guides">
+        <a class="card guide-card" href="conseils/porte-claquee-que-faire/">
+          <span class="guide-cat">Urgence</span>
+          <h3>Porte claquée : que faire ?</h3>
+          <p>Clés restées à l'intérieur ? Les vérifications à faire, les erreurs qui coûtent cher, le prix d'une ouverture (dès 90 € TTC) et comment l'éviter.</p>
+          <span class="card-more">Lire le guide · 5 min →</span>
+        </a>
+        <a class="card guide-card" href="conseils/cle-perdue-que-faire/">
+          <span class="guide-cat">Urgence</span>
+          <h3>Clés perdues ou volées : que faire ?</h3>
+          <p>Clés perdues ou volées : faut-il changer la serrure ou le cylindre ? Démarches, risques, prix et solutions pour ne plus être bloqué dehors.</p>
+          <span class="card-more">Lire le guide · 4 min →</span>
+        </a>
+        <a class="card guide-card" href="conseils/eviter-arnaque-serrurier/">
+          <span class="guide-cat">Prix et arnaques</span>
+          <h3>Arnaque au serrurier : comment l’éviter</h3>
+          <p>Factures à 800 €, prix d'appel, faux serruriers locaux : reconnaître une arnaque au dépannage, connaître vos droits et vos recours.</p>
+          <span class="card-more">Lire le guide · 4 min →</span>
+        </a>
+        <a class="card guide-card" href="conseils/choisir-serrure-a2p/">
+          <span class="guide-cat">Sécurité</span>
+          <h3>Serrure A2P : comment choisir le bon niveau de sécurité</h3>
+          <p>A2P 1, 2 ou 3 étoiles, BP1 à BP3, carte de propriété : comprendre les normes et choisir une serrure adaptée à votre porte et à votre assurance.</p>
+          <span class="card-more">Lire le guide · 4 min →</span>
+        </a>
+        <a class="card guide-card" href="conseils/serrure-bloquee-cle-qui-force/">
+          <span class="guide-cat">Dépannage</span>
+          <h3>Serrure bloquée ou clé qui force : que faire ?</h3>
+          <p>Clé qui force, tourne dans le vide ou reste coincée : les causes fréquentes, ce que vous pouvez faire vous-même et quand appeler un serrurier.</p>
+          <span class="card-more">Lire le guide · 4 min →</span>
+        </a>
+        <a class="card guide-card" href="conseils/proteger-maison-cambriolage/">
+          <span class="guide-cat">Sécurité</span>
+          <h3>Protéger sa maison des cambriolages : 12 conseils de serrurier</h3>
+          <p>Portes, serrures, volets, résidences secondaires : 12 conseils concrets de serrurier pour protéger votre logement des cambriolages.</p>
+          <span class="card-more">Lire le guide · 4 min →</span>
+        </a>
+      </div>
+    </div>
+  </section>
   <!-- ========== FAQ ========== -->
   <section id="faq">
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="q-bubble">
-            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#121A33" stroke="#00D1FF" stroke-width="4" stroke-linejoin="round"/>
-            <circle class="q-dot" cx="34" cy="40" r="5" fill="#8F7BFF"/>
-            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00D1FF"/>
-            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#D6F4FF"/>
+            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4" stroke-linejoin="round"/>
+            <circle class="q-dot" cx="34" cy="40" r="5" fill="#7B66F5"/>
+            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00B4E6"/>
+            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#1B2550"/>
           </g>
         </svg></div>
         <span class="eyebrow">Questions fréquentes</span>
@@ -735,8 +882,8 @@
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
-          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
-          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
         </svg></div>
         <span class="eyebrow">Contact</span>
         <h2>Demandez une intervention ou un devis</h2>
@@ -845,11 +992,35 @@
           <li><a href="reparation-apres-effraction/">Réparation après effraction</a></li>
           <li><a href="depannage-volet-roulant/">Volets roulants</a></li>
           <li><a href="serrurier-urgence-avignon/">Urgence 24h/24 Avignon</a></li>
+          <li><a href="ouverture-boite-aux-lettres/">Boîte aux lettres</a></li>
+          <li><a href="serrurier-professionnels/">Professionnels et syndics</a></li>
+          <li><a href="tarifs-serrurier/">Nos tarifs</a></li>
         </ul>
       </div>
       <div>
-        <h4>Villes</h4>
+        <h4>Conseils</h4>
         <ul>
+          <li><a href="conseils/porte-claquee-que-faire/">Porte claquée : que faire ?</a></li>
+          <li><a href="conseils/cle-perdue-que-faire/">Clés perdues ou volées : que faire ?</a></li>
+          <li><a href="conseils/eviter-arnaque-serrurier/">Arnaque au serrurier : comment l’éviter</a></li>
+          <li><a href="conseils/choisir-serrure-a2p/">Serrure A2P : comment choisir le bon niveau de sécurité</a></li>
+          <li><a href="conseils/serrure-bloquee-cle-qui-force/">Serrure bloquée ou clé qui force : que faire ?</a></li>
+          <li><a href="conseils/proteger-maison-cambriolage/">Protéger sa maison des cambriolages : 12 conseils de serrurier</a></li>
+          <li><a href="conseils/serrurier-locataire-ou-proprietaire/">Serrurier : qui paie, le locataire ou le propriétaire ?</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
+          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
+          <li><a href="./">Serrurier Vaucluse (84)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-villes">
+      <h4>Nos villes d'intervention</h4>
+      <ul>
           <li><a href="serrurier-avignon/">Serrurier Avignon</a></li>
           <li><a href="serrurier-villeneuve-les-avignon/">Serrurier Villeneuve-lès-Avignon</a></li>
           <li><a href="serrurier-les-angles/">Serrurier Les Angles</a></li>
@@ -857,6 +1028,12 @@
           <li><a href="serrurier-morieres-les-avignon/">Serrurier Morières-lès-Avignon</a></li>
           <li><a href="serrurier-entraigues-sur-la-sorgue/">Serrurier Entraigues-sur-la-Sorgue</a></li>
           <li><a href="serrurier-le-thor/">Serrurier Le Thor</a></li>
+          <li><a href="serrurier-saint-saturnin-les-avignon/">Serrurier Saint-Saturnin-lès-Avignon</a></li>
+          <li><a href="serrurier-chateauneuf-de-gadagne/">Serrurier Châteauneuf-de-Gadagne</a></li>
+          <li><a href="serrurier-caumont-sur-durance/">Serrurier Caumont-sur-Durance</a></li>
+          <li><a href="serrurier-bedarrides/">Serrurier Bédarrides</a></li>
+          <li><a href="serrurier-chateauneuf-du-pape/">Serrurier Châteauneuf-du-Pape</a></li>
+          <li><a href="serrurier-courthezon/">Serrurier Courthézon</a></li>
           <li><a href="serrurier-le-pontet/">Serrurier Le Pontet</a></li>
           <li><a href="serrurier-sorgues/">Serrurier Sorgues</a></li>
           <li><a href="serrurier-carpentras/">Serrurier Carpentras</a></li>
@@ -870,16 +1047,7 @@
           <li><a href="serrurier-l-isle-sur-la-sorgue/">Serrurier L'Isle-sur-la-Sorgue</a></li>
           <li><a href="serrurier-apt/">Serrurier Apt</a></li>
           <li><a href="serrurier-pertuis/">Serrurier Pertuis</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
-          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
-          <li><a href="./">Serrurier Vaucluse (84)</a></li>
-        </ul>
-      </div>
+      </ul>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Serrurier Vaucluse – serrurier-vaucluse.fr</span>
@@ -890,11 +1058,7 @@
 
 <a href="tel:+33668885151" class="btn btn-light float-call"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script defer src="js/door3d.js"></script>
 <script defer src="js/booking.js"></script>
 <script defer src="js/site.js"></script>
-<script defer src="js/zones-map.js"></script>
 </body>
 </html>

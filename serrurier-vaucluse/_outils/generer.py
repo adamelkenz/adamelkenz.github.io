@@ -15,6 +15,8 @@ import math
 import os
 from datetime import date
 
+from conseils import ARTICLES, DATE as DATE_CONSEILS
+
 # ---------------------------------------------------------------- Réglages
 # Adresse publique du site (canonical, sitemap, partages). Quand le nom de domaine sera relié,
 # remplacer par exemple par 'https://www.serrurier-vaucluse.fr/' puis relancer le script.
@@ -69,8 +71,8 @@ VILLES = [
         ],
         'secteurs': ['Intra-muros', 'Saint-Ruf', 'Monclar', 'Champfleury', 'Saint-Chamand', 'La Croix-Rouge', 'Montfavet', 'Agroparc', 'Courtine', 'Île de la Barthelasse'],
         'voisines': ['Le Pontet', 'Villeneuve-lès-Avignon', 'Les Angles', 'Vedène', 'Morières-lès-Avignon', 'Entraigues-sur-la-Sorgue', 'Caumont-sur-Durance'],
-        'titre': 'Serrurier Avignon (84000) – Urgence 24h/24, ouverture de porte dès 90 €',
-        'desc': "Serrurier à Avignon 24h/24 et 7j/7 : intra-muros, Montfavet, Saint-Chamand… Ouverture de porte dès 90 € TTC, changement de serrure, prix annoncé avant. ☎ " + TEL,
+        'titre': 'Serrurier Avignon (84000) – Urgence 24h/24, dès 90 €',
+        'desc': "Serrurier à Avignon 24h/24 : intra-muros, Montfavet, Saint-Chamand… Ouverture de porte dès 90 € TTC, prix annoncé avant. ☎ " + TEL,
         'faq': [
             ("Je loue mon logement pendant le Festival d'Avignon : dois-je changer la serrure ?",
              "Pas forcément toute la serrure : si elle fonctionne bien, remplacer le cylindre suffit à rendre inutilisables les clés qui ont circulé. C'est une intervention rapide, sur devis, que nous pouvons programmer entre deux locations."),
@@ -188,6 +190,106 @@ VILLES = [
             ("Pouvez-vous changer les cylindres de ma location saisonnière au Thor ?",
              "Oui, entre deux saisons ou après une perte de clés. L'intervention est rapide et peut être faite en votre absence si une personne de confiance nous ouvre."),
         ],
+    },
+    {
+        'slug': 'serrurier-saint-saturnin-les-avignon', 'nom': 'Saint-Saturnin-lès-Avignon', 'a': 'à Saint-Saturnin-lès-Avignon', 'cp': '84450',
+        'geo': (43.9542, 4.9258),
+        'lead': "Porte claquée, serrure forcée ou clé perdue à Saint-Saturnin-lès-Avignon ? Dans le Grand Avignon, notre serrurier intervient rapidement chez vous, de jour comme de nuit.",
+        'intro': [
+            "Saint-Saturnin-lès-Avignon est une commune résidentielle à l'est d'Avignon, entre Vedène, Morières-lès-Avignon et Le Thor. Nous y intervenons rapidement pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage et la réparation après effraction.",
+            "Le prix est annoncé au téléphone avant le déplacement, sans frais cachés, et une facture détaillée vous est remise.",
+        ],
+        'habitat': [
+            "Le village s'est beaucoup développé avec des lotissements et des maisons individuelles, autour d'un petit centre ancien. Les portes récentes y sont généralement équipées de serrures multipoints et de cylindres standards.",
+            "Nous intervenons aussi pour les artisans et les petites entreprises installés dans les zones d'activités voisines : changement de cylindres, ouverture d'un local, mise en sécurité après une effraction.",
+        ],
+        'secteurs': ['Centre', 'Lotissements', 'Quartiers résidentiels', "Zones d'activités"],
+        'voisines': ['Vedène', 'Le Pontet', 'Morières-lès-Avignon', 'Le Thor', 'Châteauneuf-de-Gadagne'],
+        'faq': [],
+    },
+    {
+        'slug': 'serrurier-chateauneuf-de-gadagne', 'nom': 'Châteauneuf-de-Gadagne', 'a': 'à Châteauneuf-de-Gadagne', 'cp': '84470',
+        'geo': (43.9275, 4.9417),
+        'lead': "Porte claquée, serrure grippée ou clé perdue à Châteauneuf-de-Gadagne ? Entre Avignon et L'Isle-sur-la-Sorgue, notre serrurier intervient chez vous 7j/7.",
+        'intro': [
+            "Châteauneuf-de-Gadagne domine la plaine entre Avignon, Le Thor et L'Isle-sur-la-Sorgue. Nous y intervenons pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage et le dépannage de volets roulants.",
+            "Le prix est annoncé avant de partir, déplacement inclus, et une facture détaillée vous est remise après l'intervention.",
+        ],
+        'habitat': [
+            "Le village perché compte des maisons anciennes et des ruelles étroites, tandis que les pentes et la plaine accueillent villas, lotissements et mas. Les portes récentes ont généralement des serrures multipoints, les plus anciennes des serrures en applique ou à larder.",
+            "Dans les villas avec grand terrain, nous intervenons aussi sur les portails, les abris et les portes de garage, souvent oubliés quand on pense à la sécurité de la maison.",
+        ],
+        'secteurs': ['Village perché', 'Quartiers résidentiels', 'Lotissements', 'Mas et campagne'],
+        'voisines': ['Le Thor', 'Saint-Saturnin-lès-Avignon', 'Morières-lès-Avignon', 'Caumont-sur-Durance', "L'Isle-sur-la-Sorgue"],
+        'faq': [],
+    },
+    {
+        'slug': 'serrurier-caumont-sur-durance', 'nom': 'Caumont-sur-Durance', 'a': 'à Caumont-sur-Durance', 'cp': '84510',
+        'geo': (43.8933, 4.9450),
+        'lead': "Porte claquée, clé cassée ou serrure bloquée à Caumont-sur-Durance ? Entre Avignon et Cavaillon, notre serrurier intervient chez vous 24h/24 et 7j/7.",
+        'intro': [
+            "Caumont-sur-Durance s'étend entre la colline et la Durance, sur la route entre Avignon et Cavaillon. Nous y intervenons pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage de porte et la mise en sécurité après effraction.",
+            "Nos prix sont identiques dans tout le Vaucluse, déplacement inclus, et vous sont communiqués avant que le serrurier ne parte.",
+        ],
+        'habitat': [
+            "Le vieux village, au pied de la colline, compte des maisons anciennes aux portes en bois. Dans la plaine, les maisons individuelles, les mas et les exploitations agricoles sont équipés de portails, de portes de garage et de serrures multipoints.",
+            "Pour les exploitations et les hangars, nous remplaçons les cylindres et les serrures des portes de service, et sécurisons les accès après une tentative d'effraction.",
+        ],
+        'secteurs': ['Vieux village', 'Plaine de la Durance', 'Quartiers résidentiels', 'Mas et exploitations'],
+        'voisines': ['Avignon', 'Morières-lès-Avignon', 'Châteauneuf-de-Gadagne', 'Cavaillon', 'Le Thor'],
+        'faq': [
+            ("Intervenez-vous dans les mas et exploitations de Caumont-sur-Durance ?",
+             "Oui : portes d'habitation, hangars, ateliers et portails. Indiquez-nous au téléphone l'adresse précise et l'accès, surtout la nuit."),
+        ],
+    },
+    {
+        'slug': 'serrurier-bedarrides', 'nom': 'Bédarrides', 'a': 'à Bédarrides', 'cp': '84370', 'geo': (44.0400, 4.8975),
+        'lead': "Clé perdue, porte claquée ou serrure forcée à Bédarrides ? Au nord de Sorgues, notre serrurier intervient chez vous rapidement, 24h/24 et 7j/7.",
+        'intro': [
+            "Bédarrides, au bord de l'Ouvèze, se trouve entre Sorgues, Châteauneuf-du-Pape et Courthézon. Nous y intervenons régulièrement pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage et la réparation après effraction.",
+            "Le tarif est annoncé avant de partir et confirmé sur place, sans frais de déplacement ajoutés.",
+        ],
+        'habitat': [
+            "Le centre ancien, avec ses maisons de village, est entouré de lotissements et de maisons individuelles équipées de serrures multipoints, de portes de garage et de portails. Après une perte de clés, un cylindre neuf suffit dans la plupart des cas.",
+            "Dans les maisons proches de la rivière, l'humidité peut gripper les cylindres extérieurs : nous les nettoyons, les lubrifions ou les remplaçons par des modèles adaptés.",
+        ],
+        'secteurs': ['Centre ancien', 'Lotissements', "Bords de l'Ouvèze", 'Campagne'],
+        'voisines': ['Sorgues', 'Courthézon', 'Châteauneuf-du-Pape', 'Entraigues-sur-la-Sorgue', 'Monteux'],
+        'faq': [],
+    },
+    {
+        'slug': 'serrurier-chateauneuf-du-pape', 'nom': 'Châteauneuf-du-Pape', 'a': 'à Châteauneuf-du-Pape', 'cp': '84230',
+        'geo': (44.0561, 4.8325),
+        'lead': "Porte claquée, clé perdue ou serrure bloquée à Châteauneuf-du-Pape ? Entre Avignon et Orange, notre serrurier intervient dans le village, les domaines et les caves, 7j/7.",
+        'intro': [
+            "Châteauneuf-du-Pape, connu pour son vignoble et les ruines de son château des papes, se trouve entre Avignon, Sorgues et Orange. Nous y intervenons pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage et la mise en sécurité après effraction.",
+            "Le prix vous est annoncé au téléphone avant le déplacement, et une facture détaillée est remise après l'intervention.",
+        ],
+        'habitat': [
+            "Le village s'étage sur la colline, avec ses maisons de pierre et ses portes anciennes en bois. Autour, les domaines viticoles comptent des caves, des chais, des bureaux et des boutiques de dégustation, chacun avec ses propres accès à sécuriser.",
+            "Pour les domaines, nous changeons les cylindres lors du départ d'un saisonnier ou d'un salarié et proposons des cylindres qui s'ouvrent avec la même clé pour simplifier les trousseaux.",
+        ],
+        'secteurs': ['Village', 'Château des papes', 'Domaines viticoles', 'Quartiers résidentiels'],
+        'voisines': ['Sorgues', 'Bédarrides', 'Courthézon', 'Orange', 'Caderousse'],
+        'faq': [
+            ("Intervenez-vous dans les caves et domaines de Châteauneuf-du-Pape ?",
+             "Oui : ouverture d'une porte de cave ou de bureau, changement de cylindres, sécurisation après une tentative d'effraction. Nous pouvons intervenir en dehors des heures de visite et de dégustation."),
+        ],
+    },
+    {
+        'slug': 'serrurier-courthezon', 'nom': 'Courthézon', 'a': 'à Courthézon', 'cp': '84350', 'geo': (44.0878, 4.8836),
+        'lead': "Porte claquée, clé perdue ou serrure bloquée à Courthézon ? Entre Orange et Avignon, notre serrurier se déplace chez vous 24h/24 et 7j/7.",
+        'intro': [
+            "Courthézon se trouve entre Orange, Châteauneuf-du-Pape et Bédarrides, au cœur d'une zone de vignobles. Nous y intervenons pour l'ouverture de porte, le changement de serrure ou de cylindre, le blindage et la mise en sécurité après cambriolage.",
+            "Le tarif est annoncé avant le déplacement et confirmé sur place avant de commencer.",
+        ],
+        'habitat': [
+            "Le centre ancien, entouré de ses remparts, compte des maisons de village aux portes anciennes. Autour, les quartiers résidentiels et les mas sont équipés de serrures plus récentes, souvent multipoints.",
+            "Les domaines viticoles et les caves de la commune ont aussi leurs besoins : cylindres à changer après la saison, portes de chai à sécuriser, accès à simplifier avec des cylindres qui s'ouvrent avec la même clé.",
+        ],
+        'secteurs': ['Centre ancien', 'Remparts', 'Quartiers résidentiels', 'Domaines et campagne'],
+        'voisines': ['Orange', 'Châteauneuf-du-Pape', 'Bédarrides', 'Jonquières', 'Sarrians'],
+        'faq': [],
     },
     {
         'slug': 'serrurier-le-pontet', 'nom': 'Le Pontet', 'a': 'au Pontet', 'cp': '84130', 'geo': (43.9617, 4.8606),
@@ -423,6 +525,12 @@ URGENCES = {
     'serrurier-morieres-les-avignon': "Clé cassée un dimanche matin, porte claquée en pleine nuit : nous intervenons à Morières-lès-Avignon 7j/7, la majoration de nuit ou de jour férié vous est annoncée au téléphone.",
     'serrurier-entraigues-sur-la-sorgue': "Une porte qui ne s'ouvre plus en rentrant tard, un local forcé pendant la nuit : nous intervenons à Entraigues-sur-la-Sorgue 24h/24, prix annoncé avant le départ.",
     'serrurier-le-thor': "Porte claquée dans une maison de vacances un dimanche, clé perdue un soir d'été : nous intervenons au Thor de jour comme de nuit, avec un tarif annoncé avant le déplacement.",
+    'serrurier-saint-saturnin-les-avignon': "Une porte claquée un soir de semaine, une clé cassée un dimanche : Saint-Saturnin-lès-Avignon est tout près d'Avignon, nous intervenons à toute heure, au tarif annoncé avant le départ.",
+    'serrurier-chateauneuf-de-gadagne': "Porte claquée en sortant chercher le courrier, clé cassée un jour férié : nous intervenons à Châteauneuf-de-Gadagne de jour comme de nuit, au prix annoncé avant le départ.",
+    'serrurier-caumont-sur-durance': "Porte claquée en rentrant tard, clé perdue un soir d'hiver : nous intervenons à Caumont-sur-Durance à toute heure, avec un prix annoncé au téléphone.",
+    'serrurier-bedarrides': "Une clé perdue en rentrant tard, une porte bloquée un jour férié : nous intervenons à Bédarrides de jour comme de nuit, au prix annoncé avant le départ.",
+    'serrurier-chateauneuf-du-pape': "Une porte claquée un soir de vendanges, une clé cassée un dimanche : nous intervenons à Châteauneuf-du-Pape 7j/7, avec un tarif annoncé avant le déplacement.",
+    'serrurier-courthezon': "Clé cassée dans la serrure un soir, porte forcée pendant un week-end : nous intervenons à Courthézon à toute heure, avec un tarif annoncé au téléphone avant le déplacement.",
 }
 
 # Contenu local supplémentaire : un conseil propre à chaque ville (titre, paragraphe)
@@ -457,6 +565,26 @@ PLUS = {
         "Dans une maison avec jardin, le portillon et la porte de garage sont souvent fermés par des cylindres d'origine, rarement changés. Après une perte de clés ou un emménagement, pensez à les remplacer en même temps que celui de la porte d'entrée : nous pouvons faire en sorte qu'une seule clé ouvre toutes les portes."),
     'serrurier-entraigues-sur-la-sorgue': ("Particuliers et entreprises à Entraigues-sur-la-Sorgue",
         "Entre le centre ancien, les lotissements et les zones d'activités, les demandes sont variées à Entraigues : ouverture d'une porte de maison de village, changement de cylindre dans un pavillon récent ou sécurisation d'un local après une tentative d'effraction. Dans tous les cas, le prix est annoncé avant et une facture détaillée est remise."),
+    'serrurier-villeneuve-les-avignon': ("Maisons anciennes et résidences secondaires à Villeneuve",
+        "Villeneuve-lès-Avignon compte beaucoup de résidences secondaires et de locations de vacances, notamment dans le centre historique. Une maison occupée quelques semaines par an mérite une attention particulière : cylindre de qualité avec carte de propriété, serrure multipoints sur la porte principale et contrôle des volets avant chaque départ. Dans les ruelles du centre, le stationnement est parfois compliqué l'été : indiquez-nous l'adresse exacte et un point de repère, le serrurier se gare au plus près et termine à pied."),
+    'serrurier-les-angles': ("Portes de garage et accès secondaires aux Angles",
+        "Dans les villas des Angles, la porte d'entrée est souvent bien équipée, mais l'accès par le garage, la buanderie ou la baie vitrée reste le point faible. Une porte de garage communicante mérite une serrure de qualité équivalente à celle de l'entrée, et un portillon fermé à clé un cylindre adapté à l'extérieur. Nous faisons le tour de ces accès avec vous et vous proposons des solutions simples, au prix annoncé avant."),
+    'serrurier-vedene': ("Emménager à Vedène : le bon réflexe sécurité",
+        "Avec ses nombreux lotissements récents, Vedène voit arriver beaucoup de nouveaux propriétaires et locataires. En entrant dans un logement, personne ne sait vraiment combien de clés ont été distribuées : promoteur, ancien occupant, agence, voisins de confiance. Remplacer le cylindre de la porte d'entrée dès l'emménagement coûte peu et règle la question. Profitez-en pour vérifier la porte de garage et le portillon, dont les cylindres d'origine sont souvent basiques."),
+    'serrurier-le-thor': ("Mas et maisons de campagne autour du Thor",
+        "Entre Thouzon et la plaine, beaucoup de maisons du Thor sont isolées ou entourées d'un grand terrain. Pour ces habitations, le portail et les dépendances (garage, atelier, abri) sont autant d'accès à sécuriser. Nous posons des cylindres adaptés à l'extérieur et des serrures multipoints sur la porte principale. Si vous louez votre maison l'été, une boîte à clés n'est pas toujours idéale : son code circule vite, et changer le cylindre en fin de saison reste le plus sûr."),
+    'serrurier-saint-saturnin-les-avignon': ("Cylindres standards ou cylindres de sécurité ?",
+        "Les maisons récentes de Saint-Saturnin sont souvent livrées avec des cylindres standards, dont les clés se reproduisent facilement chez n'importe quel cordonnier. Un cylindre de sécurité, livré avec une carte de propriété, empêche toute copie sans votre accord et résiste mieux au crochetage. Il se pose sur la serrure existante, sans modifier la porte, et peut être installé dans la foulée d'une ouverture si vous êtes bloqué dehors."),
+    'serrurier-chateauneuf-de-gadagne': ("Ruelles du village et accès difficile",
+        "Dans le haut du village de Châteauneuf-de-Gadagne, certaines ruelles sont étroites et peu accessibles en voiture. Indiquez-nous au téléphone le meilleur accès : le serrurier se gare au plus près et termine à pied avec son matériel, sans que cela change le prix annoncé. Pour les portes anciennes du village, nous privilégions toujours l'ouverture fine et la réparation de la serrure d'origine."),
+    'serrurier-caumont-sur-durance': ("Portails et accès extérieurs à Caumont",
+        "Les cylindres de portail et de portillon sont exposés au soleil, à la pluie et à la poussière de la plaine. Avec le temps, la clé force ou ne tourne plus. Un cylindre adapté à l'extérieur, avec un cache de protection, dure beaucoup plus longtemps. Nous pouvons le poser dans la même intervention que l'ouverture si vous êtes bloqué dehors, avec un prix annoncé avant."),
+    'serrurier-bedarrides': ("Sécuriser une maison individuelle à Bédarrides",
+        "Dans une maison individuelle, la porte d'entrée n'est pas le seul accès : porte de garage, porte-fenêtre, portillon. Nous vous aidons à repérer le point faible et à le renforcer sans tout changer : un cylindre de meilleure qualité, un verrou supplémentaire ou une serrure multipoints sur la porte la plus exposée. Le conseil est gratuit et le prix toujours annoncé avant les travaux."),
+    'serrurier-chateauneuf-du-pape': ("Maisons de pierre du village",
+        "Dans les ruelles en pente du vieux village, les portes en bois massif ont souvent des serrures en applique ou à larder d'origine. Une ouverture fine permet de les ouvrir sans abîmer le bois, et une serrure qui force peut souvent être réparée plutôt que remplacée. Quand le remplacement s'impose, nous choisissons un modèle adapté à la porte pour en préserver le caractère."),
+    'serrurier-courthezon': ("Portes anciennes du centre de Courthézon",
+        "À l'intérieur des remparts, les maisons de village ont souvent des portes épaisses et des serrures anciennes. Une clé qui accroche ou une serrure qui force annonce souvent une panne : mieux vaut intervenir avant que la clé ne casse. Un nettoyage, un réglage de la gâche ou le remplacement d'une pièce suffisent parfois, pour un coût bien inférieur à celui d'une serrure neuve."),
 }
 
 # FAQ locale ajoutée aux villes qui n'en ont pas encore
@@ -485,6 +613,117 @@ FAQ_PLUS = {
         "Oui, pour les entreprises comme pour les particuliers : ouverture, changement de cylindre et mise en sécurité après une effraction, en dehors des heures d'ouverture si besoin."),
 }
 
+# Deuxième conseil local, propre à chaque ville (titre, paragraphes)
+GUIDE = {
+    'serrurier-villeneuve-les-avignon': ("Réparer une serrure ancienne à Villeneuve-lès-Avignon", [
+        "Sur les portes anciennes du centre de Villeneuve, nous cherchons d'abord à réparer la serrure d'origine : extraction d'un morceau de clé, nettoyage, remplacement d'un ressort ou réglage de la gâche. Quand elle doit être remplacée, nous posons un modèle adapté aux dimensions de la porte, en applique ou à larder, sans la modifier.",
+        "Pour les maisons récentes des hauteurs, le remplacement du cylindre après une perte de clés suffit dans la plupart des cas, et peut se faire juste après l'ouverture de la porte."]),
+    'serrurier-les-angles': ("Commerces et bureaux aux Angles", [
+        "Autour de la zone commerciale, nous intervenons pour les commerçants et les professions libérales : ouverture d'une porte de local, changement de cylindre après le départ d'un salarié, mise en sécurité après une tentative d'effraction. Nous pouvons intervenir en dehors des heures d'ouverture pour ne pas gêner l'activité.",
+        "Pour simplifier les trousseaux, nous posons des cylindres qui s'ouvrent avec la même clé, et vous conseillons sur la gestion des doubles."]),
+    'serrurier-vedene': ("Garages, portillons et trousseau unique", [
+        "Dans les maisons de Vedène, il n'est pas rare d'avoir quatre ou cinq clés différentes : porte d'entrée, garage, portillon, abri, boîte aux lettres. Nous pouvons poser des cylindres qui s'ouvrent tous avec la même clé, pour un trousseau plus léger et des accès mieux maîtrisés.",
+        "Si une seule de ces portes force ou se bloque, inutile de tout changer : nous réparons ou remplaçons uniquement la pièce en cause, prix annoncé avant."]),
+    'serrurier-morieres-les-avignon': ("Résidences et petites copropriétés de Morières", [
+        "Les petites résidences de Morières-lès-Avignon ont souvent des portes palières équipées de serrures 3 points et des boîtes aux lettres collectives. Une clé de boîte aux lettres perdue se règle au forfait de 90 € TTC, ouverture et remplacement de la serrure compris.",
+        "Pour les syndics et les propriétaires bailleurs, nous intervenons aussi sur les portes de cave et de local technique, avec une facture au nom du syndicat ou du propriétaire."]),
+    'serrurier-entraigues-sur-la-sorgue': ("Serrures exposées à l'humidité près de la Sorgue", [
+        "Entre les bras de la Sorgue, certaines maisons et dépendances sont plus exposées à l'humidité. Un cylindre extérieur peut alors se gripper ou s'oxyder, jusqu'à ce que la clé force ou refuse de tourner. Un nettoyage et une lubrification adaptée suffisent souvent ; quand le cylindre est trop abîmé, nous le remplaçons par un modèle conçu pour l'extérieur.",
+        "Évitez l'huile de cuisine ou les graisses épaisses, qui retiennent la poussière et finissent par bloquer le mécanisme : un lubrifiant sec pour serrures, à base de graphite ou de PTFE, est bien plus efficace."]),
+    'serrurier-le-thor': ("Le village et les bords de Sorgue", [
+        "Dans le centre du Thor, autour de l'église Notre-Dame-du-Lac, les maisons anciennes ont souvent des portes en bois et des serrures d'origine. Nous les ouvrons en douceur et les réparons quand c'est possible, plutôt que de les remplacer.",
+        "Pour les maisons au bord de l'eau, nous conseillons des cylindres résistants à l'humidité et un entretien régulier au lubrifiant sec, pour éviter qu'une clé ne casse dans une serrure grippée."]),
+    'serrurier-saint-saturnin-les-avignon': ("Perte de clés : les bons réflexes", [
+        "Si vous avez perdu vos clés avec un document portant votre adresse, changez le cylindre sans attendre : quelqu'un pourrait les utiliser. Si elles sont simplement égarées, vérifiez d'abord auprès de vos proches et des lieux où vous êtes passé, puis appelez-nous si vous êtes bloqué dehors.",
+        "Dans les deux cas, nous pouvons ouvrir la porte et remplacer le cylindre dans la même intervention. Vous repartez avec un nouveau jeu de clés et la certitude que les anciennes ne servent plus à rien."]),
+    'serrurier-chateauneuf-de-gadagne': ("Vacances : préparer la maison avant de partir", [
+        "Avant un départ en vacances, vérifiez que toutes les portes verrouillent bien, que les volets roulants descendent jusqu'en bas et que personne d'autre que vos proches ne détient de clé. Une serrure qui force ou un volet qui coince se répare plus facilement avant le départ qu'en urgence pendant l'absence.",
+        "Nous pouvons faire ce contrôle avec vous, remplacer un cylindre fatigué ou poser un verrou supplémentaire, avec un prix annoncé avant l'intervention."]),
+    'serrurier-caumont-sur-durance': ("Résidence principale ou maison secondaire", [
+        "Que la maison soit habitée toute l'année ou seulement en saison, les mêmes règles s'appliquent : une porte principale solide, une serrure multipoints, un cylindre dont vous maîtrisez les doubles. Pour une maison souvent inoccupée, ajoutez une vérification régulière des volets et des accès secondaires.",
+        "Nous vous conseillons sur place, sans pousser à la dépense : parfois un simple réglage de la gâche suffit pour qu'une porte ferme correctement, et c'est ce que nous vous proposerons en premier."]),
+    'serrurier-bedarrides': ("Une intervention simple et transparente", [
+        "Au téléphone, nous vous demandons l'adresse, le type de porte et la nature du problème : porte claquée, porte fermée à clé, clé cassée, serrure qui force. Vous connaissez le prix avant le départ du serrurier, déplacement compris.",
+        "Sur place, le tarif est confirmé avant de commencer. Après l'intervention, vous recevez une facture détaillée qui mentionne les pièces remplacées, utile pour votre assurance ou votre propriétaire."]),
+    'serrurier-chateauneuf-du-pape': ("Bien protéger un domaine ou une cave", [
+        "Un domaine viticole cumule les accès : portail, chai, cave de stockage, bureau, boutique. Chacun a souvent sa clé, et beaucoup de personnes y ont accès pendant les vendanges. Faire le point avant la saison permet de savoir qui détient quelle clé et de remplacer les cylindres dont des doubles ont été perdus.",
+        "Pour les portes les plus exposées, comme une cave de stockage, une serrure multipoints et un cylindre certifié A2P rendent l'effraction beaucoup plus longue. Nous vous remettons un devis détaillé, porte par porte."]),
+    'serrurier-courthezon': ("De Courthézon au Haut-Vaucluse", [
+        "Depuis Courthézon, nous intervenons aussi à Jonquières, Camaret-sur-Aigues, Sarrians, Violès et dans les communes du Haut-Vaucluse, aux mêmes tarifs que dans le reste du département.",
+        "Pour une urgence, l'heure d'arrivée estimée vous est communiquée au téléphone. Pour un changement de serrure ou un blindage, nous convenons d'un rendez-vous qui vous arrange, en semaine comme le week-end."]),
+    'serrurier-le-pontet': ("Zone Avignon Nord : interventions pour les professionnels", [
+        "Les commerces, bureaux et entrepôts de la zone Avignon Nord ont des besoins spécifiques : intervenir avant l'ouverture ou après la fermeture, remplacer plusieurs cylindres en même temps, sécuriser une porte après une tentative d'effraction nocturne. Nous organisons l'intervention selon vos horaires pour ne pas perturber l'activité.",
+        "Pour les rideaux métalliques et les fermetures motorisées, indiquez-nous le modèle au téléphone : nous vous dirons honnêtement si l'intervention relève de notre métier ou d'un spécialiste."]),
+    'serrurier-sorgues': ("Le centre ancien et les résidences de Sorgues", [
+        "Dans le centre ancien de Sorgues, les maisons de ville ont souvent conservé des portes en bois et des serrures d'origine, parfois difficiles à faire reproduire. Si vous n'avez plus qu'une ou deux clés, mieux vaut anticiper : nous pouvons réparer la serrure, poser un verrou de sûreté ou la remplacer par un modèle adapté à la porte.",
+        "Pour les appartements des résidences, une porte claquée s'ouvre le plus souvent sans casse. Indiquez-nous au téléphone l'étage et le code d'accès de l'immeuble pour que le serrurier arrive directement devant votre porte."]),
+    'serrurier-carpentras': ("Commerces du centre de Carpentras", [
+        "Dans les rues commerçantes du centre ancien et le long des boulevards, de nombreux commerces occupent des rez-de-chaussée anciens. Leurs portes sont souvent équipées de serrures à cylindre qu'il faut changer quand un trousseau est perdu ou qu'un employé quitte l'entreprise.",
+        "Le vendredi, jour de marché, et pendant les fêtes, l'accès au centre est plus long : prévenez-nous si vous avez besoin d'une intervention à une heure précise, nous organisons le déplacement en conséquence."]),
+    'serrurier-monteux': ("Locations de vacances près du lac", [
+        "Avec son lac et ses parcs de loisirs, Monteux accueille de nombreux vacanciers en été, et beaucoup de maisons sont louées à la semaine. Entre deux saisons, ou après un changement de gestionnaire, changer le cylindre de la porte d'entrée évite que des doubles de clés ne restent en circulation.",
+        "Pour les propriétaires qui confient leurs clés à une conciergerie, un cylindre avec carte de propriété garantit qu'aucune copie ne pourra être faite sans leur accord."]),
+    'serrurier-pernes-les-fontaines': ("Hameaux et mas autour de Pernes", [
+        "Les hameaux et mas autour de Pernes-les-Fontaines sont parfois éloignés du centre : indiquez-nous au téléphone l'adresse précise, le nom du chemin ou un point de repère, pour que le serrurier trouve la maison sans perdre de temps, surtout la nuit.",
+        "Dans ces maisons, le portail, la porte principale et les dépendances ont souvent des clés différentes. Nous pouvons harmoniser les cylindres pour qu'une seule clé ouvre plusieurs portes, et renforcer la porte principale si la maison reste inoccupée une partie de l'année."]),
+    'serrurier-orange': ("Commerces et bureaux du centre d'Orange", [
+        "Dans le centre historique d'Orange, autour du théâtre antique et des rues commerçantes, nous intervenons régulièrement pour des commerçants : clés perdues, cylindre qui accroche, porte forcée pendant la nuit. Nous pouvons intervenir avant l'ouverture ou après la fermeture pour ne pas gêner l'activité.",
+        "Pendant les grands événements de l'été, la circulation et le stationnement sont plus compliqués dans le centre : précisez-nous l'adresse et l'accès le plus simple, le serrurier s'organise pour arriver au plus près."]),
+    'serrurier-bollene': ("Le nord du Vaucluse, de Bollène à Mondragon", [
+        "Bollène est la ville la plus au nord de notre secteur le long du Rhône. Nous y intervenons comme dans le reste du Vaucluse, ainsi qu'à Mondragon, Lapalud, Mornas ou Lamotte-du-Rhône. Pour une urgence de nuit, le serrurier vous indique au téléphone son heure d'arrivée estimée, compte tenu de la distance depuis Avignon.",
+        "Pour une intervention qui peut attendre, comme un changement de serrure, la pose d'un blindage ou d'une serrure multipoints, nous fixons ensemble un créneau en journée, sans majoration horaire."]),
+    'serrurier-vaison-la-romaine': ("Villages du Ventoux et des Dentelles", [
+        "Autour de Vaison-la-Romaine, nous intervenons dans les villages au pied du Ventoux et des Dentelles de Montmirail : Séguret, Roaix, Entrechaux, Malaucène, Puymeras et leurs hameaux. Les routes y sont plus longues : pour une urgence, l'heure d'arrivée estimée vous est donnée au téléphone.",
+        "Beaucoup de maisons de village ont des portes épaisses et des serrures anciennes, qu'il vaut mieux réparer que remplacer. Pour les maisons louées en saison, nous conseillons des cylindres faciles à changer entre deux locations."]),
+    'serrurier-valreas': ("Intervenir dans l'Enclave des Papes", [
+        "L'Enclave des Papes est une partie du Vaucluse entourée par la Drôme. Valréas, Grillon, Visan et Richerenches font bien partie de notre zone d'intervention, au même titre que les communes proches d'Avignon, avec les mêmes tarifs et le déplacement inclus.",
+        "Comme la distance est plus grande, nous vous recommandons de prévoir les interventions non urgentes (changement de serrure, blindage, cylindres) sur rendez-vous : nous vous fixons un créneau précis."]),
+    'serrurier-cavaillon': ("Le Luberon autour de Cavaillon", [
+        "Depuis Cavaillon, nous intervenons aussi à Cheval-Blanc, Robion, Les Taillades, Caumont-sur-Durance et dans les villages au pied du Luberon. Beaucoup de maisons y sont des mas ou des villas avec portail, et certaines sont des résidences secondaires.",
+        "Pour ces maisons, nous recommandons une serrure multipoints sur la porte principale, des cylindres certifiés et une vérification des accès secondaires. Le devis est gratuit pour un blindage, et le prix toujours annoncé avant l'intervention."]),
+    'serrurier-l-isle-sur-la-sorgue': ("Pendant les foires aux antiquaires", [
+        "Lors des grandes foires aux antiquaires, la ville accueille beaucoup de visiteurs et les boutiques ouvrent tôt et ferment tard. Une serrure qui casse ou une clé perdue ce jour-là ne peut pas attendre : nous intervenons rapidement et adaptons l'intervention à votre activité.",
+        "Après la saison, c'est le bon moment pour faire le point sur la sécurité de la boutique : cylindres résistants au crochetage et au perçage, serrure multipoints sur la porte de réserve, protection du cylindre extérieur. Nous vous remettons un devis détaillé, sans engagement."]),
+    'serrurier-apt': ("Le marché du samedi et le centre d'Apt", [
+        "Le samedi, le grand marché d'Apt occupe une bonne partie du centre ancien, et l'accès en voiture devient compliqué. Si vous avez besoin d'un serrurier ce jour-là, précisez-nous l'adresse et l'accès le plus proche : le serrurier se gare au plus près et finit à pied.",
+        "Dans les maisons de ville autour de la cathédrale Sainte-Anne, les portes anciennes méritent une ouverture soignée. Nous privilégions l'ouverture fine et la réparation de la serrure d'origine quand c'est possible."]),
+    'serrurier-pertuis': ("Le pays d'Aigues et le sud Luberon", [
+        "Depuis Pertuis, nous intervenons dans les villages du pays d'Aigues : La Tour-d'Aigues, Villelaure, Ansouis, Cadenet, Mirabeau, Grambois et leurs hameaux. Beaucoup de maisons de village y ont des portes anciennes, tandis que les nouveaux quartiers sont équipés de portes récentes à serrure multipoints.",
+        "Pertuis est l'une des villes les plus éloignées d'Avignon dans notre secteur : pour une urgence, l'heure d'arrivée estimée vous est donnée au téléphone, et pour un changement de serrure ou un blindage, nous fixons un rendez-vous à votre convenance."]),
+}
+
+# Questions locales supplémentaires
+FAQ_LOCALES = {
+    'serrurier-villeneuve-les-avignon': [("Pouvez-vous remplacer une serrure ancienne sans changer la porte ?",
+        "Oui. Nous posons un modèle adapté aux dimensions de la porte, en applique ou à larder, sans la modifier, après avoir vérifié si la serrure d'origine peut être réparée.")],
+    'serrurier-les-angles': [("Intervenez-vous pour les commerces de la zone commerciale des Angles ?",
+        "Oui : ouverture d'une porte de local, changement de cylindre, mise en sécurité après une tentative d'effraction, en dehors des heures d'ouverture si besoin.")],
+    'serrurier-vedene': [("Intervenez-vous le week-end à Vedène ?",
+        "Oui, 7j/7, y compris le dimanche et les jours fériés. La majoration de week-end figure dans notre grille tarifaire et vous est annoncée au téléphone.")],
+    'serrurier-le-pontet': [("Pouvez-vous intervenir avant l'ouverture d'un commerce au Pontet ?",
+        "Oui, nous intervenons 24h/24. Les éventuelles majorations horaires vous sont annoncées au téléphone avant le déplacement.")],
+    'serrurier-carpentras': [("Intervenez-vous dans les villages du Comtat autour de Carpentras ?",
+        "Oui : Monteux, Pernes-les-Fontaines, Mazan, Aubignan, Loriol-du-Comtat, Sarrians, Caromb et les villages voisins, aux mêmes tarifs que dans tout le Vaucluse.")],
+    'serrurier-orange': [("Intervenez-vous à Jonquières, Camaret-sur-Aigues et Piolenc ?",
+        "Oui, ainsi qu'à Caderousse, Courthézon et dans tout le Haut-Vaucluse, aux mêmes tarifs que dans le reste du département.")],
+    'serrurier-vaison-la-romaine': [("Intervenez-vous à Malaucène et Entrechaux ?",
+        "Oui, comme dans tous les villages autour de Vaison-la-Romaine, aux mêmes tarifs que dans le reste du Vaucluse, déplacement inclus.")],
+    'serrurier-le-thor': [("Intervenez-vous à Thouzon et dans la campagne du Thor ?",
+        "Oui, dans le village comme dans les mas et les hameaux. Indiquez-nous l'adresse précise et l'accès, surtout la nuit.")],
+    'serrurier-saint-saturnin-les-avignon': [("Pouvez-vous changer le cylindre le jour même à Saint-Saturnin-lès-Avignon ?",
+        "Le plus souvent oui, pour les dimensions courantes. Pour un modèle particulier ou haute sécurité, il peut falloir le commander ; nous sécurisons alors la porte en attendant.")],
+    'serrurier-chateauneuf-de-gadagne': [("Pouvez-vous dépanner un volet roulant à Châteauneuf-de-Gadagne ?",
+        "Oui, nous dépannons les volets roulants manuels et électriques : sangle, manivelle, lames bloquées ou panne électrique. Le prix est annoncé avant l'intervention.")],
+    'serrurier-caumont-sur-durance': [("Combien de temps faut-il pour venir à Caumont-sur-Durance ?",
+        "Caumont est proche d'Avignon, notre point de départ. L'heure d'arrivée estimée vous est donnée au téléphone selon l'heure et la circulation.")],
+    'serrurier-bedarrides': [("Intervenez-vous à Bédarrides le dimanche ?",
+        "Oui, 7j/7, y compris le dimanche et les jours fériés. La majoration correspondante vous est annoncée au téléphone avant le déplacement.")],
+    'serrurier-chateauneuf-du-pape': [("Intervenez-vous entre Châteauneuf-du-Pape et Orange ?",
+        "Oui, à Courthézon, Caderousse, Bédarrides et dans toutes les communes entre Avignon et Orange, aux mêmes tarifs, déplacement inclus.")],
+    'serrurier-courthezon': [("Intervenez-vous dans les domaines viticoles de Courthézon ?",
+        "Oui, pour les portes de chai, de cave, de bureau et de boutique : ouverture, changement de cylindres et sécurisation après une tentative d'effraction.")],
+}
+
 # Avignon : un paragraphe par grand secteur de la ville
 QUARTIERS_AVIGNON = [
     ("Intra-muros et centre-ville",
@@ -508,7 +747,7 @@ SERVICES = [
         'slug': 'ouverture-de-porte', 'nom': 'Ouverture de porte',
         'h1': 'Ouverture de porte dans le Vaucluse<br><span>dès 90 € TTC, 24h/24</span>',
         'titre': 'Ouverture de porte Avignon & Vaucluse – dès 90 € TTC, 24h/24',
-        'desc': "Porte claquée ou fermée à clé ? Ouverture de porte à Avignon et dans tout le Vaucluse dès 90 € TTC, sans casse dans la plupart des cas, prix annoncé avant. ☎ " + TEL,
+        'desc': "Porte claquée ou fermée à clé ? Ouverture de porte à Avignon et dans le Vaucluse dès 90 € TTC, sans casse, prix annoncé avant. ☎ " + TEL,
         'lead': "Porte claquée, clés oubliées à l'intérieur, clé cassée dans la serrure ou serrure bloquée : notre serrurier ouvre votre porte à Avignon et dans tout le Vaucluse, en privilégiant toujours les techniques sans casse.",
         'sections': [
             ("Porte claquée ou porte fermée à clé : ce qui change", [
@@ -543,7 +782,7 @@ SERVICES = [
         'slug': 'changement-de-serrure', 'nom': 'Changement de serrure',
         'h1': 'Changement de serrure et de cylindre<br><span>dans tout le Vaucluse</span>',
         'titre': 'Changement de serrure et de cylindre – Avignon & Vaucluse (84)',
-        'desc': "Clés perdues, serrure forcée ou usée ? Changement de cylindre ou de serrure (applique, à larder, multipoints, A2P) à Avignon et dans le Vaucluse, sur devis. ☎ " + TEL,
+        'desc': "Clés perdues, serrure forcée ou usée ? Changement de cylindre ou de serrure (multipoints, A2P) à Avignon et dans le Vaucluse. ☎ " + TEL,
         'lead': "Clés perdues ou volées, serrure qui force, emménagement ou serrure abîmée après une effraction : nous remplaçons le cylindre ou la serrure complète, à Avignon et dans tout le Vaucluse.",
         'sections': [
             ("Cylindre ou serrure complète : que faut-il changer ?", [
@@ -582,7 +821,7 @@ SERVICES = [
         'slug': 'blindage-de-porte', 'nom': 'Blindage de porte',
         'h1': 'Blindage de porte<br><span>dans le Vaucluse, devis gratuit</span>',
         'titre': 'Blindage de porte Avignon & Vaucluse – Devis gratuit',
-        'desc': "Renforcez votre porte sans la remplacer : blindage, serrure multipoints, cornières anti-pince, poignée blindée. Avignon et tout le Vaucluse, devis gratuit. ☎ " + TEL,
+        'desc': "Renforcez votre porte sans la remplacer : blindage, serrure multipoints, cornières anti-pince. Avignon et Vaucluse, devis gratuit. ☎ " + TEL,
         'lead': "Plus économique qu'une porte blindée complète, le blindage renforce votre porte existante contre l'effraction. Nous intervenons à Avignon et dans tout le Vaucluse, devis gratuit après visite.",
         'sections': [
             ("Blindage de porte ou porte blindée : quelle différence ?", [
@@ -599,6 +838,14 @@ SERVICES = [
                 "Il est aussi souvent demandé par les propriétaires qui louent leur logement pendant le Festival d'Avignon ou en saison touristique."]),
             ("Devis gratuit après visite", [
                 "Le prix d'un blindage dépend de la porte (dimensions, matière, sens d'ouverture), du niveau de sécurité de la serrure et des options choisies. Nous venons voir la porte, prenons les mesures et vous remettons un devis gratuit et détaillé, sans engagement."]),
+            ("Les étapes d'un blindage de porte", ['liste',
+                "Visite et prise de mesures : nous vérifions l'état de la porte, du cadre et des gonds.",
+                "Devis détaillé : chaque élément (tôle, serrure, cornières, cylindre) est chiffré séparément.",
+                "Pose : la tôle est fixée côté intérieur, la serrure multipoints et les renforts sont installés et réglés.",
+                "Remise des clés et de la carte de propriété du cylindre, puis facture détaillée."]),
+            ("Blindage et confort au quotidien", [
+                "Une porte blindée est plus lourde : c'est pourquoi nous réglons soigneusement les gonds et la gâche pour qu'elle reste facile à ouvrir et à fermer. La tôle intérieure peut être habillée pour s'accorder à votre intérieur, et le blindage améliore souvent l'isolation phonique de la porte palière.",
+                "Pensez enfin à la cohérence de l'ensemble : une porte blindée n'est efficace qu'avec un cylindre de bonne qualité et un protège-cylindre extérieur. Nous vous conseillons sur ces points lors de la visite."]),
         ],
         'faq': [
             ("Le blindage est-il possible sur toutes les portes ?",
@@ -616,7 +863,7 @@ SERVICES = [
         'slug': 'reparation-apres-effraction', 'nom': 'Réparation après effraction',
         'h1': 'Réparation après effraction<br><span>mise en sécurité 24h/24</span>',
         'titre': 'Réparation après effraction et cambriolage – Vaucluse 24h/24',
-        'desc': "Porte forcée, serrure cassée après un cambriolage ? Mise en sécurité provisoire 24h/24 puis réparation, facture pour l'assurance. Avignon et tout le Vaucluse. ☎ " + TEL,
+        'desc': "Porte forcée après un cambriolage ? Mise en sécurité 24h/24 puis réparation, facture pour l'assurance. Avignon et tout le Vaucluse. ☎ " + TEL,
         'lead': "Porte forcée, serrure arrachée, cylindre cassé : après une effraction, nous sécurisons votre logement ou votre commerce sans attendre, puis réparons la porte. Facture détaillée pour votre assurance.",
         'sections': [
             ("Les bons réflexes après un cambriolage", ['liste',
@@ -635,6 +882,9 @@ SERVICES = [
                 "Nous vous remettons une facture détaillée, avec la description des dégâts constatés et des travaux réalisés, à joindre à votre déclaration de sinistre. Selon votre contrat, tout ou partie de l'intervention peut être prise en charge par votre assurance habitation."]),
             ("Commerces et locaux professionnels", [
                 "Porte de commerce forcée, cylindre arraché sur un local ou un entrepôt : nous intervenons aussi pour les professionnels, de nuit si nécessaire, pour que vous puissiez rouvrir au plus vite."]),
+            ("Éviter une nouvelle effraction", [
+                "Après un cambriolage, le risque de récidive est réel : les cambrioleurs connaissent désormais les lieux et le point d'entrée. C'est le bon moment pour renforcer la porte utilisée : serrure multipoints, cylindre certifié A2P avec protège-cylindre, cornières anti-pince, voire blindage complet.",
+                "Pensez aussi aux autres accès : porte de garage, porte-fenêtre, volets roulants. Nous faisons le tour du logement avec vous et vous proposons les renforcements utiles, sans surenchère, avec un devis détaillé."]),
         ],
         'faq': [
             ("Combien de temps ai-je pour déclarer un cambriolage à mon assurance ?",
@@ -652,7 +902,7 @@ SERVICES = [
         'slug': 'depannage-volet-roulant', 'nom': 'Volets roulants',
         'h1': 'Dépannage de volet roulant<br><span>manuel ou électrique</span>',
         'titre': 'Dépannage volet roulant bloqué – Avignon & Vaucluse',
-        'desc': "Volet roulant bloqué, sangle cassée, volet électrique qui ne remonte plus ? Dépannage et réparation à Avignon et dans tout le Vaucluse, prix annoncé avant. ☎ " + TEL,
+        'desc': "Volet roulant bloqué, sangle cassée, volet électrique en panne ? Dépannage à Avignon et dans tout le Vaucluse, prix annoncé avant. ☎ " + TEL,
         'lead': "Volet roulant bloqué en bas, sangle cassée, lames sorties des coulisses ou volet électrique qui ne répond plus : nous dépannons vos volets à Avignon et dans tout le Vaucluse.",
         'sections': [
             ("Les pannes de volet roulant les plus fréquentes", ['liste',
@@ -667,6 +917,15 @@ SERVICES = [
                 "Quand un volet électrique ne répond plus, la panne peut venir de l'interrupteur, de la télécommande, de l'alimentation ou du moteur. Nous établissons le diagnostic sur place et vous annonçons le prix de la réparation avant de commencer."]),
             ("Pourquoi faire réparer rapidement un volet bloqué ?", [
                 "Un volet bloqué en position ouverte laisse une fenêtre exposée, surtout en rez-de-chaussée ou pendant une absence ; bloqué en bas, il plonge la pièce dans le noir. Forcer sur la sangle ou la manivelle aggrave souvent la panne : mieux vaut nous appeler avant."]),
+            ("Bien entretenir ses volets roulants", ['liste',
+                "Nettoyez les coulisses une à deux fois par an pour retirer la poussière, le sable et les feuilles.",
+                "Ne forcez jamais sur une sangle ou une manivelle qui résiste : cherchez d'abord ce qui bloque.",
+                "Remontez complètement le volet par grand vent pour éviter que les lames ne se déforment.",
+                "En hiver, ne manœuvrez pas un volet pris par le gel : attendez qu'il dégèle.",
+                "Sur un volet électrique, remplacez la pile de la télécommande dès que la portée diminue."]),
+            ("Volets roulants et sécurité du logement", [
+                "Un volet roulant baissé ralentit un cambrioleur et cache l'intérieur de la maison. Pour qu'il joue ce rôle, il doit descendre jusqu'en bas et rester verrouillé : des verrous automatiques ou des lames renforcées empêchent de le soulever depuis l'extérieur.",
+                "Avant un départ en vacances, vérifiez que tous vos volets fonctionnent. Un volet qui reste bloqué ouvert pendant une absence est une invitation : faites-le réparer avant de partir."]),
         ],
         'faq': [
             ("Combien coûte un dépannage de volet roulant ?",
@@ -702,6 +961,9 @@ SERVICES = [
                 "En urgence, on appelle souvent le premier numéro trouvé. Méfiez-vous des annonces sans nom ni adresse, des prix d'appel très bas et des dépanneurs qui refusent d'annoncer un tarif au téléphone. Un professionnel sérieux vous donne son prix avant de partir et vous remet une facture détaillée : c'est ce que nous faisons à chaque intervention."]),
             ("En attendant le serrurier", [
                 "Restez joignable au numéro avec lequel vous avez appelé, et préparez si possible une pièce d'identité et un justificatif de domicile (dans votre téléphone, par exemple) : ils vous seront demandés une fois la porte ouverte. Si votre porte a été forcée, ne touchez à rien avant le passage de la police."]),
+            ("Le Grand Avignon, de jour comme de nuit", [
+                "La nuit, nous intervenons dans tout Avignon et dans les communes du Grand Avignon : Le Pontet, Vedène, Morières-lès-Avignon, Saint-Saturnin-lès-Avignon, Entraigues-sur-la-Sorgue, mais aussi Villeneuve-lès-Avignon et Les Angles, de l'autre côté du Rhône. Pour les communes plus éloignées du Vaucluse, l'heure d'arrivée estimée vous est donnée au téléphone.",
+                "Après une ouverture en urgence, si le cylindre doit être remplacé ou si la porte a été endommagée, nous pouvons le faire sur place ou revenir en journée, à votre choix, avec un devis annoncé avant."]),
         ],
         'faq': [
             ("Intervenez-vous vraiment la nuit à Avignon ?",
@@ -715,7 +977,127 @@ SERVICES = [
         ],
         'faits': [('Disponibilité', '24h/24 – 7j/7'), ('Départ', 'Avignon'), ('Porte claquée', 'dès 90 € TTC'), ('Nuit, week-end, férié', 'dès 210 € TTC')],
     },
+    {
+        'slug': 'ouverture-boite-aux-lettres', 'nom': 'Boîte aux lettres',
+        'h1': 'Boîte aux lettres : ouverture et serrure<br><span>forfait 90 € TTC</span>',
+        'titre': 'Ouverture de boîte aux lettres et changement de serrure – 90 € TTC',
+        'desc': "Clé de boîte aux lettres perdue ou serrure cassée ? Ouverture et serrure neuve au forfait de 90 € TTC, Avignon et Vaucluse. ☎ " + TEL,
+        'lead': "Clé perdue, serrure cassée ou boîte aux lettres forcée : nous ouvrons votre boîte et remplaçons la serrure au forfait de 90 € TTC, à Avignon et dans tout le Vaucluse.",
+        'sections': [
+            ("Clé de boîte aux lettres perdue : que faire ?", [
+                "La clé de boîte aux lettres est souvent la plus petite du trousseau, et la plus facile à perdre. Sans elle, le courrier s'accumule, les avis de passage restent coincés et certains documents importants deviennent inaccessibles. Il n'existe en général pas de double chez le gardien ou l'agence, et la serrure n'est pas conçue pour être ouverte sans sa clé.",
+                "La solution la plus simple est d'ouvrir la boîte et de remplacer la serrure : vous recevez de nouvelles clés et la personne qui aurait trouvé l'ancienne ne peut plus rien en faire."]),
+            ("Un forfait clair : 90 € TTC", [
+                "L'ouverture de la boîte aux lettres et le remplacement de sa serrure coûtent 90 € TTC au forfait. Ce prix comprend le déplacement, l'ouverture, la serrure neuve, sa pose et ses clés. Il n'y a pas de frais de diagnostic ni de supplément pour la pièce.",
+                "Si vous avez aussi besoin d'une ouverture de porte ou d'un changement de cylindre, les interventions peuvent être regroupées sur le même déplacement, chacune au prix annoncé avant."]),
+            ("Boîtes individuelles et boîtes collectives", ['liste',
+                "Boîte individuelle de maison, sur pied ou encastrée dans un muret : ouverture et remplacement de la serrure.",
+                "Boîte aux lettres d'immeuble : remplacement de la serrure de votre casier, sans toucher aux autres.",
+                "Boîte forcée ou vandalisée : remplacement de la serrure et, si possible, remise en état de la porte du casier.",
+                "Changement de locataire : remplacement de la serrure pour remettre de nouvelles clés."]),
+            ("Comment se passe l'intervention", ['liste',
+                f"Vous nous appelez au {TEL} et indiquez l'adresse et le type de boîte aux lettres.",
+                "Nous vous confirmons le forfait de 90 € TTC et l'heure de passage.",
+                "Sur place, la boîte est ouverte, la serrure remplacée et les nouvelles clés vous sont remises.",
+                "Une facture détaillée vous est remise, utile pour votre propriétaire ou votre syndic."]),
+            ("Qui doit payer ?", [
+                "Si vous avez perdu la clé, le remplacement est en principe à votre charge, comme pour toute clé égarée par un locataire. Si la serrure est usée par le temps ou défectueuse, c'est au propriétaire. Pour une boîte vandalisée dans un immeuble, renseignez-vous auprès du syndic : la réparation peut relever de la copropriété. La facture est établie au nom de la personne qui règle l'intervention."]),
+        ],
+        'faq': [
+            ("Combien coûte l'ouverture d'une boîte aux lettres ?",
+             "90 € TTC au forfait, avec le remplacement de la serrure et les nouvelles clés, déplacement inclus."),
+            ("Peut-on refaire une clé de boîte aux lettres sans l'original ?",
+             "Rarement. Sans clé ni référence, il est plus simple et plus sûr de remplacer la serrure, ce qui est compris dans notre forfait."),
+            ("Intervenez-vous sur les boîtes aux lettres d'immeuble ?",
+             "Oui, nous remplaçons la serrure de votre casier sans toucher aux autres. Prévenez-nous si l'accès au hall nécessite un code ou un badge."),
+            ("Combien de temps dure l'intervention ?",
+             "Quelques minutes en général : la boîte est ouverte, la serrure remplacée et les nouvelles clés vous sont remises sur place."),
+        ],
+        'faits': [('Forfait', '90 € TTC'), ('Serrure neuve', 'incluse'), ('Déplacement', 'inclus'), ('Boîtes', 'individuelles et collectives')],
+    },
+    {
+        'slug': 'serrurier-professionnels', 'nom': 'Professionnels et syndics',
+        'h1': 'Serrurier pour les professionnels<br><span>commerces, syndics, bailleurs</span>',
+        'titre': 'Serrurier pour professionnels, syndics et bailleurs – Vaucluse',
+        'desc': "Commerces, syndics, agences, bailleurs, conciergeries : ouverture, cylindres, mise en sécurité 24h/24 dans le Vaucluse. ☎ " + TEL,
+        'lead': "Commerces, bureaux, entrepôts, syndics de copropriété, agences immobilières, propriétaires bailleurs et conciergeries : nous intervenons pour les professionnels de tout le Vaucluse, à vos horaires, avec une facturation claire.",
+        'sections': [
+            ("Commerces, bureaux et entrepôts", [
+                "Une serrure bloquée ou une clé perdue dans un commerce, c'est une boutique qui ne peut pas ouvrir. Nous intervenons rapidement, avant l'ouverture ou après la fermeture si nécessaire, pour ouvrir la porte, remplacer un cylindre ou réparer une serrure. Après une tentative d'effraction, nous assurons la mise en sécurité provisoire puis la réparation définitive.",
+                "Lors du départ d'un salarié ou d'un changement d'équipe, remplacer les cylindres permet de garder le contrôle des accès. Pour simplifier les trousseaux, nous posons des cylindres qui s'ouvrent avec la même clé, ou vous conseillons sur une organisation des clés adaptée à votre activité."]),
+            ("Syndics et copropriétés", [
+                "Pour les syndics et les conseils syndicaux, nous intervenons sur les parties communes : portes de cave, locaux techniques, locaux vélos ou poubelles, boîtes aux lettres. La facture est établie au nom du syndicat des copropriétaires, avec le détail de l'intervention et des pièces remplacées.",
+                "Nous intervenons aussi à la demande du syndic dans les logements, en présence de l'occupant ou d'une personne autorisée, par exemple après une effraction dans l'immeuble."]),
+            ("Agences immobilières et propriétaires bailleurs", ['liste',
+                "Changement de cylindre entre deux locataires, avec remise des clés à l'agence.",
+                "Ouverture de porte pour un état des lieux quand les clés n'ont pas été rendues.",
+                "Remplacement d'une serrure usée signalée par un locataire.",
+                "Intervention en présence du locataire, facture au nom du propriétaire ou de l'agence."]),
+            ("Conciergeries et locations saisonnières", [
+                "Avignon pendant le Festival, le Luberon, le Ventoux, L'Isle-sur-la-Sorgue : le Vaucluse compte de très nombreuses locations de courte durée. Les clés y changent souvent de main et se perdent plus qu'ailleurs. Nous remplaçons les cylindres entre deux saisons ou après une perte de clés, et posons des cylindres avec carte de propriété pour maîtriser les copies.",
+                "En cas d'urgence pendant un séjour, un voyageur bloqué dehors ou une serrure qui casse, nous intervenons 24h/24 à la demande du propriétaire ou de la conciergerie, au prix annoncé avant."]),
+            ("Une facturation adaptée aux entreprises", [
+                "Chaque intervention donne lieu à une facture détaillée au nom de votre société, de votre syndic ou de votre agence, avec l'adresse de l'intervention, la nature du problème et les pièces remplacées. Le prix est toujours annoncé avant le déplacement, et un devis vous est remis avant tout travail important.",
+                f"Pour en parler, appelez-nous au {TEL} ou décrivez votre besoin dans le formulaire de contact : nous vous rappelons rapidement."]),
+        ],
+        'faq': [
+            ("Pouvez-vous intervenir en dehors des heures d'ouverture ?",
+             "Oui, nous intervenons 24h/24 et 7j/7. Les éventuelles majorations de soir, de nuit ou de week-end vous sont annoncées au téléphone avant le déplacement."),
+            ("La facture peut-elle être établie au nom de ma société ?",
+             "Oui, au nom de la société, du syndicat des copropriétaires, de l'agence ou du propriétaire, selon la personne qui règle l'intervention."),
+            ("Pouvez-vous changer tous les cylindres d'un local en une fois ?",
+             "Oui, et nous pouvons poser des cylindres qui s'ouvrent avec la même clé. Le devis vous est remis avant l'intervention."),
+            ("Intervenez-vous pour un voyageur bloqué dehors dans une location ?",
+             "Oui, à la demande du propriétaire ou de la conciergerie, 24h/24. Le prix est annoncé avant le départ du serrurier."),
+        ],
+        'faits': [('Clients', 'pros, syndics, bailleurs'), ('Disponibilité', '24h/24 – 7j/7'), ('Facture', 'au nom de la société'), ('Zone', 'tout le Vaucluse')],
+    },
 ]
+
+# Page « Tarifs » : même gabarit que les services, mais hors de la liste des prestations
+TARIFS = {
+    'slug': 'tarifs-serrurier', 'nom': 'Tarifs',
+    'h1': 'Tarifs serrurier Avignon et Vaucluse<br><span>prix annoncés à l\'avance</span>',
+    'titre': 'Tarifs serrurier Avignon & Vaucluse – Prix annoncés, dès 90 € TTC',
+    'desc': "Prix d'un serrurier à Avignon et dans le Vaucluse : ouverture dès 90 € TTC, nuit et week-end, déplacement inclus. ☎ " + TEL,
+    'lead': "Combien coûte un serrurier ? Chez nous, la réponse tient en une page : des prix TTC publics, le déplacement inclus, des majorations clairement indiquées et un tarif toujours annoncé avant l'intervention.",
+    'sections': [
+        ("Nos tarifs d'ouverture de porte", [
+            "Une porte claquée, fermée sans tour de clé, coûte 90 € TTC avant 18h, 150 € TTC après 18h, et 210 € TTC après 22h, le week-end et les jours fériés. Une porte fermée à clé coûte 130 € TTC avant 18h, 210 € TTC après 18h, et 290 € TTC après 22h, le week-end et les jours fériés.",
+            "L'ouverture d'une boîte aux lettres avec le remplacement de sa serrure coûte 90 € TTC au forfait. Ces prix sont les mêmes à Avignon, à Carpentras, à Orange, à Apt ou à Valréas : le déplacement est inclus partout dans notre zone d'intervention."]),
+        ("Ce que comprend le prix", ['liste',
+            "Le déplacement du serrurier jusqu'à chez vous, où que vous soyez dans notre secteur.",
+            "La main-d'œuvre de l'ouverture, quelle que soit la technique utilisée.",
+            "Aucun frais de diagnostic, de dossier ou de « mise en route » ajouté sur place.",
+            "Une facture détaillée remise à la fin de l'intervention.",
+            "Seules les pièces remplacées à votre demande (cylindre, serrure) s'ajoutent, toujours chiffrées avant la pose."]),
+        ("Pourquoi un prix différent le soir, la nuit et le week-end ?", [
+            "Intervenir à 23h un dimanche ou un jour férié mobilise un serrurier en dehors des heures normales de travail. C'est pourquoi, comme dans tous les métiers du dépannage, une majoration s'applique après 18h, puis après 22h, le week-end et les jours fériés. Ce qui compte, c'est qu'elle soit annoncée clairement : nos majorations figurent dans la grille ci-dessous et vous sont rappelées au téléphone.",
+            "Si votre situation peut attendre le lendemain, par exemple si vous pouvez dormir chez un proche, nous vous le dirons honnêtement : vous paierez alors le tarif de journée."]),
+        ("Les prestations sur devis", [
+            "Le changement de cylindre ou de serrure, la pose d'une serrure multipoints, le blindage de porte, la réparation après effraction et le dépannage de volets roulants dépendent du matériel choisi et de l'état de la porte. Ils sont donc réalisés sur devis. Nous vous donnons une estimation au téléphone, puis un prix précis sur place, avant toute intervention.",
+            "Pour un blindage ou un renforcement de porte, le devis est gratuit et sans engagement : nous venons voir la porte, prenons les mesures et vous remettons un chiffrage détaillé, élément par élément."]),
+        ("Quelques exemples concrets", ['liste',
+            "Mardi à 14h, porte claquée à Avignon : 90 € TTC, déplacement inclus.",
+            "Vendredi à 20h, porte fermée à clé à Carpentras après une perte de clés : 210 € TTC pour l'ouverture, plus le cylindre si vous choisissez de le remplacer, prix annoncé avant la pose.",
+            "Dimanche à 11h, porte claquée à Orange : 210 € TTC, déplacement inclus.",
+            "Lundi, clé de boîte aux lettres perdue à Cavaillon : 90 € TTC, serrure neuve et clés comprises."]),
+        ("Vos droits face à un serrurier", [
+            "L'arrêté du 24 janvier 2017 oblige les professionnels du dépannage à informer le client de leurs tarifs avant d'intervenir, et à remettre un devis détaillé avant les travaux dès que le montant estimé dépasse 150 € TTC. Une facture détaillée doit ensuite être remise.",
+            "Méfiez-vous des annonces à prix d'appel très bas qui cachent des frais de déplacement ou de diagnostic. Un prix honnête est un prix total, annoncé au téléphone avant le départ du serrurier : c'est notre façon de travailler à chaque intervention."]),
+    ],
+    'faq': [
+        ("Quel est le prix d'un serrurier pas cher à Avignon ?",
+         "Chez nous, une porte claquée coûte 90 € TTC avant 18h et une porte fermée à clé 130 € TTC, déplacement inclus, sans frais de diagnostic ajoutés."),
+        ("Le déplacement est-il facturé en plus ?",
+         "Non, le déplacement est inclus dans tous nos prix, partout dans notre zone d'intervention."),
+        ("Le prix peut-il changer une fois sur place ?",
+         "Le prix de l'ouverture annoncé au téléphone est confirmé sur place avant de commencer. Seules les pièces que vous choisissez de remplacer s'ajoutent, après accord."),
+        ("Proposez-vous des devis gratuits ?",
+         "Oui, pour le blindage, le renforcement de porte et les changements de serrure planifiés. Le devis est gratuit et sans engagement."),
+    ],
+    'faits': [('Porte claquée', 'dès 90 € TTC'), ('Porte fermée à clé', 'dès 130 € TTC'), ('Boîte aux lettres', '90 € TTC'), ('Déplacement', 'inclus')],
+}
 
 # ---------------------------------------------------------------- FAQ générale
 FAQ_GENERALE = [
@@ -824,11 +1206,11 @@ def realisations_html(root, lieu):
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <rect x="10" y="22" width="80" height="58" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <rect x="36" y="12" width="28" height="12" rx="4" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
-          <circle cx="50" cy="51" r="17" fill="#070B18" stroke="#8F7BFF" stroke-width="4"/>
-          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00D1FF"/>
-          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#D6F4FF"/>
+          <rect x="10" y="22" width="80" height="58" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <rect x="36" y="12" width="28" height="12" rx="4" fill="#C7D5F0" stroke="#00B4E6" stroke-width="3"/>
+          <circle cx="50" cy="51" r="17" fill="#EAF4FF" stroke="#7B66F5" stroke-width="4"/>
+          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00B4E6"/>
+          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#1B2550"/>
         </svg></div>
         <span class="eyebrow">Nos réalisations</span>
         <h2>Nos dernières interventions {e(lieu)}</h2>
@@ -848,7 +1230,7 @@ def villes_html(root, courante=None):
         cur = ' current" aria-current="page' if v['nom'] == courante else ''
         cartes.append(f'        <a class="city-card{cur}" href="{root}{v["slug"]}/"><strong>Serrurier {e(v["nom"])}<em>{v["cp"]}</em></strong>'
                       f'<span>{e(", ".join(v["secteurs"][:3]))}</span></a>')
-    titre = "Nos villes d'intervention dans le Vaucluse" if not courante else 'Nous intervenons aussi dans ces villes du Vaucluse'
+    titre = "Nos villes d'intervention dans le Vaucluse" if not courante else 'Nous intervenons aussi dans ces villes'
     return f'''  <!-- ========== VILLES ========== -->
   <section id="villes">
     <div class="container">
@@ -877,6 +1259,9 @@ def local_html(v, root):
     if v['slug'] in PLUS:
         t, p = PLUS[v['slug']]
         plus = f'          <h3>{e(t)}</h3>\n          <p>{e(p)}</p>\n'
+    if v['slug'] in GUIDE:
+        t, ps = GUIDE[v['slug']]
+        plus += f'          <h3>{e(t)}</h3>\n' + ''.join(f'          <p>{e(p)}</p>\n' for p in ps)
     urgence = (f' Tout savoir sur notre <a href="{root}serrurier-urgence-avignon/">serrurier en urgence à Avignon 24h/24</a>.'
                if v['nom'] == 'Avignon' else '')
     return f'''  <!-- ========== LOCAL ========== -->
@@ -893,7 +1278,8 @@ def local_html(v, root):
 {plus}          <h3>Serrurier en urgence {e(v["a"])} : nuit, dimanche et jours fériés</h3>
           <p>{e(URGENCES[v["slug"]])}{urgence}</p>
           <h3>Nos interventions {e(v["a"])}</h3>
-          <p><a href="{root}ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="{root}changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="{root}blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="{root}reparation-apres-effraction/">réparation après effraction</a> et <a href="{root}depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="#tarifs">Voir nos tarifs</a> ou <a href="{TEL_HREF}">appeler le {TEL}</a>.</p>
+          <p><a href="{root}ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="{root}changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="{root}blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="{root}reparation-apres-effraction/">réparation après effraction</a> et <a href="{root}depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="{root}tarifs-serrurier/">Voir tous nos tarifs</a> ou <a href="{TEL_HREF}">appeler le {TEL}</a>.</p>
+          <p>Besoin d'un conseil avant d'appeler ? Lisez nos guides : <a href="{root}conseils/porte-claquee-que-faire/">porte claquée, que faire ?</a>, <a href="{root}conseils/cle-perdue-que-faire/">clés perdues ou volées</a> et <a href="{root}conseils/eviter-arnaque-serrurier/">comment éviter les arnaques au serrurier</a>.</p>
       </div>
       <aside>
         <div class="card">
@@ -945,6 +1331,47 @@ def quartiers_html():
 '''
 
 
+# Accueil : présentation du serrurier et des secteurs du département
+SECTEURS = [
+    ('Avignon et le Grand Avignon', ['Avignon', 'Le Pontet', 'Vedène', 'Morières-lès-Avignon', 'Saint-Saturnin-lès-Avignon', 'Entraigues-sur-la-Sorgue', 'Sorgues']),
+    ("De l'autre côté du Rhône", ['Villeneuve-lès-Avignon', 'Les Angles']),
+    ('Le Comtat Venaissin', ['Carpentras', 'Monteux', 'Pernes-les-Fontaines', "L'Isle-sur-la-Sorgue", 'Le Thor', 'Châteauneuf-de-Gadagne']),
+    ('Le Haut-Vaucluse', ['Orange', 'Courthézon', 'Châteauneuf-du-Pape', 'Bédarrides', 'Bollène', 'Vaison-la-Romaine', 'Valréas']),
+    ('Le Luberon et la Durance', ['Cavaillon', 'Caumont-sur-Durance', 'Apt', 'Pertuis']),
+]
+
+
+def presentation_html():
+    paras = [
+        "Serrurier Vaucluse est un service de dépannage en serrurerie installé à Avignon, qui intervient dans tout le département, 24h/24 et 7j/7. Notre métier : ouvrir les portes claquées ou fermées à clé, changer les serrures et les cylindres, renforcer les portes, sécuriser un logement après une effraction et dépanner les volets roulants, pour les particuliers comme pour les professionnels.",
+        "Notre engagement tient en trois points. Le prix est annoncé au téléphone avant le déplacement, puis confirmé sur place avant de commencer. Le déplacement est inclus dans nos tarifs, qui sont les mêmes à Avignon, à Orange, à Apt ou à Valréas. Et chaque intervention donne lieu à une facture détaillée, utile pour votre assurance, votre propriétaire ou votre syndic.",
+        "Sur le terrain, nous privilégions toujours les techniques d'ouverture fine, qui laissent la porte et la serrure en état de marche. Le Vaucluse compte beaucoup de portes anciennes, dans les centres historiques d'Avignon, de Carpentras, de Pernes-les-Fontaines ou de Vaison-la-Romaine : elles méritent d'être ouvertes et réparées avec soin plutôt que percées ou remplacées par réflexe.",
+        "Du Grand Avignon au Luberon, du Comtat Venaissin au Haut-Vaucluse et jusqu'à l'Enclave des Papes, chaque ville a ses particularités : copropriétés et immeubles anciens en ville, villas et lotissements en périphérie, mas isolés et résidences secondaires à la campagne, domaines viticoles autour de Châteauneuf-du-Pape. Nos pages locales détaillent ces situations et les interventions les plus fréquentes près de chez vous.",
+    ]
+    secteurs = '\n'.join(
+        f'          <h3>{e(t)}</h3>\n          <ul class="chips">\n' + '\n'.join(f'            <li>{lien_ville(n, "")}</li>' for n in villes) + '\n          </ul>'
+        for t, villes in SECTEURS)
+    return f'''  <!-- ========== PRÉSENTATION ========== -->
+  <section id="presentation" class="alt">
+    <div class="container local">
+      <div class="prose">
+        <div class="section-head" style="text-align:left;margin:0">
+          <span class="eyebrow">Votre serrurier local</span>
+          <h2>Un serrurier à Avignon pour tout le Vaucluse</h2>
+        </div>
+{chr(10).join(f'          <p>{e(p)}</p>' for p in paras)}
+          <p><a href="tarifs-serrurier/">Consulter tous nos tarifs</a> · <a href="conseils/">Lire nos conseils de serrurier</a></p>
+      </div>
+      <aside>
+        <div class="card">
+{secteurs}
+        </div>
+      </aside>
+    </div>
+  </section>
+'''
+
+
 def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-preview:large'):
     verif = (f'\n<meta name="google-site-verification" content="{e(GOOGLE_VERIFICATION)}">'
              if GOOGLE_VERIFICATION and url == SITE else '')
@@ -973,7 +1400,6 @@ def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-pre
 <link rel="apple-touch-icon" href="{root}img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="{root}css/style.css">
@@ -989,13 +1415,10 @@ def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-pre
 def bas(root, complet=True):
     if not complet:
         return f'\n<script defer src="{root}js/site.js"></script>\n</body>\n</html>\n'
+    # La 3D (three.js) et la carte (Leaflet) sont chargées par site.js seulement quand elles sont utiles.
     return f'''
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script defer src="{root}js/door3d.js"></script>
 <script defer src="{root}js/booking.js"></script>
 <script defer src="{root}js/site.js"></script>
-<script defer src="{root}js/zones-map.js"></script>
 </body>
 </html>
 '''
@@ -1004,8 +1427,10 @@ def bas(root, complet=True):
 def page(root, valeurs, sections, titre, desc, url, ld, robots='index, follow, max-image-preview:large', complet=True):
     image = SITE + 'img/partage-serrurier-vaucluse.jpg'
     commun = {
-        'ROOT': root, 'HOME': root or './', 'NAV': '', 'ENDPOINT': AGENDA_URL, 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
-        'PIED_SERVICES': '\n'.join(f'          <li><a href="{root}{s["slug"]}/">{e(s["nom"])}</a></li>' for s in SERVICES),
+        'ROOT': root, 'HOME': root or './', 'NAV': '', 'ANCRE': '', 'NB_VILLES': str(len(VILLES)), 'ENDPOINT': AGENDA_URL, 'TEL': TEL, 'TEL_HREF': TEL_HREF, 'EMAIL': EMAIL,
+        'PIED_SERVICES': '\n'.join(f'          <li><a href="{root}{s["slug"]}/">{e(s["nom"])}</a></li>' for s in SERVICES)
+                         + f'\n          <li><a href="{root}tarifs-serrurier/">Nos tarifs</a></li>',
+        'PIED_GUIDES': '\n'.join(f'          <li><a href="{root}conseils/{a["slug"]}/">{e(a["h1"])}</a></li>' for a in ARTICLES),
         'PIED_VILLES': '\n'.join(f'          <li><a href="{root}{v["slug"]}/">Serrurier {e(v["nom"])}</a></li>' for v in VILLES),
     }
     commun.update(valeurs)
@@ -1036,8 +1461,8 @@ def accueil():
         'FAQ_H2': 'Vos questions sur la serrurerie dans le Vaucluse', 'FAQ_ITEMS': faq_html(FAQ_GENERALE),
         'CONTACT_H2': 'Demandez une intervention ou un devis', 'CONTACT_ZONE': 'Tout le Vaucluse (84)', 'VILLE_EX': 'Avignon',
     }
-    sections = [bloc('hero'), bloc('services'), bloc('tarifs'), realisations_html('', 'dans le Vaucluse'), bloc('pourquoi'),
-                bloc('fonctionnement'), bloc('zones'), villes_html(''), bloc('urgence'), bloc('faq'), bloc('contact')]
+    sections = [bloc('hero'), bloc('services'), bloc('tarifs'), realisations_html('', 'dans le Vaucluse'), presentation_html(), bloc('pourquoi'),
+                bloc('fonctionnement'), bloc('zones'), villes_html(''), bloc('urgence'), guides_html('', ARTICLES[:6]), bloc('faq'), bloc('contact')]
     ecrire('index.html', page('', valeurs, sections,
                               'Serrurier Vaucluse (84) – Dépannage 24h/24, ouverture de porte',
                               "Serrurier dans le Vaucluse 24h/24 : ouverture de porte dès 90 € TTC, changement de serrure, blindage. Avignon, Carpentras, Orange, Cavaillon… ☎ " + TEL,
@@ -1047,7 +1472,7 @@ def accueil():
 def ville(v):
     root = '../'
     url = f'{SITE}{v["slug"]}/'
-    faq = v['faq'] + ([FAQ_PLUS[v['slug']]] if v['slug'] in FAQ_PLUS else []) + [
+    faq = v['faq'] + ([FAQ_PLUS[v['slug']]] if v['slug'] in FAQ_PLUS else []) + FAQ_LOCALES.get(v['slug'], []) + [
         (f"Combien coûte une ouverture de porte {v['a']} ?",
          f"Nos tarifs sont les mêmes {v['a']} que dans tout le Vaucluse, déplacement inclus : 90 € TTC pour une porte claquée et 130 € TTC pour une porte fermée à clé avant 18h. Des majorations s'appliquent après 18h, après 22h, le week-end et les jours fériés."),
         (f"Intervenez-vous autour de {v['nom']} ?",
@@ -1086,13 +1511,186 @@ def ville(v):
     ecrire(f'{v["slug"]}/index.html', page(root, valeurs, sections, titre, desc, url, ld))
 
 
-def service(s):
+MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
+
+
+def date_fr(iso):
+    a, m, j = iso.split('-')
+    return f'{int(j)} {MOIS[int(m) - 1]} {a}'
+
+
+def mots(a):
+    textes = [a['lead']] + a['essentiel'] + [r for q, r in a['faq']]
+    for t, contenu in a['sections']:
+        textes += [t] + [x for x in contenu if x != 'liste']
+    return sum(len(t.split()) for t in textes)
+
+
+def guides_html(root, liste, titre="Nos conseils de serrurier", intro="Des guides pratiques pour réagir en cas d'urgence, éviter les arnaques et mieux protéger votre logement."):
+    cartes = '\n'.join(f'''        <a class="card guide-card" href="{root}conseils/{a["slug"]}/">
+          <span class="guide-cat">{e(a["categorie"])}</span>
+          <h3>{e(a["h1"])}</h3>
+          <p>{e(a["desc"])}</p>
+          <span class="card-more">Lire le guide · {max(3, round(mots(a) / 200))} min →</span>
+        </a>''' for a in liste)
+    return f'''  <!-- ========== CONSEILS ========== -->
+  <section id="conseils">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Conseils</span>
+        <h2>{e(titre)}</h2>
+        <p>{e(intro)}</p>
+      </div>
+      <div class="grid grid-3 guides">
+{cartes}
+      </div>
+    </div>
+  </section>
+'''
+
+
+def prose_html(sections, ancres=False):
+    blocs = []
+    for i, (t, contenu) in enumerate(sections):
+        ancre = f' id="s{i + 1}"' if ancres else ''
+        balise = 'h2' if ancres or i == 0 else 'h3'
+        if contenu[0] == 'liste':
+            corps = '          <ul class="ticks">\n' + '\n'.join(f'            <li>{e(x)}</li>' for x in contenu[1:]) + '\n          </ul>'
+        else:
+            corps = '\n'.join(f'          <p>{e(x)}</p>' for x in contenu)
+        blocs.append(f'          <{balise}{ancre}>{e(t)}</{balise}>\n{corps}')
+    return '\n'.join(blocs)
+
+
+def article(a):
+    root = '../../'
+    url = f'{SITE}conseils/{a["slug"]}/'
+    duree = max(3, round(mots(a) / 200))
+    image = SITE + 'img/partage-serrurier-vaucluse.jpg'
+    ld = [
+        entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}]),
+        {'@type': 'BlogPosting', 'headline': a['h1'], 'description': a['desc'], 'url': url, 'mainEntityOfPage': url,
+         'datePublished': DATE_CONSEILS, 'dateModified': DATE_CONSEILS, 'inLanguage': 'fr-FR', 'image': image,
+         'wordCount': mots(a), 'articleSection': a['categorie'],
+         'author': {'@type': 'Organization', 'name': NOM, 'url': SITE}, 'publisher': {'@id': SITE + '#entreprise'}},
+        {'@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Serrurier Vaucluse', 'item': SITE},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Conseils', 'item': SITE + 'conseils/'},
+            {'@type': 'ListItem', 'position': 3, 'name': a['h1'], 'item': url}]},
+        faq_ld(a['faq']),
+    ]
+    essentiel = '\n'.join(f'            <li>{e(x)}</li>' for x in a['essentiel'])
+    sommaire = '\n'.join(f'            <li><a href="#s{i + 1}">{e(t)}</a></li>' for i, (t, _) in enumerate(a['sections']))
+    services = '\n'.join(f'            <li><a href="{root}{x["slug"]}/">{e(x["nom"])}</a></li>' for x in SERVICES if x['slug'] in a['liens'])
+    autres = [x for x in ARTICLES if x is not a]
+    corps = f'''  <!-- ========== EN-TÊTE DU GUIDE ========== -->
+  <section class="page-hero">
+    <div class="container">
+        <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="{root}">Serrurier Vaucluse</a></li><li><a href="{root}conseils/">Conseils</a></li><li aria-current="page">{e(a["h1"])}</li></ol></nav>
+      <span class="badge"><span class="dot"></span>{e(a["categorie"])}</span>
+      <h1>{e(a["h1"])}</h1>
+      <p class="lead">{e(a["lead"])}</p>
+      <p class="article-meta">Mis à jour le {date_fr(DATE_CONSEILS)} · Lecture : {duree} min · Par l'équipe {NOM}</p>
+    </div>
+  </section>
+
+  <section id="article" class="alt">
+    <div class="container local">
+      <article class="prose article-body">
+        <div class="card key">
+          <h2>L'essentiel</h2>
+          <ul class="ticks">
+{essentiel}
+          </ul>
+        </div>
+{prose_html(a["sections"], ancres=True)}
+        <div class="card article-cta">
+          <h2>Besoin d'un serrurier dans le Vaucluse ?</h2>
+          <p>Prix annoncé au téléphone avant le déplacement, déplacement inclus, 24h/24 et 7j/7. Porte claquée dès 90 € TTC.</p>
+          <p><a href="{TEL_HREF}" class="btn btn-light"><svg><use href="#i-phone"/></svg>{TEL}</a> <a href="{root}tarifs-serrurier/" class="btn btn-ghost">Voir nos tarifs</a></p>
+        </div>
+      </article>
+      <aside class="sticky">
+        <div class="card">
+          <h3>Sommaire</h3>
+          <ol class="toc">
+{sommaire}
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Nos services liés</h3>
+          <ul class="chips">
+{services}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+'''
+    valeurs = {
+        'FIL': '', 'NAV': root,
+        'URGENCE_P': 'Appelez-nous, un serrurier part immédiatement vers vous.',
+        'FAQ_H2': 'Questions fréquentes', 'FAQ_ITEMS': faq_html(a['faq']),
+        'CONTACT_H2': 'Demandez une intervention ou un devis', 'CONTACT_ZONE': 'Tout le Vaucluse (84)', 'VILLE_EX': 'Avignon',
+    }
+    sections = [corps, bloc('urgence'), bloc('faq'), guides_html(root, autres[:3], 'À lire aussi', 'D\'autres guides pratiques de nos serruriers.'), bloc('contact')]
+    ecrire(f'conseils/{a["slug"]}/index.html', page(root, valeurs, sections, a['titre'], a['desc'], url, ld))
+
+
+def conseils_index():
+    root = '../'
+    url = SITE + 'conseils/'
+    intro = [
+        "Une porte qui claque, des clés qui disparaissent, une serrure qui force un matin d'hiver : la plupart des problèmes de serrurerie arrivent sans prévenir, et souvent au pire moment. Dans l'urgence, on prend parfois de mauvaises décisions : forcer la porte, appeler le premier numéro venu, accepter un prix qui n'a jamais été annoncé.",
+        "Nos serruriers interviennent chaque jour à Avignon et dans tout le Vaucluse. Nous avons rassemblé ici les conseils que nous donnons le plus souvent à nos clients : comment réagir quand on est bloqué dehors, comment reconnaître un professionnel honnête, comment choisir une serrure adaptée à son logement, qui doit payer entre locataire et propriétaire, et comment protéger durablement sa maison des cambriolages.",
+        "Chaque guide est rédigé pour être utile tout de suite, même si vous ne faites jamais appel à nous. Et si vous avez besoin d'un serrurier, nos tarifs sont publics, le déplacement est inclus et le prix vous est toujours annoncé avant l'intervention.",
+    ]
+    ld = [
+        entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}]),
+        {'@type': 'CollectionPage', 'name': 'Conseils de serrurier', 'url': url, 'inLanguage': 'fr-FR',
+         'hasPart': [{'@type': 'BlogPosting', 'headline': a['h1'], 'url': f'{url}{a["slug"]}/'} for a in ARTICLES]},
+        {'@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Serrurier Vaucluse', 'item': SITE},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Conseils', 'item': url}]},
+        faq_ld(FAQ_GENERALE),
+    ]
+    corps = f'''  <section class="page-hero">
+    <div class="container">
+        <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="{root}">Serrurier Vaucluse</a></li><li aria-current="page">Conseils</li></ol></nav>
+      <span class="badge"><span class="dot"></span>Guides pratiques</span>
+      <h1>Conseils de serrurier</h1>
+      <p class="lead">Urgences, prix, sécurité, location : nos guides pour bien réagir et bien choisir, rédigés par nos serruriers du Vaucluse.</p>
+    </div>
+  </section>
+  <section id="intro" class="alt">
+    <div class="container">
+      <div class="prose narrow">
+{chr(10).join(f'        <p>{e(p)}</p>' for p in intro)}
+      </div>
+    </div>
+  </section>
+'''
+    valeurs = {
+        'FIL': '', 'NAV': root,
+        'URGENCE_P': 'Appelez-nous, un serrurier part immédiatement vers vous.',
+        'FAQ_H2': 'Vos questions sur la serrurerie', 'FAQ_ITEMS': faq_html(FAQ_GENERALE),
+        'CONTACT_H2': 'Demandez une intervention ou un devis', 'CONTACT_ZONE': 'Tout le Vaucluse (84)', 'VILLE_EX': 'Avignon',
+    }
+    sections = [corps, guides_html(root, ARTICLES, 'Tous nos guides', 'Choisissez un sujet : chaque guide se lit en quelques minutes.'),
+                bloc('urgence'), bloc('faq'), bloc('contact')]
+    ecrire('conseils/index.html', page(root, valeurs, sections, 'Conseils de serrurier – Guides pratiques | Serrurier Vaucluse',
+                                       "Porte claquée, clés perdues, arnaques, serrures A2P, cambriolage, locataire ou propriétaire : les guides pratiques de nos serruriers du Vaucluse.",
+                                       url, ld))
+
+
+def service(s, info=False):
     root = '../'
     url = f'{SITE}{s["slug"]}/'
     parent = PAR_SLUG.get(s.get('parent'))
     crumbs = [('Serrurier Vaucluse', SITE, '../')] + ([(f'Serrurier {parent["nom"]}', f'{SITE}{parent["slug"]}/', f'../{parent["slug"]}/')] if parent else [])
     ld = [
         entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}] + [{'@type': 'City', 'name': v['nom']} for v in VILLES]),
+        {'@type': 'WebPage', 'name': s['titre'], 'url': url} if info else
         {'@type': 'Service', 'name': s['nom'], 'serviceType': s['nom'], 'url': url,
          'provider': {'@id': SITE + '#entreprise'}, 'areaServed': {'@type': 'AdministrativeArea', 'name': 'Vaucluse'}},
         {'@type': 'BreadcrumbList', 'itemListElement': [
@@ -1102,14 +1700,8 @@ def service(s):
     fil = ('        <nav class="crumbs" aria-label="Fil d\'Ariane"><ol>'
            + ''.join(f'<li><a href="{h}">{e(n)}</a></li>' for n, _, h in crumbs)
            + f'<li aria-current="page">{e(s["nom"])}</li></ol></nav>\n')
-    blocs = []
-    for i, (t, contenu) in enumerate(s['sections']):
-        balise = 'h2' if i == 0 else 'h3'
-        if contenu[0] == 'liste':
-            corps = '          <ul class="ticks">\n' + '\n'.join(f'            <li>{e(x)}</li>' for x in contenu[1:]) + '\n          </ul>'
-        else:
-            corps = '\n'.join(f'          <p>{e(x)}</p>' for x in contenu)
-        blocs.append(f'          <{balise}>{e(t)}</{balise}>\n{corps}')
+    lies = [a for a in ARTICLES if s['slug'] in a['liens']] or ARTICLES[:2]
+    guides = '\n'.join(f'            <li><a href="../conseils/{a["slug"]}/">{e(a["h1"])}</a></li>' for a in lies)
     faits = '\n'.join(f'            <li><span>{e(a)}</span><b>{e(b)}</b></li>' for a, b in s['faits'])
     autres = '\n'.join(f'            <li><a href="../{x["slug"]}/">{e(x["nom"])}</a></li>' for x in SERVICES if x is not s)
     villes = '\n'.join(f'            <li><a href="../{v["slug"]}/">{e(v["nom"])}</a></li>' for v in VILLES)
@@ -1117,7 +1709,7 @@ def service(s):
   <section id="detail" class="alt">
     <div class="container local">
       <div class="prose">
-{chr(10).join(blocs)}
+{prose_html(s["sections"])}
       </div>
       <aside>
         <div class="card">
@@ -1131,6 +1723,12 @@ def service(s):
           <h3>Nos autres services</h3>
           <ul class="chips">
 {autres}
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Nos conseils</h3>
+          <ul class="links">
+{guides}
           </ul>
         </div>
         <div class="card">
@@ -1154,6 +1752,7 @@ def service(s):
     sections = [bloc('hero'), corps, bloc('tarifs'), realisations_html(root, 'dans le Vaucluse'), bloc('urgence'),
                 bloc('faq'), villes_html(root, ''), bloc('contact')]
     ecrire(f'{s["slug"]}/index.html', page(root, valeurs, sections, s['titre'], s['desc'], url, ld))
+    return lies
 
 
 # Informations légales : à compléter par le client avant la mise en ligne définitive
@@ -1185,7 +1784,7 @@ def mentions():
       </ul>
 
       <h2>Hébergement</h2>
-      <p>GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <p>Netlify, Inc., San Francisco, Californie, États-Unis – netlify.com.</p>
 
       <h2>Tarifs et dépannage</h2>
       <p>Les prix affichés sont TTC, déplacement inclus, conformément à l'arrêté du 24 janvier 2017 relatif à l'information des consommateurs sur les prestations de dépannage, de réparation et d'entretien dans le secteur du bâtiment et de l'équipement de la maison. Le tarif est annoncé avant l'intervention et confirmé sur place ; une facture détaillée est remise après chaque intervention.</p>
@@ -1200,7 +1799,7 @@ def mentions():
     </div>
   </section>
 '''
-    valeurs = {'FIL': '', 'NAV': '../'}
+    valeurs = {'FIL': '', 'NAV': '../', 'ANCRE': '../'}
     ecrire('mentions-legales/index.html', page(root, valeurs, [corps], f'Mentions légales – {NOM}',
                                                f'Mentions légales, hébergement et politique de confidentialité du site {NOM}.',
                                                SITE + 'mentions-legales/', [entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}])],
@@ -1209,7 +1808,8 @@ def mentions():
 
 def plan():
     jour = date.today().isoformat()
-    urls = [SITE] + [f'{SITE}{v["slug"]}/' for v in VILLES] + [f'{SITE}{s["slug"]}/' for s in SERVICES]
+    urls = ([SITE] + [f'{SITE}{v["slug"]}/' for v in VILLES] + [f'{SITE}{s["slug"]}/' for s in SERVICES]
+            + [f'{SITE}{TARIFS["slug"]}/', f'{SITE}conseils/'] + [f'{SITE}conseils/{a["slug"]}/' for a in ARTICLES])
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for i, u in enumerate(urls):
         xml.append(f'  <url><loc>{u}</loc><lastmod>{jour}</lastmod><priority>{"1.0" if i == 0 else "0.8"}</priority></url>')
@@ -1224,6 +1824,10 @@ if __name__ == '__main__':
         ville(v)
     for s in SERVICES:
         service(s)
+    service(TARIFS, info=True)
+    conseils_index()
+    for a in ARTICLES:
+        article(a)
     mentions()
     plan()
-    print(f'{1 + len(VILLES) + len(SERVICES)} pages générées, sitemap.xml et robots.txt à jour.')
+    print(f'{1 + len(VILLES) + len(SERVICES) + 2 + len(ARTICLES)} pages générées, sitemap.xml et robots.txt à jour.')
