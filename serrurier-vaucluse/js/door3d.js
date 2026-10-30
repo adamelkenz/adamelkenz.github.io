@@ -75,7 +75,7 @@
   // Halo derrière la porte et ombre au sol
   const halo = new THREE.Sprite(new THREE.SpriteMaterial({
     map: radialTexture('rgba(0,209,255,1)', 'rgba(0,209,255,0)'),
-    transparent: true, opacity: 0.2, blending: THREE.AdditiveBlending, depthWrite: false
+    transparent: true, opacity: 0.2, depthWrite: false
   }));
   halo.scale.set(7, 7, 1);
   halo.position.set(0, 0.2, -1.6);
@@ -234,7 +234,7 @@
   const spPos = new Float32Array(SP * 3), spVel = new Float32Array(SP * 3);
   const spGeo = new THREE.BufferGeometry();
   spGeo.setAttribute('position', new THREE.BufferAttribute(spPos, 3));
-  const spMat = new THREE.PointsMaterial({ color: 0x00d1ff, size: 0.06, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+  const spMat = new THREE.PointsMaterial({ color: 0x00a6da, size: 0.06, transparent: true, opacity: 0, depthWrite: false });
   door.add(new THREE.Points(spGeo, spMat));
 
   // Poussière ambiante
@@ -363,7 +363,7 @@
     }
     lockGlow.intensity = lockFx * 1.4;
     boltMat.emissiveIntensity = lockFx * 1.2;
-    halo.material.opacity = 0.18 + lockFx * 0.25;
+    halo.material.opacity = 0.22 + lockFx * 0.3;
     neon.color.setRGB(0, 0.82 * (0.55 + lockFx * 0.45), 1 * (0.55 + lockFx * 0.45));
   }
 

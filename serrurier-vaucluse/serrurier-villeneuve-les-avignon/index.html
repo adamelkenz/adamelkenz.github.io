@@ -23,7 +23,6 @@
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="../css/style.css">
@@ -134,6 +133,14 @@
     },
     {
      "@type": "Question",
+     "name": "Pouvez-vous remplacer une serrure ancienne sans changer la porte ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui. Nous posons un modèle adapté aux dimensions de la porte, en applique ou à larder, sans la modifier, après avoir vérifié si la serrure d'origine peut être réparée."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Combien coûte une ouverture de porte à Villeneuve-lès-Avignon ?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -231,9 +238,10 @@
     </a>
     <nav class="main" aria-label="Navigation principale">
       <a href="#services">Services</a>
-      <a href="#tarifs">Tarifs</a>
+      <a href="../tarifs-serrurier/">Tarifs</a>
       <a href="#realisations">Réalisations</a>
       <a href="#zones">Zones</a>
+      <a href="../conseils/">Conseils</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -249,6 +257,7 @@
         <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="../">Serrurier Vaucluse</a></li><li aria-current="page">Serrurier Villeneuve-lès-Avignon</li></ol></nav>
         <span class="badge"><span class="dot"></span>Serrurier disponible à Villeneuve-lès-Avignon (30400)</span>
         <h1>Serrurier à Villeneuve-lès-Avignon<br><span>24h/24 – 7j/7</span></h1>
+        <p class="hero-rot" aria-hidden="true">Un serrurier pour <span class="rot" data-words="une porte claquée|une clé perdue|une serrure bloquée|une clé cassée|une effraction|un volet coincé">une porte claquée</span></p>
         <p class="lead">Porte claquée au pied du fort Saint-André, clé perdue ou serrure forcée à Villeneuve-lès-Avignon ? Juste de l'autre côté du Rhône, notre serrurier part d'Avignon et arrive vite chez vous, 24h/24.</p>
         <div class="hero-actions">
           <a href="tel:+33668885151" class="btn btn-light"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
@@ -259,10 +268,17 @@
           <li>Devis gratuit</li>
           <li>7j/7, jours fériés inclus</li>
         </ul>
+        <ul class="hero-stats">
+          <li><strong><span data-count="90">90</span> €</strong><span>ouverture dès, TTC</span></li>
+          <li><strong><span data-count="24">24</span>h/24</strong><span>7 jours sur 7</span></li>
+          <li><strong><span data-count="26">26</span></strong><span>villes desservies</span></li>
+          <li><strong><span data-count="0">0</span> €</strong><span>frais de déplacement</span></li>
+        </ul>
       </div>
 
       <!-- Porte en 3D : forcée, réparée puis verrouillée (js/door3d.js) -->
       <div class="hero-3d" id="door3d">
+        <div class="door-ghost" aria-hidden="true"><i></i></div>
         <div class="price-badge">
           <small>Ouverture de porte dès</small>
           <strong>90 €<em>TTC</em></strong>
@@ -288,10 +304,16 @@
           <h3>Les logements à Villeneuve-lès-Avignon et leurs serrures</h3>
           <p>Le centre historique, entre la Chartreuse du Val de Bénédiction, la collégiale et le fort Saint-André, compte de nombreuses maisons anciennes aux portes en bois massif et aux serrures d'origine. Nous privilégions l'ouverture fine et la réparation pour préserver ces portes.</p>
           <p>Sur les hauteurs et en direction des Angles, les villas et résidences récentes sont équipées de serrures multipoints et de portails : changement de cylindre après une perte de clés et réglage de serrure sont nos interventions les plus fréquentes.</p>
+          <h3>Maisons anciennes et résidences secondaires à Villeneuve</h3>
+          <p>Villeneuve-lès-Avignon compte beaucoup de résidences secondaires et de locations de vacances, notamment dans le centre historique. Une maison occupée quelques semaines par an mérite une attention particulière : cylindre de qualité avec carte de propriété, serrure multipoints sur la porte principale et contrôle des volets avant chaque départ. Dans les ruelles du centre, le stationnement est parfois compliqué l'été : indiquez-nous l'adresse exacte et un point de repère, le serrurier se gare au plus près et termine à pied.</p>
+          <h3>Réparer une serrure ancienne à Villeneuve-lès-Avignon</h3>
+          <p>Sur les portes anciennes du centre de Villeneuve, nous cherchons d'abord à réparer la serrure d'origine : extraction d'un morceau de clé, nettoyage, remplacement d'un ressort ou réglage de la gâche. Quand elle doit être remplacée, nous posons un modèle adapté aux dimensions de la porte, en applique ou à larder, sans la modifier.</p>
+          <p>Pour les maisons récentes des hauteurs, le remplacement du cylindre après une perte de clés suffit dans la plupart des cas, et peut se faire juste après l'ouverture de la porte.</p>
           <h3>Serrurier en urgence à Villeneuve-lès-Avignon : nuit, dimanche et jours fériés</h3>
           <p>Une porte claquée en rentrant d'Avignon tard le soir, une clé cassée un dimanche : il suffit de traverser le Rhône pour venir chez vous. Le tarif de nuit ou de jour férié est annoncé au téléphone avant le départ.</p>
           <h3>Nos interventions à Villeneuve-lès-Avignon</h3>
-          <p><a href="../ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="../changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="../blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="../reparation-apres-effraction/">réparation après effraction</a> et <a href="../depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="#tarifs">Voir nos tarifs</a> ou <a href="tel:+33668885151">appeler le 06 68 88 51 51</a>.</p>
+          <p><a href="../ouverture-de-porte/">Ouverture de porte</a> claquée ou verrouillée, clé cassée ou coincée, réparation et <a href="../changement-de-serrure/">changement de serrure</a>, remplacement de cylindre, pose de serrure multipoints, <a href="../blindage-de-porte/">blindage de porte</a>, poignée anti-effraction, <a href="../reparation-apres-effraction/">réparation après effraction</a> et <a href="../depannage-volet-roulant/">dépannage de volets roulants</a>. <a href="../tarifs-serrurier/">Voir tous nos tarifs</a> ou <a href="tel:+33668885151">appeler le 06 68 88 51 51</a>.</p>
+          <p>Besoin d'un conseil avant d'appeler ? Lisez nos guides : <a href="../conseils/porte-claquee-que-faire/">porte claquée, que faire ?</a>, <a href="../conseils/cle-perdue-que-faire/">clés perdues ou volées</a> et <a href="../conseils/eviter-arnaque-serrurier/">comment éviter les arnaques au serrurier</a>.</p>
       </div>
       <aside>
         <div class="card">
@@ -333,15 +355,15 @@
     <div class="container">
       <div class="section-head">
         <div class="mini mini-wide" aria-hidden="true"><svg viewBox="0 0 132 88">
-          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <rect x="14" y="14" width="52" height="60" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <circle cx="40" cy="38" r="7" fill="#070B18" stroke="#8F7BFF" stroke-width="3"/>
-          <path d="M37 42h6l2 16h-10z" fill="#070B18" stroke="#8F7BFF" stroke-width="3" stroke-linejoin="round"/>
+          <circle class="k-click" cx="40" cy="44" r="22" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <rect x="14" y="14" width="52" height="60" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <circle cx="40" cy="38" r="7" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3"/>
+          <path d="M37 42h6l2 16h-10z" fill="#EAF4FF" stroke="#7B66F5" stroke-width="3" stroke-linejoin="round"/>
           <g class="k-move"><g class="k-turn">
-            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#D6F4FF"/>
-            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#D6F4FF"/>
-            <circle cx="104" cy="38.5" r="13" fill="#8F7BFF" stroke="#D6F4FF" stroke-width="3"/>
-            <circle cx="108" cy="38.5" r="4" fill="#070B18"/>
+            <rect x="42" y="36" width="50" height="5" rx="2.5" fill="#1B2550"/>
+            <path d="M54 41v6h5v-6M66 41v4h5v-4" fill="#1B2550"/>
+            <circle cx="104" cy="38.5" r="13" fill="#7B66F5" stroke="#1B2550" stroke-width="3"/>
+            <circle cx="108" cy="38.5" r="4" fill="#EAF4FF"/>
           </g></g>
         </svg></div>
         <span class="eyebrow">Nos prestations</span>
@@ -405,10 +427,10 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <g class="coin"><circle cx="50" cy="50" r="36" fill="#121A33" stroke="#00D1FF" stroke-width="5"/>
-          <circle cx="50" cy="50" r="27" fill="none" stroke="#2B3A67" stroke-width="3"/>
+          <g class="coin"><circle cx="50" cy="50" r="36" fill="#FFFFFF" stroke="#00B4E6" stroke-width="5"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#C7D5F0" stroke-width="3"/>
           <g style="color:#8F7BFF"><use href="#i-euro" x="32" y="32" width="36" height="36"/></g></g>
-          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#D6F4FF"/></g>
+          <g class="coin-shine"><path d="M84 14c.6 4.4 2.4 6.2 6.8 6.8-4.4.6-6.2 2.4-6.8 6.8-.6-4.4-2.4-6.2-6.8-6.8 4.4-.6 6.2-2.4 6.8-6.8z" fill="#1B2550"/></g>
         </svg></div>
         <span class="eyebrow">Grille tarifaire</span>
         <h2>Nos tarifs à Villeneuve-lès-Avignon, annoncés avant l'intervention</h2>
@@ -457,11 +479,11 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <rect x="10" y="22" width="80" height="58" rx="10" fill="#121A33" stroke="#00D1FF" stroke-width="4"/>
-          <rect x="36" y="12" width="28" height="12" rx="4" fill="#2B3A67" stroke="#00D1FF" stroke-width="3"/>
-          <circle cx="50" cy="51" r="17" fill="#070B18" stroke="#8F7BFF" stroke-width="4"/>
-          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00D1FF"/>
-          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#D6F4FF"/>
+          <rect x="10" y="22" width="80" height="58" rx="10" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/>
+          <rect x="36" y="12" width="28" height="12" rx="4" fill="#C7D5F0" stroke="#00B4E6" stroke-width="3"/>
+          <circle cx="50" cy="51" r="17" fill="#EAF4FF" stroke="#7B66F5" stroke-width="4"/>
+          <circle class="q-dot" cx="50" cy="51" r="7" fill="#00B4E6"/>
+          <circle class="ph-wave" cx="77" cy="34" r="4" fill="#1B2550"/>
         </svg></div>
         <span class="eyebrow">Nos réalisations</span>
         <h2>Nos dernières interventions dans le Vaucluse</h2>
@@ -496,9 +518,9 @@
     <div class="container">
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
-          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00D1FF" stroke-width="3"/>
-          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#8F7BFF" stroke-width="3"/>
-          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#121A33" stroke="#00D1FF" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#8F7BFF"/><path d="M47.5 32h5l1.5 10h-8z" fill="#8F7BFF"/></g>
+          <ellipse class="pin-ring" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#00B4E6" stroke-width="3"/>
+          <ellipse class="pin-ring r2" cx="50" cy="84" rx="24" ry="7" fill="none" stroke="#7B66F5" stroke-width="3"/>
+          <g class="pin-drop"><path d="M50 10c-14 0-24 10-24 23 0 17 24 45 24 45s24-28 24-45c0-13-10-23-24-23z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4"/><circle cx="50" cy="29" r="6" fill="#7B66F5"/><path d="M47.5 32h5l1.5 10h-8z" fill="#7B66F5"/></g>
         </svg></div>
         <span class="eyebrow">Zones d'intervention</span>
         <h2>Villeneuve-lès-Avignon et tout le Vaucluse</h2>
@@ -534,10 +556,10 @@
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="q-bubble">
-            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#121A33" stroke="#00D1FF" stroke-width="4" stroke-linejoin="round"/>
-            <circle class="q-dot" cx="34" cy="40" r="5" fill="#8F7BFF"/>
-            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00D1FF"/>
-            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#D6F4FF"/>
+            <path d="M14 22a10 10 0 0 1 10-10h52a10 10 0 0 1 10 10v34a10 10 0 0 1-10 10H40L24 82V66a10 10 0 0 1-10-10z" fill="#FFFFFF" stroke="#00B4E6" stroke-width="4" stroke-linejoin="round"/>
+            <circle class="q-dot" cx="34" cy="40" r="5" fill="#7B66F5"/>
+            <circle class="q-dot d2" cx="50" cy="40" r="5" fill="#00B4E6"/>
+            <circle class="q-dot d3" cx="66" cy="40" r="5" fill="#1B2550"/>
           </g>
         </svg></div>
         <span class="eyebrow">Questions fréquentes</span>
@@ -547,6 +569,10 @@
         <details>
           <summary>Intervenez-vous à Villeneuve-lès-Avignon alors que la commune est dans le Gard ?</summary>
           <p>Oui. Villeneuve-lès-Avignon est juste en face d'Avignon, d'où partent nos interventions : nous y venons aussi souvent que dans les quartiers d'Avignon, aux mêmes tarifs, déplacement inclus.</p>
+        </details>
+        <details>
+          <summary>Pouvez-vous remplacer une serrure ancienne sans changer la porte ?</summary>
+          <p>Oui. Nous posons un modèle adapté aux dimensions de la porte, en applique ou à larder, sans la modifier, après avoir vérifié si la serrure d'origine peut être réparée.</p>
         </details>
         <details>
           <summary>Combien coûte une ouverture de porte à Villeneuve-lès-Avignon ?</summary>
@@ -580,7 +606,7 @@
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Serrurier dans le Vaucluse (84)</span>
-        <h2>Nous intervenons aussi dans ces villes du Vaucluse</h2>
+        <h2>Nous intervenons aussi dans ces villes</h2>
         <p>Avignon, le Comtat Venaissin, le Haut-Vaucluse, l'Enclave des Papes et le Luberon : choisissez votre ville pour découvrir nos interventions près de chez vous.</p>
       </div>
       <div class="cities">
@@ -591,6 +617,12 @@
         <a class="city-card" href="../serrurier-morieres-les-avignon/"><strong>Serrurier Morières-lès-Avignon<em>84310</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
         <a class="city-card" href="../serrurier-entraigues-sur-la-sorgue/"><strong>Serrurier Entraigues-sur-la-Sorgue<em>84320</em></strong><span>Centre ancien, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="../serrurier-le-thor/"><strong>Serrurier Le Thor<em>84250</em></strong><span>Centre du village, Bords de Sorgue, Thouzon</span></a>
+        <a class="city-card" href="../serrurier-saint-saturnin-les-avignon/"><strong>Serrurier Saint-Saturnin-lès-Avignon<em>84450</em></strong><span>Centre, Lotissements, Quartiers résidentiels</span></a>
+        <a class="city-card" href="../serrurier-chateauneuf-de-gadagne/"><strong>Serrurier Châteauneuf-de-Gadagne<em>84470</em></strong><span>Village perché, Quartiers résidentiels, Lotissements</span></a>
+        <a class="city-card" href="../serrurier-caumont-sur-durance/"><strong>Serrurier Caumont-sur-Durance<em>84510</em></strong><span>Vieux village, Plaine de la Durance, Quartiers résidentiels</span></a>
+        <a class="city-card" href="../serrurier-bedarrides/"><strong>Serrurier Bédarrides<em>84370</em></strong><span>Centre ancien, Lotissements, Bords de l'Ouvèze</span></a>
+        <a class="city-card" href="../serrurier-chateauneuf-du-pape/"><strong>Serrurier Châteauneuf-du-Pape<em>84230</em></strong><span>Village, Château des papes, Domaines viticoles</span></a>
+        <a class="city-card" href="../serrurier-courthezon/"><strong>Serrurier Courthézon<em>84350</em></strong><span>Centre ancien, Remparts, Quartiers résidentiels</span></a>
         <a class="city-card" href="../serrurier-le-pontet/"><strong>Serrurier Le Pontet<em>84130</em></strong><span>Centre-ville, Quartiers pavillonnaires, Résidences</span></a>
         <a class="city-card" href="../serrurier-sorgues/"><strong>Serrurier Sorgues<em>84700</em></strong><span>Centre-ville, Quartiers pavillonnaires, Zones d'activités</span></a>
         <a class="city-card" href="../serrurier-carpentras/"><strong>Serrurier Carpentras<em>84200</em></strong><span>Centre ancien, Boulevards, Quartiers résidentiels</span></a>
@@ -613,8 +645,8 @@
       <div class="section-head">
         <div class="mini" aria-hidden="true"><svg viewBox="0 0 100 100">
           <g class="ph-shake" style="color:#8F7BFF"><use href="#i-phone" x="18" y="28" width="52" height="52"/></g>
-          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
-          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00D1FF" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave" d="M66 30a16 16 0 0 1 12 14" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
+          <path class="ph-wave w2" d="M70 16a30 30 0 0 1 22 26" fill="none" stroke="#00B4E6" stroke-width="5" stroke-linecap="round"/>
         </svg></div>
         <span class="eyebrow">Contact</span>
         <h2>Demandez un serrurier à Villeneuve-lès-Avignon</h2>
@@ -723,11 +755,35 @@
           <li><a href="../reparation-apres-effraction/">Réparation après effraction</a></li>
           <li><a href="../depannage-volet-roulant/">Volets roulants</a></li>
           <li><a href="../serrurier-urgence-avignon/">Urgence 24h/24 Avignon</a></li>
+          <li><a href="../ouverture-boite-aux-lettres/">Boîte aux lettres</a></li>
+          <li><a href="../serrurier-professionnels/">Professionnels et syndics</a></li>
+          <li><a href="../tarifs-serrurier/">Nos tarifs</a></li>
         </ul>
       </div>
       <div>
-        <h4>Villes</h4>
+        <h4>Conseils</h4>
         <ul>
+          <li><a href="../conseils/porte-claquee-que-faire/">Porte claquée : que faire ?</a></li>
+          <li><a href="../conseils/cle-perdue-que-faire/">Clés perdues ou volées : que faire ?</a></li>
+          <li><a href="../conseils/eviter-arnaque-serrurier/">Arnaque au serrurier : comment l’éviter</a></li>
+          <li><a href="../conseils/choisir-serrure-a2p/">Serrure A2P : comment choisir le bon niveau de sécurité</a></li>
+          <li><a href="../conseils/serrure-bloquee-cle-qui-force/">Serrure bloquée ou clé qui force : que faire ?</a></li>
+          <li><a href="../conseils/proteger-maison-cambriolage/">Protéger sa maison des cambriolages : 12 conseils de serrurier</a></li>
+          <li><a href="../conseils/serrurier-locataire-ou-proprietaire/">Serrurier : qui paie, le locataire ou le propriétaire ?</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
+          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
+          <li><a href="../">Serrurier Vaucluse (84)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-villes">
+      <h4>Nos villes d'intervention</h4>
+      <ul>
           <li><a href="../serrurier-avignon/">Serrurier Avignon</a></li>
           <li><a href="../serrurier-villeneuve-les-avignon/">Serrurier Villeneuve-lès-Avignon</a></li>
           <li><a href="../serrurier-les-angles/">Serrurier Les Angles</a></li>
@@ -735,6 +791,12 @@
           <li><a href="../serrurier-morieres-les-avignon/">Serrurier Morières-lès-Avignon</a></li>
           <li><a href="../serrurier-entraigues-sur-la-sorgue/">Serrurier Entraigues-sur-la-Sorgue</a></li>
           <li><a href="../serrurier-le-thor/">Serrurier Le Thor</a></li>
+          <li><a href="../serrurier-saint-saturnin-les-avignon/">Serrurier Saint-Saturnin-lès-Avignon</a></li>
+          <li><a href="../serrurier-chateauneuf-de-gadagne/">Serrurier Châteauneuf-de-Gadagne</a></li>
+          <li><a href="../serrurier-caumont-sur-durance/">Serrurier Caumont-sur-Durance</a></li>
+          <li><a href="../serrurier-bedarrides/">Serrurier Bédarrides</a></li>
+          <li><a href="../serrurier-chateauneuf-du-pape/">Serrurier Châteauneuf-du-Pape</a></li>
+          <li><a href="../serrurier-courthezon/">Serrurier Courthézon</a></li>
           <li><a href="../serrurier-le-pontet/">Serrurier Le Pontet</a></li>
           <li><a href="../serrurier-sorgues/">Serrurier Sorgues</a></li>
           <li><a href="../serrurier-carpentras/">Serrurier Carpentras</a></li>
@@ -748,16 +810,7 @@
           <li><a href="../serrurier-l-isle-sur-la-sorgue/">Serrurier L'Isle-sur-la-Sorgue</a></li>
           <li><a href="../serrurier-apt/">Serrurier Apt</a></li>
           <li><a href="../serrurier-pertuis/">Serrurier Pertuis</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+33668885151">06 68 88 51 51</a></li>
-          <li><a href="mailto:contact@serrurier-vaucluse.fr">contact@serrurier-vaucluse.fr</a></li>
-          <li><a href="../">Serrurier Vaucluse (84)</a></li>
-        </ul>
-      </div>
+      </ul>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year">2026</span> Serrurier Vaucluse – serrurier-vaucluse.fr</span>
@@ -768,11 +821,7 @@
 
 <a href="tel:+33668885151" class="btn btn-light float-call"><svg><use href="#i-phone"/></svg>Appeler un serrurier</a>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script defer src="../js/door3d.js"></script>
 <script defer src="../js/booking.js"></script>
 <script defer src="../js/site.js"></script>
-<script defer src="../js/zones-map.js"></script>
 </body>
 </html>
