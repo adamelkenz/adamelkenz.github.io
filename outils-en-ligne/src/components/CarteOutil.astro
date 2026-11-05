@@ -5,5 +5,5 @@ const { href, titre, texte, categorie } = Astro.props;
 ---
 <a class="carte-outil" href={href}>
   <span class={`pastille pastille-${categorie}`}><Icone nom={categorie} /></span>
-  <span><strong>{titre}</strong><span>{texte}</span></span>
+  <span class="carte-texte"><strong>{titre}</strong><span class="carte-desc">{texte}</span></span>
 </a>
