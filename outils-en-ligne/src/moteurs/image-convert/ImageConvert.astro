@@ -2,6 +2,8 @@
 /**
  * Moteur "image-convert" : convertit des images avec le Canvas du navigateur.
  * Options JSON : { "accepte": [".webp"], "sortie": "png" | "jpg" | "webp" }
+ * Les photos HEIC/HEIF sont lues nativement par Safari ; ailleurs, le décodeur
+ * WebAssembly (heic-to) est téléchargé uniquement au premier fichier HEIC.
  */
 import ZoneDepot from '../../components/ZoneDepot.astro';
 import { textes, type Langue } from '../../lib/i18n';
@@ -12,6 +14,7 @@ const t = textes(langue).moteurs.imageConvert;
 const sortie = String(options.sortie ?? 'png');
 const accepte = (options.accepte as string[]) ?? ['.webp'];
 const avecQualite = sortie === 'jpg' || sortie === 'webp';
+const transparencePossible = accepte.some((e) => !/hei[cf]/.test(e));
 ---
 <ZoneDepot moteur="image-convert" langue={langue} accepte={accepte} options={{ sortie }} textesMoteur={t}>
   {avecQualite && (
@@ -22,14 +25,39 @@ const avecQualite = sortie === 'jpg' || sortie === 'webp';
         <input type="range" name="qualite" min="50" max="100" step="1" value="90" />
         <output>90 %</output>
       </label>
-      {sortie === 'jpg' && <small class="depot-formats">{t.noteTransparence}</small>}
+      {sortie === 'jpg' && transparencePossible && <small class="depot-formats">{t.noteTransparence}</small>}
     </fieldset>
   )}
 </ZoneDepot>
 
 <script>
   import { InterfaceOutil, renommer, remplir, pause, messageErreur } from '../../lib/client/outil';
-  import { MIME, decoderImage, encoderImage } from '../../lib/client/image';
+  import { MIME, decoderImage, encoderImage, type ImageDecodee } from '../../lib/client/image';
+
+  type HeicTo = typeof import('heic-to/csp').heicTo;
+  let heicTo: HeicTo | undefined;
+  let heicNatif: boolean | undefined;
+
+  /** Décode une image ; pour le HEIC, essaie le navigateur puis le module WebAssembly. */
+  async function decoder(f: File, ui: InterfaceOutil): Promise<ImageDecodee> {
+    const estHeic = /\.(heic|heif)$/i.test(f.name) || /image\/hei[cf]/i.test(f.type);
+    if (!estHeic) return decoderImage(f);
+    if (heicNatif !== false) {
+      try {
+        const img = await decoderImage(f);
+        heicNatif = true;
+        return img;
+      } catch {
+        heicNatif = false;
+      }
+    }
+    if (!heicTo) {
+      ui.info(ui.t.chargementMoteur);
+      heicTo = (await import('heic-to/csp')).heicTo;
+    }
+    const bmp = await heicTo({ blob: f, type: 'bitmap' });
+    return { source: bmp, largeur: bmp.width, hauteur: bmp.height, liberer: () => bmp.close() };
+  }
 
   document.querySelectorAll<HTMLElement>('.outil[data-moteur="image-convert"]').forEach((root) => {
     const ui = new InterfaceOutil(root);
@@ -51,7 +79,7 @@ const avecQualite = sortie === 'jpg' || sortie === 'webp';
           ui.info(remplir(ui.t.traitementN, { i: i + 1, n: fichiers.length }), i / fichiers.length);
           await pause();
           try {
-            const img = await decoderImage(f);
+            const img = await decoder(f, ui);
             const blob = await encoderImage(img, mime, qualite);
             img.liberer();
             ui.ajouterResultat({ nom: renommer(f.name, sortie), blob, tailleAvant: f.size });

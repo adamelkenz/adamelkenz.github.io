@@ -64,7 +64,7 @@ const outils = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/outils' }),
   schema: z.object({
     categorie: z.enum(['pdf', 'image', 'video']),
-    moteur: z.enum(['image-convert', 'heic-convert', 'pdf-merge', 'pdf-compress', 'video-convert']),
+    moteur: z.enum(['image-convert', 'pdf-merge', 'pdf-compress', 'video-convert']),
     options: z.record(z.string(), z.unknown()).default({}),
     similaires: z.array(z.string()).min(4, 'Indiquez au moins 4 outils similaires.').max(6, 'Indiquez au maximum 6 outils similaires.'),
     // true = page en préparation : non publiée, absente du sitemap et des menus.

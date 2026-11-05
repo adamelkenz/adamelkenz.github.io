@@ -46,3 +46,19 @@ test.describe('WebP → JPG', () => {
     expect(Math.min(rr, g, bb)).toBeGreaterThan(245); // blanc
   });
 });
+
+test.describe('HEIC → JPG', () => {
+  test('décode une photo HEIC (module WebAssembly) et produit un JPG', async ({ page }) => {
+    await page.goto('/convertir-heic-en-jpg');
+    await page.locator('input[type=file]').setInputFiles(fixture('photo-iphone.heic'));
+    await expect(page.locator('.etat.ok')).toBeVisible({ timeout: 60_000 });
+    const r = await telecharger(page, 0);
+    expect(r.nom).toBe('photo-iphone.jpg');
+    expect(dimensionsJpeg(r.contenu)).toEqual({ largeur: 640, hauteur: 480 });
+    // Coin haut-gauche du dégradé de test : rouge dominant
+    const [rr, g, b] = await pixel(page, 0, 4, 4);
+    expect(rr).toBeGreaterThan(200);
+    expect(g).toBeLessThan(60);
+    expect(Math.abs(b - 90)).toBeLessThan(40);
+  });
+});
