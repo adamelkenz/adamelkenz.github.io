@@ -159,6 +159,12 @@ def main(argv=None):
     if a.music:
         music = stereo(audio.load(a.music)) * 10 ** (a.music_db / 20)
 
+    for role in sorted({c['role'] for c in cues}):
+        rl = lock['roles'].get(role)
+        if rl and rl.get('align') == 'peak' and role.startswith('whoosh') and 'offset_ms' not in rl:
+            print(f"  note: {role} puts its peak on the frame, so its attack is heard ~1 frame early; "
+                  'set "offset_ms": 37 on the role (the launch preset\'s measured median) to land the attack on it')
+
     dur = a.duration or (probe_duration(a.video) if a.video else None)
     plan, used = [], {}
     for c in sorted(cues, key=lambda c: c['t']):
@@ -181,7 +187,10 @@ def main(argv=None):
         start = K.place(take, rl, c['t'])
         plan.append({'cue': c['i'], 't': round(c['t'], 4), 'role': c['role'], 'file': take['file'],
                      'align': rl['align'], 'offset_ms': rl.get('offset_ms', 0.0), 'start': start,
-                     'gain_db': round(g, 2), 'bed_lufs': bed, 'end': start + take['dur_s']})
+                     'gain_db': round(g, 2), 'bed_lufs': bed, 'end': start + take['dur_s'],
+                     # where the ear should find this sound's attack, from the take's measured onset: 0 for a
+                     # hit on its frame, a few ms early for a whoosh whose peak sits offset_ms after the cut
+                     'expect_ms': round((start + take['onset_s'] - c['t']) * 1000, 1)})
 
     if dur is None:
         ends = [x['end'] for x in plan] + ([len(music) / SR] if music is not None else [])
@@ -204,21 +213,31 @@ def main(argv=None):
     if a.target_lufs is not None and np.isfinite(lufs):
         mix *= 10 ** ((a.target_lufs - lufs) / 20)
         lufs = a.target_lufs
-    peak = float(np.max(np.abs(mix))) if n else 0.0
-    ceiling = 10 ** (-1.0 / 20)
-    if peak > ceiling:                              # never clip: pull the whole mix under -1 dBFS
-        mix *= ceiling / peak
-        print(f'  mix peaked at {20 * np.log10(peak):+.1f} dBFS: lowered {20 * np.log10(peak / ceiling):.1f} dB')
+    # never clip: up to MAX_LIMIT_DB of peaks go through a look-ahead true-peak limiter (transients stay intact
+    # for a few dB), anything beyond that lowers the whole mix first
+    from earshot.forge import fx
+    MAX_LIMIT_DB = 6.0
+    peak_db = 20 * np.log10(float(np.max(np.abs(mix))) + 1e-12) if n else -240.0
+    over = peak_db - (-1.0)
+    if over > 0:
+        if over > MAX_LIMIT_DB:
+            mix *= 10 ** (-(over - MAX_LIMIT_DB) / 20)
+            print(f'  mix peaked at {peak_db:+.1f} dBFS: lowered {over - MAX_LIMIT_DB:.1f} dB, then limited '
+                  f'{MAX_LIMIT_DB:.0f} dB')
+        else:
+            print(f'  mix peaked at {peak_db:+.1f} dBFS: limited {over:.1f} dB to -1 dBTP')
+        mix = fx.limit(mix, ceiling_db=-1.0)
         lufs = meter.integrated_loudness(mix)
 
     wav = a.wav or (os.path.splitext(a.out)[0] + '.soundtrack.wav' if a.out else 'soundtrack.wav')
     sf.write(wav, mix.astype(np.float32), SR, subtype='PCM_24')
 
     print(f'\n{len(plan)} sounds placed, {dur:.2f} s, {lufs:.1f} LUFS integrated -> {wav}')
-    print(f"  {'cue':>3} {'t (s)':>7} {'role':14s} {'take':22s} {'sync on':7s} {'offset':>7} {'start':>8} {'gain':>6}")
+    print(f"  {'cue':>3} {'t (s)':>7} {'role':14s} {'take':22s} {'sync on':7s} {'offset':>7} {'start':>8} "
+          f"{'gain':>6} {'attack':>8}")
     for x in plan:
         print(f"  {x['cue']:>3} {x['t']:7.3f} {x['role']:14s} {x['file']:22s} {x['align']:7s} "
-              f"{x['offset_ms']:+6.0f}ms {x['start']:8.3f} {x['gain_db']:+6.1f}")
+              f"{x['offset_ms']:+6.0f}ms {x['start']:8.3f} {x['gain_db']:+6.1f} {x['expect_ms']:+6.1f}ms")
 
     if a.out:
         if not a.video:
@@ -237,21 +256,21 @@ def main(argv=None):
                                                         for x in plan]})
         r = api.timeline(target, cues=heard_cues, detail='low', **kw)
         sy = (r.get('sync') or {}).get('cues') or {}
-        want = {x['cue']: x['offset_ms'] for x in plan}
+        want = {x['cue']: x['expect_ms'] for x in plan}
         frame_ms = 1000.0 / fps if fps else 40.0
-        print(f"\nlistened back ({'within 1 frame' if fps else 'within 40 ms'} = {frame_ms:.1f} ms; "
-              'offset = sound minus picture, negative = early; "aimed" = the role\'s intended offset_ms):')
+        print(f"\nlistened back (offset = heard attack minus picture, negative = early; expected = from the "
+              f"take's measured onset; tolerance one frame = {frame_ms:.1f} ms):")
         bad = 0
         for row in sy.get('items') or []:
             off, aim = row.get('offset_ms'), want.get(row.get('id'), 0.0)
-            ok = off is not None and abs(off - aim) <= frame_ms
+            ok = off is not None and abs(off - aim) < frame_ms       # strictly inside a frame, as timeline's OK
             bad += not ok
             print(f"  cue {row.get('id', '?'):>3} {row.get('kind', ''):14s} t={row['t']:7.3f}  heard "
-                  f"{'-' if off is None else f'{off:+.1f} ms':>10}  aimed {aim:+.0f} ms  {row.get('status')}"
+                  f"{'-' if off is None else f'{off:+.1f} ms':>10}  expected {aim:+6.1f} ms  ({row.get('status')})"
                   f"{'' if ok else '  <-- check'}")
         print('  stats:', json.dumps(sy.get('stats') or {}))
         print(f"  {len(sy.get('items') or []) - bad} of {len(sy.get('items') or [])} cues heard within a frame "
-              'of their aim' + ('' if not bad else '; open `earshot sheet` on the result to see the others'))
+              'of where expected' + ('' if not bad else '; open `earshot sheet` on the result to see the others'))
 
 
 if __name__ == '__main__':
