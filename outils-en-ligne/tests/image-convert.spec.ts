@@ -39,6 +39,9 @@ test.describe('WebP → JPG', () => {
     await expect(page.locator('.options output')).toHaveText('80 %');
     await page.locator('input[type=file]').setInputFiles(fixture('logo-transparent.webp'));
     await expect(page.locator('.etat.ok')).toBeVisible();
+    // Un seul fichier : pas de bouton ZIP
+    await expect(page.locator('[data-action=zip]')).toBeHidden();
+    await expect(page.locator('[data-action=recommencer]')).toBeVisible();
     const r = await telecharger(page, 0);
     expect(r.nom).toBe('logo-transparent.jpg');
     expect(dimensionsJpeg(r.contenu)).toEqual({ largeur: 400, hauteur: 300 });

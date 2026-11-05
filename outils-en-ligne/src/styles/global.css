@@ -40,6 +40,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+/* L'attribut HTML « hidden » doit toujours l'emporter sur les display des composants */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
