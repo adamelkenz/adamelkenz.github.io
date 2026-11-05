@@ -14,7 +14,7 @@
     "heic-en-jpg",
     "webp-en-jpg"
   ],
-  "brouillon": true,
+  "brouillon": false,
   "dateMaj": "2026-11-05",
   "langues": {
     "fr": {

@@ -99,6 +99,30 @@
       "nomSortie": "fusion.pdf",
       "noteResultat": "{n} fichiers fusionnés, {p} pages au total.",
       "termine": "Terminé ! Votre PDF fusionné est prêt."
+    },
+    "pdfCompress": {
+      "niveau": "Niveau de compression",
+      "legere": "Légère",
+      "legereAide": "Qualité quasi identique, gain modéré",
+      "recommandee": "Recommandée",
+      "recommandeeAide": "Le meilleur équilibre poids / lisibilité",
+      "maximale": "Maximale",
+      "maximaleAide": "Fichier très léger, texte non sélectionnable",
+      "objectif": "Objectif : un PDF de moins de {mo} Mo, sans réglage à faire.",
+      "lecture": "Lecture du PDF…",
+      "etapeImages": "Compression des images du PDF…",
+      "etapePages": "Conversion des pages en images…",
+      "dejaSousCible": "Votre PDF fait déjà {taille} : il est sous la limite de {mo} Mo, vous pouvez l'utiliser tel quel.",
+      "dejaOptimise": "Ce PDF est déjà optimisé : impossible de le réduire davantage avec ce niveau. Essayez le niveau « Maximale ».",
+      "dejaOptimiseMax": "Ce PDF est déjà très léger : impossible de le réduire davantage.",
+      "termine": "Terminé ! Votre PDF est {pct} % plus léger.",
+      "termineCible": "Terminé ! Votre PDF fait maintenant {taille}, sous la limite de {mo} Mo.",
+      "cibleImpossible": "Impossible d'atteindre {mo} Mo sans rendre le document illisible. Voici le plus petit fichier obtenu ({taille}) : essayez de diviser le document en plusieurs fichiers.",
+      "notePages": "Les pages ont été converties en images : le texte reste lisible mais n'est plus sélectionnable.",
+      "noteImages": "Texte et mise en page conservés : seules les images ont été allégées.",
+      "motDePasse": "Ce PDF est protégé par un mot de passe : déverrouillez-le d'abord.",
+      "illisible": "Ce fichier PDF est illisible ou endommagé.",
+      "suffixe": "-compresse"
     }
   }
 }

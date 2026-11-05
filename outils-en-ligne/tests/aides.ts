@@ -43,3 +43,15 @@ export async function pixel(page: Page, index: number, x: number, y: number): Pr
     { href, x, y },
   );
 }
+
+/** Extrait le texte d'un PDF (pour vérifier qu'il est toujours sélectionnable). */
+export async function texteDuPdf(octets: Buffer): Promise<string> {
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
+  const doc = await pdfjs.getDocument({ data: new Uint8Array(octets), verbosity: 0 }).promise;
+  let texte = '';
+  for (let i = 1; i <= doc.numPages; i++) {
+    const contenu = await (await doc.getPage(i)).getTextContent();
+    texte += contenu.items.map((it) => ('str' in it ? it.str : '')).join(' ') + '\n';
+  }
+  return texte;
+}

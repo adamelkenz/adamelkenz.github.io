@@ -1,0 +1,104 @@
+---
+/**
+ * Moteur "pdf-compress" : réduit le poids d'un PDF dans le navigateur.
+ * Options JSON :
+ *   { "accepte": [".pdf"] }                       → choix du niveau (légère / recommandée / maximale)
+ *   { "accepte": [".pdf"], "tailleCibleMo": 2 }   → compression automatique sous 2 Mo
+ */
+import ZoneDepot from '../../components/ZoneDepot.astro';
+import { textes, type Langue } from '../../lib/i18n';
+import { remplir } from '../../lib/texte';
+
+interface Props { langue: Langue; options: Record<string, unknown>; }
+const { langue, options } = Astro.props;
+const t = textes(langue).moteurs.pdfCompress;
+const accepte = (options.accepte as string[]) ?? ['.pdf'];
+const cible = typeof options.tailleCibleMo === 'number' ? options.tailleCibleMo : null;
+const niveaux = [
+  { v: 'legere', nom: t.legere, aide: t.legereAide },
+  { v: 'recommandee', nom: t.recommandee, aide: t.recommandeeAide },
+  { v: 'maximale', nom: t.maximale, aide: t.maximaleAide },
+];
+---
+<ZoneDepot moteur="pdf-compress" langue={langue} accepte={accepte} multiple={false} options={{ cible }} textesMoteur={t}>
+  {cible ? (
+    <p class="depot-formats" style="margin:12px 0 0">{remplir(t.objectif, { mo: cible })}</p>
+  ) : (
+    <fieldset class="options">
+      <legend>{t.niveau}</legend>
+      <div class="choix">
+        {niveaux.map((n) => (
+          <label>
+            <input type="radio" name="niveau" value={n.v} checked={n.v === 'recommandee'} />
+            <span>{n.nom}<small>{n.aide}</small></span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  )}
+</ZoneDepot>
+
+<script>
+  import { InterfaceOutil, remplir, pause, formatTaille, renommer, messageErreur } from '../../lib/client/outil';
+  import { ouvrirAvecPdfLib, ErreurPdf } from '../../lib/client/pdf';
+  import { compresserNiveau, compresserVersCible, type ResultatCompression } from '../../lib/client/pdf-compression';
+
+  document.querySelectorAll<HTMLElement>('.outil[data-moteur="pdf-compress"]').forEach((root) => {
+    const ui = new InterfaceOutil(root);
+    const t = ui.t;
+    const mo: number | null = ui.options.cible;
+    // 1 Mo = 1 000 000 octets : sous cette valeur, le fichier passe aussi si le site compte en 1 024.
+    const cibleOctets = mo ? Math.floor(mo * 1_000_000 * 0.99) : 0;
+
+    ui.surFichiers(async ([fichier]) => {
+      ui.reinitialiser();
+      ui.occupe(true);
+      ui.info(t.lecture);
+      await pause();
+      try {
+        const data = new Uint8Array(await fichier.arrayBuffer());
+        if (mo && data.length <= cibleOctets) {
+          ui.ok(remplir(t.dejaSousCible, { taille: formatTaille(data.length, ui.langue), mo }));
+          return;
+        }
+        // Vérifie que le PDF s'ouvre (mot de passe, fichier abîmé) avant de lancer le travail
+        const { protege } = await ouvrirAvecPdfLib(data);
+
+        const progression = (etape: 'images' | 'pages', a: number) =>
+          ui.info(etape === 'images' ? t.etapeImages : t.etapePages, a);
+
+        let r: ResultatCompression;
+        if (mo) {
+          r = await compresserVersCible(data, cibleOctets, progression);
+        } else {
+          const choix = root.querySelector<HTMLInputElement>('input[name=niveau]:checked')?.value ?? 'recommandee';
+          // Un PDF protégé ne peut être réécrit qu'en convertissant ses pages
+          const niveau = protege ? 'maximale' : (choix as 'legere' | 'recommandee' | 'maximale');
+          r = await compresserNiveau(data, niveau, progression);
+          if (r.methode === 'aucune') {
+            ui.info(niveau === 'maximale' ? t.dejaOptimiseMax : t.dejaOptimise);
+            return;
+          }
+        }
+
+        ui.ajouterResultat({
+          nom: renommer(fichier.name, 'pdf').replace(/\.pdf$/, `${t.suffixe}.pdf`),
+          blob: new Blob([r.octets as BlobPart], { type: 'application/pdf' }),
+          tailleAvant: data.length,
+          note: r.methode === 'pages' ? t.notePages : t.noteImages,
+        });
+        const taille = formatTaille(r.octets.length, ui.langue);
+        if (mo && !r.atteint) ui.erreur(remplir(t.cibleImpossible, { mo, taille }));
+        else if (mo) ui.ok(remplir(t.termineCible, { taille, mo }));
+        else ui.ok(remplir(t.termine, { pct: Math.round((1 - r.octets.length / data.length) * 100) }));
+        ui.terminer();
+      } catch (e) {
+        console.error(e);
+        if (e instanceof ErreurPdf) ui.erreur(e.code === 'mot-de-passe' ? t.motDePasse : t.illisible);
+        else ui.erreur(remplir(t.erreur, { message: messageErreur(e) }));
+      } finally {
+        ui.occupe(false);
+      }
+    });
+  });
+</script>
