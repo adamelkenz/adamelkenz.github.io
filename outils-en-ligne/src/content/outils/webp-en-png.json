@@ -1,0 +1,86 @@
+{
+  "categorie": "image",
+  "moteur": "image-convert",
+  "options": {
+    "accepte": [
+      ".webp"
+    ],
+    "sortie": "png"
+  },
+  "similaires": [
+    "webp-en-jpg",
+    "heic-en-jpg",
+    "compresser-pdf",
+    "fusionner-pdf",
+    "mov-en-mp4"
+  ],
+  "brouillon": false,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "convertir-webp-en-png",
+      "motCle": "convertir webp en png",
+      "nomCourt": "WebP en PNG",
+      "title": "Convertir WebP en PNG gratuitement, sans envoi de fichier",
+      "metaDescription": "Convertir WebP en PNG en quelques secondes, directement dans votre navigateur. Gratuit, sans inscription, transparence conservée, aucun fichier envoyé.",
+      "h1": "Convertir WebP en PNG",
+      "accroche": "Glissez vos images .webp : elles sont converties en PNG sur votre appareil, sans perte de qualité ni envoi en ligne.",
+      "contenu": [
+        {
+          "h2": "Comment convertir une image WebP en PNG ?",
+          "etapes": [
+            "Glissez une ou plusieurs images .webp dans la zone ci-dessus, ou appuyez sur « Choisir des fichiers ».",
+            "La conversion démarre aussitôt : chaque image est décodée puis réenregistrée au format PNG par votre navigateur.",
+            "Téléchargez chaque fichier PNG, ou récupérez-les tous d'un coup dans une archive ZIP si vous en avez converti plusieurs."
+          ]
+        },
+        {
+          "h2": "Pourquoi passer du WebP au PNG ?",
+          "paragraphes": [
+            "Le WebP est un format créé par Google pour alléger les pages web. De nombreux sites l'utilisent, si bien qu'une image enregistrée depuis le navigateur arrive souvent en .webp. Problème : certains logiciels, d'anciennes versions de Photoshop, des outils de bureautique ou des sites d'impression refusent encore ce format.",
+            "Le PNG, lui, est lu partout. C'est aussi un format sans perte : contrairement au JPG, il ne dégrade pas l'image et conserve la transparence. C'est le bon choix pour un logo, une capture d'écran, une illustration ou une image que vous comptez retoucher.",
+            "Autre cas fréquent : les boutiques en ligne, les réseaux sociaux et les outils de création qui exigent une image PNG ou JPG pour un avatar, une bannière ou une photo de produit."
+          ]
+        },
+        {
+          "h2": "Qualité, transparence et poids du fichier",
+          "paragraphes": [
+            "La conversion WebP vers PNG ne fait perdre aucun détail supplémentaire : l'image est recopiée pixel par pixel, et les zones transparentes restent transparentes.",
+            "Attendez-vous en revanche à un fichier plus lourd, souvent deux à cinq fois plus que le WebP d'origine. C'est normal : le PNG compresse moins fort pour ne rien perdre. Si le poids compte davantage que la transparence, par exemple pour envoyer une photo par e-mail, préférez la conversion WebP en JPG."
+          ]
+        },
+        {
+          "h2": "Limites à connaître",
+          "liste": [
+            "Les WebP animés sont convertis en image fixe : seule la première image de l'animation est conservée.",
+            "Les métadonnées (date de prise de vue, appareil, position GPS) ne sont pas recopiées dans le PNG.",
+            "Sur iPhone, les images immenses (au-delà d'environ 16 millions de pixels) peuvent dépasser la mémoire autorisée par Safari.",
+            "Les images ne sont pas redimensionnées : le PNG garde exactement la largeur et la hauteur du WebP d'origine."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Mes images sont-elles envoyées sur un serveur ?",
+          "r": "Non. La conversion est réalisée par votre navigateur, sur votre appareil. Aucune image n'est transmise : une fois la page chargée, l'outil fonctionne même si vous coupez votre connexion."
+        },
+        {
+          "q": "La conversion en PNG fait-elle perdre de la qualité ?",
+          "r": "Non. Le PNG est un format sans perte : l'image obtenue est identique, pixel pour pixel, à ce qu'affiche le fichier WebP d'origine."
+        },
+        {
+          "q": "Pourquoi mon fichier PNG est-il plus lourd que le WebP ?",
+          "r": "Le WebP utilise une compression très efficace, souvent avec perte. Le PNG compresse sans rien perdre, ce qui donne des fichiers plus gros. Pour obtenir un fichier léger, convertissez plutôt en JPG."
+        },
+        {
+          "q": "Puis-je convertir plusieurs images WebP en même temps ?",
+          "r": "Oui. Sélectionnez ou glissez autant d'images que vous voulez : elles sont converties à la suite, puis vous pouvez toutes les télécharger dans un fichier ZIP."
+        },
+        {
+          "q": "Est-ce que ça marche sur iPhone et Android ?",
+          "r": "Oui, l'outil fonctionne dans Safari, Chrome, Firefox et Edge, sur ordinateur comme sur mobile. Les images converties sont enregistrées dans vos téléchargements (ou dans l'app Fichiers sur iPhone)."
+        }
+      ]
+    }
+  }
+}

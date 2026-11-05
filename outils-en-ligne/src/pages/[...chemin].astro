@@ -1,0 +1,25 @@
+---
+/**
+ * Génère TOUTES les pages du site (outils, catégories, accueil, pages de texte),
+ * dans toutes les langues actives, à partir de src/content et src/config.
+ */
+import PageOutil from '../layouts/PageOutil.astro';
+import PageHub from '../layouts/PageHub.astro';
+import PageAccueil from '../layouts/PageAccueil.astro';
+import PageTexte from '../layouts/PageTexte.astro';
+import { toutesLesRoutes, type Route } from '../lib/routes';
+
+export async function getStaticPaths() {
+  const routes = await toutesLesRoutes();
+  return routes.map((route) => ({
+    params: { chemin: route.chemin === '/' ? undefined : route.chemin.slice(1) },
+    props: { route },
+  }));
+}
+
+const { route } = Astro.props as { route: Route };
+---
+{route.type === 'outil' && <PageOutil route={route} />}
+{route.type === 'hub' && <PageHub route={route} />}
+{route.type === 'accueil' && <PageAccueil route={route} />}
+{route.type === 'page' && <PageTexte route={route} />}

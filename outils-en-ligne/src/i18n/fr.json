@@ -1,0 +1,85 @@
+{
+  "site": {
+    "slogan": "Outils PDF, image et vidéo gratuits. Vos fichiers restent sur votre appareil.",
+    "lienEvitement": "Aller au contenu"
+  },
+  "nav": {
+    "accueil": "Accueil",
+    "categories": "Catégories d'outils"
+  },
+  "pied": {
+    "outils": "Tous les outils",
+    "infos": "Informations",
+    "gererCookies": "Gérer les cookies",
+    "langue": "Langue",
+    "mention": "Traitement 100 % local : aucun fichier n'est envoyé sur nos serveurs."
+  },
+  "outil": {
+    "filAriane": "Fil d'Ariane",
+    "badge": "Vos fichiers ne quittent jamais votre appareil",
+    "similaires": "Outils similaires",
+    "faq": "Questions fréquentes",
+    "majLe": "Mis à jour le",
+    "pub": "Publicité",
+    "emplacementPub": "Emplacement publicitaire (visible en développement uniquement)"
+  },
+  "depot": {
+    "titre": "Glissez vos fichiers ici",
+    "titreUnique": "Glissez votre fichier ici",
+    "ou": "ou",
+    "bouton": "Choisir des fichiers",
+    "boutonUnique": "Choisir un fichier",
+    "formats": "Formats acceptés : {formats}"
+  },
+  "etat": {
+    "chargementMoteur": "Chargement de l'outil…",
+    "traitement": "Traitement en cours…",
+    "traitementN": "Traitement du fichier {i} sur {n}…",
+    "termine": "Terminé ! Vos fichiers sont prêts.",
+    "termineUn": "Terminé ! Votre fichier est prêt.",
+    "erreur": "Une erreur est survenue : {message}",
+    "formatRefuse": "« {nom} » n'est pas au bon format. Formats acceptés : {formats}",
+    "aucunFichier": "Aucun fichier valide sélectionné.",
+    "telecharger": "Télécharger",
+    "toutTelecharger": "Tout télécharger (.zip)",
+    "recommencer": "Traiter d'autres fichiers",
+    "gain": "−{pct} %"
+  },
+  "accueil": {
+    "title": "Outils PDF, image et vidéo gratuits, sans envoi de fichier",
+    "metaDescription": "Compressez vos PDF, convertissez HEIC, WebP ou MOV en JPG, PNG ou MP4 gratuitement. Tout se fait dans votre navigateur : vos fichiers restent chez vous.",
+    "h1": "Des outils gratuits pour vos fichiers, sans les envoyer en ligne",
+    "intro": "Compresser un PDF, convertir une photo d'iPhone ou une vidéo : chaque outil fonctionne directement dans votre navigateur. Pas d'inscription, pas de filigrane, et aucun fichier envoyé sur un serveur.",
+    "pourquoiTitre": "Pourquoi vos fichiers restent privés",
+    "pourquoi": [
+      {
+        "titre": "Traitement sur votre appareil",
+        "texte": "Le calcul est fait par votre navigateur. Vos documents ne transitent par aucun serveur, ce qui les protège et évite d'attendre un envoi."
+      },
+      {
+        "titre": "Gratuit et sans inscription",
+        "texte": "Pas de compte, pas d'adresse e-mail demandée, pas de limite du nombre de fichiers par jour. Le site est financé par la publicité."
+      },
+      {
+        "titre": "Fonctionne aussi sur mobile",
+        "texte": "Les outils sont conçus pour iPhone et Android : idéal pour convertir une photo HEIC ou alléger un PDF avant de l'envoyer."
+      }
+    ]
+  },
+  "categorie": {
+    "voirTout": "Voir tous les outils {nom}"
+  },
+  "erreur404": {
+    "title": "Page introuvable",
+    "h1": "Cette page n'existe pas (ou plus)",
+    "texte": "Le lien est peut-être erroné. Voici les outils disponibles :"
+  },
+  "moteurs": {
+    "imageConvert": {
+      "reglages": "Réglages",
+      "qualite": "Qualité",
+      "noteTransparence": "Les zones transparentes deviennent blanches : le format JPG ne gère pas la transparence.",
+      "echecs": "Certains fichiers n'ont pas pu être convertis : {noms}"
+    }
+  }
+}

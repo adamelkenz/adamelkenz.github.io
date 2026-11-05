@@ -1,0 +1,127 @@
+---
+/**
+ * Gabarit d'une page outil : H1 → outil (au-dessus de la ligne de flottaison) → pub →
+ * contenu rédactionnel → FAQ → outils similaires. Données structurées WebApplication + FAQPage.
+ */
+import Base from './Base.astro';
+import FilAriane from '../components/FilAriane.astro';
+import EmplacementPub from '../components/EmplacementPub.astro';
+import CarteOutil from '../components/CarteOutil.astro';
+import { MOTEURS } from '../moteurs';
+import { chemin, formatDate, textes, urlAbsolue } from '../lib/i18n';
+import { categories, outilsActifs, type Route } from '../lib/routes';
+
+interface Props { route: Extract<Route, { type: 'outil' }>; }
+const { route } = Astro.props;
+const { outil, version: v, langue } = route;
+const t = textes(langue);
+const cat = categories[outil.data.categorie].langues[langue]!;
+const Moteur = MOTEURS[outil.data.moteur];
+if (!Moteur) throw new Error(`Moteur "${outil.data.moteur}" introuvable (outil ${outil.id}).`);
+
+const tous = await outilsActifs();
+const similaires = outil.data.similaires
+  .map((id) => tous.find((o) => o.id === id))
+  .filter((o) => o && o.data.langues[langue])
+  .map((o) => ({ o: o!, v: o!.data.langues[langue]! }));
+
+const url = urlAbsolue(route.chemin);
+const filAriane = [
+  { nom: t.nav.accueil, href: chemin(langue) },
+  { nom: cat.nom, href: chemin(langue, cat.slug) },
+  { nom: v.nomCourt },
+];
+const jsonLd = [
+  {
+    '@type': 'WebApplication',
+    '@id': `${url}#outil`,
+    name: v.h1,
+    url,
+    description: v.metaDescription,
+    inLanguage: langue,
+    applicationCategory: outil.data.categorie === 'pdf' ? 'UtilitiesApplication' : 'MultimediaApplication',
+    operatingSystem: 'Windows, macOS, Linux, Android, iOS',
+    browserRequirements: 'Requires JavaScript',
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+    dateModified: outil.data.dateMaj,
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: v.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.r },
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: filAriane.map((e, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: e.nom,
+      ...(e.href ? { item: urlAbsolue(e.href) } : {}),
+    })),
+  },
+];
+const milieu = Math.min(2, v.contenu.length - 1);
+---
+<Base
+  title={v.title}
+  description={v.metaDescription}
+  chemin={route.chemin}
+  langue={langue}
+  alternatives={route.alternatives}
+  image={`/og/${outil.data.categorie}.png`}
+  jsonLd={jsonLd}
+  categorieActive={outil.data.categorie}
+>
+  <div class="etroit">
+    <FilAriane label={t.outil.filAriane} elements={filAriane} />
+    <h1>{v.h1}</h1>
+    <p class="accroche">{v.accroche}</p>
+
+    <Moteur langue={langue} options={outil.data.options} />
+
+    <EmplacementPub nom="sousOutil" langue={langue} />
+
+    <article class="contenu">
+      {v.contenu.map((bloc, i) => (
+        <>
+          {i === milieu && i > 0 && <EmplacementPub nom="milieuContenu" langue={langue} />}
+          <section>
+            <h2>{bloc.h2}</h2>
+            {bloc.paragraphes?.map((p) => <p>{p}</p>)}
+            {bloc.etapes && <ol>{bloc.etapes.map((e) => <li>{e}</li>)}</ol>}
+            {bloc.liste && <ul>{bloc.liste.map((e) => <li>{e}</li>)}</ul>}
+          </section>
+        </>
+      ))}
+    </article>
+
+    <section class="faq">
+      <h2>{t.outil.faq}</h2>
+      {v.faq.map((f) => (
+        <details>
+          <summary>{f.q}</summary>
+          <div><p>{f.r}</p></div>
+        </details>
+      ))}
+    </section>
+
+    {similaires.length > 0 && (
+      <section>
+        <h2>{t.outil.similaires}</h2>
+        <ul class="grille-outils">
+          {similaires.map(({ o, v: sv }) => (
+            <li><CarteOutil href={chemin(langue, sv.slug)} titre={sv.nomCourt} texte={sv.accroche} categorie={o.data.categorie} /></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <EmplacementPub nom="finDePage" langue={langue} />
+    <p class="maj">{t.outil.majLe} <time datetime={outil.data.dateMaj}>{formatDate(outil.data.dateMaj, langue)}</time></p>
+  </div>
+</Base>

@@ -1,0 +1,27 @@
+---
+/**
+ * Emplacement publicitaire AdSense à hauteur fixe réservée (aucun décalage de mise en page).
+ * - AdSense désactivé (site.json) : rien n'est affiché en ligne ; un cadre gris apparaît en développement.
+ * - AdSense activé : le script Google n'est chargé qu'à la première interaction (voir Base.astro).
+ */
+import site from '../config/site.json';
+import { textes, type Langue } from '../lib/i18n';
+
+interface Props { nom: 'sousOutil' | 'milieuContenu' | 'finDePage'; langue: Langue; }
+const { nom, langue } = Astro.props;
+const t = textes(langue);
+const actif = site.adsense.actif;
+const apercu = !actif && import.meta.env.DEV;
+---
+{actif && (
+  <aside class="pub" aria-label={t.outil.pub}>
+    <span class="pub-label">{t.outil.pub}</span>
+    <ins class="adsbygoogle" data-ad-client={site.adsense.client} data-ad-slot={site.adsense.emplacements[nom]} data-full-width-responsive="false"></ins>
+  </aside>
+)}
+{apercu && (
+  <aside class="pub" aria-hidden="true">
+    <span class="pub-label">{t.outil.pub}</span>
+    <div class="pub-apercu">{t.outil.emplacementPub} — {nom}</div>
+  </aside>
+)}

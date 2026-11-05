@@ -1,0 +1,87 @@
+{
+  "categorie": "image",
+  "moteur": "image-convert",
+  "options": {
+    "accepte": [
+      ".webp"
+    ],
+    "sortie": "jpg"
+  },
+  "similaires": [
+    "webp-en-png",
+    "heic-en-jpg",
+    "compresser-pdf",
+    "compresser-pdf-moins-1-mo",
+    "mov-en-mp4"
+  ],
+  "brouillon": false,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "convertir-webp-en-jpg",
+      "motCle": "convertir webp en jpg",
+      "nomCourt": "WebP en JPG",
+      "title": "Convertir WebP en JPG gratuitement, sans upload",
+      "metaDescription": "Convertir WebP en JPG gratuitement : réglez la qualité, convertissez plusieurs images à la fois et gardez vos fichiers sur votre appareil. Sans inscription.",
+      "h1": "Convertir WebP en JPG",
+      "accroche": "Transformez vos images .webp en JPG compatibles partout, avec le niveau de qualité de votre choix.",
+      "contenu": [
+        {
+          "h2": "Convertir un WebP en JPG en 3 étapes",
+          "etapes": [
+            "Réglez la qualité si besoin : 90 % convient à la plupart des usages, 75 % donne un fichier plus léger.",
+            "Glissez vos fichiers .webp dans la zone de dépôt ou sélectionnez-les depuis votre appareil.",
+            "Téléchargez les JPG un par un, ou tous ensemble dans une archive ZIP."
+          ]
+        },
+        {
+          "h2": "Quand choisir le JPG plutôt que le PNG ?",
+          "paragraphes": [
+            "Le JPG est le format universel de la photo : il s'ouvre sur tous les ordinateurs, téléphones, imprimantes et formulaires en ligne. Il compresse fortement les images, ce qui donne des fichiers légers, faciles à envoyer par e-mail ou à déposer sur un site qui limite la taille des pièces jointes.",
+            "Pour une photo, un visuel de produit ou une image à partager, le JPG est donc le meilleur choix. Pour un logo ou une image avec un fond transparent, préférez le PNG : le JPG ne sait pas gérer la transparence.",
+            "C'est aussi le format attendu par la plupart des sites d'annonces, des services d'impression photo et des formulaires qui demandent une photo ou un justificatif en image."
+          ]
+        },
+        {
+          "h2": "Bien régler la qualité",
+          "paragraphes": [
+            "Le curseur de qualité règle le compromis entre netteté et poids. Entre 85 et 95 %, la différence avec l'original est invisible à l'œil nu. En dessous de 70 %, de petits défauts (blocs, halos autour des contours) peuvent apparaître, surtout sur les textes et les aplats de couleur.",
+            "Conseil : une image WebP est souvent déjà compressée. La convertir en JPG à 100 % produit un fichier lourd sans gain de qualité visible. Restez autour de 90 %."
+          ]
+        },
+        {
+          "h2": "Ce qu'il faut savoir",
+          "liste": [
+            "Les zones transparentes du WebP sont remplacées par du blanc.",
+            "Un WebP animé devient une image fixe (la première image de l'animation).",
+            "Les métadonnées de la photo (date, appareil, GPS) ne sont pas conservées, ce qui protège aussi votre vie privée.",
+            "Aucune image n'est envoyée sur Internet : la conversion se fait sur votre appareil.",
+            "Les dimensions de l'image ne changent pas : seuls le format et la compression sont modifiés."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Quelle qualité choisir pour convertir un WebP en JPG ?",
+          "r": "90 % est un excellent réglage par défaut : la perte est invisible et le fichier reste léger. Descendez à 75 ou 80 % si vous devez respecter une taille maximale, par exemple pour un formulaire en ligne."
+        },
+        {
+          "q": "Que devient la transparence de mon image WebP ?",
+          "r": "Le format JPG ne gère pas la transparence : les zones transparentes sont remplies de blanc. Pour garder un fond transparent, utilisez la conversion WebP en PNG."
+        },
+        {
+          "q": "Combien d'images puis-je convertir à la fois ?",
+          "r": "Il n'y a pas de limite fixée : vous pouvez en convertir des dizaines d'un coup. La seule limite est la mémoire de votre appareil pour les images de très grande taille."
+        },
+        {
+          "q": "Pourquoi les images que j'enregistre sont-elles en WebP ?",
+          "r": "Ce sont les sites qui servent leurs images en WebP pour s'afficher plus vite. Votre navigateur enregistre le fichier tel quel. Le plus simple est ensuite de le convertir ici, en quelques secondes."
+        },
+        {
+          "q": "Mes images sont-elles stockées quelque part ?",
+          "r": "Non. Elles sont traitées dans la mémoire de votre navigateur et disparaissent quand vous fermez la page. Rien n'est envoyé ni conservé sur nos serveurs."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import site from '../config/site.json';
+import SeoHead from '../components/SeoHead.astro';
+import Icone from '../components/Icone.astro';
+import { getCollection } from 'astro:content';
+import { remplacerJetons } from '../lib/jetons';
+import { chemin, textes, LANGUES, type Langue } from '../lib/i18n';
+import { outilsParCategorie, type Alternative } from '../lib/routes';
+
+interface Props {
+  title: string;
+  description: string;
+  chemin: string;
+  langue: Langue;
+  alternatives?: Alternative[];
+  image?: string;
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  categorieActive?: string;
+}
+const props = Astro.props;
+const { langue, alternatives = [], categorieActive } = props;
+const t = textes(langue);
+const groupes = await outilsParCategorie(langue);
+const pagesTexte = (await getCollection('pages'))
+  .filter((p) => p.data.langue === langue)
+  .sort((a, b) => a.data.cle.localeCompare(b.data.cle));
+const annee = new Date().getFullYear();
+---
+<!doctype html>
+<html lang={LANGUES[langue].code}>
+  <head>
+    <SeoHead {...props} />
+  </head>
+  <body>
+    <a class="lien-evitement" href="#contenu">{t.site.lienEvitement}</a>
+    <header class="entete">
+      <div class="conteneur">
+        <a class="marque" href={chemin(langue)}><Icone nom="logo" />{site.nom}</a>
+        <nav aria-label={t.nav.categories}>
+          <ul class="nav">
+            {groupes.map((g) => (
+              <li>
+                <a href={chemin(langue, g.version.slug)} aria-current={categorieActive === g.cle ? 'page' : undefined}>{g.version.nom}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <div class="conteneur">
+        <div class="pied-grille">
+          {groupes.map((g) => (
+            <section>
+              <h2><a href={chemin(langue, g.version.slug)}>{g.version.nomLong}</a></h2>
+              <ul>
+                {g.outils.map((o) => <li><a href={chemin(langue, o.data.langues[langue]!.slug)}>{o.data.langues[langue]!.nomCourt}</a></li>)}
+              </ul>
+            </section>
+          ))}
+          <section>
+            <h2>{t.pied.infos}</h2>
+            <ul>
+              {pagesTexte.map((p) => <li><a href={chemin(langue, p.data.slug)}>{remplacerJetons(p.data.h1)}</a></li>)}
+              {site.adsense.actif && <li><button type="button" class="lien-bouton" id="gerer-cookies">{t.pied.gererCookies}</button></li>}
+            </ul>
+          </section>
+          {alternatives.length > 1 && (
+            <section>
+              <h2>{t.pied.langue}</h2>
+              <ul>
+                {alternatives.map((a) => (
+                  <li><a href={a.chemin} hreflang={a.langue} lang={a.langue} aria-current={a.langue === langue ? 'page' : undefined}>{LANGUES[a.langue].nom}</a></li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+        <p class="pied-mention">{t.pied.mention}<br />© {annee} {site.nom}</p>
+      </div>
+    </footer>
+
+    {site.adsense.actif && (
+      <script is:inline define:vars={{ client: site.adsense.client }}>
+        // Le script AdSense (et la fenêtre de consentement Google) n'est chargé qu'à la
+        // première interaction : la page s'affiche à pleine vitesse (Core Web Vitals).
+        (function () {
+          var charge = false;
+          var evenements = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+          function charger() {
+            if (charge) return;
+            charge = true;
+            evenements.forEach(function (e) { removeEventListener(e, charger); });
+            var s = document.createElement('script');
+            s.async = true;
+            s.crossOrigin = 'anonymous';
+            s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + client;
+            document.head.appendChild(s);
+            document.querySelectorAll('ins.adsbygoogle').forEach(function () {
+              (window.adsbygoogle = window.adsbygoogle || []).push({});
+            });
+          }
+          evenements.forEach(function (e) { addEventListener(e, charger, { once: true, passive: true }); });
+          var bouton = document.getElementById('gerer-cookies');
+          if (bouton) bouton.addEventListener('click', function () {
+            charger();
+            window.googlefc = window.googlefc || {};
+            window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
+            window.googlefc.callbackQueue.push(function () { window.googlefc.showRevocationMessage(); });
+          });
+        })();
+      </script>
+    )}
+  </body>
+</html>

@@ -1,0 +1,90 @@
+{
+  "categorie": "video",
+  "moteur": "video-convert",
+  "options": {
+    "accepte": [
+      ".mov",
+      ".qt"
+    ],
+    "sortie": "mp4"
+  },
+  "similaires": [
+    "heic-en-jpg",
+    "webp-en-jpg",
+    "webp-en-png",
+    "compresser-pdf",
+    "fusionner-pdf"
+  ],
+  "brouillon": true,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "convertir-mov-en-mp4",
+      "motCle": "convertir mov en mp4",
+      "nomCourt": "MOV en MP4",
+      "title": "Convertir MOV en MP4 gratuitement, sans envoyer la vidéo",
+      "metaDescription": "Convertir MOV en MP4 dans votre navigateur : vidéos d'iPhone compatibles Windows, Android et réseaux sociaux. Gratuit, sans upload ni filigrane.",
+      "h1": "Convertir MOV en MP4",
+      "accroche": "Transformez vos vidéos .mov (iPhone, Mac, appareil photo) en MP4 lisibles partout, sans les envoyer en ligne.",
+      "contenu": [
+        {
+          "h2": "Comment convertir une vidéo MOV en MP4 ?",
+          "etapes": [
+            "Choisissez le mode : « Rapide » garde la vidéo d'origine et change seulement le format du fichier ; « Compatibilité maximale » réencode la vidéo en H.264, lisible sur tous les appareils.",
+            "Glissez votre fichier .mov dans la zone ci-dessus ou sélectionnez-le.",
+            "Suivez la progression, puis téléchargez votre MP4."
+          ]
+        },
+        {
+          "h2": "MOV et MP4 : quelle différence ?",
+          "paragraphes": [
+            "MOV est le format vidéo d'Apple, utilisé par l'iPhone, les Mac et beaucoup d'appareils photo. MP4 est le format standard du web, accepté par Windows, Android, les téléviseurs et les réseaux sociaux. Les deux sont des « conteneurs » : ils renferment une piste vidéo et une piste audio compressées.",
+            "Bien souvent, le contenu est déjà compatible MP4 : il suffit de changer d'emballage. C'est ce que fait le mode Rapide, en quelques secondes et sans aucune perte de qualité."
+          ]
+        },
+        {
+          "h2": "Le cas des vidéos d'iPhone en HEVC",
+          "paragraphes": [
+            "Les iPhone récents filment par défaut en HEVC (H.265), un codec très efficace mais mal pris en charge par certains PC Windows et sites web. Si votre MP4 ne se lit pas ou s'affiche sans image, recommencez avec le mode « Compatibilité maximale » : la vidéo sera réencodée en H.264, lu partout. C'est plus long, car chaque image est recalculée, mais l'outil utilise l'accélération matérielle de votre appareil quand elle est disponible."
+          ]
+        },
+        {
+          "h2": "Pourquoi convertir sans upload ?",
+          "paragraphes": [
+            "Une vidéo de quelques minutes pèse des centaines de mégaoctets. L'envoyer sur un site de conversion, attendre, puis la retélécharger prend du temps. Ici, rien ne transite par Internet : la conversion utilise la puissance de votre appareil, et vos vidéos personnelles restent privées."
+          ]
+        },
+        {
+          "h2": "Limites",
+          "liste": [
+            "La taille maximale dépend de la mémoire de votre appareil : environ 1 à 2 Go sur ordinateur, moins sur téléphone.",
+            "Le mode Compatibilité maximale est nettement plus lent sur les appareils anciens.",
+            "Sur les navigateurs anciens, un module de conversion de secours (environ 30 Mo) est téléchargé, et la conversion est plus lente."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "La conversion MOV en MP4 fait-elle perdre de la qualité ?",
+          "r": "En mode Rapide, non : les images ne sont pas recompressées, seul le format du fichier change. En mode Compatibilité maximale, la vidéo est réencodée avec une qualité élevée et la différence est difficile à voir."
+        },
+        {
+          "q": "Pourquoi ma vidéo MP4 n'a-t-elle pas d'image sur mon PC ?",
+          "r": "Elle est sans doute encodée en HEVC, que Windows ne lit pas sans extension. Reconvertissez le fichier MOV d'origine avec le mode « Compatibilité maximale » pour obtenir une vidéo en H.264."
+        },
+        {
+          "q": "Combien de temps dure la conversion ?",
+          "r": "En mode Rapide, quelques secondes, même pour une longue vidéo. En mode Compatibilité maximale, de quelques secondes à plusieurs minutes selon la durée de la vidéo et la puissance de votre appareil."
+        },
+        {
+          "q": "Le son est-il conservé ?",
+          "r": "Oui. La piste audio est recopiée telle quelle si elle est compatible avec le MP4, ou convertie en AAC dans le cas contraire."
+        },
+        {
+          "q": "Ma vidéo est-elle envoyée sur un serveur ?",
+          "r": "Non. Toute la conversion se fait dans votre navigateur : votre vidéo ne quitte jamais votre appareil."
+        }
+      ]
+    }
+  }
+}

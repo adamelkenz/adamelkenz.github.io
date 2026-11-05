@@ -1,0 +1,90 @@
+{
+  "categorie": "pdf",
+  "moteur": "pdf-merge",
+  "options": {
+    "accepte": [
+      ".pdf"
+    ]
+  },
+  "similaires": [
+    "compresser-pdf",
+    "compresser-pdf-moins-2-mo",
+    "compresser-pdf-moins-1-mo",
+    "heic-en-jpg",
+    "webp-en-jpg"
+  ],
+  "brouillon": true,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "fusionner-pdf",
+      "motCle": "fusionner pdf",
+      "nomCourt": "Fusionner des PDF",
+      "title": "Fusionner PDF gratuitement, sans envoyer vos documents",
+      "metaDescription": "Fusionner PDF en un seul fichier, dans l'ordre de votre choix. Gratuit, sans inscription ni filigrane : vos documents ne quittent jamais votre appareil.",
+      "h1": "Fusionner PDF en un seul fichier",
+      "accroche": "Ajoutez vos PDF, mettez-les dans l'ordre et obtenez un seul document. Rien n'est envoyé sur Internet.",
+      "contenu": [
+        {
+          "h2": "Comment fusionner plusieurs PDF ?",
+          "etapes": [
+            "Ajoutez vos fichiers PDF en les glissant dans la zone ci-dessus ou avec le bouton « Choisir des fichiers ». Vous pourrez en ajouter d'autres ensuite.",
+            "Réglez l'ordre avec les flèches : le premier fichier de la liste sera au début du document final. La croix retire un fichier.",
+            "Appuyez sur « Fusionner les PDF », puis téléchargez le document obtenu."
+          ]
+        },
+        {
+          "h2": "Dans quels cas regrouper ses PDF ?",
+          "paragraphes": [
+            "Les démarches en ligne n'acceptent souvent qu'un seul fichier par pièce justificative : dossier de location avec trois fiches de paie, demande de prêt, candidature avec CV et lettre de motivation, déclaration de sinistre accompagnée de plusieurs factures. Fusionner les PDF permet de tout envoyer en une fois, dans un ordre logique.",
+            "C'est aussi pratique pour archiver : un relevé annuel plutôt que douze relevés mensuels, ou un seul fichier pour toutes les pages scannées d'un contrat."
+          ]
+        },
+        {
+          "h2": "Vos documents restent confidentiels",
+          "paragraphes": [
+            "Fiches de paie, avis d'imposition, pièces d'identité : les documents que l'on fusionne sont souvent sensibles. Ici, l'assemblage est réalisé par votre navigateur grâce à la bibliothèque libre pdf-lib. Aucun fichier n'est envoyé sur un serveur, et aucun filigrane n'est ajouté au résultat."
+          ]
+        },
+        {
+          "h2": "Fusionner, puis compresser si besoin",
+          "paragraphes": [
+            "Si le document final dépasse la limite d'un formulaire, enchaînez avec notre outil de compression : il allège les images sans toucher au texte. Inutile de compresser chaque fichier avant la fusion, il est plus simple et plus efficace de le faire une seule fois, à la fin."
+          ]
+        },
+        {
+          "h2": "Bon à savoir",
+          "liste": [
+            "Les pages sont copiées telles quelles : le texte reste sélectionnable, les liens et la qualité des images sont conservés.",
+            "Les pages de formats différents (A4, lettre US, paysage) sont conservées telles quelles dans le document final.",
+            "Les PDF protégés par un mot de passe doivent d'abord être déverrouillés.",
+            "Le fichier final pèse à peu près la somme des fichiers d'origine. S'il est trop lourd pour un formulaire, compressez-le ensuite.",
+            "Les signets (table des matières) et les champs de formulaire à remplir peuvent ne pas être conservés."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Combien de PDF puis-je fusionner ?",
+          "r": "Il n'y a pas de limite fixée. Vous pouvez assembler des dizaines de fichiers : la seule limite est la mémoire de votre appareil, qui permet en général de traiter plusieurs centaines de pages."
+        },
+        {
+          "q": "Puis-je changer l'ordre des documents ?",
+          "r": "Oui, utilisez les flèches à côté de chaque fichier avant de lancer la fusion. Les pages de chaque fichier restent dans leur ordre d'origine."
+        },
+        {
+          "q": "La fusion réduit-elle la qualité de mes documents ?",
+          "r": "Non. Les pages sont copiées sans être recompressées : le texte reste net et sélectionnable, les images gardent leur qualité d'origine."
+        },
+        {
+          "q": "Pourquoi un de mes PDF est-il refusé ?",
+          "r": "Il est probablement protégé par un mot de passe ou endommagé. Ouvrez-le dans votre lecteur PDF, utilisez « Imprimer » puis « Enregistrer au format PDF » pour en créer une copie sans protection, puis réessayez."
+        },
+        {
+          "q": "Puis-je fusionner des PDF sur mon téléphone ?",
+          "r": "Oui. Sur iPhone ou Android, appuyez sur « Choisir des fichiers » et sélectionnez vos PDF dans l'app Fichiers ou dans vos téléchargements."
+        }
+      ]
+    }
+  }
+}

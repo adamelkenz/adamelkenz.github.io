@@ -1,0 +1,43 @@
+---
+/**
+ * Interface commune à tous les outils : zone de glisser-déposer, options (slot),
+ * état/progression, résultats et boutons d'action. La logique est dans chaque moteur.
+ */
+import Icone from './Icone.astro';
+import { textes, type Langue } from '../lib/i18n';
+import { remplir } from '../lib/texte';
+
+interface Props {
+  moteur: string;
+  langue: Langue;
+  accepte: string[];
+  multiple?: boolean;
+  options?: Record<string, unknown>;
+  textesMoteur?: Record<string, string>;
+}
+const { moteur, langue, accepte, multiple = true, options = {}, textesMoteur = {} } = Astro.props;
+const t = textes(langue);
+const id = `fichiers-${moteur}`;
+const formats = accepte.map((e) => e.replace('.', '').toUpperCase()).join(', ');
+const textesClient = { ...t.etat, ...textesMoteur, formats, langue };
+---
+<div class="outil" data-moteur={moteur} data-options={JSON.stringify(options)} data-textes={JSON.stringify(textesClient)}>
+  <div class="depot">
+    <input class="sr-only" type="file" id={id} accept={accepte.join(',')} multiple={multiple} />
+    <label class="depot-zone" for={id}>
+      <Icone nom="depot" />
+      <span class="depot-titre">{multiple ? t.depot.titre : t.depot.titreUnique}</span>
+      <span class="depot-ou">{t.depot.ou}</span>
+      <span class="btn">{multiple ? t.depot.bouton : t.depot.boutonUnique}</span>
+      <span class="depot-formats">{remplir(t.depot.formats, { formats })}</span>
+    </label>
+  </div>
+  <slot />
+  <div class="etat" role="status" aria-live="polite" hidden></div>
+  <ul class="resultats"></ul>
+  <div class="actions" hidden>
+    <button type="button" class="btn" data-action="zip" hidden>{t.etat.toutTelecharger}</button>
+    <button type="button" class="btn btn-secondaire" data-action="recommencer">{t.etat.recommencer}</button>
+  </div>
+  <p class="badge"><Icone nom="cadenas" />{t.outil.badge}</p>
+</div>

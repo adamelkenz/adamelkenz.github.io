@@ -1,0 +1,66 @@
+---
+import Base from './Base.astro';
+import FilAriane from '../components/FilAriane.astro';
+import CarteOutil from '../components/CarteOutil.astro';
+import { chemin, textes, urlAbsolue } from '../lib/i18n';
+import { outilsParCategorie, type Route } from '../lib/routes';
+
+interface Props { route: Extract<Route, { type: 'hub' }>; }
+const { route } = Astro.props;
+const { version: v, langue, categorie } = route;
+const t = textes(langue);
+const groupes = await outilsParCategorie(langue);
+const groupe = groupes.find((g) => g.cle === categorie)!;
+const autres = groupes.filter((g) => g.cle !== categorie);
+const url = urlAbsolue(route.chemin);
+const jsonLd = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${url}#page`,
+    name: v.h1,
+    url,
+    description: v.metaDescription,
+    inLanguage: langue,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: groupe.outils.map((o, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: urlAbsolue(chemin(langue, o.data.langues[langue]!.slug)),
+        name: o.data.langues[langue]!.nomCourt,
+      })),
+    },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.nav.accueil, item: urlAbsolue(chemin(langue)) },
+      { '@type': 'ListItem', position: 2, name: v.nom },
+    ],
+  },
+];
+---
+<Base title={v.title} description={v.metaDescription} chemin={route.chemin} langue={langue} alternatives={route.alternatives} image={`/og/${categorie}.png`} jsonLd={jsonLd} categorieActive={categorie}>
+  <div class="conteneur">
+    <FilAriane label={t.outil.filAriane} elements={[{ nom: t.nav.accueil, href: chemin(langue) }, { nom: v.nom }]} />
+    <h1>{v.h1}</h1>
+    {v.intro.map((p) => <p class="intro-accueil">{p}</p>)}
+    <ul class="grille-outils">
+      {groupe.outils.map((o) => {
+        const ov = o.data.langues[langue]!;
+        return <li><CarteOutil href={chemin(langue, ov.slug)} titre={ov.nomCourt} texte={ov.accroche} categorie={o.data.categorie} /></li>;
+      })}
+    </ul>
+    {autres.map((g) => (
+      <section>
+        <h2><a href={chemin(langue, g.version.slug)}>{g.version.nomLong}</a></h2>
+        <ul class="grille-outils">
+          {g.outils.map((o) => {
+            const ov = o.data.langues[langue]!;
+            return <li><CarteOutil href={chemin(langue, ov.slug)} titre={ov.nomCourt} texte={ov.accroche} categorie={o.data.categorie} /></li>;
+          })}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

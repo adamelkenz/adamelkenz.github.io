@@ -1,0 +1,27 @@
+{
+  "name": "outils-en-ligne",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "predev": "node scripts/copier-vendor.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/copier-vendor.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "astro": "^7.4.5",
+    "fflate": "^0.8.3",
+    "heic-to": "^1.6.7",
+    "mediabunny": "^1.65.2",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.5.438"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

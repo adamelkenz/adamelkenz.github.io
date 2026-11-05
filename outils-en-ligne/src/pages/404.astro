@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import CarteOutil from '../components/CarteOutil.astro';
+import { chemin, langueParDefaut, textes } from '../lib/i18n';
+import { outilsParCategorie } from '../lib/routes';
+const langue = langueParDefaut;
+const t = textes(langue);
+const groupes = await outilsParCategorie(langue);
+---
+<Base title={t.erreur404.title} description={t.erreur404.texte} chemin="/404" langue={langue} noindex>
+  <div class="conteneur">
+    <h1>{t.erreur404.h1}</h1>
+    <p>{t.erreur404.texte}</p>
+    <ul class="grille-outils">
+      {groupes.flatMap((g) => g.outils).map((o) => {
+        const v = o.data.langues[langue]!;
+        return <li><CarteOutil href={chemin(langue, v.slug)} titre={v.nomCourt} texte={v.accroche} categorie={o.data.categorie} /></li>;
+      })}
+    </ul>
+  </div>
+</Base>

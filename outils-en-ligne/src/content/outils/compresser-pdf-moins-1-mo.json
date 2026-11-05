@@ -1,0 +1,86 @@
+{
+  "categorie": "pdf",
+  "moteur": "pdf-compress",
+  "options": {
+    "accepte": [
+      ".pdf"
+    ],
+    "tailleCibleMo": 1
+  },
+  "similaires": [
+    "compresser-pdf-moins-2-mo",
+    "compresser-pdf",
+    "fusionner-pdf",
+    "heic-en-jpg",
+    "webp-en-jpg"
+  ],
+  "brouillon": true,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "compresser-pdf-moins-de-1-mo",
+      "motCle": "compresser pdf moins de 1 mo",
+      "nomCourt": "PDF de moins de 1 Mo",
+      "title": "Compresser PDF moins de 1 Mo, gratuit et sans upload",
+      "metaDescription": "Compresser PDF moins de 1 Mo automatiquement pour un dossier administratif, une candidature ou un formulaire. Gratuit, sans envoi de vos documents.",
+      "h1": "Compresser PDF moins de 1 Mo, automatiquement",
+      "accroche": "Déposez votre PDF : l'outil ajuste la compression tout seul jusqu'à passer sous 1 Mo, sans envoyer votre document.",
+      "contenu": [
+        {
+          "h2": "Comment obtenir un PDF de moins de 1 Mo ?",
+          "etapes": [
+            "Glissez votre PDF dans la zone ci-dessus ou appuyez sur « Choisir un fichier ».",
+            "L'outil compresse d'abord les images en gardant le texte intact, puis augmente progressivement la compression jusqu'à passer sous 1 Mo.",
+            "Vérifiez le poids affiché et téléchargez le fichier : il est prêt à être déposé."
+          ]
+        },
+        {
+          "h2": "Où la limite de 1 Mo est-elle exigée ?",
+          "paragraphes": [
+            "De nombreux formulaires administratifs, plateformes de candidature et espaces clients d'assurances ou de mutuelles limitent chaque pièce jointe à 1 Mo. Or un scan de carte d'identité ou d'avis d'imposition dépasse facilement 3 à 5 Mo, surtout s'il a été photographié avec un smartphone.",
+            "Plutôt que de recommencer le scan en basse qualité, il suffit de compresser le fichier existant."
+          ]
+        },
+        {
+          "h2": "Comment l'outil atteint-il la cible ?",
+          "paragraphes": [
+            "La compression se fait par paliers. L'outil commence par réduire la définition et le poids des images contenues dans le PDF : le texte reste net et sélectionnable. Si cela ne suffit pas, il transforme chaque page en image optimisée, avec une définition toujours suffisante pour être lue à l'écran et imprimée.",
+            "Pour être accepté partout, le fichier est réduit sous 1 000 000 d'octets : il respecte la limite, que le site compte 1 Mo comme 1 000 ou 1 024 Ko.",
+            "Chaque essai est vérifié : l'outil ne vous propose le fichier que lorsqu'il respecte réellement la limite."
+          ]
+        },
+        {
+          "h2": "Si le fichier ne passe pas sous 1 Mo",
+          "liste": [
+            "Un document de plusieurs dizaines de pages scannées tient difficilement dans 1 Mo. Séparez-le en plusieurs fichiers si le site le permet.",
+            "Vérifiez si le formulaire accepte les images : une photo JPG d'une page est souvent plus légère qu'un PDF.",
+            "Si la limite est un peu plus large, utilisez l'outil « moins de 2 Mo », qui préserve davantage la qualité.",
+            "Repartez toujours du document original : compresser plusieurs fois le même fichier dégrade la qualité sans gain réel."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Combien de pages tiennent dans 1 Mo ?",
+          "r": "Cela dépend du contenu. Un PDF de texte peut compter des centaines de pages sous 1 Mo. Pour des pages scannées, comptez en général 5 à 15 pages après compression, selon la densité des images."
+        },
+        {
+          "q": "Le document restera-t-il lisible ?",
+          "r": "Oui. L'outil ne descend pas en dessous d'une définition qui permet de lire le texte à l'écran. Vérifiez tout de même le résultat avant de l'envoyer, surtout s'il contient de petits caractères."
+        },
+        {
+          "q": "Pourquoi le texte de mon PDF n'est-il plus sélectionnable ?",
+          "r": "Quand la compression des images ne suffit pas, les pages sont converties en images pour atteindre 1 Mo. Le texte reste lisible mais ne peut plus être copié. Pour garder le texte, essayez l'outil « moins de 2 Mo » si la limite le permet."
+        },
+        {
+          "q": "Mon PDF fait déjà moins de 1 Mo, que se passe-t-il ?",
+          "r": "L'outil vous l'indique et ne le modifie pas : vous pouvez l'envoyer tel quel, sans aucune perte de qualité."
+        },
+        {
+          "q": "Mes documents sont-ils envoyés sur un serveur ?",
+          "r": "Non. Toute la compression est réalisée par votre navigateur. Vos justificatifs ne quittent jamais votre appareil."
+        }
+      ]
+    }
+  }
+}

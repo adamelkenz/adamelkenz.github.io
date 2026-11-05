@@ -1,0 +1,46 @@
+---
+import Base from './Base.astro';
+import CarteOutil from '../components/CarteOutil.astro';
+import site from '../config/site.json';
+import { chemin, textes, urlAbsolue } from '../lib/i18n';
+import { outilsParCategorie, type Route } from '../lib/routes';
+
+interface Props { route: Extract<Route, { type: 'accueil' }>; }
+const { route } = Astro.props;
+const { langue } = route;
+const t = textes(langue);
+const groupes = await outilsParCategorie(langue);
+const jsonLd = [
+  {
+    '@type': 'WebSite',
+    '@id': `${urlAbsolue('/')}#site`,
+    name: site.nom,
+    url: urlAbsolue(chemin(langue)),
+    inLanguage: langue,
+    description: t.accueil.metaDescription,
+  },
+];
+---
+<Base title={t.accueil.title} description={t.accueil.metaDescription} chemin={route.chemin} langue={langue} alternatives={route.alternatives} jsonLd={jsonLd}>
+  <div class="conteneur">
+    <h1>{t.accueil.h1}</h1>
+    <p class="intro-accueil">{t.accueil.intro}</p>
+    {groupes.map((g) => (
+      <section>
+        <h2><a href={chemin(langue, g.version.slug)}>{g.version.nomLong}</a></h2>
+        <ul class="grille-outils">
+          {g.outils.map((o) => {
+            const ov = o.data.langues[langue]!;
+            return <li><CarteOutil href={chemin(langue, ov.slug)} titre={ov.nomCourt} texte={ov.accroche} categorie={o.data.categorie} /></li>;
+          })}
+        </ul>
+      </section>
+    ))}
+    <section>
+      <h2>{t.accueil.pourquoiTitre}</h2>
+      <ul class="atouts">
+        {t.accueil.pourquoi.map((a) => <li><h3>{a.titre}</h3><p>{a.texte}</p></li>)}
+      </ul>
+    </section>
+  </div>
+</Base>

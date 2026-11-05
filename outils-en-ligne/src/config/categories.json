@@ -1,0 +1,56 @@
+{
+  "pdf": {
+    "ordre": 1,
+    "couleur": "pdf",
+    "langues": {
+      "fr": {
+        "slug": "outils-pdf",
+        "nom": "PDF",
+        "nomLong": "Outils PDF",
+        "title": "Outils PDF gratuits en ligne, sans envoi de fichier",
+        "metaDescription": "Compressez et fusionnez vos PDF gratuitement, directement dans votre navigateur. Aucun envoi sur un serveur : vos documents restent sur votre appareil.",
+        "h1": "Outils PDF gratuits, sans envoi de fichier",
+        "intro": [
+          "Réduire le poids d'un PDF pour l'envoyer par e-mail, respecter la limite d'un formulaire en ligne ou regrouper plusieurs documents en un seul : ces outils font le travail directement dans votre navigateur.",
+          "Vos PDF ne sont jamais envoyés sur un serveur. C'est plus rapide, et c'est surtout plus sûr pour les documents sensibles comme les fiches de paie, les avis d'imposition ou les pièces d'identité."
+        ]
+      }
+    }
+  },
+  "image": {
+    "ordre": 2,
+    "couleur": "image",
+    "langues": {
+      "fr": {
+        "slug": "outils-image",
+        "nom": "Images",
+        "nomLong": "Outils image",
+        "title": "Convertisseurs d'images gratuits : HEIC, WebP, JPG, PNG",
+        "metaDescription": "Convertissez vos images HEIC et WebP en JPG ou PNG gratuitement, sans inscription. La conversion se fait sur votre appareil, rien n'est envoyé en ligne.",
+        "h1": "Convertir vos images gratuitement",
+        "intro": [
+          "Une photo d'iPhone en HEIC qui ne s'ouvre pas sur un PC Windows, une image WebP téléchargée sur un site qu'un logiciel refuse : ces convertisseurs règlent le problème en quelques secondes.",
+          "Tout se passe dans votre navigateur. Vos photos personnelles ne quittent jamais votre téléphone ou votre ordinateur."
+        ]
+      }
+    }
+  },
+  "video": {
+    "ordre": 3,
+    "couleur": "video",
+    "langues": {
+      "fr": {
+        "slug": "outils-video",
+        "nom": "Vidéo",
+        "nomLong": "Outils vidéo",
+        "title": "Convertisseurs vidéo gratuits en ligne, sans upload",
+        "metaDescription": "Convertissez vos vidéos MOV en MP4 gratuitement, sans les envoyer sur Internet. La conversion utilise la puissance de votre appareil.",
+        "h1": "Convertir vos vidéos sans les envoyer en ligne",
+        "intro": [
+          "Les vidéos sont lourdes : les envoyer sur un site de conversion prend du temps et expose des images souvent personnelles.",
+          "Ici, la conversion se fait sur votre appareil grâce aux capacités vidéo de votre navigateur. Rien n'est téléchargé sur nos serveurs."
+        ]
+      }
+    }
+  }
+}

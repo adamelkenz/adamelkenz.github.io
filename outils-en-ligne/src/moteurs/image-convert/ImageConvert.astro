@@ -1,0 +1,71 @@
+---
+/**
+ * Moteur "image-convert" : convertit des images avec le Canvas du navigateur.
+ * Options JSON : { "accepte": [".webp"], "sortie": "png" | "jpg" | "webp" }
+ */
+import ZoneDepot from '../../components/ZoneDepot.astro';
+import { textes, type Langue } from '../../lib/i18n';
+
+interface Props { langue: Langue; options: Record<string, unknown>; }
+const { langue, options } = Astro.props;
+const t = textes(langue).moteurs.imageConvert;
+const sortie = String(options.sortie ?? 'png');
+const accepte = (options.accepte as string[]) ?? ['.webp'];
+const avecQualite = sortie === 'jpg' || sortie === 'webp';
+---
+<ZoneDepot moteur="image-convert" langue={langue} accepte={accepte} options={{ sortie }} textesMoteur={t}>
+  {avecQualite && (
+    <fieldset class="options">
+      <legend class="sr-only">{t.reglages}</legend>
+      <label class="option-ligne">
+        <span>{t.qualite}</span>
+        <input type="range" name="qualite" min="50" max="100" step="1" value="90" />
+        <output>90 %</output>
+      </label>
+      {sortie === 'jpg' && <small class="depot-formats">{t.noteTransparence}</small>}
+    </fieldset>
+  )}
+</ZoneDepot>
+
+<script>
+  import { InterfaceOutil, renommer, remplir, pause, messageErreur } from '../../lib/client/outil';
+  import { MIME, decoderImage, encoderImage } from '../../lib/client/image';
+
+  document.querySelectorAll<HTMLElement>('.outil[data-moteur="image-convert"]').forEach((root) => {
+    const ui = new InterfaceOutil(root);
+    const sortie: string = ui.options.sortie;
+    const mime = MIME[sortie];
+    const curseur = root.querySelector<HTMLInputElement>('input[name=qualite]');
+    const affichage = root.querySelector('output');
+    curseur?.addEventListener('input', () => {
+      if (affichage) affichage.textContent = `${curseur.value} %`;
+    });
+
+    ui.surFichiers(async (fichiers) => {
+      ui.reinitialiser();
+      ui.occupe(true);
+      const echecs: string[] = [];
+      const qualite = curseur ? Number(curseur.value) / 100 : 1;
+      try {
+        for (const [i, f] of fichiers.entries()) {
+          ui.info(remplir(ui.t.traitementN, { i: i + 1, n: fichiers.length }), i / fichiers.length);
+          await pause();
+          try {
+            const img = await decoderImage(f);
+            const blob = await encoderImage(img, mime, qualite);
+            img.liberer();
+            ui.ajouterResultat({ nom: renommer(f.name, sortie), blob, tailleAvant: f.size });
+          } catch (e) {
+            console.error(e);
+            echecs.push(`${f.name} (${messageErreur(e)})`);
+          }
+        }
+        if (echecs.length) ui.erreur(remplir(ui.t.echecs, { noms: echecs.join(', ') }));
+        else ui.ok(fichiers.length > 1 ? ui.t.termine : ui.t.termineUn);
+        if (ui.resultats.length) ui.terminer();
+      } finally {
+        ui.occupe(false);
+      }
+    });
+  });
+</script>

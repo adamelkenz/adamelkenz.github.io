@@ -1,0 +1,84 @@
+{
+  "categorie": "pdf",
+  "moteur": "pdf-compress",
+  "options": {
+    "accepte": [
+      ".pdf"
+    ]
+  },
+  "similaires": [
+    "compresser-pdf-moins-1-mo",
+    "compresser-pdf-moins-2-mo",
+    "fusionner-pdf",
+    "heic-en-jpg",
+    "webp-en-jpg"
+  ],
+  "brouillon": true,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "compresser-pdf",
+      "motCle": "compresser pdf",
+      "nomCourt": "Compresser un PDF",
+      "title": "Compresser PDF gratuitement : réduire la taille d'un PDF",
+      "metaDescription": "Compresser PDF sans envoyer vos documents : réduisez le poids de vos PDF pour un e-mail ou un formulaire en ligne. Gratuit, sans inscription ni filigrane.",
+      "h1": "Compresser PDF : réduire la taille de vos fichiers",
+      "accroche": "Allégez vos PDF directement dans votre navigateur : choisissez le niveau de compression, le résultat est prêt en quelques secondes.",
+      "contenu": [
+        {
+          "h2": "Comment compresser un PDF ?",
+          "etapes": [
+            "Choisissez le niveau de compression : « Recommandée » convient dans la plupart des cas.",
+            "Glissez votre PDF dans la zone ci-dessus ou sélectionnez-le. La compression démarre immédiatement.",
+            "Comparez le poids avant et après, puis téléchargez le fichier compressé."
+          ]
+        },
+        {
+          "h2": "Quel niveau de compression choisir ?",
+          "liste": [
+            "Légère : les images sont un peu allégées et la qualité reste très proche de l'original. Idéal pour un document à imprimer.",
+            "Recommandée : le meilleur équilibre entre poids et lisibilité. Parfait pour un envoi par e-mail ou un dépôt sur un site.",
+            "Maximale : chaque page est transformée en image compressée. Le fichier devient très léger, mais le texte n'est plus sélectionnable ni recherchable. À réserver aux limites de taille très strictes."
+          ]
+        },
+        {
+          "h2": "Pourquoi un PDF est-il si lourd ?",
+          "paragraphes": [
+            "Dans l'immense majorité des cas, ce sont les images qui pèsent : documents scannés, photos prises au téléphone, visuels en haute définition. Un simple scan couleur à 300 points par pouce peut peser plusieurs mégaoctets par page.",
+            "L'outil réduit la définition de ces images et les réencode en JPG optimisé. Le texte, lui, reste intact en compression légère ou recommandée. Un PDF qui ne contient que du texte est déjà léger : il sera peu réduit, c'est normal.",
+            "Sur un PDF issu d'un scanner ou d'un téléphone, le poids peut souvent être divisé par deux, voire bien davantage. Sur un document créé dans un traitement de texte (Word, LibreOffice, Google Docs), le gain est plus modeste, car il y a peu d'images à alléger."
+          ]
+        },
+        {
+          "h2": "Une compression vraiment confidentielle",
+          "paragraphes": [
+            "Contrairement à la plupart des compresseurs en ligne, aucun document n'est envoyé sur un serveur. La compression utilise pdf-lib et pdf.js, deux bibliothèques libres exécutées par votre navigateur. C'est idéal pour les relevés bancaires, les contrats ou les documents d'identité.",
+            "Le traitement prend quelques secondes, sans file d'attente ni limite d'utilisation quotidienne."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Comment réduire la taille d'un PDF pour l'envoyer par e-mail ?",
+          "r": "Choisissez le niveau « Recommandée ». La plupart des messageries acceptent 20 à 25 Mo de pièces jointes, mais un fichier de moins de 5 Mo s'envoie et s'ouvre bien plus facilement."
+        },
+        {
+          "q": "La compression fait-elle perdre de la qualité ?",
+          "r": "Les images sont allégées, ce qui se voit rarement à l'écran. Le texte n'est pas modifié, sauf avec le niveau « Maximale », qui transforme les pages en images."
+        },
+        {
+          "q": "Pourquoi mon PDF n'est-il presque pas réduit ?",
+          "r": "Il contient probablement surtout du texte ou des images déjà optimisées : il est alors proche de son poids minimal. Essayez le niveau « Maximale » si vous devez absolument gagner de la place."
+        },
+        {
+          "q": "J'ai besoin d'un PDF de moins de 1 Mo ou 2 Mo, comment faire ?",
+          "r": "Utilisez nos outils « PDF de moins de 1 Mo » et « PDF de moins de 2 Mo » : ils ajustent automatiquement la compression pour passer sous la limite, en gardant le maximum de qualité."
+        },
+        {
+          "q": "Mes documents sont-ils envoyés en ligne ?",
+          "r": "Non. Le PDF est lu et compressé par votre navigateur, sur votre appareil. Aucune copie n'est transmise ni conservée."
+        }
+      ]
+    }
+  }
+}

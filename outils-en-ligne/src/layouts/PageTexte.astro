@@ -1,0 +1,24 @@
+---
+/** Pages de texte (mentions légales, confidentialité, contact, à propos), écrites en Markdown. */
+import Base from './Base.astro';
+import { remplacerJetons } from '../lib/jetons';
+import { textes, chemin } from '../lib/i18n';
+import FilAriane from '../components/FilAriane.astro';
+import type { Route } from '../lib/routes';
+
+interface Props { route: Extract<Route, { type: 'page' }>; }
+const { route } = Astro.props;
+const { page, langue } = route;
+const t = textes(langue);
+const html = remplacerJetons(page.rendered?.html ?? '');
+const titre = remplacerJetons(page.data.title);
+const description = remplacerJetons(page.data.metaDescription);
+const h1 = remplacerJetons(page.data.h1);
+---
+<Base title={titre} description={description} chemin={route.chemin} langue={langue} alternatives={route.alternatives}>
+  <div class="etroit contenu">
+    <FilAriane label={t.outil.filAriane} elements={[{ nom: t.nav.accueil, href: chemin(langue) }, { nom: h1 }]} />
+    <h1>{h1}</h1>
+    <Fragment set:html={html} />
+  </div>
+</Base>

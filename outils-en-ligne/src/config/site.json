@@ -1,0 +1,28 @@
+{
+  "nom": "FichierLocal",
+  "url": "https://www.example.com",
+  "email": "contact@example.com",
+  "langueParDefaut": "fr",
+  "languesActives": ["fr"],
+  "adsense": {
+    "actif": false,
+    "client": "ca-pub-0000000000000000",
+    "emplacements": {
+      "sousOutil": "0000000000",
+      "milieuContenu": "0000000000",
+      "finDePage": "0000000000"
+    }
+  },
+  "editeur": {
+    "nom": "[À COMPLÉTER : votre nom ou le nom de votre entreprise]",
+    "statut": "[À COMPLÉTER : ex. Entrepreneur individuel (micro-entreprise)]",
+    "adresse": "[À COMPLÉTER : adresse postale]",
+    "siret": "[À COMPLÉTER : numéro SIRET]",
+    "directeurPublication": "[À COMPLÉTER : nom du directeur de la publication]"
+  },
+  "hebergeur": {
+    "nom": "Cloudflare, Inc.",
+    "adresse": "101 Townsend St, San Francisco, CA 94107, États-Unis",
+    "site": "https://www.cloudflare.com"
+  }
+}

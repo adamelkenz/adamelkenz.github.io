@@ -1,0 +1,50 @@
+---
+/**
+ * Toutes les balises SEO d'une page : title, description, canonical, hreflang,
+ * Open Graph, Twitter et données structurées JSON-LD.
+ */
+import site from '../config/site.json';
+import { LANGUES, langueParDefaut, urlAbsolue, type Langue } from '../lib/i18n';
+import type { Alternative } from '../lib/routes';
+
+interface Props {
+  title: string;
+  description: string;
+  chemin: string;
+  langue: Langue;
+  alternatives?: Alternative[];
+  image?: string;
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+const { title, description, chemin, langue, alternatives = [], image = '/og/defaut.png', jsonLd = [], noindex = false } = Astro.props;
+const canonical = urlAbsolue(chemin);
+const xDefault = alternatives.find((a) => a.langue === langueParDefaut);
+const graphe = jsonLd.length
+  ? JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonLd }).replace(/</g, '\\u003c')
+  : null;
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex ? <meta name="robots" content="noindex, follow" /> : <link rel="canonical" href={canonical} />}
+{!noindex && alternatives.length > 1 && alternatives.map((a) => (
+  <link rel="alternate" hreflang={LANGUES[a.langue].hreflang} href={urlAbsolue(a.chemin)} />
+))}
+{!noindex && alternatives.length > 1 && xDefault && <link rel="alternate" hreflang="x-default" href={urlAbsolue(xDefault.chemin)} />}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.nom} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={urlAbsolue(image)} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={LANGUES[langue].ogLocale} />
+{alternatives.filter((a) => a.langue !== langue).map((a) => <meta property="og:locale:alternate" content={LANGUES[a.langue].ogLocale} />)}
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#2450d8" />
+{site.adsense.actif && <meta name="google-adsense-account" content={site.adsense.client} />}
+{graphe && <script type="application/ld+json" set:html={graphe} />}

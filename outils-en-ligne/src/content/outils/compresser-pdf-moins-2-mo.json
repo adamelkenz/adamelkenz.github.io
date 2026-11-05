@@ -1,0 +1,91 @@
+{
+  "categorie": "pdf",
+  "moteur": "pdf-compress",
+  "options": {
+    "accepte": [
+      ".pdf"
+    ],
+    "tailleCibleMo": 2
+  },
+  "similaires": [
+    "compresser-pdf-moins-1-mo",
+    "compresser-pdf",
+    "fusionner-pdf",
+    "heic-en-jpg",
+    "mov-en-mp4"
+  ],
+  "brouillon": true,
+  "dateMaj": "2026-11-05",
+  "langues": {
+    "fr": {
+      "slug": "compresser-pdf-moins-de-2-mo",
+      "motCle": "compresser pdf moins de 2 mo",
+      "nomCourt": "PDF de moins de 2 Mo",
+      "title": "Compresser PDF moins de 2 Mo : gratuit, sans inscription",
+      "metaDescription": "Compresser PDF moins de 2 Mo pour une candidature ou une démarche en ligne : la taille est ajustée automatiquement, sans envoyer vos fichiers.",
+      "h1": "Compresser PDF moins de 2 Mo en quelques secondes",
+      "accroche": "L'outil réduit votre PDF juste ce qu'il faut pour passer sous 2 Mo, en préservant au maximum la qualité.",
+      "contenu": [
+        {
+          "h2": "Réduire un PDF sous 2 Mo, étape par étape",
+          "etapes": [
+            "Sélectionnez ou glissez votre PDF dans la zone ci-dessus.",
+            "L'outil teste plusieurs niveaux de compression, du plus léger au plus fort, et s'arrête dès que le fichier passe sous 2 Mo.",
+            "Téléchargez le résultat : le poids final est affiché pour que vous puissiez le vérifier."
+          ]
+        },
+        {
+          "h2": "Pourquoi viser 2 Mo ?",
+          "paragraphes": [
+            "La limite de 2 Mo par fichier est très répandue : plateformes de candidature, espaces clients, téléservices publics, formulaires de contact. Elle laisse assez de marge pour un document de plusieurs pages scannées, à condition qu'il soit bien compressé.",
+            "Viser 2 Mo plutôt qu'une compression maximale a un avantage : l'outil s'arrête au premier niveau suffisant. Les images restent aussi nettes que possible et le texte reste généralement sélectionnable."
+          ]
+        },
+        {
+          "h2": "Une compression « juste assez »",
+          "paragraphes": [
+            "Beaucoup de compresseurs appliquent toujours le même réglage, quitte à dégrader inutilement un document qui pesait 2,3 Mo. Ici, la compression progresse par paliers : réduction douce des images, puis plus forte, et seulement en dernier recours conversion des pages en images.",
+            "Le fichier final est calculé pour rester sous 2 000 000 d'octets. Il est donc accepté, que le site compte en kilo-octets de 1 000 ou de 1 024."
+          ]
+        },
+        {
+          "h2": "Et pour une limite de 1 Mo ?",
+          "paragraphes": [
+            "Certains sites sont encore plus stricts. Utilisez alors notre outil de compression à moins de 1 Mo, qui va plus loin dans la réduction. Pour un simple envoi par e-mail sans limite précise, le compresseur classique et ses trois niveaux suffisent."
+          ]
+        },
+        {
+          "h2": "Conseils pour des scans plus légers",
+          "liste": [
+            "Scannez en 150 ou 200 ppp plutôt qu'en 300 ou 600 ppp : c'est largement suffisant pour un justificatif.",
+            "Préférez le noir et blanc ou les niveaux de gris pour les documents texte.",
+            "Avec un téléphone, utilisez la fonction de numérisation de l'app Notes (iPhone) ou de Google Drive (Android) plutôt qu'une simple photo.",
+            "Recadrez la photo d'un document avant de l'insérer dans un PDF : les marges inutiles alourdissent le fichier."
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "q": "Que se passe-t-il si mon PDF fait déjà moins de 2 Mo ?",
+          "r": "Rien : l'outil le détecte et vous le signale. Vous pouvez utiliser votre fichier tel quel, sans perte de qualité."
+        },
+        {
+          "q": "La qualité sera-t-elle meilleure qu'avec la limite de 1 Mo ?",
+          "r": "Oui, en général. Avec deux fois plus de place, l'outil garde des images plus nettes et a rarement besoin de transformer les pages en images."
+        },
+        {
+          "q": "Et si le fichier dépasse toujours 2 Mo ?",
+          "r": "Pour de très longs documents scannés, la cible peut être impossible à atteindre sans rendre le texte illisible. L'outil vous propose alors le plus petit fichier obtenu. Divisez le document en plusieurs parties si le site le permet."
+        },
+        {
+          "q": "Combien de temps prend la compression ?",
+          "r": "Quelques secondes pour un document de quelques pages. Un PDF de plusieurs dizaines de pages scannées peut demander une minute sur un téléphone ancien."
+        },
+        {
+          "q": "Mes fichiers sont-ils conservés ?",
+          "r": "Non. Ils ne sont jamais envoyés sur Internet : ils sont traités dans la mémoire de votre navigateur et effacés à la fermeture de la page."
+        }
+      ]
+    }
+  }
+}

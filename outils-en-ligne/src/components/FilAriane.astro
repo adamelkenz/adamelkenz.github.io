@@ -1,0 +1,9 @@
+---
+interface Props { label: string; elements: { nom: string; href?: string }[]; }
+const { label, elements } = Astro.props;
+---
+<nav class="fil-ariane" aria-label={label}>
+  <ol>
+    {elements.map((e) => <li>{e.href ? <a href={e.href}>{e.nom}</a> : <span aria-current="page">{e.nom}</span>}</li>)}
+  </ol>
+</nav>
