@@ -51,7 +51,9 @@ chmod +x "$BIN_DIR/earshot"
 
 if [ "${EARSHOT_SKIP_MODELS:-0}" != "1" ]; then
   log "fetching the listening models (pinned revisions, ~1.1 GB, skipped if cached)"
-  "$PY" -m earshot doctor --fetch >/dev/null
+  # Plain HTTPS downloads (huggingface.co -> us.aws.cdn.hf.co): the Xet protocol's cas-server.xethub.hf.co is
+  # not on the cloud environment's allowlist and hangs on retries instead of falling back.
+  HF_HUB_DISABLE_XET=1 "$PY" -m earshot doctor --fetch >/dev/null
 fi
 
 log "ready: $("$PY" -c 'import earshot; print(earshot.__version__)' 2>/dev/null || echo installed) -> $BIN_DIR/earshot"
