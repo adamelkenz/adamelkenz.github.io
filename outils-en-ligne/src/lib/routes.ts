@@ -81,6 +81,11 @@ async function construire(): Promise<Route[]> {
   // (un outil similaire peut être un brouillon : il sera simplement masqué)
   const ids = new Set((await getCollection('outils')).map((o) => o.id));
   for (const o of outils) {
+    for (const l of languesActives) {
+      if (o.data.langues[l] && !categories[o.data.categorie].langues[l]) {
+        erreurs.push(`[${o.id}.json] existe en "${l}" mais la catégorie "${o.data.categorie}" n'a pas de version "${l}" dans src/config/categories.json.`);
+      }
+    }
     for (const s of o.data.similaires) {
       if (!ids.has(s)) erreurs.push(`[${o.id}.json] "similaires" contient "${s}" qui n'existe pas.`);
       if (s === o.id) erreurs.push(`[${o.id}.json] un outil ne peut pas être similaire à lui-même.`);

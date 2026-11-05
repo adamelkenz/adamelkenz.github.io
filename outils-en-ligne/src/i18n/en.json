@@ -1,1 +1,141 @@
-{}
+{
+  "site": {
+    "lienEvitement": "Skip to content"
+  },
+  "nav": {
+    "accueil": "Home",
+    "categories": "Tool categories"
+  },
+  "pied": {
+    "infos": "Information",
+    "gererCookies": "Manage cookies",
+    "langue": "Language",
+    "mention": "100% local processing: no file is ever sent to our servers."
+  },
+  "outil": {
+    "filAriane": "Breadcrumb",
+    "badge": "Your files never leave your device",
+    "similaires": "Related tools",
+    "faq": "Frequently asked questions",
+    "majLe": "Updated on",
+    "pub": "Advertisement",
+    "emplacementPub": "Ad slot (only visible during development)"
+  },
+  "depot": {
+    "titre": "Drop your files here",
+    "titreUnique": "Drop your file here",
+    "ou": "or",
+    "bouton": "Choose files",
+    "boutonUnique": "Choose a file",
+    "formats": "Accepted formats: {formats}"
+  },
+  "etat": {
+    "chargementMoteur": "Loading the tool…",
+    "traitementN": "Processing file {i} of {n}…",
+    "termine": "Done! Your files are ready.",
+    "termineUn": "Done! Your file is ready.",
+    "erreur": "Something went wrong: {message}",
+    "formatRefuse": "“{nom}” is not in the right format. Accepted formats: {formats}",
+    "telecharger": "Download",
+    "toutTelecharger": "Download all (.zip)",
+    "recommencer": "Process more files",
+    "gain": "−{pct}%"
+  },
+  "accueil": {
+    "title": "Free PDF, image and video tools, no upload required",
+    "metaDescription": "Compress PDFs and convert HEIC, WebP or MOV to JPG, PNG or MP4 for free. Everything runs in your browser, so your files stay on your device.",
+    "h1": "Free tools for your files, without uploading them",
+    "intro": "Compress a PDF, convert an iPhone photo or a video: every tool runs directly in your browser. No sign-up, no watermark, and no file sent to a server.",
+    "pourquoiTitre": "Why your files stay private",
+    "pourquoi": [
+      {
+        "titre": "Processed on your device",
+        "texte": "Your browser does the work. Your documents never travel through a server, which keeps them safe and saves upload time."
+      },
+      {
+        "titre": "Free, no account needed",
+        "texte": "No account, no email address, no daily file limit. The site is funded by advertising."
+      },
+      {
+        "titre": "Works on mobile too",
+        "texte": "Built for iPhone and Android: perfect for converting a HEIC photo or shrinking a PDF before sending it."
+      }
+    ]
+  },
+  "erreur404": {
+    "title": "Page not found",
+    "h1": "This page doesn't exist (anymore)",
+    "texte": "The link may be wrong. Here are the available tools:"
+  },
+  "moteurs": {
+    "imageConvert": {
+      "reglages": "Settings",
+      "qualite": "Quality",
+      "noteTransparence": "Transparent areas become white: the JPG format doesn't support transparency.",
+      "echecs": "Some files could not be converted: {noms}"
+    },
+    "pdfMerge": {
+      "liste": "Files to merge, in order",
+      "pages": "{n} p.",
+      "monter": "Move {nom} up",
+      "descendre": "Move {nom} down",
+      "retirer": "Remove {nom}",
+      "fusionner": "Merge PDFs",
+      "auMoinsDeux": "Add at least 2 PDF files. You can add more at any time.",
+      "pret": "{n} files ready ({p} pages). Adjust the order if needed, then merge.",
+      "analyse": "Reading files…",
+      "fusion": "Merging file {i} of {n}…",
+      "enregistrement": "Creating the final PDF…",
+      "protege": "Protected against editing: its pages will be added as images.",
+      "motDePasse": "Password-protected: unlock it first.",
+      "illisible": "Unreadable or damaged file.",
+      "nomSortie": "merged.pdf",
+      "noteResultat": "{n} files merged, {p} pages in total.",
+      "termine": "Done! Your merged PDF is ready."
+    },
+    "pdfCompress": {
+      "niveau": "Compression level",
+      "legere": "Light",
+      "legereAide": "Near-identical quality, moderate savings",
+      "recommandee": "Recommended",
+      "recommandeeAide": "Best balance of size and readability",
+      "maximale": "Maximum",
+      "maximaleAide": "Very small file, text no longer selectable",
+      "objectif": "Goal: a PDF under {mo} MB, no settings needed.",
+      "lecture": "Reading the PDF…",
+      "etapeImages": "Compressing the images in the PDF…",
+      "etapePages": "Converting pages to images…",
+      "dejaSousCible": "Your PDF is already {taille}, under the {mo} MB limit: you can use it as is.",
+      "dejaOptimise": "This PDF is already optimized: it can't be reduced further at this level. Try “Maximum”.",
+      "dejaOptimiseMax": "This PDF is already very small: it can't be reduced further.",
+      "termine": "Done! Your PDF is {pct}% smaller.",
+      "termineCible": "Done! Your PDF is now {taille}, under the {mo} MB limit.",
+      "cibleImpossible": "{mo} MB can't be reached without making the document unreadable. Here is the smallest file we could produce ({taille}): try splitting the document.",
+      "notePages": "Pages were converted to images: text is still readable but no longer selectable.",
+      "noteImages": "Text and layout preserved: only the images were compressed.",
+      "motDePasse": "This PDF is password-protected: unlock it first.",
+      "illisible": "This PDF file is unreadable or damaged.",
+      "suffixe": "-compressed"
+    },
+    "videoConvert": {
+      "mode": "Conversion mode",
+      "rapide": "Fast",
+      "rapideAide": "Original quality, a few seconds",
+      "compat": "Maximum compatibility",
+      "compatAide": "Re-encoded to H.264 + AAC, plays everywhere (slower)",
+      "analyse": "Analyzing the video…",
+      "detectee": "{codec} video, {duree}. Converting…",
+      "conversion": "Converting: {pct}%",
+      "chargementAudio": "Loading the audio encoder…",
+      "astuceHevc": "Your video uses HEVC (H.265). If the MP4 doesn't play on your PC, run it again with “Maximum compatibility”.",
+      "termine": "Done! Your MP4 video is ready.",
+      "nonSupporte": "Your browser can't convert this video directly ({raison}).",
+      "secours": "Use the backup converter (one-time download of about 31 MB)",
+      "secoursChargement": "Downloading the backup converter…",
+      "secoursConversion": "Converting (backup mode, slower): {pct}%",
+      "secoursEchec": "The backup conversion failed: {message}",
+      "illisible": "This file isn't a readable video or it is damaged.",
+      "raisons": "unsupported codec"
+    }
+  }
+}

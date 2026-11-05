@@ -1,1 +1,141 @@
-{}
+{
+  "site": {
+    "lienEvitement": "Ir al contenido"
+  },
+  "nav": {
+    "accueil": "Inicio",
+    "categories": "Categorías de herramientas"
+  },
+  "pied": {
+    "infos": "Información",
+    "gererCookies": "Gestionar cookies",
+    "langue": "Idioma",
+    "mention": "Procesamiento 100 % local: ningún archivo se envía a nuestros servidores."
+  },
+  "outil": {
+    "filAriane": "Ruta de navegación",
+    "badge": "Tus archivos nunca salen de tu dispositivo",
+    "similaires": "Herramientas similares",
+    "faq": "Preguntas frecuentes",
+    "majLe": "Actualizado el",
+    "pub": "Publicidad",
+    "emplacementPub": "Espacio publicitario (solo visible en desarrollo)"
+  },
+  "depot": {
+    "titre": "Arrastra tus archivos aquí",
+    "titreUnique": "Arrastra tu archivo aquí",
+    "ou": "o",
+    "bouton": "Elegir archivos",
+    "boutonUnique": "Elegir un archivo",
+    "formats": "Formatos aceptados: {formats}"
+  },
+  "etat": {
+    "chargementMoteur": "Cargando la herramienta…",
+    "traitementN": "Procesando el archivo {i} de {n}…",
+    "termine": "¡Listo! Tus archivos están preparados.",
+    "termineUn": "¡Listo! Tu archivo está preparado.",
+    "erreur": "Se produjo un error: {message}",
+    "formatRefuse": "«{nom}» no tiene el formato correcto. Formatos aceptados: {formats}",
+    "telecharger": "Descargar",
+    "toutTelecharger": "Descargar todo (.zip)",
+    "recommencer": "Procesar otros archivos",
+    "gain": "−{pct} %"
+  },
+  "accueil": {
+    "title": "Herramientas PDF, imagen y vídeo gratis, sin subir archivos",
+    "metaDescription": "Comprime PDF y convierte HEIC, WebP o MOV a JPG, PNG o MP4 gratis. Todo se hace en tu navegador: tus archivos se quedan en tu dispositivo.",
+    "h1": "Herramientas gratuitas para tus archivos, sin subirlos a internet",
+    "intro": "Comprimir un PDF, convertir una foto de iPhone o un vídeo: cada herramienta funciona directamente en tu navegador. Sin registro, sin marca de agua y sin enviar archivos a un servidor.",
+    "pourquoiTitre": "Por qué tus archivos siguen siendo privados",
+    "pourquoi": [
+      {
+        "titre": "Procesado en tu dispositivo",
+        "texte": "El trabajo lo hace tu navegador. Tus documentos no pasan por ningún servidor, lo que los protege y evita esperar a que se suban."
+      },
+      {
+        "titre": "Gratis y sin registro",
+        "texte": "Sin cuenta, sin correo electrónico y sin límite diario de archivos. El sitio se financia con publicidad."
+      },
+      {
+        "titre": "También en el móvil",
+        "texte": "Pensado para iPhone y Android: ideal para convertir una foto HEIC o aligerar un PDF antes de enviarlo."
+      }
+    ]
+  },
+  "erreur404": {
+    "title": "Página no encontrada",
+    "h1": "Esta página no existe (o ya no existe)",
+    "texte": "Puede que el enlace sea incorrecto. Estas son las herramientas disponibles:"
+  },
+  "moteurs": {
+    "imageConvert": {
+      "reglages": "Ajustes",
+      "qualite": "Calidad",
+      "noteTransparence": "Las zonas transparentes se vuelven blancas: el formato JPG no admite transparencia.",
+      "echecs": "Algunos archivos no se pudieron convertir: {noms}"
+    },
+    "pdfMerge": {
+      "liste": "Archivos para unir, en orden",
+      "pages": "{n} pág.",
+      "monter": "Subir {nom}",
+      "descendre": "Bajar {nom}",
+      "retirer": "Quitar {nom}",
+      "fusionner": "Unir los PDF",
+      "auMoinsDeux": "Añade al menos 2 archivos PDF. Puedes añadir más en cualquier momento.",
+      "pret": "{n} archivos listos ({p} páginas). Ajusta el orden si hace falta y únelos.",
+      "analyse": "Leyendo los archivos…",
+      "fusion": "Uniendo el archivo {i} de {n}…",
+      "enregistrement": "Creando el PDF final…",
+      "protege": "Protegido contra la edición: sus páginas se añadirán como imágenes.",
+      "motDePasse": "Protegido con contraseña: desbloquéalo primero.",
+      "illisible": "Archivo ilegible o dañado.",
+      "nomSortie": "unido.pdf",
+      "noteResultat": "{n} archivos unidos, {p} páginas en total.",
+      "termine": "¡Listo! Tu PDF unido está preparado."
+    },
+    "pdfCompress": {
+      "niveau": "Nivel de compresión",
+      "legere": "Ligera",
+      "legereAide": "Calidad casi idéntica, ahorro moderado",
+      "recommandee": "Recomendada",
+      "recommandeeAide": "El mejor equilibrio entre peso y legibilidad",
+      "maximale": "Máxima",
+      "maximaleAide": "Archivo muy ligero, texto no seleccionable",
+      "objectif": "Objetivo: un PDF de menos de {mo} MB, sin ajustes.",
+      "lecture": "Leyendo el PDF…",
+      "etapeImages": "Comprimiendo las imágenes del PDF…",
+      "etapePages": "Convirtiendo las páginas en imágenes…",
+      "dejaSousCible": "Tu PDF ya pesa {taille}, por debajo del límite de {mo} MB: puedes usarlo tal cual.",
+      "dejaOptimise": "Este PDF ya está optimizado: no se puede reducir más con este nivel. Prueba «Máxima».",
+      "dejaOptimiseMax": "Este PDF ya es muy ligero: no se puede reducir más.",
+      "termine": "¡Listo! Tu PDF pesa un {pct} % menos.",
+      "termineCible": "¡Listo! Tu PDF pesa ahora {taille}, por debajo del límite de {mo} MB.",
+      "cibleImpossible": "No es posible llegar a {mo} MB sin que el documento sea ilegible. Este es el archivo más pequeño obtenido ({taille}): prueba a dividir el documento.",
+      "notePages": "Las páginas se convirtieron en imágenes: el texto se lee bien pero ya no se puede seleccionar.",
+      "noteImages": "Texto y diseño conservados: solo se han aligerado las imágenes.",
+      "motDePasse": "Este PDF está protegido con contraseña: desbloquéalo primero.",
+      "illisible": "Este archivo PDF es ilegible o está dañado.",
+      "suffixe": "-comprimido"
+    },
+    "videoConvert": {
+      "mode": "Modo de conversión",
+      "rapide": "Rápido",
+      "rapideAide": "Calidad original, unos segundos",
+      "compat": "Compatibilidad máxima",
+      "compatAide": "Recodificado a H.264 + AAC, se reproduce en todas partes (más lento)",
+      "analyse": "Analizando el vídeo…",
+      "detectee": "Vídeo {codec}, {duree}. Convirtiendo…",
+      "conversion": "Convirtiendo: {pct} %",
+      "chargementAudio": "Cargando el codificador de audio…",
+      "astuceHevc": "Tu vídeo está en HEVC (H.265). Si el MP4 no se reproduce en tu PC, vuelve a convertirlo con «Compatibilidad máxima».",
+      "termine": "¡Listo! Tu vídeo MP4 está preparado.",
+      "nonSupporte": "Tu navegador no puede convertir este vídeo directamente ({raison}).",
+      "secours": "Usar el conversor de respaldo (descarga única de unos 31 MB)",
+      "secoursChargement": "Descargando el conversor de respaldo…",
+      "secoursConversion": "Convirtiendo (modo de respaldo, más lento): {pct} %",
+      "secoursEchec": "La conversión de respaldo falló: {message}",
+      "illisible": "Este archivo no es un vídeo legible o está dañado.",
+      "raisons": "códec no compatible"
+    }
+  }
+}

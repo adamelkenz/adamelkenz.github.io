@@ -1,6 +1,5 @@
 {
   "site": {
-    "slogan": "Outils PDF, image et vidéo gratuits. Vos fichiers restent sur votre appareil.",
     "lienEvitement": "Aller au contenu"
   },
   "nav": {
@@ -8,7 +7,6 @@
     "categories": "Catégories d'outils"
   },
   "pied": {
-    "outils": "Tous les outils",
     "infos": "Informations",
     "gererCookies": "Gérer les cookies",
     "langue": "Langue",
@@ -33,13 +31,11 @@
   },
   "etat": {
     "chargementMoteur": "Chargement de l'outil…",
-    "traitement": "Traitement en cours…",
     "traitementN": "Traitement du fichier {i} sur {n}…",
     "termine": "Terminé ! Vos fichiers sont prêts.",
     "termineUn": "Terminé ! Votre fichier est prêt.",
     "erreur": "Une erreur est survenue : {message}",
     "formatRefuse": "« {nom} » n'est pas au bon format. Formats acceptés : {formats}",
-    "aucunFichier": "Aucun fichier valide sélectionné.",
     "telecharger": "Télécharger",
     "toutTelecharger": "Tout télécharger (.zip)",
     "recommencer": "Traiter d'autres fichiers",
@@ -65,9 +61,6 @@
         "texte": "Les outils sont conçus pour iPhone et Android : idéal pour convertir une photo HEIC ou alléger un PDF avant de l'envoyer."
       }
     ]
-  },
-  "categorie": {
-    "voirTout": "Voir tous les outils {nom}"
   },
   "erreur404": {
     "title": "Page introuvable",
