@@ -3,7 +3,16 @@
  * canonical, données structurées, outil au-dessus des pubs, maillage interne, affichage mobile.
  */
 import { test, expect } from '@playwright/test';
+import { readdirSync, readFileSync } from 'node:fs';
 import site from '../src/config/site.json' with { type: 'json' };
+
+// Outils déclarés dans src/content/outils : slug FR → nombre d'outils similaires publiés attendus
+const dossier = new URL('../src/content/outils/', import.meta.url);
+const outils = readdirSync(dossier).map((f) => ({ id: f.replace('.json', ''), ...JSON.parse(readFileSync(new URL(f, dossier), 'utf8')) }));
+const publies = new Set(outils.filter((o) => !o.brouillon).map((o) => o.id));
+const similairesAttendus = new Map(
+  outils.map((o) => ['/' + o.langues.fr.slug, o.similaires.filter((s: string) => publies.has(s)).length]),
+);
 
 test('sitemap, robots.txt et pages', async ({ page, request }) => {
   const robots = await (await request.get('/robots.txt')).text();
@@ -15,7 +24,6 @@ test('sitemap, robots.txt et pages', async ({ page, request }) => {
 
   const titres = new Set<string>();
   const descriptions = new Set<string>();
-  let nbOutils = 0;
   const pagesOutils: string[] = [];
 
   for (const url of urls) {
@@ -37,10 +45,7 @@ test('sitemap, robots.txt et pages', async ({ page, request }) => {
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', url);
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
 
-    if (await page.locator('.outil').count()) {
-      nbOutils++;
-      pagesOutils.push(chemin);
-    }
+    if (await page.locator('.outil').count()) pagesOutils.push(chemin);
   }
 
   for (const chemin of pagesOutils) {
@@ -60,9 +65,10 @@ test('sitemap, robots.txt et pages', async ({ page, request }) => {
     });
     expect(ordre, `pub au-dessus de l'outil sur ${chemin}`).toBe(true);
 
-    // Maillage interne : 4 à 6 outils similaires (moins tant que peu d'outils sont publiés)
+    // Maillage interne : les outils similaires publiés du JSON (4 à 6 quand tout est publié)
     const similaires = await page.locator('.contenu ~ section .carte-outil').count();
-    expect(similaires).toBeGreaterThanOrEqual(Math.min(4, nbOutils - 1));
+    expect(similaires, `outils similaires sur ${chemin}`).toBe(similairesAttendus.get(chemin));
+    if (publies.size === outils.length) expect(similaires).toBeGreaterThanOrEqual(4);
     expect(similaires).toBeLessThanOrEqual(6);
   }
 });

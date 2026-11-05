@@ -15,7 +15,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run build && npx astro preview --port 4322 --ignore-lock',
     url: 'http://localhost:4322',
-    reuseExistingServer: true,
+    reuseExistingServer: false,
     timeout: 180_000,
   },
 });

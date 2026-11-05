@@ -46,6 +46,7 @@ export class InterfaceOutil {
   private urls: string[] = [];
   readonly resultats: Resultat[] = [];
   private accepte: string[];
+  private rappelsRecommencer: (() => void)[] = [];
 
   constructor(root: HTMLElement) {
     this.root = root;
@@ -62,8 +63,18 @@ export class InterfaceOutil {
     this.boutonZip.addEventListener('click', () => this.telechargerZip());
     root.querySelector('[data-action=recommencer]')!.addEventListener('click', () => {
       this.reinitialiser();
+      this.rappelsRecommencer.forEach((f) => f());
       this.input.click();
     });
+  }
+
+  /** Code à exécuter quand l'utilisateur clique sur « Traiter d'autres fichiers ». */
+  surRecommencer(cb: () => void) {
+    this.rappelsRecommencer.push(cb);
+  }
+
+  masquerEtat() {
+    this.etat.hidden = true;
   }
 
   /** Branche le sélecteur de fichiers et le glisser-déposer. */

@@ -1,0 +1,178 @@
+---
+/**
+ * Moteur "pdf-merge" : assemble plusieurs PDF avec pdf-lib, dans l'ordre choisi.
+ * Les PDF protégés contre la modification sont ajoutés sous forme d'images (pdf.js).
+ * Options JSON : { "accepte": [".pdf"] }
+ */
+import ZoneDepot from '../../components/ZoneDepot.astro';
+import { textes, type Langue } from '../../lib/i18n';
+
+interface Props { langue: Langue; options: Record<string, unknown>; }
+const { langue, options } = Astro.props;
+const t = textes(langue).moteurs.pdfMerge;
+const accepte = (options.accepte as string[]) ?? ['.pdf'];
+---
+<ZoneDepot moteur="pdf-merge" langue={langue} accepte={accepte} textesMoteur={t}>
+  <ul class="fichiers" aria-label={t.liste}></ul>
+  <div class="barre-actions" data-zone="fusion" hidden>
+    <button type="button" class="btn" data-action="fusionner" disabled>{t.fusionner}</button>
+  </div>
+</ZoneDepot>
+
+<script>
+  import { InterfaceOutil, remplir, pause, formatTaille, messageErreur } from '../../lib/client/outil';
+  import { chargerPdfLib, ouvrirAvecPdfLib, ouvrirAvecPdfJs, rasteriser, ErreurPdf } from '../../lib/client/pdf';
+
+  interface Entree {
+    fichier: File;
+    octets: Uint8Array;
+    pages: number;
+    protege: boolean;
+    erreur?: string;
+  }
+
+  const ICONES = {
+    haut: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>',
+    bas: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
+    retirer: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  };
+
+  document.querySelectorAll<HTMLElement>('.outil[data-moteur="pdf-merge"]').forEach((root) => {
+    const ui = new InterfaceOutil(root);
+    const t = ui.t;
+    const liste = root.querySelector<HTMLUListElement>('.fichiers')!;
+    const zoneFusion = root.querySelector<HTMLElement>('[data-zone=fusion]')!;
+    const bouton = root.querySelector<HTMLButtonElement>('[data-action=fusionner]')!;
+    const entrees: Entree[] = [];
+    const valides = () => entrees.filter((e) => !e.erreur);
+
+    function bouton_(classe: string, svg: string, label: string, action: () => void, actif = true) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = classe;
+      b.innerHTML = svg;
+      b.setAttribute('aria-label', label);
+      b.title = label;
+      b.disabled = !actif;
+      b.addEventListener('click', () => {
+        action();
+        ui.reinitialiser(); // l'ordre a changé : l'ancien résultat n'est plus valable
+        afficher();
+      });
+      return b;
+    }
+
+    function afficher() {
+      liste.replaceChildren(
+        ...entrees.map((e, i) => {
+          const li = document.createElement('li');
+          li.className = 'fichier';
+          const nom = document.createElement('span');
+          nom.className = 'fichier-nom';
+          nom.textContent = `${i + 1}. ${e.fichier.name}`;
+          const info = document.createElement('span');
+          info.className = 'fichier-taille';
+          info.textContent = e.erreur ?? `${remplir(t.pages, { n: e.pages })} · ${formatTaille(e.fichier.size, ui.langue)}`;
+          if (e.erreur) info.style.color = 'var(--erreur)';
+          const actions = document.createElement('span');
+          actions.className = 'fichier-actions';
+          actions.append(
+            bouton_('icone-btn', ICONES.haut, remplir(t.monter, { nom: e.fichier.name }), () => entrees.splice(i - 1, 0, ...entrees.splice(i, 1)), i > 0),
+            bouton_('icone-btn', ICONES.bas, remplir(t.descendre, { nom: e.fichier.name }), () => entrees.splice(i + 1, 0, ...entrees.splice(i, 1)), i < entrees.length - 1),
+            bouton_('icone-btn', ICONES.retirer, remplir(t.retirer, { nom: e.fichier.name }), () => entrees.splice(i, 1)),
+          );
+          const texte = document.createElement('div');
+          texte.className = 'fichier-texte';
+          texte.append(nom, info);
+          li.append(texte, actions);
+          if (e.protege && !e.erreur) {
+            const note = document.createElement('p');
+            note.className = 'resultat-note';
+            note.textContent = t.protege;
+            li.append(note);
+          }
+          return li;
+        }),
+      );
+      const ok = valides();
+      zoneFusion.hidden = entrees.length === 0;
+      bouton.disabled = ok.length < 2;
+      if (!root.querySelector('.resultat')) {
+        if (ok.length >= 2) ui.info(remplir(t.pret, { n: ok.length, p: ok.reduce((s, e) => s + e.pages, 0) }));
+        else if (entrees.length) ui.info(t.auMoinsDeux);
+        else ui.masquerEtat();
+      }
+    }
+
+    ui.surRecommencer(() => {
+      entrees.length = 0;
+      afficher();
+    });
+
+    ui.surFichiers(async (fichiers) => {
+      ui.reinitialiser();
+      ui.occupe(true);
+      ui.info(t.analyse);
+      try {
+        for (const f of fichiers) {
+          const octets = new Uint8Array(await f.arrayBuffer());
+          try {
+            const { doc, protege } = await ouvrirAvecPdfLib(octets);
+            let pages = doc?.getPageCount() ?? 0;
+            if (protege) {
+              const { doc: d, fermer } = await ouvrirAvecPdfJs(octets);
+              pages = d.numPages;
+              await fermer();
+            }
+            entrees.push({ fichier: f, octets, pages, protege });
+          } catch (e) {
+            console.error(e);
+            const code = e instanceof ErreurPdf ? e.code : 'illisible';
+            entrees.push({ fichier: f, octets, pages: 0, protege: false, erreur: code === 'mot-de-passe' ? t.motDePasse : t.illisible });
+          }
+        }
+      } finally {
+        ui.occupe(false);
+        afficher();
+      }
+    });
+
+    bouton.addEventListener('click', async () => {
+      const aFusionner = valides();
+      if (aFusionner.length < 2) return;
+      ui.reinitialiser();
+      ui.occupe(true);
+      bouton.disabled = true;
+      try {
+        const { PDFDocument } = await chargerPdfLib();
+        const sortie = await PDFDocument.create();
+        let total = 0;
+        for (const [i, e] of aFusionner.entries()) {
+          ui.info(remplir(t.fusion, { i: i + 1, n: aFusionner.length }), i / aFusionner.length);
+          await pause();
+          const octets = e.protege ? await rasteriser(e.octets, { dpi: 150, qualite: 0.85 }) : e.octets;
+          const source = await PDFDocument.load(octets, { updateMetadata: false });
+          const pages = await sortie.copyPages(source, source.getPageIndices());
+          pages.forEach((p) => sortie.addPage(p));
+          total += pages.length;
+        }
+        ui.info(t.enregistrement, 1);
+        await pause();
+        const octets = await sortie.save({ useObjectStreams: true });
+        ui.ajouterResultat({
+          nom: t.nomSortie,
+          blob: new Blob([octets as BlobPart], { type: 'application/pdf' }),
+          note: remplir(t.noteResultat, { n: aFusionner.length, p: total }),
+        });
+        ui.ok(t.termine);
+        ui.terminer();
+      } catch (e) {
+        console.error(e);
+        ui.erreur(remplir(t.erreur, { message: messageErreur(e) }));
+      } finally {
+        ui.occupe(false);
+        bouton.disabled = valides().length < 2;
+      }
+    });
+  });
+</script>

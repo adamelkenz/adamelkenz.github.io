@@ -80,6 +80,25 @@
       "qualite": "Qualité",
       "noteTransparence": "Les zones transparentes deviennent blanches : le format JPG ne gère pas la transparence.",
       "echecs": "Certains fichiers n'ont pas pu être convertis : {noms}"
+    },
+    "pdfMerge": {
+      "liste": "Fichiers à fusionner, dans l'ordre",
+      "pages": "{n} p.",
+      "monter": "Monter {nom}",
+      "descendre": "Descendre {nom}",
+      "retirer": "Retirer {nom}",
+      "fusionner": "Fusionner les PDF",
+      "auMoinsDeux": "Ajoutez au moins 2 fichiers PDF. Vous pouvez en ajouter d'autres à tout moment.",
+      "pret": "{n} fichiers prêts ({p} pages). Réglez l'ordre si besoin, puis lancez la fusion.",
+      "analyse": "Lecture des fichiers…",
+      "fusion": "Fusion du fichier {i} sur {n}…",
+      "enregistrement": "Création du PDF final…",
+      "protege": "Protégé contre la modification : ses pages seront ajoutées sous forme d'images.",
+      "motDePasse": "Protégé par un mot de passe : déverrouillez-le d'abord.",
+      "illisible": "Fichier illisible ou endommagé.",
+      "nomSortie": "fusion.pdf",
+      "noteResultat": "{n} fichiers fusionnés, {p} pages au total.",
+      "termine": "Terminé ! Votre PDF fusionné est prêt."
     }
   }
 }
