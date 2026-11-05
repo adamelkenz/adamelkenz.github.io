@@ -1,0 +1,167 @@
+---
+/**
+ * Moteur "video-convert" : MOV → MP4 dans le navigateur.
+ * 1. Mediabunny (WebCodecs) : copie directe des flux si possible (instantané), sinon
+ *    réencodage accéléré par le matériel. Encodeur AAC WebAssembly chargé si besoin.
+ * 2. Secours : ffmpeg.wasm (≈ 31 Mo depuis jsDelivr), seulement sur demande de l'utilisateur.
+ * Options JSON : { "accepte": [".mov"], "sortie": "mp4" }
+ */
+import ZoneDepot from '../../components/ZoneDepot.astro';
+import { textes, type Langue } from '../../lib/i18n';
+
+interface Props { langue: Langue; options: Record<string, unknown>; }
+const { langue, options } = Astro.props;
+const t = textes(langue).moteurs.videoConvert;
+const accepte = (options.accepte as string[]) ?? ['.mov'];
+const modes = [
+  { v: 'rapide', nom: t.rapide, aide: t.rapideAide },
+  { v: 'compat', nom: t.compat, aide: t.compatAide },
+];
+---
+<ZoneDepot moteur="video-convert" langue={langue} accepte={accepte} multiple={false} textesMoteur={t}>
+  <fieldset class="options">
+    <legend>{t.mode}</legend>
+    <div class="choix">
+      {modes.map((m) => (
+        <label>
+          <input type="radio" name="mode" value={m.v} checked={m.v === 'rapide'} />
+          <span>{m.nom}<small>{m.aide}</small></span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+  <div class="barre-actions" data-zone="secours" hidden>
+    <button type="button" class="btn btn-secondaire" data-action="secours">{t.secours}</button>
+  </div>
+</ZoneDepot>
+
+<script>
+  import { InterfaceOutil, remplir, renommer, messageErreur } from '../../lib/client/outil';
+
+  const NOMS_CODECS: Record<string, string> = { avc: 'H.264', hevc: 'HEVC (H.265)', vp9: 'VP9', av1: 'AV1', prores: 'ProRes' };
+  const duree = (s: number) => `${Math.floor(s / 60)} min ${String(Math.round(s % 60)).padStart(2, '0')} s`;
+
+  class ConversionImpossible extends Error {}
+
+  /** Conversion principale avec Mediabunny (WebCodecs). */
+  async function convertirMediabunny(fichier: File, mode: string, ui: InterfaceOutil): Promise<Uint8Array> {
+    const mb = await import('mediabunny');
+    const input = new mb.Input({ source: new mb.BlobSource(fichier), formats: mb.ALL_FORMATS });
+    let video, audio;
+    try {
+      video = await input.getPrimaryVideoTrack();
+      audio = await input.getPrimaryAudioTrack();
+    } catch {
+      throw new Error(ui.t.illisible);
+    }
+    if (!video) throw new Error(ui.t.illisible);
+    const codec = (await video.getCodec()) ?? '?';
+    ui.info(remplir(ui.t.detectee, { codec: NOMS_CODECS[codec] ?? codec, duree: duree(await input.computeDuration()) }), 0);
+
+    // L'AAC est le format audio le plus compatible ; si le navigateur ne sait pas l'encoder,
+    // on charge un encodeur WebAssembly (≈ 1 Mo), uniquement quand c'est nécessaire.
+    if (audio && (await audio.getCodec()) !== 'aac' && !(await mb.canEncodeAudio('aac'))) {
+      ui.info(ui.t.chargementAudio, 0);
+      const { registerAacEncoder } = await import('@mediabunny/aac-encoder');
+      registerAacEncoder();
+    }
+
+    const output = new mb.Output({ format: new mb.Mp4OutputFormat({ fastStart: 'in-memory' }), target: new mb.BufferTarget() });
+    const conversion = await mb.Conversion.init({
+      input,
+      output,
+      // Pas de réglage de qualité ici : il forcerait le réencodage même quand une copie suffit.
+      video: mode === 'compat' ? { codec: 'avc' } : {},
+      audio: { codec: 'aac' },
+      showWarnings: false,
+    });
+    const perdues = conversion.discardedTracks.filter((d) => d.reason !== 'discarded_by_user');
+    if (!conversion.isValid || perdues.length) {
+      throw new ConversionImpossible(perdues.map((d) => d.reason).join(', ') || ui.t.raisons);
+    }
+    conversion.onProgress = (p) => ui.info(remplir(ui.t.conversion, { pct: Math.round(p * 100) }), p);
+    await conversion.execute();
+    if (codec === 'hevc' && mode === 'rapide') ui.info(ui.t.astuceHevc);
+    return new Uint8Array((output.target as InstanceType<typeof mb.BufferTarget>).buffer!);
+  }
+
+  /** Secours : ffmpeg.wasm, cœur téléchargé depuis jsDelivr (trop gros pour l'hébergement). */
+  async function convertirFfmpeg(fichier: File, mode: string, ui: InterfaceOutil): Promise<Uint8Array> {
+    ui.info(ui.t.secoursChargement, 0);
+    const [{ FFmpeg }, { toBlobURL, fetchFile }] = await Promise.all([import('@ffmpeg/ffmpeg'), import('@ffmpeg/util')]);
+    const base = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/esm';
+    const ffmpeg = new FFmpeg();
+    await ffmpeg.load({
+      coreURL: await toBlobURL(`${base}/ffmpeg-core.js`, 'text/javascript'),
+      wasmURL: await toBlobURL(`${base}/ffmpeg-core.wasm`, 'application/wasm'),
+    });
+    ffmpeg.on('progress', ({ progress }) =>
+      ui.info(remplir(ui.t.secoursConversion, { pct: Math.max(0, Math.min(100, Math.round(progress * 100))) }), progress),
+    );
+    await ffmpeg.writeFile('entree.mov', await fetchFile(fichier));
+    const communs = ['-map', '0:v:0', '-map', '0:a:0?', '-movflags', '+faststart'];
+    const args =
+      mode === 'compat'
+        ? ['-i', 'entree.mov', ...communs, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '22', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', 'sortie.mp4']
+        : ['-i', 'entree.mov', ...communs, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', 'sortie.mp4'];
+    const code = await ffmpeg.exec(args);
+    if (code !== 0) throw new Error(`ffmpeg ${code}`);
+    const data = (await ffmpeg.readFile('sortie.mp4')) as Uint8Array;
+    ffmpeg.terminate();
+    return data;
+  }
+
+  document.querySelectorAll<HTMLElement>('.outil[data-moteur="video-convert"]').forEach((root) => {
+    const ui = new InterfaceOutil(root);
+    const zoneSecours = root.querySelector<HTMLElement>('[data-zone=secours]')!;
+    const boutonSecours = root.querySelector<HTMLButtonElement>('[data-action=secours]')!;
+    let enAttente: File | null = null;
+    const mode = () => root.querySelector<HTMLInputElement>('input[name=mode]:checked')?.value ?? 'rapide';
+
+    const livrer = (fichier: File, octets: Uint8Array) => {
+      ui.ajouterResultat({ nom: renommer(fichier.name, 'mp4'), blob: new Blob([octets as BlobPart], { type: 'video/mp4' }), tailleAvant: fichier.size });
+      if (!root.querySelector('.etat')?.textContent?.includes('HEVC')) ui.ok(ui.t.termine);
+      ui.terminer();
+    };
+
+    ui.surRecommencer(() => (zoneSecours.hidden = true));
+
+    ui.surFichiers(async ([fichier]) => {
+      ui.reinitialiser();
+      zoneSecours.hidden = true;
+      ui.occupe(true);
+      ui.info(ui.t.analyse, 0);
+      try {
+        livrer(fichier, await convertirMediabunny(fichier, mode(), ui));
+      } catch (e) {
+        console.error(e);
+        if (e instanceof ConversionImpossible || (e instanceof Error && !e.message.includes(ui.t.illisible))) {
+          ui.erreur(remplir(ui.t.nonSupporte, { raison: e instanceof ConversionImpossible ? e.message : messageErreur(e) }));
+          enAttente = fichier;
+          zoneSecours.hidden = false;
+        } else {
+          ui.erreur(ui.t.illisible);
+        }
+      } finally {
+        ui.occupe(false);
+      }
+    });
+
+    boutonSecours.addEventListener('click', async () => {
+      if (!enAttente) return;
+      const fichier = enAttente;
+      zoneSecours.hidden = true;
+      ui.occupe(true);
+      try {
+        livrer(fichier, await convertirFfmpeg(fichier, mode(), ui));
+        enAttente = null;
+      } catch (e) {
+        console.error(e);
+        ui.erreur(remplir(ui.t.secoursEchec, { message: messageErreur(e) }));
+        zoneSecours.hidden = false;
+      } finally {
+        ui.occupe(false);
+      }
+    });
+  });
+</script>

@@ -24,7 +24,7 @@ Les outils s'appuient sur d'excellentes bibliothèques libres, que nous remercio
 - <a href="https://pdf-lib.js.org" rel="noopener">pdf-lib</a> (licence MIT) : fusion et réécriture des PDF ;
 - <a href="https://mozilla.github.io/pdf.js/" rel="noopener">pdf.js</a> de Mozilla (licence Apache 2.0) : lecture et affichage des PDF ;
 - <a href="https://github.com/hoppergee/heic-to" rel="noopener">heic-to</a> et <a href="https://github.com/strukturag/libheif" rel="noopener">libheif</a> (licence LGPL 3.0) : lecture des photos HEIC ;
-- <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> (licence MPL 2.0) : conversion vidéo ;
+- <a href="https://mediabunny.dev" rel="noopener">Mediabunny</a> et son encodeur AAC (licence MPL 2.0, basé sur FFmpeg) : conversion vidéo ;
 - <a href="https://ffmpegwasm.netlify.app" rel="noopener">ffmpeg.wasm</a> (licences MIT / GPL 2.0) : conversion vidéo de secours ;
 - <a href="https://github.com/101arrowz/fflate" rel="noopener">fflate</a> (licence MIT) : création des archives ZIP.
 

@@ -123,6 +123,26 @@
       "motDePasse": "Ce PDF est protégé par un mot de passe : déverrouillez-le d'abord.",
       "illisible": "Ce fichier PDF est illisible ou endommagé.",
       "suffixe": "-compresse"
+    },
+    "videoConvert": {
+      "mode": "Mode de conversion",
+      "rapide": "Rapide",
+      "rapideAide": "Qualité d'origine, quelques secondes",
+      "compat": "Compatibilité maximale",
+      "compatAide": "Réencodage H.264 + AAC, lisible partout (plus lent)",
+      "analyse": "Analyse de la vidéo…",
+      "detectee": "Vidéo {codec}, {duree}. Conversion en cours…",
+      "conversion": "Conversion : {pct} %",
+      "chargementAudio": "Chargement de l'encodeur audio…",
+      "astuceHevc": "Votre vidéo est en HEVC (H.265). Si le MP4 ne se lit pas sur votre PC, relancez avec « Compatibilité maximale ».",
+      "termine": "Terminé ! Votre vidéo MP4 est prête.",
+      "nonSupporte": "Votre navigateur ne sait pas convertir cette vidéo directement ({raison}).",
+      "secours": "Utiliser le convertisseur de secours (téléchargement unique d'environ 31 Mo)",
+      "secoursChargement": "Téléchargement du convertisseur de secours…",
+      "secoursConversion": "Conversion (mode secours, plus lent) : {pct} %",
+      "secoursEchec": "La conversion de secours a échoué : {message}",
+      "illisible": "Ce fichier n'est pas une vidéo lisible ou il est endommagé.",
+      "raisons": "codec non pris en charge"
     }
   }
 }

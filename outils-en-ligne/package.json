@@ -14,6 +14,7 @@
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
+    "@mediabunny/aac-encoder": "^1.65.2",
     "astro": "^7.4.5",
     "fflate": "^0.8.3",
     "heic-to": "^1.6.7",

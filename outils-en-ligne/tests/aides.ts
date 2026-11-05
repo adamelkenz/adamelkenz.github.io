@@ -55,3 +55,17 @@ export async function texteDuPdf(octets: Buffer): Promise<string> {
   }
   return texte;
 }
+
+/** Liste les types de boîtes et codecs présents dans un MP4 (vérification légère, sans ffprobe). */
+export function infosMp4(b: Buffer) {
+  const marque = b.subarray(8, 12).toString();
+  const contient = (s: string) => b.includes(Buffer.from(s));
+  return {
+    estMp4: b.subarray(4, 8).toString() === 'ftyp' && marque !== 'qt  ',
+    marque,
+    h264: contient('avc1'),
+    hevc: contient('hvc1') || contient('hev1'),
+    aac: contient('mp4a'),
+    pcm: contient('sowt') || contient('lpcm') || contient('ipcm'),
+  };
+}
