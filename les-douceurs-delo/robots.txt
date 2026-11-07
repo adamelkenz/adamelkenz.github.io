@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adamelkenz.github.io/les-douceurs-delo/sitemap.xml
