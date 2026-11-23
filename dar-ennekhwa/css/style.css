@@ -109,7 +109,7 @@ section{padding:84px 0;position:relative}
 .chip{display:flex;align-items:center;gap:8px;padding:8px 16px;border:1.5px solid var(--cobalt);border-radius:999px;font-size:.78rem;letter-spacing:.06em;font-weight:500;background:var(--ivory);transition:.25s}
 .chip i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:block}
 .chip:hover,.chip.on{background:var(--cobalt);color:var(--ivory)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,290px));justify-content:center;gap:30px}
 .card{position:relative;background:var(--ivory);border:1.5px solid var(--cobalt);border-radius:130px 130px 20px 20px;padding:12px 12px 22px;text-align:center;transition:.35s;box-shadow:0 8px 24px rgba(13,47,102,.08);cursor:pointer}
 .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--turq)}
 .card .ph{position:relative;aspect-ratio:4/5;border-radius:118px 118px 12px 12px;overflow:hidden;background:var(--cream)}
@@ -251,3 +251,23 @@ footer small{display:block;margin-top:26px;color:#7f8fb0;font-size:.75rem}
   .table-wrap{overflow-x:auto}
   table{min-width:520px}
 }
+
+/* Gender tabs & extra */
+.gtabs{display:flex;justify-content:center;gap:0;margin:34px auto 0;border:2px solid var(--cobalt);border-radius:999px;width:max-content;max-width:100%;overflow:hidden;background:var(--ivory)}
+.gtabs:empty{display:none}
+.gtabs button{padding:11px 26px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--cobalt);transition:.25s}
+.gtabs button.on{background:var(--cobalt);color:var(--ivory)}
+.filters:empty{display:none}
+.filters{margin:24px 0 0}
+.filters.shades{margin-top:12px}
+.filters.shades .chip{font-size:.72rem;padding:6px 13px;border-width:1px}
+#grid{margin-top:40px}
+.coll-desc{text-align:center;font-family:var(--f-serif);font-size:1.15rem;color:var(--ink-soft);max-width:620px;margin:18px auto 0}
+.coll-desc:empty{display:none}
+.card .ceyebrow{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:14px}
+.card.out .ph img{filter:grayscale(.7);opacity:.7}
+.badge.out{background:var(--ink-soft)}
+.empty{grid-column:1/-1;text-align:center;font-family:var(--f-serif);font-size:1.2rem;color:var(--ink-soft);padding:30px}
+.opt[disabled]{opacity:.4;cursor:not-allowed}
+.admin-link{color:#7f8fb0;text-decoration:underline}
+@media (max-width:520px){.gtabs button{padding:10px 16px;font-size:.7rem;letter-spacing:.1em}}

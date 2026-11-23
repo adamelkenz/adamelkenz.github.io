@@ -1,0 +1,233 @@
+{
+ "settings": {
+  "whatsapp": "212600000000",
+  "instagramUrl": "https://www.instagram.com/dar.ennekhwa"
+ },
+ "collections": [
+  {
+   "id": "gandoura-fassi",
+   "nameFr": "Collection Gandoura Fassi",
+   "nameEn": "Fassi Gandoura Collection",
+   "gender": "homme",
+   "descFr": "Coupe droite intemporelle en tissu noble respirant, sfifa tressée et boutons aakad faits main à Fès.",
+   "descEn": "Timeless straight cut in breathable noble fabric, braided sfifa and hand-knotted aakad buttons from Fez."
+  }
+ ],
+ "products": [
+  {
+   "id": "gandoura-vert-sauge",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Vert Sauge",
+   "colorEn": "Sage Green",
+   "hex": "#7B9986",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "Best-Seller",
+   "badgeEn": "Best-Seller",
+   "inStock": true,
+   "images": [
+    "img/vert-sauge-1.jpg",
+    "img/vert-sauge-2.jpg",
+    "img/vert-sauge-3.jpg",
+    "img/vert-sauge-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-vert-emeraude",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Vert Émeraude",
+   "colorEn": "Emerald Green",
+   "hex": "#1E4331",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "Nouveau",
+   "badgeEn": "New",
+   "inStock": true,
+   "images": [
+    "img/vert-emeraude-1.jpg",
+    "img/vert-emeraude-2.jpg",
+    "img/vert-emeraude-3.jpg",
+    "img/vert-emeraude-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-gris-souris",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Gris Souris",
+   "colorEn": "Mouse Grey",
+   "hex": "#7A7E85",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "",
+   "badgeEn": "",
+   "inStock": true,
+   "images": [
+    "img/gris-souris-1.jpg",
+    "img/gris-souris-2.jpg",
+    "img/gris-souris-3.jpg",
+    "img/gris-souris-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-bleu-nuit",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Bleu Nuit",
+   "colorEn": "Midnight Blue",
+   "hex": "#202B49",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "Iconique",
+   "badgeEn": "Iconic",
+   "inStock": true,
+   "images": [
+    "img/bleu-nuit-1.jpg",
+    "img/bleu-nuit-2.jpg",
+    "img/bleu-nuit-3.jpg",
+    "img/bleu-nuit-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-prune-royale",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Prune Royale",
+   "colorEn": "Royal Plum",
+   "hex": "#54293D",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "",
+   "badgeEn": "",
+   "inStock": true,
+   "images": [
+    "img/prune-royale-1.jpg",
+    "img/prune-royale-2.jpg",
+    "img/prune-royale-3.jpg",
+    "img/prune-royale-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-noir-absolu",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Noir Absolu",
+   "colorEn": "Absolute Black",
+   "hex": "#1F2022",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "Intemporel",
+   "badgeEn": "Timeless",
+   "inStock": true,
+   "images": [
+    "img/noir-absolu-1.jpg",
+    "img/noir-absolu-2.jpg",
+    "img/noir-absolu-3.jpg",
+    "img/noir-absolu-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-camel-dore",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Camel Doré",
+   "colorEn": "Golden Camel",
+   "hex": "#A7845A",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "",
+   "badgeEn": "",
+   "inStock": true,
+   "images": [
+    "img/camel-dore-1.jpg",
+    "img/camel-dore-2.jpg",
+    "img/camel-dore-3.jpg",
+    "img/camel-dore-4.jpg"
+   ]
+  },
+  {
+   "id": "gandoura-sable-doux",
+   "collectionId": "gandoura-fassi",
+   "titleFr": "Gandoura Fassi",
+   "titleEn": "Fassi Gandoura",
+   "colorFr": "Sable Doux",
+   "colorEn": "Soft Sand",
+   "hex": "#CBBBA8",
+   "descFr": "Coupe droite moderne en tissu noble respirant, col en V bordé d’une sfifa tressée ton-sur-ton et boutons aakad façonnés à la main à Fès.",
+   "descEn": "Modern straight cut in breathable noble fabric, V-neck trimmed with tone-on-tone braided sfifa and hand-knotted aakad buttons from Fez.",
+   "price": 240,
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "badgeFr": "",
+   "badgeEn": "",
+   "inStock": true,
+   "images": [
+    "img/sable-doux-1.jpg",
+    "img/sable-doux-2.jpg",
+    "img/sable-doux-3.jpg"
+   ]
+  }
+ ]
+}
