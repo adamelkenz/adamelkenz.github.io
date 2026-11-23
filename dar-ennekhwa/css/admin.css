@@ -1,6 +1,6 @@
 /* Espace propriétaire */
 body.admin{background:var(--cream);padding-bottom:110px}
-.abar{background:var(--cobalt-d) url(../img/zellij-blue.svg) 0 0/80px;color:var(--ivory);position:sticky;top:0;z-index:30;border-bottom:3px solid var(--saffron)}
+.abar{background:var(--cobalt-d) url(../img/zellij-blue.svg) center/200px;color:var(--ivory);position:sticky;top:0;z-index:30;border-bottom:3px solid var(--saffron)}
 .abar .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:10px}
 .alogo{display:flex;align-items:center;gap:10px;background:rgba(8,29,66,.85);padding:6px 14px 6px 8px;border-radius:12px}
 .alogo img{width:30px;height:30px}
