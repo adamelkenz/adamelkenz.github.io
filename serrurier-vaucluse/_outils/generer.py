@@ -1398,10 +1398,7 @@ def tete(titre, desc, url, root, ld, image, robots='index, follow, max-image-pre
 <meta name="geo.region" content="FR-84">
 <link rel="icon" type="image/svg+xml" href="{root}img/logo-cle-ventoux.svg">
 <link rel="apple-touch-icon" href="{root}img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="{root}fonts/space-grotesk-latin.woff2" crossorigin>
 <link rel="stylesheet" href="{root}css/style.css">
 <!-- Page générée par _outils/generer.py : modifier le script, pas ce fichier. -->
 <script type="application/ld+json">
@@ -1758,11 +1755,58 @@ def service(s, info=False):
 # Informations légales : à compléter par le client avant la mise en ligne définitive
 A_COMPLETER = '<span class="todo">[à compléter]</span>'
 LEGAL = {
-    'raison': A_COMPLETER,      # ex. « Jean Dupont, entrepreneur individuel » ou « SARL Serrurier Vaucluse »
+    'raison': A_COMPLETER,      # ex. « Jean Dupont, EI » (entrepreneur individuel) ou « Serrurier Vaucluse SARL »
+    'forme': A_COMPLETER,       # ex. « Entreprise individuelle (EI) » ou « SARL au capital de 1 000 € »
     'siret': A_COMPLETER,
+    'tva': A_COMPLETER,         # numéro de TVA intracommunautaire, ou « Non assujetti (franchise en base de TVA) »
     'adresse': A_COMPLETER,
-    'directeur': A_COMPLETER,   # directeur de la publication
+    'directeur': A_COMPLETER,   # directeur de la publication (en général l'exploitant)
+    'mediateur': A_COMPLETER,   # nom, adresse et site du médiateur de la consommation choisi par l'entreprise
 }
+HEBERGEUR = 'Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, États-Unis'
+HEBERGEUR_CONTACT = 'privacy@netlify.com (pas de numéro de téléphone public)'
+
+
+def donnees_html():
+    """Partie « Données personnelles » : décrit le fonctionnement réel du formulaire (SMS ou agenda Google)."""
+    if AGENDA_URL:
+        envoi = ("Quand vous envoyez le formulaire, votre demande est transmise au serrurier et enregistrée dans son agenda Google "
+                 "(service de Google LLC). Google peut traiter ces données aux États-Unis ; Google LLC est certifiée au Data Privacy "
+                 "Framework UE–États-Unis.")
+        destinataires = "le serrurier et Google, qui héberge son agenda"
+    else:
+        envoi = ("Le formulaire ne transmet rien à un serveur : sur téléphone, il prépare un SMS avec votre demande, que vous "
+                 "envoyez vous-même depuis votre application de messagerie ; sur ordinateur, il vous invite à nous appeler ou à "
+                 "nous écrire par SMS. Vos informations ne sont donc reçues que si vous envoyez ce SMS ou nous appelez.")
+        destinataires = "le serrurier uniquement"
+    paras = [
+        ("Responsable du traitement", f"{LEGAL['raison']}, exploitant de {NOM}, joignable au {TEL} ou à {EMAIL}."),
+        ("Données collectées", "Nom, téléphone, e-mail (facultatif), ville, prestation souhaitée, date et créneau souhaités, "
+                               "message, et les informations données lors de l'appel ou de l'intervention (adresse, facture)."),
+        ("Utilisation", "Ces données servent uniquement à vous recontacter, à organiser l'intervention, à établir le devis et la "
+                        "facture. Elles ne sont ni vendues, ni louées, ni utilisées à des fins publicitaires. " + envoi),
+        ("Base légale", "Le traitement repose sur les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD) "
+                        "et, pour la facturation, sur une obligation légale (article 6.1.c)."),
+        ("Destinataires", f"Vos données sont accessibles à {destinataires}. Elles ne sont communiquées à aucun autre tiers, "
+                          "sauf obligation légale."),
+        ("Durée de conservation", "Une demande qui n'aboutit pas à une intervention est supprimée au plus tard 3 ans après le "
+                                  "dernier contact. Les données d'un client sont conservées pendant la relation commerciale puis "
+                                  "3 ans ; les factures sont conservées 10 ans, comme l'exige le Code de commerce."),
+        ("Vos droits", "Vous pouvez demander l'accès à vos données, leur rectification, leur effacement, la limitation du "
+                       "traitement ou leur portabilité, et vous opposer à leur traitement. Écrivez-nous ou appelez-nous : nous "
+                       "répondons dans un délai d'un mois. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr)."),
+    ]
+    tiers = ("Le site ne dépose aucun cookie et n'enregistre rien dans votre navigateur : il n'utilise ni mesure d'audience, "
+             "ni publicité, ni réseau social. Aucun bandeau de consentement n'est donc nécessaire. La police de caractères est "
+             "hébergée sur le site lui-même. Pour afficher l'animation 3D et la carte des zones, votre navigateur télécharge des "
+             "bibliothèques sur cdnjs (Cloudflare) et des fonds de carte chez Esri, qui reçoivent alors votre adresse IP, comme "
+             "l'hébergeur Netlify pour toute visite. Netlify est certifiée au Data Privacy Framework UE–États-Unis.")
+    corps = '\n'.join(f'      <h3>{t}</h3>\n      <p>{p}</p>' for t, p in paras)
+    return f'''      <h2 id="donnees">Données personnelles</h2>
+{corps}
+
+      <h2>Cookies et services tiers</h2>
+      <p>{tiers}</p>'''
 
 
 def mentions():
@@ -1776,7 +1820,9 @@ def mentions():
       <ul class="facts">
         <li><span>Nom commercial</span><b>{NOM}</b></li>
         <li><span>Exploitant</span><b>{LEGAL['raison']}</b></li>
+        <li><span>Forme juridique</span><b>{LEGAL['forme']}</b></li>
         <li><span>SIRET</span><b>{LEGAL['siret']}</b></li>
+        <li><span>N° de TVA intracommunautaire</span><b>{LEGAL['tva']}</b></li>
         <li><span>Adresse</span><b>{LEGAL['adresse']}</b></li>
         <li><span>Téléphone</span><b><a href="{TEL_HREF}">{TEL}</a></b></li>
         <li><span>E-mail</span><b><a href="mailto:{EMAIL}">{EMAIL}</a></b></li>
@@ -1784,24 +1830,24 @@ def mentions():
       </ul>
 
       <h2>Hébergement</h2>
-      <p>Netlify, Inc., San Francisco, Californie, États-Unis – netlify.com.</p>
+      <p>{HEBERGEUR}. Contact : {HEBERGEUR_CONTACT}. Site : netlify.com.</p>
 
       <h2>Tarifs et dépannage</h2>
-      <p>Les prix affichés sont TTC, déplacement inclus, conformément à l'arrêté du 24 janvier 2017 relatif à l'information des consommateurs sur les prestations de dépannage, de réparation et d'entretien dans le secteur du bâtiment et de l'équipement de la maison. Le tarif est annoncé avant l'intervention et confirmé sur place ; une facture détaillée est remise après chaque intervention.</p>
+      <p>Les prix affichés sont TTC, déplacement inclus, conformément à l'arrêté du 24 janvier 2017 relatif à l'information des consommateurs sur les prestations de dépannage, de réparation et d'entretien dans le secteur du bâtiment et de l'équipement de la maison. Le tarif est annoncé avant l'intervention et confirmé sur place ; un devis détaillé est remis avant les travaux dont le montant estimé dépasse 150 € TTC, et une facture détaillée est remise après chaque intervention.</p>
 
-      <h2>Données personnelles</h2>
-      <p>Les informations saisies dans le formulaire de demande (nom, téléphone, e-mail facultatif, ville, prestation, date souhaitée, message) servent uniquement à vous recontacter et à organiser l'intervention ; les demandes de rendez-vous sont enregistrées dans l'agenda Google du serrurier. Elles ne sont ni vendues ni cédées à des tiers et sont conservées le temps nécessaire au traitement de votre demande et aux obligations comptables.</p>
-      <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou l'effacement de vos données en nous contactant par téléphone ou par e-mail. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
-      <p>Le site ne dépose aucun cookie publicitaire ni de mesure d'audience. Pour afficher la police de caractères, l'animation et la carte, votre navigateur contacte des services tiers (Google Fonts, cdnjs de Cloudflare, fonds de carte Esri), qui reçoivent votre adresse IP.</p>
+      <h2>Médiation de la consommation</h2>
+      <p>Conformément aux articles L611-1 et suivants du Code de la consommation, en cas de litige non résolu avec nous, vous pouvez recourir gratuitement au médiateur de la consommation suivant : {LEGAL['mediateur']}. Avant de saisir le médiateur, vous devez nous avoir adressé une réclamation écrite.</p>
+
+{donnees_html()}
 
       <h2>Propriété intellectuelle et crédits</h2>
-      <p>Les textes, photos d'interventions et le logo appartiennent à {NOM}. Toute reproduction sans autorisation est interdite. Fonds de carte © Esri, HERE, Garmin et les contributeurs OpenStreetMap.</p>
+      <p>Les textes, photos d'interventions et le logo appartiennent à {NOM}. Toute reproduction sans autorisation est interdite. Police Space Grotesk sous licence SIL Open Font License. Fonds de carte © Esri, HERE, Garmin et les contributeurs OpenStreetMap.</p>
     </div>
   </section>
 '''
     valeurs = {'FIL': '', 'NAV': '../', 'ANCRE': '../'}
     ecrire('mentions-legales/index.html', page(root, valeurs, [corps], f'Mentions légales – {NOM}',
-                                               f'Mentions légales, hébergement et politique de confidentialité du site {NOM}.',
+                                               f'Mentions légales, hébergement, médiation et politique de confidentialité du site {NOM}.',
                                                SITE + 'mentions-legales/', [entreprise_ld([{'@type': 'AdministrativeArea', 'name': 'Vaucluse'}])],
                                                robots='noindex, follow', complet=False))
 
