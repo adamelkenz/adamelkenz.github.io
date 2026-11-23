@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>inDrive Maroc — Tu fixes ton prix</title>
+<meta name="description" content="Concept : le site d'inDrive au Maroc. Propose ton prix, choisis ton chauffeur, yallah on y va.">
+<meta name="theme-color" content="#0a0b0a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lime:#c7f31f; --lime-2:#a6d300; --ink:#0a0b0a; --ink-2:#121512; --ink-3:#1b1f1b; --line:rgba(255,255,255,.09);
+  --txt:#f4f6f1; --mut:#9aa196; --red:#ff4d3d;
+  --disp:'Bricolage Grotesque','Arial Black',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--txt);font-family:var(--body);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+::selection{background:var(--lime);color:#000}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+.disp{font-family:var(--disp);font-weight:800;letter-spacing:-.045em;line-height:.88}
+.lime{color:var(--lime)}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);font-weight:600}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--lime)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* progress */
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--lime);transform-origin:0 50%;transform:scaleX(0);z-index:100}
+
+/* preloader */
+#pre{position:fixed;inset:0;background:var(--lime);color:#000;z-index:200;display:grid;place-items:center;transition:transform 1s var(--ease)}
+#pre.go{transform:translateY(-101%)}
+#pre .logo{font-size:clamp(56px,14vw,170px)}
+#pre .cnt{position:absolute;left:20px;bottom:18px;font-family:var(--disp);font-weight:800;font-size:clamp(40px,9vw,110px);letter-spacing:-.05em;line-height:1}
+
+/* logo */
+.logo{font-family:var(--disp);font-weight:800;letter-spacing:-.06em;line-height:1;display:inline-flex;align-items:baseline}
+.logo i{font-style:normal;font-weight:700}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding:14px 0;transition:background .4s,backdrop-filter .4s}
+header.sc{background:rgba(10,11,10,.7);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav .logo{font-size:30px}
+.nav ul{display:flex;gap:32px;list-style:none;font-size:15px;color:var(--mut)}
+.nav ul a{transition:color .2s}.nav ul a:hover{color:var(--lime)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .3s var(--ease),box-shadow .3s,background .3s;will-change:transform}
+.btn.p{background:var(--lime);color:#000}
+.btn.p:hover{box-shadow:0 0 0 6px rgba(199,243,31,.18),0 10px 50px rgba(199,243,31,.4)}
+.btn.g{border:1px solid rgba(255,255,255,.22)}.btn.g:hover{border-color:var(--lime);color:var(--lime)}
+.btn svg{width:18px;height:18px}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
+#city{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(60% 60% at 75% 45%,rgba(199,243,31,.12),transparent 70%),linear-gradient(90deg,var(--ink) 0%,rgba(10,11,10,.55) 45%,transparent 75%),linear-gradient(0deg,var(--ink),transparent 22%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(64px,11.4vw,188px);margin:22px 0 26px}
+.mask{display:block;overflow:hidden;padding-bottom:.06em}
+.mask>span{display:block;transform:translateY(110%);transition:transform 1.1s var(--ease)}
+.ready .mask>span{transform:none}
+.mask:nth-child(2)>span{transition-delay:.12s}
+.out{color:transparent;-webkit-text-stroke:2px var(--lime)}
+.hero p.lead{font-size:clamp(17px,1.7vw,22px);color:#c9cfc3;max-width:520px}
+.hero p.lead b{color:#fff}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-meta{display:flex;gap:30px;margin-top:44px;color:var(--mut);font-size:14px}
+.hero-meta b{display:block;font-family:var(--disp);font-size:30px;color:#fff;letter-spacing:-.03em;line-height:1}
+.phone-wrap{position:relative;justify-self:center}
+.float{position:absolute;background:rgba(18,21,18,.86);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;padding:12px 16px;font-size:13px;z-index:5;animation:fl 6s ease-in-out infinite}
+.float b{display:block;font-family:var(--disp);font-size:20px;letter-spacing:-.02em}
+.f1{left:-90px;top:12%}.f2{right:-60px;bottom:18%;animation-delay:-3s}
+@keyframes fl{50%{transform:translateY(-14px)}}
+
+/* phone */
+.phone{position:relative;width:min(310px,78vw);aspect-ratio:9/18.6;background:#000;border-radius:46px;padding:10px;box-shadow:0 0 0 2px #2a2f2a,0 0 0 9px #0f120f,0 50px 120px rgba(0,0,0,.7),0 0 140px rgba(199,243,31,.14);transform:rotateY(-12deg) rotateX(4deg) rotateZ(2deg);transition:transform .2s;}
+.phone::before{content:"";position:absolute;top:18px;left:50%;width:84px;height:24px;background:#000;border-radius:20px;transform:translateX(-50%);z-index:6}
+.scr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#161916;color:#fff;font-size:12px}
+.map{position:absolute;inset:0;background:
+  linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/26px 26px,
+  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/26px 26px,#1a1e1a}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.route{fill:none;stroke:var(--lime);stroke-width:4;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;animation:dash 4s var(--ease) infinite;filter:drop-shadow(0 0 6px var(--lime))}
+@keyframes dash{0%{stroke-dashoffset:420}45%,100%{stroke-dashoffset:0}}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#101310;border-radius:26px 26px 0 0;padding:16px 16px 18px;border-top:1px solid var(--line)}
+.grab{width:36px;height:4px;border-radius:9px;background:#333;margin:0 auto 12px}
+.addr{display:flex;gap:10px;align-items:center;font-size:12px;color:#cfd5c9;padding:6px 0}
+.addr i{width:9px;height:9px;border-radius:50%;background:var(--lime);flex:none}.addr i.sq{border-radius:2px;background:#fff}
+.price-box{display:flex;align-items:center;justify-content:space-between;background:#1c211c;border-radius:16px;padding:10px 12px;margin:10px 0}
+.price-box .pv{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.04em;line-height:1}
+.price-box .pv small{font-size:13px;color:var(--mut);margin-left:3px;font-weight:600}
+.pm{width:34px;height:34px;border-radius:50%;background:#2a302a;display:grid;place-items:center;font-size:18px}
+.offers{display:grid;gap:7px;min-height:150px}
+.offer{display:flex;align-items:center;gap:10px;background:#1c211c;border-radius:14px;padding:9px 10px;opacity:0;transform:translateY(18px) scale(.96);transition:all .55s var(--ease)}
+.offer.in{opacity:1;transform:none}
+.offer.win{background:var(--lime);color:#000}
+.av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#3a423a,#222822);display:grid;place-items:center;font-weight:700;font-size:12px;flex:none}
+.offer.win .av{background:#000;color:var(--lime)}
+.offer .nm{font-weight:600;font-size:12px;line-height:1.2}.offer .sb{font-size:10px;color:var(--mut)}.offer.win .sb{color:#2b3300}
+.offer .pr{margin-left:auto;text-align:right;font-family:var(--disp);font-weight:800;font-size:16px;letter-spacing:-.03em;line-height:1.1}
+.offer .pr small{display:block;font-family:var(--body);font-weight:500;font-size:9px;color:var(--mut)}
+.offer.win .pr small{color:#2b3300}
+.go{margin-top:10px;width:100%;padding:12px;border-radius:14px;background:var(--lime);color:#000;font-weight:700;text-align:center;font-size:13px}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);padding:26px 0;overflow:hidden;background:var(--ink-2);transform:rotate(-1.2deg) scale(1.03);margin:20px 0 40px}
+.mt{display:flex;gap:56px;width:max-content;animation:mq 38s linear infinite;font-family:var(--disp);font-weight:800;font-size:clamp(34px,5vw,64px);letter-spacing:-.04em;white-space:nowrap}
+.mt span{display:flex;align-items:center;gap:56px}.mt span::after{content:"✦";color:var(--lime);font-size:.5em}
+.mt span:nth-child(even){color:transparent;-webkit-text-stroke:1.5px #fff}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.sec{padding:clamp(80px,12vw,170px) 0}
+.sec h2{font-size:clamp(44px,7.4vw,118px);margin:18px 0 0}
+.rv{opacity:0;transform:translateY(46px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* how (sticky) */
+.how{height:360vh}
+.how .stick{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
+.how .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.steps{display:grid;gap:10px;margin-top:40px}
+.step{padding:22px 0 22px 26px;border-left:2px solid var(--line);opacity:.35;transition:all .5s var(--ease)}
+.step.on{opacity:1;border-color:var(--lime)}
+.step small{font-family:var(--disp);font-weight:700;color:var(--lime);font-size:14px;letter-spacing:.1em}
+.step h3{font-family:var(--disp);font-size:clamp(26px,3vw,40px);letter-spacing:-.04em;line-height:1;margin:6px 0 8px}
+.step p{color:var(--mut);max-width:430px;max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.step.on p{max-height:120px}
+.big-num{position:absolute;right:-2vw;bottom:-6vw;font-family:var(--disp);font-weight:800;font-size:38vw;line-height:.7;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.06);pointer-events:none;letter-spacing:-.08em}
+.how .phone{margin-inline:auto;transform:rotateY(10deg) rotateX(3deg) rotateZ(-2deg)}
+.sc-wrap{position:absolute;inset:0;opacity:0;transition:opacity .5s}
+.sc-wrap.on{opacity:1}
+.search{background:#1c211c;border-radius:14px;padding:12px;margin:6px 0;color:#fff;font-size:13px;display:flex;gap:8px;align-items:center}
+.caret{display:inline-block;width:2px;height:14px;background:var(--lime);animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.suggest{font-size:12px;padding:9px 4px;color:#cfd5c9;border-bottom:1px solid #222;display:flex;justify-content:space-between}
+.suggest span{color:var(--mut)}
+.car{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--lime);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(199,243,31,.2),0 0 30px var(--lime);animation:drive 5s linear infinite;color:#000;font-size:13px}
+@keyframes drive{0%{left:12%;top:70%}35%{left:12%;top:36%}70%{left:58%;top:36%}100%{left:58%;top:16%}}
+
+/* demo */
+.demo{background:var(--lime);color:#000;overflow:hidden}
+.demo .eyebrow{color:#000}.demo .eyebrow::before{background:#000}
+.demo .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center;margin-top:50px}
+.demo h2{color:#000}
+.card-d{background:#0a0b0a;color:#fff;border-radius:34px;padding:clamp(22px,3vw,38px);box-shadow:0 40px 100px rgba(0,0,0,.35)}
+.trip{display:flex;justify-content:space-between;color:var(--mut);font-size:14px;margin-bottom:6px}
+.trip b{color:#fff}
+.bigp{font-family:var(--disp);font-weight:800;font-size:clamp(80px,11vw,150px);letter-spacing:-.06em;line-height:.9;display:flex;align-items:baseline;gap:10px}
+.bigp small{font-size:26px;color:var(--lime);letter-spacing:-.02em}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:99px;background:linear-gradient(90deg,var(--lime) var(--v,50%),#262b26 var(--v,50%));outline:0;margin:22px 0 8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:38px;border-radius:50%;background:#fff;border:6px solid var(--lime);box-shadow:0 0 0 8px rgba(199,243,31,.2);cursor:grab}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid var(--lime);cursor:grab}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--mut)}
+.meter{height:8px;background:#222;border-radius:9px;margin:20px 0 8px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),#ffb020,var(--lime));border-radius:9px;transition:width .4s var(--ease)}
+.verdict{font-size:14px;color:#cfd5c9;min-height:22px}
+.verdict b{color:var(--lime)}
+.dl{display:grid;gap:8px;margin-top:18px;min-height:218px;align-content:start}
+.dl .offer{font-size:13px}.dl .offer .nm{font-size:14px}.dl .offer .pr{font-size:20px}.dl .av{width:38px;height:38px;font-size:14px}
+.empty{color:var(--mut);font-size:14px;padding:30px 0;text-align:center}
+.demo p.sub{font-size:clamp(17px,1.7vw,21px);max-width:440px;margin-top:24px;color:#1b2100}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(230px,auto);gap:16px;margin-top:60px}
+.bc{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:30px;padding:30px;overflow:hidden;transition:transform .5s var(--ease),border-color .3s}
+.bc::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(199,243,31,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.bc:hover{border-color:rgba(199,243,31,.4);transform:translateY(-6px)}.bc:hover::before{opacity:1}
+.bc>*{position:relative}
+.bc h3{font-family:var(--disp);font-size:clamp(26px,2.6vw,38px);letter-spacing:-.04em;line-height:1;margin:14px 0 10px}
+.bc p{color:var(--mut);max-width:380px}
+.bc .ic{width:54px;height:54px;border-radius:18px;background:rgba(199,243,31,.1);display:grid;place-items:center;color:var(--lime)}
+.bc .ic svg{width:28px;height:28px}
+.b-a{grid-column:span 4;grid-row:span 2;background:linear-gradient(160deg,#171c10,var(--ink-2))}
+.b-b,.b-c{grid-column:span 2}.b-d{grid-column:span 3}.b-e{grid-column:span 3}
+.bc .huge{position:absolute;right:26px;bottom:6px;font-family:var(--disp);font-weight:800;font-size:clamp(120px,17vw,260px);letter-spacing:-.08em;line-height:.8;color:var(--lime);opacity:.95}
+.bc .huge small{font-size:.28em;letter-spacing:-.02em;margin-left:6px;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips span{padding:8px 14px;border:1px solid var(--line);border-radius:99px;font-size:13px;color:#cfd5c9}
+
+/* sides */
+.sides{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:60px}
+.side{border-radius:34px;padding:clamp(28px,4vw,56px);min-height:460px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.side.s1{background:var(--ink-3);border:1px solid var(--line)}
+.side.s2{background:var(--lime);color:#000}
+.side h3{font-family:var(--disp);font-size:clamp(40px,5vw,76px);letter-spacing:-.05em;line-height:.9;font-weight:800}
+.side ul{list-style:none;margin-top:26px;display:grid;gap:12px}
+.side li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
+.side li::before{content:"";flex:none;width:22px;height:22px;margin-top:2px;border-radius:50%;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/13px no-repeat}
+.s2 li::before{background-color:#000;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c7f31f' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E")}
+.side .btn{align-self:flex-start;margin-top:34px}
+.s2 .btn.p{background:#000;color:var(--lime)}
+.zl{position:absolute;right:-60px;top:-60px;width:260px;height:260px;opacity:.16;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.st{padding:clamp(30px,5vw,70px) 24px;border-right:1px solid var(--line)}.st:last-child{border:0}
+.st b{font-family:var(--disp);font-weight:800;font-size:clamp(48px,7vw,110px);letter-spacing:-.06em;line-height:.9;display:block}
+.st span{color:var(--mut);font-size:15px;display:block;margin-top:12px}
+
+/* final */
+.final{text-align:center;overflow:hidden;padding:clamp(100px,16vw,230px) 0}
+.final::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%23c7f31f' stroke-width='1.5'%3E%3Crect x='30' y='30' width='60' height='60'/%3E%3Crect x='30' y='30' width='60' height='60' transform='rotate(45 60 60)'/%3E%3Ccircle cx='60' cy='60' r='9'/%3E%3C/svg%3E")}
+.final::after{content:"";position:absolute;inset:0;background:radial-gradient(50% 55% at 50% 50%,transparent,var(--ink) 90%)}
+.final .wrap{position:relative;z-index:2}
+.final h2{font-size:clamp(60px,13vw,230px)}
+.final p{color:#c9cfc3;font-size:clamp(17px,1.8vw,22px);margin:30px auto 0;max-width:520px}
+.final .cta-row{justify-content:center}
+.store{display:inline-flex;align-items:center;gap:14px;padding:14px 26px;border-radius:18px;background:#fff;color:#000;transition:transform .3s var(--ease)}
+.store:hover{transform:translateY(-4px) scale(1.03)}
+.store svg{width:28px;height:28px}.store small{display:block;font-size:11px;line-height:1;color:#555}.store b{font-family:var(--disp);font-size:20px;letter-spacing:-.02em;line-height:1.1}
+.store.l{background:var(--lime)}
+footer{border-top:1px solid var(--line);padding:34px 0 50px;color:var(--mut);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* responsive */
+@media(max-width:980px){
+  .nav ul{display:none}
+  .hero .wrap,.how .wrap,.demo .grid,.sides{grid-template-columns:1fr}
+  .phone-wrap{margin-top:30px}.f1{left:-10px}.f2{right:-10px}
+  .hero::before{background:linear-gradient(180deg,rgba(10,11,10,.75),rgba(10,11,10,.4) 50%,var(--ink) 100%)}
+  .how{height:420vh}.how .wrap{gap:10px}.how .phone{width:min(240px,60vw)}.how .stick{align-items:flex-start;padding-top:80px}
+  .steps{margin-top:14px}.step{padding:10px 0 10px 18px}.step p{font-size:14px}
+  .bento{grid-template-columns:1fr 1fr}.b-a{grid-column:span 2;min-height:420px}.b-b,.b-c,.b-d,.b-e{grid-column:span 2}
+  .stats{grid-template-columns:1fr 1fr}.st:nth-child(2){border-right:0}.st:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .hero-meta{gap:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.mask>span{transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<div id="pre"><div class="logo"><i>in</i>Drive</div><div class="cnt" id="cnt">0</div></div>
+
+<header id="hd">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><i>in</i>Drive<span class="lime">.</span></a>
+    <ul>
+      <li><a href="#how">Comment ça marche</a></li>
+      <li><a href="#demo">Essaie</a></li>
+      <li><a href="#why">Pourquoi inDrive</a></li>
+      <li><a href="#drivers">Chauffeurs</a></li>
+    </ul>
+    <a href="#go" class="btn p mag">Télécharger</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <canvas id="city"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Maroc · Casablanca, Rabat, Marrakech…</span>
+      <h1 class="disp"><span class="mask"><span>Tu fixes</span></span><span class="mask"><span class="out">ton prix.</span></span></h1>
+      <p class="lead">Le VTC où <b>c'est toi qui négocies</b>. Propose ton tarif, reçois les offres des chauffeurs autour de toi, choisis la meilleure. Fini les prix imposés.</p>
+      <div class="cta-row">
+        <a href="#go" class="btn p mag">Commander une course
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#demo" class="btn g mag">Fixer mon prix</a>
+      </div>
+      <div class="hero-meta">
+        <div><b data-count="12" data-suffix="+">0</b>villes</div>
+        <div><b>24/7</b>disponible</div>
+        <div><b data-count="0" data-suffix=" surprise">0</b>sur le prix</div>
+      </div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="float f1"><span style="color:var(--mut)">Ton offre</span><b class="lime">30 MAD</b></div>
+      <div class="float f2"><span style="color:var(--mut)">Chauffeur accepté</span><b>Youssef · 2 min</b></div>
+      <div class="phone" id="hp">
+        <div class="scr">
+          <div class="map"><svg viewBox="0 0 280 560" preserveAspectRatio="none"><path class="route" d="M50 330 L50 200 L190 200 L190 110"/><circle cx="50" cy="330" r="7" fill="#fff"/><rect x="183" y="103" width="14" height="14" rx="3" fill="var(--lime)"/></svg></div>
+          <div class="sheet">
+            <div class="grab"></div>
+            <div class="addr"><i></i>Maârif, Casablanca</div>
+            <div class="addr"><i class="sq"></i>Morocco Mall</div>
+            <div class="price-box"><div><div style="color:var(--mut);font-size:10px;margin-bottom:3px">Ton prix</div><div class="pv"><span id="hpv">30</span><small>MAD</small></div></div><div style="display:flex;gap:6px"><div class="pm">−</div><div class="pm">+</div></div></div>
+            <div class="offers" id="hoff"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marq" aria-hidden="true"><div class="mt" id="mt"></div></div>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="stick">
+    <div class="big-num" id="bn">1</div>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Comment ça marche</span>
+        <h2 class="disp" style="font-size:clamp(44px,6.4vw,100px);margin-top:18px">Trois taps.<br><span class="lime">C'est tout.</span></h2>
+        <div class="steps" id="steps">
+          <div class="step on"><small>01</small><h3>Dis-nous où tu vas</h3><p>Entre ta destination. On trace le trajet et on te suggère un prix de départ.</p></div>
+          <div class="step"><small>02</small><h3>Propose ton prix</h3><p>Trop cher ? Baisse. Pressé ? Monte. C'est toi qui décides combien tu paies.</p></div>
+          <div class="step"><small>03</small><h3>Choisis ton chauffeur</h3><p>Les chauffeurs proches répondent en direct. Note, voiture, temps d'arrivée : tu choisis.</p></div>
+        </div>
+      </div>
+      <div style="perspective:1200px">
+        <div class="phone">
+          <div class="scr">
+            <!-- screen 1 -->
+            <div class="sc-wrap on">
+              <div class="map"><svg viewBox="0 0 280 560" preserveAspectRatio="none"><path d="M40 420 L40 260 L220 260" fill="none" stroke="#2c332c" stroke-width="10"/><path d="M120 80 L120 480" fill="none" stroke="#2c332c" stroke-width="10"/></svg></div>
+              <div class="sheet" style="padding-top:16px"><div class="grab"></div>
+                <div style="font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.04em;margin-bottom:8px">Où vas-tu ?</div>
+                <div class="search"><span class="lime">●</span> Marrakech, Gueliz<span class="caret"></span></div>
+                <div class="suggest">Gare de Marrakech<span>2,1 km</span></div>
+                <div class="suggest">Place Jemaa el-Fna<span>4,8 km</span></div>
+                <div class="suggest" style="border:0">Aéroport Ménara<span>6,3 km</span></div>
+              </div>
+            </div>
+            <!-- screen 2 -->
+            <div class="sc-wrap">
+              <div class="map"><svg viewBox="0 0 280 560" preserveAspectRatio="none"><path d="M50 330 L50 200 L190 200 L190 110" fill="none" stroke="var(--lime)" stroke-width="4" stroke-linecap="round"/></svg></div>
+              <div class="sheet"><div class="grab"></div>
+                <div class="addr"><i></i>Gueliz</div><div class="addr"><i class="sq"></i>Gare de Marrakech</div>
+                <div class="price-box" style="padding:16px 14px"><div><div style="color:var(--mut);font-size:10px;margin-bottom:3px">Prix recommandé : 25 MAD</div><div class="pv" style="font-size:44px">22<small>MAD</small></div></div><div style="display:flex;gap:6px"><div class="pm">−</div><div class="pm" style="background:var(--lime);color:#000">+</div></div></div>
+                <div class="go">Trouver un chauffeur</div>
+              </div>
+            </div>
+            <!-- screen 3 -->
+            <div class="sc-wrap">
+              <div class="map"><svg viewBox="0 0 280 560" preserveAspectRatio="none"><path d="M50 330 L50 200 L190 200 L190 110" fill="none" stroke="#33402a" stroke-width="4"/></svg><div class="car">🚕</div></div>
+              <div class="sheet"><div class="grab"></div>
+                <div style="font-weight:700;font-size:14px;margin-bottom:8px">3 chauffeurs ont répondu</div>
+                <div class="offers" style="min-height:0">
+                  <div class="offer in win"><div class="av">Y</div><div><div class="nm">Youssef · ★ 4.9</div><div class="sb">Dacia Logan · 2 min</div></div><div class="pr">22 MAD<small>ton prix ✓</small></div></div>
+                  <div class="offer in"><div class="av">K</div><div><div class="nm">Karim · ★ 4.8</div><div class="sb">Renault Clio · 4 min</div></div><div class="pr">25 MAD</div></div>
+                  <div class="offer in"><div class="av">H</div><div><div class="nm">Hamza · ★ 5.0</div><div class="sb">Peugeot 208 · 3 min</div></div><div class="pr">27 MAD</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="demo sec" id="demo">
+  <div class="wrap">
+    <span class="eyebrow rv">Essaie toi-même</span>
+    <div class="grid">
+      <div>
+        <h2 class="disp rv">Et toi, tu paies combien ?</h2>
+        <p class="sub rv d1">Casablanca Port → Maârif, 4 km. Bouge le curseur : plus ton prix est juste, plus les chauffeurs répondent vite.</p>
+      </div>
+      <div class="card-d rv d2">
+        <div class="trip"><span>Gauthier → Casa Port</span><b>4,1 km · 12 min</b></div>
+        <div class="bigp"><span id="dp">25</span><small>MAD</small></div>
+        <input type="range" id="rg" min="10" max="50" value="25" aria-label="Ton prix en MAD">
+        <div class="scale"><span>10</span><span>Prix reco. 25</span><span>50</span></div>
+        <div class="meter"><i id="mt2"></i></div>
+        <div class="verdict" id="vd"></div>
+        <div class="dl" id="dl"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec" id="why">
+  <div class="wrap">
+    <span class="eyebrow rv">Pourquoi inDrive</span>
+    <h2 class="disp rv d1">Le pouvoir<br>change de <span class="lime">côté.</span></h2>
+    <div class="bento">
+      <div class="bc b-a rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5C17 4.5 14.8 3 12 3S7 4.5 7 6.5 9 9.5 12 10.5s5 2 5 4-2.2 3.5-5 3.5-5-1.5-5-3.5"/></svg></div>
+        <h3>Ton prix.<br>Ta décision.</h3>
+        <p>Pas d'algorithme qui gonfle le tarif quand il pleut ou qu'il y a du monde. Tu proposes, les chauffeurs répondent.</p>
+        <div class="chips"><span>Casablanca</span><span>Rabat</span><span>Marrakech</span><span>Tanger</span><span>Fès</span><span>Agadir</span></div>
+        <div class="huge">0<small>MAD d'imposé</small></div>
+      </div>
+      <div class="bc b-b rv d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></div>
+        <h3>Tu choisis ton chauffeur</h3><p>Note, voiture, temps d'arrivée. Pas de roulette russe.</p>
+      </div>
+      <div class="bc b-c rv d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Sécurité intégrée</h3><p>Partage ton trajet en direct et bouton SOS à portée de pouce.</p>
+      </div>
+      <div class="bc b-d rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Paye comme tu veux</h3><p>En espèces ou autrement, à la fin du trajet. Simple, comme au Maroc.</p>
+      </div>
+      <div class="bc b-e rv d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h8l-1 8 10-12h-8z"/></svg></div>
+        <h3>Des offres en quelques secondes</h3><p>Les chauffeurs autour de toi répondent en direct. Tu vois tout, tu acceptes en un tap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats wrap" style="width:min(1240px,100% - 40px)">
+  <div class="st rv"><b class="lime" data-count="12" data-suffix="+">0</b><span>villes couvertes</span></div>
+  <div class="st rv d1"><b>24/7</b><span>des chauffeurs partout</span></div>
+  <div class="st rv d2"><b data-count="3" data-suffix="s">0</b><span>pour recevoir une offre</span></div>
+  <div class="st rv d3"><b class="lime">1</b><span>seul prix : le tien</span></div>
+</div>
+
+<!-- DRIVERS -->
+<section class="sec" id="drivers">
+  <div class="wrap">
+    <span class="eyebrow rv">Deux côtés, un même deal</span>
+    <h2 class="disp rv d1">Passager<br>ou <span class="lime">chauffeur.</span></h2>
+    <div class="sides">
+      <div class="side s1 rv">
+        <svg class="zl" viewBox="0 0 120 120" fill="none" stroke="#c7f31f" stroke-width="1.5"><rect x="30" y="30" width="60" height="60"/><rect x="30" y="30" width="60" height="60" transform="rotate(45 60 60)"/><circle cx="60" cy="60" r="9"/></svg>
+        <div><h3>Tu voyages.<br>Tu décides.</h3>
+          <ul><li>Propose ton tarif, point.</li><li>Compare les offres en direct</li><li>Suis ton chauffeur sur la carte</li></ul></div>
+        <a href="#go" class="btn p mag">Commander</a>
+      </div>
+      <div class="side s2 rv d1">
+        <svg class="zl" style="opacity:.14;stroke:#000" viewBox="0 0 120 120" fill="none" stroke="#000" stroke-width="1.5"><rect x="30" y="30" width="60" height="60"/><rect x="30" y="30" width="60" height="60" transform="rotate(45 60 60)"/><circle cx="60" cy="60" r="9"/></svg>
+        <div><h3>Tu conduis.<br>Tu choisis.</h3>
+          <ul><li>Accepte ou contre-propose le prix</li><li>Choisis les courses qui te vont</li><li>Rejoins la communauté des chauffeurs marocains</li></ul></div>
+        <a href="#go" class="btn p mag">Devenir chauffeur</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="go">
+  <div class="wrap">
+    <span class="eyebrow rv" style="justify-content:center">Prêt ?</span>
+    <h2 class="disp rv d1" style="margin-top:20px">Yallah,<br><span class="lime">on y va.</span></h2>
+    <p class="rv d2">Télécharge l'app, tape ta destination et fixe ton prix. La ville est à toi.</p>
+    <div class="cta-row rv d3">
+      <a href="#" class="store l"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 12.6c0-2.5 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-1.9-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.2 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8 2.2-1.2 3-2.4c1-1.4 1.4-2.7 1.4-2.8-.1 0-2.5-1-2.5-3.4zM15.2 5.2c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.1-.6 2.8-1.5z"/></svg><span><small>Télécharger sur</small><b>App Store</b></span></a>
+      <a href="#" class="store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l.1.1 9.3-9.3v-.2L3.7 2.2zM16.1 15.4l-3.1-3.1v-.2l3.1-3.1.1.1 3.7 2.1c1 .6 1 1.5 0 2.1l-3.7 2.1zM16.2 15.3L13 12.2 3.6 21.7c.3.4.9.4 1.5.1l11.1-6.5M16.2 8.7L5.1 2.2c-.6-.3-1.2-.3-1.5.1L13 11.8z"/></svg><span><small>Disponible sur</small><b>Google Play</b></span></a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span class="logo" style="font-size:22px;color:#fff"><i>in</i>Drive<span class="lime">.</span>&nbsp;<span style="font-family:var(--body);font-weight:400;letter-spacing:0;font-size:13px;color:var(--mut)">Maroc</span></span><span>Concept de site web non officiel · Maquette de présentation</span></div></footer>
+
+<script>
+(()=>{
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* preloader */
+const pre=$('#pre'),cnt=$('#cnt');
+let n=0;const t0=performance.now();
+(function tick(t){
+  n=Math.min(100,Math.round((t-t0)/1300*100));cnt.textContent=n;
+  if(n<100)return requestAnimationFrame(tick);
+  setTimeout(()=>{pre.classList.add('go');document.body.classList.add('ready');document.documentElement.classList.add('ready');
+    runCounters($('.hero-meta'));},250);
+})(t0);
+
+/* progress + header */
+const bar=$('#bar'),hd=$('#hd');
+function onScroll(){
+  const h=document.documentElement,p=h.scrollTop/(h.scrollHeight-h.clientHeight||1);
+  bar.style.transform=`scaleX(${p})`;hd.classList.toggle('sc',h.scrollTop>40);
+  how();
+}
+
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');runCounters(e.target);io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+function runCounters(root){
+  (root.matches('[data-count]')?[root]:$$('[data-count]',root)).forEach(el=>{
+    if(el.dataset.done)return;el.dataset.done=1;
+    const to=+el.dataset.count,suf=el.dataset.suffix||'',s=performance.now();
+    (function f(t){const k=Math.min(1,(t-s)/1600),e=1-Math.pow(1-k,4);el.textContent=Math.round(to*e)+suf;if(k<1)requestAnimationFrame(f)})(s);
+  });
+}
+
+/* marquee */
+const cities=['Casablanca','Rabat','Marrakech','Tanger','Fès','Agadir','Meknès','Oujda','Tétouan','Kénitra','El Jadida','Essaouira'];
+$('#mt').innerHTML=[...cities,...cities].map(c=>`<span>${c}</span>`).join('');
+
+/* magnetic buttons */
+if(!reduce)$$('.mag').forEach(b=>{
+  b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+/* bento glow */
+$$('.bc').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+
+/* hero phone tilt */
+const hp=$('#hp');
+if(!reduce&&matchMedia('(hover:hover)').matches)addEventListener('mousemove',e=>{
+  const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
+  hp.style.transform=`rotateY(${-12+x*14}deg) rotateX(${4-y*12}deg) rotateZ(2deg)`;
+});
+
+/* hero bidding loop */
+const DR=[{n:'Youssef',r:'4.9',t:'2 min',c:'Dacia Logan',p:36},{n:'Karim',r:'4.8',t:'4 min',c:'Renault Clio',p:33},{n:'Hamza',r:'5.0',t:'3 min',c:'Peugeot 208',p:30}];
+const offerHTML=(d,cls='')=>`<div class="offer ${cls}"><div class="av">${d.n[0]}</div><div><div class="nm">${d.n} · ★ ${d.r}</div><div class="sb">${d.c} · ${d.t}</div></div><div class="pr">${d.p} MAD<small>${cls?'accepté ✓':'offre'}</small></div></div>`;
+async function bidLoop(){
+  const box=$('#hoff'),pv=$('#hpv');
+  while(true){
+    box.innerHTML='';pv.textContent=30;
+    await sleep(1400);
+    for(const d of DR){
+      box.insertAdjacentHTML('beforeend',offerHTML(d));
+      const el=box.lastElementChild;await sleep(30);el.classList.add('in');await sleep(950);
+    }
+    await sleep(500);
+    const w=box.children[2];w.classList.add('win');
+    w.querySelector('.pr').innerHTML='30 MAD<small>accepté ✓</small>';
+    await sleep(3200);
+  }
+}
+bidLoop();
+
+/* how (sticky scroll) */
+const how_=$('#how'),steps=$$('#steps .step'),scs=$$('.sc-wrap'),bn=$('#bn');let cur=-1;
+function how(){
+  if(!how_)return;
+  const r=how_.getBoundingClientRect(),tot=how_.offsetHeight-innerHeight;
+  const p=Math.min(.999,Math.max(0,-r.top/tot)),i=Math.floor(p*3);
+  if(i!==cur){cur=i;steps.forEach((s,k)=>s.classList.toggle('on',k===i));scs.forEach((s,k)=>s.classList.toggle('on',k===i));bn.textContent=i+1}
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* demo slider */
+const rg=$('#rg'),dp=$('#dp'),mt2=$('#mt2'),vd=$('#vd'),dl=$('#dl');
+const POOL=[{n:'Samir',r:'4.7',c:'Dacia Sandero',t:'6 min',min:17},{n:'Youssef',r:'4.9',c:'Dacia Logan',t:'2 min',min:20},{n:'Karim',r:'4.8',c:'Renault Clio',t:'4 min',min:23},{n:'Hamza',r:'5.0',c:'Peugeot 208',t:'3 min',min:27},{n:'Omar',r:'4.6',c:'Hyundai i10',t:'5 min',min:32}];
+let shown='';
+function demo(){
+  const v=+rg.value;dp.textContent=v;
+  rg.style.setProperty('--v',((v-10)/40*100)+'%');
+  const ok=POOL.filter(d=>v>=d.min);
+  const chance=Math.max(0,Math.min(100,Math.round((v-14)/(30-14)*100)));
+  mt2.style.width=chance+'%';
+  vd.innerHTML=!ok.length?`<b>${chance}%</b> de chances — trop bas, personne ne répond.`
+    :v<23?`<b>${chance}%</b> de chances — ça passe, mais prépare-toi à attendre un peu.`
+    :v<=30?`<b>${chance}%</b> de chances — le bon prix. Les offres arrivent vite.`
+    :`<b>${chance}%</b> de chances — tu peux baisser, tu paies plus que nécessaire.`;
+  const key=ok.map(d=>d.n).join();
+  if(key===shown)return;shown=key;
+  dl.innerHTML=ok.length?ok.slice().reverse().map(d=>{const x=d;return `<div class="offer"><div class="av">${x.n[0]}</div><div><div class="nm">${x.n} · ★ ${x.r}</div><div class="sb">${x.c} · ${x.t}</div></div><div class="pr">${v} MAD<small>accepte ton prix</small></div></div>`}).join(''):'<div class="empty">Aucune offre… Monte un peu ton prix 👆</div>';
+  $$('.offer',dl).forEach((o,i)=>setTimeout(()=>o.classList.add('in'),60+i*90));
+}
+rg.addEventListener('input',demo);demo();
+
+/* city canvas */
+const cv=$('#city'),cx=cv.getContext('2d');let W,H,nodes=[],edges=[],cars=[],mx=.5,my=.5;
+function build(){
+  const dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+  nodes=[];const gx=Math.round(W/110),gy=Math.round(H/110);
+  for(let i=0;i<=gx;i++)for(let j=0;j<=gy;j++)nodes.push({x:i*W/gx+(Math.random()-.5)*60,y:j*H/gy+(Math.random()-.5)*60,l:[]});
+  edges=[];
+  nodes.forEach((a,i)=>{const near=nodes.map((b,k)=>({k,d:Math.hypot(a.x-b.x,a.y-b.y)})).filter(o=>o.k!==i&&o.d<190).sort((p,q)=>p.d-q.d).slice(0,3);
+    near.forEach(o=>{if(!edges.some(e=>(e[0]===i&&e[1]===o.k)||(e[0]===o.k&&e[1]===i)))edges.push([i,o.k]);a.l.push(o.k);nodes[o.k].l.push(i)})});
+  cars=Array.from({length:Math.round(W/55)},()=>newCar());
+}
+function newCar(){const a=Math.floor(Math.random()*nodes.length);return{a,b:nodes[a].l[0]??a,t:Math.random(),s:.004+Math.random()*.008,hist:[]}}
+function draw(){
+  cx.clearRect(0,0,W,H);
+  const ox=(mx-.5)*-18,oy=(my-.5)*-18;
+  cx.save();cx.translate(ox,oy);
+  cx.strokeStyle='rgba(255,255,255,.07)';cx.lineWidth=1;cx.beginPath();
+  edges.forEach(([i,k])=>{cx.moveTo(nodes[i].x,nodes[i].y);cx.lineTo(nodes[k].x,nodes[k].y)});cx.stroke();
+  nodes.forEach(n=>{cx.fillStyle='rgba(255,255,255,.12)';cx.fillRect(n.x-1.5,n.y-1.5,3,3)});
+  cars.forEach(c=>{
+    const A=nodes[c.a],B=nodes[c.b];
+    const x=A.x+(B.x-A.x)*c.t,y=A.y+(B.y-A.y)*c.t;
+    c.hist.push([x,y]);if(c.hist.length>26)c.hist.shift();
+    for(let i=1;i<c.hist.length;i++){cx.strokeStyle=`rgba(199,243,31,${i/c.hist.length*.7})`;cx.lineWidth=2.2*i/c.hist.length+.4;cx.beginPath();cx.moveTo(...c.hist[i-1]);cx.lineTo(...c.hist[i]);cx.stroke()}
+    cx.fillStyle='#c7f31f';cx.shadowColor='#c7f31f';cx.shadowBlur=14;cx.beginPath();cx.arc(x,y,2.6,0,7);cx.fill();cx.shadowBlur=0;
+    c.t+=c.s;
+    if(c.t>=1){const opts=nodes[c.b].l.filter(k=>k!==c.a);c.a=c.b;c.b=opts.length?opts[Math.floor(Math.random()*opts.length)]:c.a;c.t=0;
+      if(c.a===c.b)Object.assign(c,newCar())}
+  });
+  cx.restore();
+  if(!reduce)requestAnimationFrame(draw);
+}
+build();draw();addEventListener('resize',()=>{build()});
+addEventListener('mousemove',e=>{mx=e.clientX/innerWidth;my=e.clientY/innerHeight});
+})();
+</script>
+</body>
+</html>
